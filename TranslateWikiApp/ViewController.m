@@ -22,31 +22,32 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"login" accessGroup:nil];
+    //lookup credentials in keychain
+    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
     
     if(nameString!=@"" && passwString!=@"")
-    {
-        NSString *resultString = [TWapi TWLoginRequestForUser:nameString WithPassword:passwString];
+    { //found credentials
+        NSString *resultString = [TWapi TWLoginRequestForUser:nameString WithPassword:passwString]; //try login
         if([resultString isEqualToString:@"Success"])
         {
             //then we can skip the login screen
         }
         else
-        {
+        { //login fail, need to re-login and update credentals
             [loginKC resetKeychainItem];
         }
     }
     
-    
-    NSLog(@"%@\n",[loginKC objectForKey:(__bridge id)(kSecAttrAccount)]);
-    NSLog(@"%@\n", [loginKC objectForKey:(__bridge id)kSecValueData]);
+    //NSLog(@"%@\n",[loginKC objectForKey:(__bridge id)(kSecAttrAccount)]);//DEBUG
+    //NSLog(@"%@\n", [loginKC objectForKey:(__bridge id)kSecValueData]);   //DEBUG
     
 }
 
@@ -64,13 +65,16 @@
     NSString *nameString = self.userName;
     NSString *passwString = self.password;
 
-    self.ResultLabel.text = [TWapi TWLoginRequestForUser:nameString WithPassword:passwString];
+    self.ResultLabel.text = [TWapi TWLoginRequestForUser:nameString WithPassword:passwString]; //login via API
     
     if([ self.ResultLabel.text isEqualToString:@"Success"])
     {
-        KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"login" accessGroup:nil];
+        //store credentials in keychain
+        KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
+        [loginKC resetKeychainItem];
         [loginKC setObject:nameString forKey:(__bridge id)kSecAttrAccount];
         [loginKC setObject:passwString forKey:(__bridge id)kSecValueData];
+        
         //logged in - move to next screen
     }
 }
