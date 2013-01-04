@@ -20,6 +20,8 @@
 		641002211691B218000202A9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6410021F1691B218000202A9 /* MainStoryboard_iPad.storyboard */; };
 		641002241691B218000202A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002231691B218000202A9 /* ViewController.m */; };
 		6410023A1692180F000202A9 /* TWapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002391692180F000202A9 /* TWapi.m */; };
+		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
+		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,9 @@
 		641002231691B218000202A9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6410023816921803000202A9 /* TWapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWapi.h; path = "../../objc-twapi/objc-twapi/TWapi.h"; sourceTree = "<group>"; };
 		641002391692180F000202A9 /* TWapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWapi.m; path = "../../objc-twapi/objc-twapi/TWapi.m"; sourceTree = "<group>"; };
+		644D676B1695E74D00B7C7F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */,
 				641002051691B218000202A9 /* UIKit.framework in Frameworks */,
 				641002071691B218000202A9 /* Foundation.framework in Frameworks */,
 				641002091691B218000202A9 /* CoreGraphics.framework in Frameworks */,
@@ -78,6 +84,7 @@
 		641002031691B218000202A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				644D676B1695E74D00B7C7F5 /* Security.framework */,
 				641002041691B218000202A9 /* UIKit.framework */,
 				641002061691B218000202A9 /* Foundation.framework */,
 				641002081691B218000202A9 /* CoreGraphics.framework */,
@@ -88,6 +95,8 @@
 		6410020A1691B218000202A9 /* TranslateWikiApp */ = {
 			isa = PBXGroup;
 			children = (
+				644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */,
+				644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */,
 				641002131691B218000202A9 /* AppDelegate.h */,
 				641002391692180F000202A9 /* TWapi.m */,
 				6410023816921803000202A9 /* TWapi.h */,
@@ -183,9 +192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				641002111691B218000202A9 /* main.m in Sources */,
+				644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */,
+				6410023A1692180F000202A9 /* TWapi.m in Sources */,
 				641002151691B218000202A9 /* AppDelegate.m in Sources */,
 				641002241691B218000202A9 /* ViewController.m in Sources */,
-				6410023A1692180F000202A9 /* TWapi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
