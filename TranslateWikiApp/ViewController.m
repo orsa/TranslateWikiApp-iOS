@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
+#import "MessagesViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -39,10 +40,13 @@
         if([resultString isEqualToString:@"Success"])
         {
             //then we can skip the login screen
+            self.userName = nameString;
+              [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
         }
         else
         { //login fail, need to re-login and update credentals
             [loginKC resetKeychainItem];
+            
         }
     }
     
@@ -74,10 +78,22 @@
         [loginKC resetKeychainItem];
         [loginKC setObject:nameString forKey:(__bridge id)kSecAttrAccount];
         [loginKC setObject:passwString forKey:(__bridge id)kSecValueData];
-        
-        //logged in - move to next screen
+
+        [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
+    {
+        // Get reference to the destination view controller
+        MessagesViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [vc setUserName:self.userName];
+    }
+}
 
 @end
