@@ -23,7 +23,8 @@
 		6410023A1692180F000202A9 /* TWapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002391692180F000202A9 /* TWapi.m */; };
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
-		646B157F169B2F5B00391C4B /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 646B157E169B2F5B00391C4B /* MessagesViewController.m */; };
+		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
+		649BA2E0169B8B5D003561BA /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DF169B8B5D003561BA /* MessagesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +51,10 @@
 		644D676B1695E74D00B7C7F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		646B157D169B2F5B00391C4B /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesViewController.h; path = ../MessagesViewController.h; sourceTree = "<group>"; };
-		646B157E169B2F5B00391C4B /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagesViewController.m; path = ../MessagesViewController.m; sourceTree = "<group>"; };
+		649BA2DA169B822B003561BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		649BA2DD169B8B32003561BA /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		649BA2DE169B8B5D003561BA /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		649BA2DF169B8B5D003561BA /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,18 +103,20 @@
 		6410020A1691B218000202A9 /* TranslateWikiApp */ = {
 			isa = PBXGroup;
 			children = (
-				644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */,
-				644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */,
-				646B157D169B2F5B00391C4B /* MessagesViewController.h */,
-				646B157E169B2F5B00391C4B /* MessagesViewController.m */,
-				641002131691B218000202A9 /* AppDelegate.h */,
 				641002391692180F000202A9 /* TWapi.m */,
 				6410023816921803000202A9 /* TWapi.h */,
+				644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */,
+				644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */,
+				649BA2DD169B8B32003561BA /* MainViewController.h */,
+				649BA2DA169B822B003561BA /* MainViewController.m */,
+				649BA2DE169B8B5D003561BA /* MessagesViewController.h */,
+				649BA2DF169B8B5D003561BA /* MessagesViewController.m */,
+				641002221691B218000202A9 /* ViewController.h */,
+				641002231691B218000202A9 /* ViewController.m */,
+				641002131691B218000202A9 /* AppDelegate.h */,
 				641002141691B218000202A9 /* AppDelegate.m */,
 				6410021C1691B218000202A9 /* MainStoryboard_iPhone.storyboard */,
 				6410021F1691B218000202A9 /* MainStoryboard_iPad.storyboard */,
-				641002221691B218000202A9 /* ViewController.h */,
-				641002231691B218000202A9 /* ViewController.m */,
 				6410020B1691B218000202A9 /* Supporting Files */,
 			);
 			path = TranslateWikiApp;
@@ -205,7 +210,8 @@
 				6410023A1692180F000202A9 /* TWapi.m in Sources */,
 				641002151691B218000202A9 /* AppDelegate.m in Sources */,
 				641002241691B218000202A9 /* ViewController.m in Sources */,
-				646B157F169B2F5B00391C4B /* MessagesViewController.m in Sources */,
+				649BA2DB169B822B003561BA /* MainViewController.m in Sources */,
+				649BA2E0169B8B5D003561BA /* MessagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

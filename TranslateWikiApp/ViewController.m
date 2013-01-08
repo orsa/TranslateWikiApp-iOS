@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
-#import "MessagesViewController.h"
+#import "MainViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -89,7 +89,7 @@
     if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
     {
         // Get reference to the destination view controller
-        MessagesViewController *vc = [segue destinationViewController];
+        MainViewController *vc = [segue destinationViewController];
         
         // Pass any objects to the view controller here, like...
         [vc setUserName:self.userName];
