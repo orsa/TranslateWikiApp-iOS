@@ -38,7 +38,7 @@
     NSLog(@"%@",result); //DEBUG
     
     tableData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
-    //we expect an array, otherwise will be runtimeexception
+    //we expect an array, otherwise will be runtime exception
     
 }
 

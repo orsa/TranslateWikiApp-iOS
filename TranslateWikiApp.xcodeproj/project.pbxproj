@@ -24,7 +24,6 @@
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
-		649BA2E0169B8B5D003561BA /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DF169B8B5D003561BA /* MessagesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,8 +52,6 @@
 		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		649BA2DA169B822B003561BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		649BA2DD169B8B32003561BA /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		649BA2DE169B8B5D003561BA /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
-		649BA2DF169B8B5D003561BA /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +106,6 @@
 				644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */,
 				649BA2DD169B8B32003561BA /* MainViewController.h */,
 				649BA2DA169B822B003561BA /* MainViewController.m */,
-				649BA2DE169B8B5D003561BA /* MessagesViewController.h */,
-				649BA2DF169B8B5D003561BA /* MessagesViewController.m */,
 				641002221691B218000202A9 /* ViewController.h */,
 				641002231691B218000202A9 /* ViewController.m */,
 				641002131691B218000202A9 /* AppDelegate.h */,
@@ -211,7 +206,6 @@
 				641002151691B218000202A9 /* AppDelegate.m in Sources */,
 				641002241691B218000202A9 /* ViewController.m in Sources */,
 				649BA2DB169B822B003561BA /* MainViewController.m in Sources */,
-				649BA2E0169B8B5D003561BA /* MessagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -174,20 +174,23 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="377" id="ZLP-jI-5aP"/>
+                                </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="Zfw-G0-dYL" detailTextLabel="bcp-r9-6Il" style="IBUITableViewCellStyleSubtitle" id="NCu-bR-SHE">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="gqH-9h-nor" detailTextLabel="bHf-uG-h5Y" rowHeight="100" style="IBUITableViewCellStyleSubtitle" id="NCu-bR-SHE">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfw-G0-dYL">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqH-9h-nor">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcp-r9-6Il">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHf-uG-h5Y">
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -220,11 +223,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yi5-1B-wzn" firstAttribute="bottom" secondItem="sNR-hv-aqx" secondAttribute="bottom" type="default" id="05K-WR-dCa"/>
                             <constraint firstItem="BpD-Er-oPQ" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="3NE-MD-pAJ"/>
                             <constraint firstItem="BpD-Er-oPQ" firstAttribute="baseline" secondItem="0NY-zg-2yL" secondAttribute="baseline" type="user" id="CW0-TR-4Yf"/>
                             <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="default" id="H6L-Qa-hOx"/>
-                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="baseline" secondItem="0NY-zg-2yL" secondAttribute="baseline" type="default" id="Mpp-0X-zfE"/>
                             <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="PNt-sn-tkN"/>
                             <constraint firstItem="BpD-Er-oPQ" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="VDM-bt-mYX"/>
                             <constraint firstItem="yi5-1B-wzn" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="aDT-Vt-iII"/>
