@@ -33,11 +33,9 @@
     
     self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUserName];
     
-    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"es" Project:@"core" Limitfor:10 ByUserId:@"10323"];
+    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"he" Project:@"core" Limitfor:10 ByUserId:@"10323"];
     
     NSLog(@"%@",result); //DEBUG
-    
-    
     
     tableData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
     //we expect an array, otherwise will be runtimeexception
@@ -82,6 +80,15 @@
     cell.detailTextLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"translation"];
     
     return cell;
+}
+- (IBAction)pushmessages:(UIButton *)sender {
+    
+    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"frc" Project:@"core" Limitfor:10 ByUserId:@"10323"];
+    
+    NSLog(@"%@",result); //DEBUG
+    
+    tableData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
+    
 }
 
 
