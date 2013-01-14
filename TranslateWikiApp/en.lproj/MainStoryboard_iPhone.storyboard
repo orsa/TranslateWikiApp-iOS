@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ndf-uu-Hue">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ndf-uu-Hue">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -172,17 +172,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="377" id="ZLP-jI-5aP"/>
+                                    <constraint firstAttribute="height" constant="429" id="xhK-tz-dnC"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="gqH-9h-nor" detailTextLabel="bHf-uG-h5Y" rowHeight="100" style="IBUITableViewCellStyleSubtitle" id="NCu-bR-SHE">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="100"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="gqH-9h-nor" detailTextLabel="bHf-uG-h5Y" rowHeight="91" style="IBUITableViewCellStyleSubtitle" id="NCu-bR-SHE">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqH-9h-nor">
@@ -198,6 +198,38 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="42" id="dqM-1h-T59">
+                                        <rect key="frame" x="0.0" y="113" width="320" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qci-eF-ptF">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="eVI-pj-qxs"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="1358192944_2downarrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-mP-82S">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="73" id="ZsN-TW-n34"/>
+                                                        <constraint firstAttribute="height" constant="25" id="aQr-Nf-e3Y"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="qci-eF-ptF" firstAttribute="leading" secondItem="dqM-1h-T59" secondAttribute="leading" type="default" id="EGA-Jr-DNO"/>
+                                            <constraint firstItem="FwA-mP-82S" firstAttribute="centerX" secondItem="qci-eF-ptF" secondAttribute="centerX" type="default" id="WAB-QZ-J9O"/>
+                                            <constraint firstItem="qci-eF-ptF" firstAttribute="trailing" secondItem="dqM-1h-T59" secondAttribute="trailing" type="default" id="hpw-O0-qdu"/>
+                                            <constraint firstItem="qci-eF-ptF" firstAttribute="top" secondItem="dqM-1h-T59" secondAttribute="top" type="default" id="nQk-fj-AOL"/>
+                                            <constraint firstItem="FwA-mP-82S" firstAttribute="top" secondItem="dqM-1h-T59" secondAttribute="top" constant="16" id="uTw-XL-E2r"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -226,8 +258,8 @@
                             <constraint firstItem="BpD-Er-oPQ" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="3NE-MD-pAJ"/>
                             <constraint firstItem="BpD-Er-oPQ" firstAttribute="baseline" secondItem="0NY-zg-2yL" secondAttribute="baseline" type="user" id="CW0-TR-4Yf"/>
                             <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="default" id="H6L-Qa-hOx"/>
-                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="PNt-sn-tkN"/>
-                            <constraint firstItem="BpD-Er-oPQ" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="VDM-bt-mYX"/>
+                            <constraint firstItem="BpD-Er-oPQ" firstAttribute="top" secondItem="2Uz-Bc-Mz0" secondAttribute="top" type="default" id="Kve-o9-2DH"/>
+                            <constraint firstItem="yi5-1B-wzn" firstAttribute="bottom" secondItem="sNR-hv-aqx" secondAttribute="bottom" type="default" id="MTq-cM-t4F"/>
                             <constraint firstItem="yi5-1B-wzn" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="aDT-Vt-iII"/>
                             <constraint firstItem="0NY-zg-2yL" firstAttribute="centerX" secondItem="yi5-1B-wzn" secondAttribute="centerX" type="default" id="bVq-wG-5jO"/>
                             <constraint firstItem="yi5-1B-wzn" firstAttribute="top" secondItem="0NY-zg-2yL" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="bdk-21-m3t"/>
@@ -247,8 +279,30 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1358192944_2downarrow.png" width="128" height="128"/>
         <image name="imgres.jpeg" width="192" height="256"/>
     </resources>
+    <classes>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

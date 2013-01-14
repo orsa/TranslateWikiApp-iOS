@@ -85,13 +85,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
     {
-        // Get reference to the destination view controller
         MainViewController *vc = [segue destinationViewController];
         
-        // Pass any objects to the view controller here, like...
         [vc setUserName:self.userName];
     }
 }

@@ -9,7 +9,6 @@
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MainViewController.h"
-#import "MessagesViewController.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
@@ -17,6 +16,20 @@
 
 @implementation MainViewController
 @synthesize tableData;
+@synthesize numOf10Tuples;
+
+static NSInteger TUPLE_SIZE=10;
+
+-(id)init
+{
+    self=[super init];
+    if(self){
+        numOf10Tuples=1;
+        tableData=[[NSArray alloc] initWithObjects: nil];
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,6 +39,26 @@
     return self;
 }
 
+-(void)add10Messages
+{
+    NSInteger offset=0;
+    if(tableData!=nil)
+        offset=[tableData count];
+    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"es" Project:@"core" Limitfor:TUPLE_SIZE OffsetToStart:offset ByUserId:@"10323"];
+    
+    NSLog(@"%@",result); //DEBUG
+    
+    NSArray *newData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
+    //we expect an array, otherwise will be runtime exception
+    
+    if(tableData==nil)
+        tableData=newData;
+    else
+        tableData = [tableData arrayByAddingObjectsFromArray:newData];
+    
+    NSLog(@"%@", tableData);//DEBUG
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,12 +66,7 @@
     
     self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUserName];
     
-    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"he" Project:@"core" Limitfor:10 ByUserId:@"10323"];
-    
-    NSLog(@"%@",result); //DEBUG
-    
-    tableData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
-    //we expect an array, otherwise will be runtime exception
+    [self add10Messages];
     
 }
 
@@ -62,28 +90,58 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableData count];
+    return [tableData count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"myCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *moreCellIdentifier = @"moreCell";
+    NSString *identifier;
+    if(indexPath.row<[tableData count])
+        identifier=CellIdentifier;
+    else
+        identifier=moreCellIdentifier;
+    UITableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     // Configure the cell
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    cell.textLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"definition"];
-    cell.detailTextLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"translation"];
+    if(indexPath.row<[tableData count]){
+        cell.textLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"definition"];
+        cell.detailTextLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"translation"];
+    }
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:NO];
+    if(indexPath.row>[tableData count])
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        NSInteger previousCount=[tableData count];
+        [self add10Messages];
+        
+        NSMutableArray *insertIndexPaths=[[NSMutableArray alloc] initWithObjects: nil];
+        for(NSInteger i=0; i<TUPLE_SIZE; i++){
+            [insertIndexPaths insertObject:[NSIndexPath indexPathForRow:previousCount+i inSection:0] atIndex:i];
+        }
+        
+        [tableView beginUpdates];
+        [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
+        [tableView endUpdates];
+    }
+}
+
 - (IBAction)pushmessages:(UIButton *)sender {
     
-    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"frc" Project:@"core" Limitfor:10 ByUserId:@"10323"];
+    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"frc" Project:@"core" Limitfor:10 OffsetToStart:[tableData count] ByUserId:@"10323"];
     
     NSLog(@"%@",result); //DEBUG
     
