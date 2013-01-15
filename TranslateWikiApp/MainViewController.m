@@ -12,6 +12,8 @@
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
+@property (weak, nonatomic) IBOutlet UITableView *msgTableView;
+
 @end
 
 @implementation MainViewController
@@ -25,7 +27,7 @@ static NSInteger TUPLE_SIZE=10;
     self=[super init];
     if(self){
         numOf10Tuples=1;
-        tableData=[[NSArray alloc] initWithObjects: nil];
+        tableData=[[NSMutableArray alloc] initWithObjects: nil];
     }
     return self;
 }
@@ -52,11 +54,14 @@ static NSInteger TUPLE_SIZE=10;
     //we expect an array, otherwise will be runtime exception
     
     if(tableData==nil)
-        tableData=newData;
+       tableData = [[NSMutableArray alloc]initWithArray:newData];
     else
-        tableData = [tableData arrayByAddingObjectsFromArray:newData];
+        [tableData addObjectsFromArray:newData];
     
     NSLog(@"%@", tableData);//DEBUG
+    
+    [self.msgTableView reloadData];
+    
 }
 
 - (void)viewDidLoad
@@ -122,31 +127,30 @@ static NSInteger TUPLE_SIZE=10;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:NO];
-    if(indexPath.row>[tableData count])
+
+    if(indexPath.row == [tableView numberOfRowsInSection:indexPath.section]-1)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
-        NSInteger previousCount=[tableData count];
+       // NSInteger previousCount=[tableData count];
         [self add10Messages];
         
-        NSMutableArray *insertIndexPaths=[[NSMutableArray alloc] initWithObjects: nil];
-        for(NSInteger i=0; i<TUPLE_SIZE; i++){
-            [insertIndexPaths insertObject:[NSIndexPath indexPathForRow:previousCount+i inSection:0] atIndex:i];
-        }
+       
+       
+       // NSMutableArray *insertIndexPaths=[[NSMutableArray alloc] initWithObjects: nil];
+       // for(NSInteger i=0; i<TUPLE_SIZE; i++){
+       //     [insertIndexPaths insertObject:[NSIndexPath indexPathForRow:previousCount+i inSection:0] atIndex:i];
+       // }
         
-        [tableView beginUpdates];
-        [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
-        [tableView endUpdates];
+       // [tableView beginUpdates];
+       // [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
+       // [tableView endUpdates];
     }
 }
 
-- (IBAction)pushmessages:(UIButton *)sender {
+- (IBAction)clearMessages:(UIButton *)sender {
     
-    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"frc" Project:@"core" Limitfor:10 OffsetToStart:[tableData count] ByUserId:@"10323"];
-    
-    NSLog(@"%@",result); //DEBUG
-    
-    tableData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
-    
+    [tableData removeAllObjects];
+    [self.msgTableView reloadData];
 }
 
 
