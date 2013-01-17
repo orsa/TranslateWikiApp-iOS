@@ -22,6 +22,7 @@
 
 static NSInteger TUPLE_SIZE=10;
 
+
 -(id)init
 {
     self=[super init];
@@ -46,17 +47,23 @@ static NSInteger TUPLE_SIZE=10;
     NSInteger offset=0;
     if(tableData!=nil)
         offset=[tableData count];
-    NSDictionary *result = [TWapi TWMessagesListRequestForLanguage:@"es" Project:@"core" Limitfor:TUPLE_SIZE OffsetToStart:offset ByUserId:@"10323"];
-    
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[TWapi TWMessagesListRequestForLanguage:@"es" Project:@"core" Limitfor:TUPLE_SIZE OffsetToStart:offset ByUserId:@"10323"] copyItems:YES];
     NSLog(@"%@",result); //DEBUG
     
-    NSArray *newData = [[NSArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
+    NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
     //we expect an array, otherwise will be runtime exception
+    
+  /*  for (NSMutableDictionary * msg in newData) {
+        [msg setObject:@NO forKey:@"reviewed"];
+    }*/
     
     if(tableData==nil)
        tableData = [[NSMutableArray alloc]initWithArray:newData];
     else
+    {
         [tableData addObjectsFromArray:newData];
+    }
+    
     
     NSLog(@"%@", tableData);//DEBUG
     
@@ -119,6 +126,10 @@ static NSInteger TUPLE_SIZE=10;
     if(indexPath.row<[tableData count]){
         cell.textLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"definition"];
         cell.detailTextLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"translation"];
+        /*if ([[tableData objectAtIndex:indexPath.row] objectForKey:@"reviewed"]==@YES)
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        else
+           [cell setAccessoryType:UITableViewCellAccessoryNone]; */
     }
     
     return cell;
@@ -144,6 +155,23 @@ static NSInteger TUPLE_SIZE=10;
        // [tableView beginUpdates];
        // [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
        // [tableView endUpdates];
+    }
+    else if([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryNone)
+    {
+        if ([tableView cellForRowAtIndexPath:indexPath].editing ==true)
+        {
+            [[tableView cellForRowAtIndexPath:indexPath] setEditing:false];
+            
+            NSString * revision = [[tableData objectAtIndex:indexPath.row] objectForKey:@"revision"];
+            //need to check validity.
+        
+            //[TWapi TWTranslationReviewRequest:revision]; //accept this translation
+           // [[tableData objectAtIndex:indexPath.row] setObject:@YES forKey:@"reviewed"];
+            [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }else{
+            [[tableView cellForRowAtIndexPath:indexPath] setEditing:true];
+          //[tableView cellForRowAtIndexPath:indexPath].editingAccessoryView.
+        }
     }
 }
 

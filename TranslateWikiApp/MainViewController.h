@@ -12,7 +12,6 @@
 {
     NSMutableArray * tableData;
     int numOf10Tuples;
-    
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
