@@ -7,16 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class TranslationMessageDataController;
 @interface MainViewController : UIViewController<UITableViewDataSource>
-{
-    NSMutableArray * tableData;
-    int numOf10Tuples;
-}
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
-@property (nonatomic, retain) NSMutableArray * tableData;
-@property (assign) int numOf10Tuples;
+@property (nonatomic, retain) TranslationMessageDataController * dataController;
 @property  (retain, nonatomic) NSString *loggedUserName;
 
 -(void)setUserName:(NSString *)userName;

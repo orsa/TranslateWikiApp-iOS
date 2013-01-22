@@ -9,6 +9,8 @@
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MainViewController.h"
+#import "TranslationMessageDataController.h"
+#import "TranslationMessage.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
@@ -17,20 +19,22 @@
 @end
 
 @implementation MainViewController
-@synthesize tableData;
-@synthesize numOf10Tuples;
 
 static NSInteger TUPLE_SIZE=10;
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.dataController = [[TranslationMessageDataController alloc] init];
+}
 
 -(id)init
 {
     self=[super init];
     if(self){
-        numOf10Tuples=1;
-        tableData=[[NSMutableArray alloc] initWithObjects: nil];
+        return self;
     }
-    return self;
+    return nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,30 +46,10 @@ static NSInteger TUPLE_SIZE=10;
     return self;
 }
 
--(void)add10Messages
+-(void)addMessagesTuple
 {
-    NSInteger offset=0;
-    if(tableData!=nil)
-        offset=[tableData count];
-    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[TWapi TWMessagesListRequestForLanguage:@"es" Project:@"core" Limitfor:TUPLE_SIZE OffsetToStart:offset ByUserId:@"10323"] copyItems:YES];
-    NSLog(@"%@",result); //DEBUG
     
-    NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
-    //we expect an array, otherwise will be runtime exception
-    
-  /*  for (NSMutableDictionary * msg in newData) {
-        [msg setObject:@NO forKey:@"reviewed"];
-    }*/
-    
-    if(tableData==nil)
-       tableData = [[NSMutableArray alloc]initWithArray:newData];
-    else
-    {
-        [tableData addObjectsFromArray:newData];
-    }
-    
-    
-    NSLog(@"%@", tableData);//DEBUG
+    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ByUserId:@"10323"];
     
     [self.msgTableView reloadData];
     
@@ -74,11 +58,10 @@ static NSInteger TUPLE_SIZE=10;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUserName];
     
-    [self add10Messages];
+    [self addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
     
 }
 
@@ -87,6 +70,7 @@ static NSInteger TUPLE_SIZE=10;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)LogoutButton:(id)sender {
     [TWapi TWLogoutRequest];
@@ -100,9 +84,14 @@ static NSInteger TUPLE_SIZE=10;
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableData count]+1;
+    return [self.dataController countOfList]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,7 +99,7 @@ static NSInteger TUPLE_SIZE=10;
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
     NSString *identifier;
-    if(indexPath.row<[tableData count])
+    if(indexPath.row<[self.dataController countOfList])
         identifier=CellIdentifier;
     else
         identifier=moreCellIdentifier;
@@ -123,13 +112,13 @@ static NSInteger TUPLE_SIZE=10;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    if(indexPath.row<[tableData count]){
-        cell.textLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"definition"];
-        cell.detailTextLabel.text = [[tableData objectAtIndex:indexPath.row] objectForKey:@"translation"];
-        /*if ([[tableData objectAtIndex:indexPath.row] objectForKey:@"reviewed"]==@YES)
+    if(indexPath.row<[self.dataController countOfList]){
+        cell.textLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
+        cell.detailTextLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
+        if ([[self.dataController objectInListAtIndex:indexPath.row] isAccepted])
             [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
         else
-           [cell setAccessoryType:UITableViewCellAccessoryNone]; */
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     
     return cell;
@@ -143,18 +132,8 @@ static NSInteger TUPLE_SIZE=10;
     {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
        // NSInteger previousCount=[tableData count];
-        [self add10Messages];
+        [self addMessagesTuple];
         
-       
-       
-       // NSMutableArray *insertIndexPaths=[[NSMutableArray alloc] initWithObjects: nil];
-       // for(NSInteger i=0; i<TUPLE_SIZE; i++){
-       //     [insertIndexPaths insertObject:[NSIndexPath indexPathForRow:previousCount+i inSection:0] atIndex:i];
-       // }
-        
-       // [tableView beginUpdates];
-       // [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
-       // [tableView endUpdates];
     }
     else if([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryNone)
     {
@@ -162,12 +141,14 @@ static NSInteger TUPLE_SIZE=10;
         {
             [[tableView cellForRowAtIndexPath:indexPath] setEditing:false];
             
-            NSString * revision = [[tableData objectAtIndex:indexPath.row] objectForKey:@"revision"];
+            NSString * revision = [[self.dataController objectInListAtIndex:indexPath.row] revision];
+            
             //need to check validity.
-        
+            
             //[TWapi TWTranslationReviewRequest:revision]; //accept this translation
-           // [[tableData objectAtIndex:indexPath.row] setObject:@YES forKey:@"reviewed"];
+            
             [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
+            [[self.dataController objectInListAtIndex:indexPath.row] setIsAccepted:YES];
         }else{
             [[tableView cellForRowAtIndexPath:indexPath] setEditing:true];
           //[tableView cellForRowAtIndexPath:indexPath].editingAccessoryView.
@@ -177,7 +158,7 @@ static NSInteger TUPLE_SIZE=10;
 
 - (IBAction)clearMessages:(UIButton *)sender {
     
-    [tableData removeAllObjects];
+    [self.dataController removeAllObjects];
     [self.msgTableView reloadData];
 }
 

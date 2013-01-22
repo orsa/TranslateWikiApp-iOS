@@ -24,6 +24,8 @@
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
+		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
+		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
 		FC00039B16A378BC00DDF068 /* 1358192448_arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */; };
 		FC00039E16A37A3E00DDF068 /* 1358192944_2downarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FC00039D16A37A3E00DDF068 /* 1358192944_2downarrow.png */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,10 @@
 		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		649BA2DA169B822B003561BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		649BA2DD169B8B32003561BA /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		64F5E4C216AE9B7200442603 /* TranslationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessage.h; sourceTree = "<group>"; };
+		64F5E4C316AE9B7200442603 /* TranslationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessage.m; sourceTree = "<group>"; };
+		64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessageDataController.h; sourceTree = "<group>"; };
+		64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessageDataController.m; sourceTree = "<group>"; };
 		FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1358192448_arrow_down.png; sourceTree = "<group>"; };
 		FC00039D16A37A3E00DDF068 /* 1358192944_2downarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1358192944_2downarrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +111,10 @@
 			isa = PBXGroup;
 			children = (
 				641002391692180F000202A9 /* TWapi.m */,
+				64F5E4C216AE9B7200442603 /* TranslationMessage.h */,
+				64F5E4C316AE9B7200442603 /* TranslationMessage.m */,
+				64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */,
+				64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */,
 				6410023816921803000202A9 /* TWapi.h */,
 				644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */,
 				644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */,
@@ -214,6 +224,8 @@
 				641002151691B218000202A9 /* AppDelegate.m in Sources */,
 				641002241691B218000202A9 /* ViewController.m in Sources */,
 				649BA2DB169B822B003561BA /* MainViewController.m in Sources */,
+				64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */,
+				64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
