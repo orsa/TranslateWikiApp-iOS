@@ -67,6 +67,7 @@
     {
         MainViewController *ViewController = [segue destinationViewController];
         ViewController.dataController = self.dataController;
+        ViewController.loggedUser  = self.loggedUser;
     }
 }
 

@@ -15,5 +15,5 @@
 - (TranslationMessage *)objectInListAtIndex:(NSUInteger)theIndex;
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
-- (void)addMessagesTupleOfSize:(int)size ByUserId:(NSString*)userId;
+- (void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj ByUserId:(NSString*)userId;
 @end

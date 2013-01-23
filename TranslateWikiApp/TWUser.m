@@ -19,6 +19,7 @@
         _userId = [TWapi TWUserIdRequestOfUserName:(NSString*)userName];
         if (!_userId)
             _userId=@"";
+        _preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];
         
         return self;
     }

@@ -30,7 +30,7 @@ static NSInteger TUPLE_SIZE=10;
         
         detailViewController.msgIndex = [self.msgTableView indexPathForSelectedRow].row;
         detailViewController.dataController  = self.dataController;
-       // detailViewController.message = [self.dataController objectInListAtIndex:[self.msgTableView indexPathForSelectedRow].row];
+        detailViewController.loggedUser  = self.loggedUser;
     }
 }
 
@@ -68,7 +68,7 @@ static NSInteger TUPLE_SIZE=10;
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ByUserId:self.loggedUser.userId];
+    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ForLanguage:(self.loggedUser.preferredLang) Project:@"core" ByUserId:(self.loggedUser.userId)];
     [self.msgTableView reloadData];
 }
 
@@ -93,6 +93,9 @@ static NSInteger TUPLE_SIZE=10;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setUserName:(NSString *)userName{
+    self.loggedUserName = userName;
+}
 
 - (IBAction)LogoutButton:(id)sender {
     [TWapi TWLogoutRequest];
@@ -100,10 +103,11 @@ static NSInteger TUPLE_SIZE=10;
     [loginKC resetKeychainItem];
 }
 
--(void)setUserName:(NSString *)userName{
-    self.loggedUserName = userName;
+- (IBAction)clearMessages:(UIButton *)sender {
+    
+    [self.dataController removeAllObjects];
+    [self.msgTableView reloadData];
 }
-
 
 #pragma mark - Table view data source
 
@@ -158,32 +162,8 @@ static NSInteger TUPLE_SIZE=10;
         [self addMessagesTuple];
         
     }
-    /*else if([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryNone)
-    {
-        if ([tableView cellForRowAtIndexPath:indexPath].editing ==true)
-        {
-            [[tableView cellForRowAtIndexPath:indexPath] setEditing:false];
-            
-            NSString * revision = [[self.dataController objectInListAtIndex:indexPath.row] revision];
-            
-            //need to check validity.
-            
-            //[TWapi TWTranslationReviewRequest:revision]; //accept this translation
-            
-            [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
-            [[self.dataController objectInListAtIndex:indexPath.row] setIsAccepted:YES];
-        }else{
-            [[tableView cellForRowAtIndexPath:indexPath] setEditing:true];
-          //[tableView cellForRowAtIndexPath:indexPath].editingAccessoryView.
-        }
-    }*/
 }
 
-- (IBAction)clearMessages:(UIButton *)sender {
-    
-    [self.dataController removeAllObjects];
-    [self.msgTableView reloadData];
-}
 
 
 @end

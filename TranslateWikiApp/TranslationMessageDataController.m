@@ -47,11 +47,11 @@
     [self.masterTranslationMessageList removeAllObjects];
 }
 
--(void)addMessagesTupleOfSize:(int)size ByUserId:(NSString*)userId{
+-(void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj ByUserId:(NSString*)userId{
     NSInteger offset=0;
     if(self.masterTranslationMessageList!=nil)
         offset=[self countOfList];
-    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[TWapi TWMessagesListRequestForLanguage:@"es" Project:@"core" Limitfor:size OffsetToStart:offset ByUserId:userId] copyItems:YES];
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[TWapi TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset ByUserId:userId] copyItems:YES];
     NSLog(@"%@",result); //DEBUG
     
     NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
