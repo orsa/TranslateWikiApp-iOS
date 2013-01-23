@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  LoginViewController.m
 //  TranslateWikiApp
 //
 //  Created by Or Sagi on 31/12/12.
@@ -7,12 +7,13 @@
 //
 
 #import <Security/Security.h>
-#import "ViewController.h"
+#import "LoginViewController.h"
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MainViewController.h"
+#import "TWUser.h"
 
-@interface ViewController ()
+@interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UILabel *ResultLabel;
@@ -21,13 +22,14 @@
 @end
 
 
-@implementation ViewController
+@implementation LoginViewController
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self.navigationController setNavigationBarHidden:YES];
     
     //lookup credentials in keychain
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
@@ -41,7 +43,7 @@
         {
             //then we can skip the login screen
             self.userName = nameString;
-              [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
+            [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
         }
         else
         { //login fail, need to re-login and update credentals
@@ -90,6 +92,7 @@
         MainViewController *vc = [segue destinationViewController];
         
         [vc setUserName:self.userName];
+        [vc setLoggedUser:[[TWUser alloc] initWithUsreName:self.userName]];
     }
 }
 

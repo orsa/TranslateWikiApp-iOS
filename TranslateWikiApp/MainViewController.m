@@ -11,6 +11,8 @@
 #import "MainViewController.h"
 #import "TranslationMessageDataController.h"
 #import "TranslationMessage.h"
+#import "ProofreadViewController.h"
+#import "TWUser.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
@@ -22,10 +24,28 @@
 
 static NSInteger TUPLE_SIZE=10;
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showMessage"]) {
+        ProofreadViewController *detailViewController = [segue destinationViewController];
+        
+        detailViewController.msgIndex = [self.msgTableView indexPathForSelectedRow].row;
+        detailViewController.dataController  = self.dataController;
+       // detailViewController.message = [self.dataController objectInListAtIndex:[self.msgTableView indexPathForSelectedRow].row];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    [super viewWillAppear:animated];
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.dataController = [[TranslationMessageDataController alloc] init];
+    if (!self.dataController)
+        self.dataController = [[TranslationMessageDataController alloc] init];
+    
 }
 
 -(id)init
@@ -48,21 +68,23 @@ static NSInteger TUPLE_SIZE=10;
 
 -(void)addMessagesTuple
 {
-    
-    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ByUserId:@"10323"];
-    
+    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ByUserId:self.loggedUser.userId];
     [self.msgTableView reloadData];
-    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!self.loggedUserName)
+    {
+        [self performSegueWithIdentifier:@"gotoLogin" sender:self];
+    }
+    else
+    {
+        self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUser.userName];
     
-    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUserName];
-    
-    [self addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
-    
+        [self addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,6 +103,7 @@ static NSInteger TUPLE_SIZE=10;
 -(void)setUserName:(NSString *)userName{
     self.loggedUserName = userName;
 }
+
 
 #pragma mark - Table view data source
 
@@ -135,7 +158,7 @@ static NSInteger TUPLE_SIZE=10;
         [self addMessagesTuple];
         
     }
-    else if([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryNone)
+    /*else if([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryNone)
     {
         if ([tableView cellForRowAtIndexPath:indexPath].editing ==true)
         {
@@ -153,7 +176,7 @@ static NSInteger TUPLE_SIZE=10;
             [[tableView cellForRowAtIndexPath:indexPath] setEditing:true];
           //[tableView cellForRowAtIndexPath:indexPath].editingAccessoryView.
         }
-    }
+    }*/
 }
 
 - (IBAction)clearMessages:(UIButton *)sender {

@@ -61,6 +61,4 @@
         [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:[msg objectForKey:@"definition"] withTranslation:[msg objectForKey:@"translation"] withLanguage:@"es" withKey:[msg objectForKey:@"key"] withRevision:[msg objectForKey:@"revision"] withAccepted:NO]];
     }
 }
-
-
 @end
