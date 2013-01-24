@@ -12,5 +12,6 @@
 
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *password;
+@property (copy, nonatomic) NSString *userId;
 
 @end

@@ -36,6 +36,8 @@ static NSInteger TUPLE_SIZE=10;
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES];
+
+    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUser.userName];
     
     [super viewWillAppear:animated];
 }
@@ -68,7 +70,7 @@ static NSInteger TUPLE_SIZE=10;
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ForLanguage:(self.loggedUser.preferredLang) Project:@"core" ByUserId:(self.loggedUser.userId)];
+    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ForLanguage:(self.loggedUser.preferredLang) Project:@"!recent" ByUserId:(self.loggedUser.userId)];
     [self.msgTableView reloadData];
 }
 
@@ -79,12 +81,10 @@ static NSInteger TUPLE_SIZE=10;
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
-    else
-    {
-        self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUser.userName];
-    
+    else{
         [self addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
     }
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -17,6 +17,7 @@
 @property  (retain, nonatomic) NSString *loggedUserName;
 @property  (retain, nonatomic) TWUser* loggedUser;
 
+
 -(void)setUserName:(NSString *)userName;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

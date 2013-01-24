@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageKeyLable;
 @property (weak, nonatomic) IBOutlet UILabel *definitionLable;
 @property (weak, nonatomic) IBOutlet UILabel *translationLable;
+
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (IBAction)pushDone:(id)sender;

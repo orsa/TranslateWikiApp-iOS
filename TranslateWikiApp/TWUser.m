@@ -16,9 +16,12 @@
     if (self) {
         _userName=userName;
         _isLoggedin=NO;
+        _userId=@"";
+        
         _userId = [TWapi TWUserIdRequestOfUserName:(NSString*)userName];
         if (!_userId)
             _userId=@"";
+        
         _preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];
         
         return self;

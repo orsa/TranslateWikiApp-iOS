@@ -46,7 +46,7 @@
 
 - (IBAction)pushAccept:(id)sender
 {
-    //[TWapi TWTranslationReviewRequest:self.message.revision]; //accept this translation
+    [TWapi TWTranslationReviewRequest:([self activeMsg].revision)]; //accept this translation
     [[self activeMsg] setIsAccepted:YES];
     [self performSegueWithIdentifier:@"setReview" sender:self];
 }
@@ -54,6 +54,7 @@
 - (IBAction)pushReject:(id)sender
 {
     [[self activeMsg] setIsAccepted:NO];
+    [self.dataController removeObjectAtIndex:(self.msgIndex)];
     [self performSegueWithIdentifier:@"setReview" sender:self]; 
 }
 

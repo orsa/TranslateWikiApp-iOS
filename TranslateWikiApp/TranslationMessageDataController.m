@@ -47,6 +47,10 @@
     [self.masterTranslationMessageList removeAllObjects];
 }
 
+- (void)removeObjectAtIndex:(NSInteger)index{
+    [self.masterTranslationMessageList removeObjectAtIndex:index];
+}
+
 -(void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj ByUserId:(NSString*)userId{
     NSInteger offset=0;
     if(self.masterTranslationMessageList!=nil)

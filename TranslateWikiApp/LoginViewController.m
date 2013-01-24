@@ -80,7 +80,7 @@
         [loginKC resetKeychainItem];
         [loginKC setObject:nameString forKey:(__bridge id)kSecAttrAccount];
         [loginKC setObject:passwString forKey:(__bridge id)kSecValueData];
-
+        
         [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
     }
 }
@@ -93,6 +93,7 @@
         
         [vc setUserName:self.userName];
         [vc setLoggedUser:[[TWUser alloc] initWithUsreName:self.userName]];
+        [[vc loggedUser] setUserId:(self.userId)];
     }
 }
 
