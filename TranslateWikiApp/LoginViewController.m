@@ -51,10 +51,6 @@
             
         }
     }
-    
-    //NSLog(@"%@\n",[loginKC objectForKey:(__bridge id)(kSecAttrAccount)]);//DEBUG
-    //NSLog(@"%@\n", [loginKC objectForKey:(__bridge id)kSecValueData]);   //DEBUG
-    
 }
 
 - (void)didReceiveMemoryWarning

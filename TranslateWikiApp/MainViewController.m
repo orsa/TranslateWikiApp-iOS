@@ -35,7 +35,6 @@ static NSInteger TUPLE_SIZE=10;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES];
 
     self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUser.userName];
     
