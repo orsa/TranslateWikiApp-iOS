@@ -28,6 +28,7 @@
         self.messageKeyLable.text = theMessage.key;
         self.definitionLable.text = theMessage.source;
         self.translationLable.text = theMessage.translation;
+        self.acceptCount.text = [NSString  stringWithFormat:@"%d",theMessage.acceptCount];
     }
 }
 
@@ -45,8 +46,16 @@
 
 - (IBAction)pushAccept:(id)sender
 {
-    [TWapi TWTranslationReviewRequest:([self activeMsg].revision)]; //accept this translation
-    [[self activeMsg] setIsAccepted:YES];
+    if (![self activeMsg].isAccepted)
+    {
+        bool success = [_api TWTranslationReviewRequest:([self activeMsg].revision)]; //accept this translation via API
+    
+        if (success)
+        {
+            [[self activeMsg] setIsAccepted:YES];
+            [[self activeMsg] setAcceptCount:([[self activeMsg] acceptCount]+1)];
+        }
+    }
     [self performSegueWithIdentifier:@"setReview" sender:self];
 }
 
@@ -67,7 +76,7 @@
     {
         MainViewController *ViewController = [segue destinationViewController];
         ViewController.dataController = self.dataController;
-        ViewController.loggedUser  = self.loggedUser;
+        ViewController.api = _api;
     }
 }
 

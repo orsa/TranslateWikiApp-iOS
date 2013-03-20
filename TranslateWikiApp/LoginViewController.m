@@ -8,10 +8,9 @@
 
 #import <Security/Security.h>
 #import "LoginViewController.h"
-#import "TWapi.h"
-#import "KeychainItemWrapper.h"
-#import "MainViewController.h"
-#import "TWUser.h"
+
+
+
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -31,14 +30,20 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self.navigationController setNavigationBarHidden:YES];
     
+    _cur_user = [[TWUser alloc] init];
+    _api = [[TWapi alloc] initForUser:_cur_user];
+    
     //lookup credentials in keychain
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
     
-    if(nameString!=@"" && passwString!=@"")
+    if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""])
     { //found credentials
-        NSString *resultString = [TWapi TWLoginRequestForUser:nameString WithPassword:passwString]; //try login
+        
+        _api.user.userName   =  nameString;
+        
+        NSString *resultString = [_api TWLoginRequestWithPassword:passwString]; //try login
         if([resultString isEqualToString:@"Success"])
         {
             //then we can skip the login screen
@@ -48,7 +53,6 @@
         else
         { //login fail, need to re-login and update credentals
             [loginKC resetKeychainItem];
-            
         }
     }
 }
@@ -66,8 +70,9 @@
     
     NSString *nameString = self.userName;
     NSString *passwString = self.password;
+    _api.user.userName = nameString;
 
-    self.ResultLabel.text = [TWapi TWLoginRequestForUser:nameString WithPassword:passwString]; //login via API
+    self.ResultLabel.text = [_api TWLoginRequestWithPassword:passwString]; //login via API
     
     if([ self.ResultLabel.text isEqualToString:@"Success"])
     {
@@ -87,9 +92,10 @@
     {
         MainViewController *vc = [segue destinationViewController];
         
-        [vc setUserName:self.userName];
-        [vc setLoggedUser:[[TWUser alloc] initWithUsreName:self.userName]];
-        [[vc loggedUser] setUserId:(self.userId)];
+        //[vc setUserName:_userName];
+        //[vc setLoggedUser:[[TWUser alloc] initWithUsreName:_userName]];
+        //[[vc loggedUser] setUserId:(_userId)];
+        [vc setApi:_api];
     }
 }
 

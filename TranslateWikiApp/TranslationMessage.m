@@ -10,7 +10,8 @@
 
 @implementation TranslationMessage
 
--(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withKey:(NSString*)k withRevision:(NSString*)rev withAccepted:(BOOL)accepted{
+-(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withKey:(NSString*)k withRevision:(NSString*)rev withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac
+{
     self = [super init];
     if (self) {
         _source=def;
@@ -19,6 +20,8 @@
         _key=k;
         _revision=rev;
         _isAccepted=accepted;
+        _acceptCount=ac;
+        
         return self;
     }
     return nil;

@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TWUser.h"
+#import "TWapi.h"
+#import "KeychainItemWrapper.h"
+#import "MainViewController.h"
+
+@class MainViewController;
 
 @interface LoginViewController : UIViewController
 
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *password;
-@property (copy, nonatomic) NSString *userId;
+//@property (copy, nonatomic) NSString *userId;
+
+@property (retain, nonatomic) TWUser *cur_user;
+@property (retain, nonatomic) TWapi *api;
 
 @end

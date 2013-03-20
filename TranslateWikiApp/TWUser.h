@@ -14,7 +14,8 @@
 @property(nonatomic, copy)NSString* userId;
 @property BOOL isLoggedin;
 @property(nonatomic, copy)NSString* preferredLang;
+@property(nonatomic, copy)NSHTTPCookie* authCookie;
 
--(id) initWithUsreName:(NSString*) userName;
+-(id) init;
 
 @end

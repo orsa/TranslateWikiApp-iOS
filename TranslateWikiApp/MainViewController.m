@@ -6,13 +6,9 @@
 //  Copyright (c) 2013 translatewiki.net. All rights reserved.
 //
 
-#import "TWapi.h"
-#import "KeychainItemWrapper.h"
+
 #import "MainViewController.h"
-#import "TranslationMessageDataController.h"
-#import "TranslationMessage.h"
-#import "ProofreadViewController.h"
-#import "TWUser.h"
+
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
@@ -28,15 +24,15 @@ static NSInteger TUPLE_SIZE=10;
     if ([[segue identifier] isEqualToString:@"showMessage"]) {
         ProofreadViewController *detailViewController = [segue destinationViewController];
         
-        detailViewController.msgIndex = [self.msgTableView indexPathForSelectedRow].row;
-        detailViewController.dataController  = self.dataController;
-        detailViewController.loggedUser  = self.loggedUser;
+        detailViewController.msgIndex = [_msgTableView indexPathForSelectedRow].row;
+        detailViewController.dataController  = _dataController;
+        detailViewController.api = _api;
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
-    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",self.loggedUser.userName];
+    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",_api.user.userName];
     
     [super viewWillAppear:animated];
 }
@@ -69,14 +65,14 @@ static NSInteger TUPLE_SIZE=10;
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ForLanguage:(self.loggedUser.preferredLang) Project:@"!recent" ByUserId:(self.loggedUser.userId)];
+    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ForLanguage:(_api.user.preferredLang) Project:@"!recent" Using: _api];
     [self.msgTableView reloadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (!self.loggedUserName)
+    if (!_api.user.isLoggedin)
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
@@ -92,12 +88,8 @@ static NSInteger TUPLE_SIZE=10;
     // Dispose of any resources that can be recreated.
 }
 
--(void)setUserName:(NSString *)userName{
-    self.loggedUserName = userName;
-}
-
 - (IBAction)LogoutButton:(id)sender {
-    [TWapi TWLogoutRequest];
+    [_api TWLogoutRequest];
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     [loginKC resetKeychainItem];
 }
@@ -162,7 +154,6 @@ static NSInteger TUPLE_SIZE=10;
         
     }
 }
-
 
 
 @end

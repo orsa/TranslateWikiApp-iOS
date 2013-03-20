@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TWapi.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

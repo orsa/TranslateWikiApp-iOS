@@ -11,14 +11,14 @@
 
 @implementation TWUser
 
--(id) initWithUsreName:(NSString*) userName{
+-(id) init{
     self = [super init];
     if (self) {
-        _userName=userName;
+        _userName=@"";
         _isLoggedin=NO;
         _userId=@"";
         
-        _userId = [TWapi TWUserIdRequestOfUserName:(NSString*)userName];
+       // _userId = [TWapi TWUserIdRequestOfUserName:(NSString*)userName];
         if (!_userId)
             _userId=@"";
         

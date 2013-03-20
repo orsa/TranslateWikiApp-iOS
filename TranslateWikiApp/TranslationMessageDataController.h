@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TWapi.h"
+
 @class TranslationMessage;
 @interface TranslationMessageDataController : NSObject
 @property (nonatomic, copy) NSMutableArray *masterTranslationMessageList;
@@ -16,5 +18,5 @@
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;
-- (void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj ByUserId:(NSString*)userId;
+- (void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj Using: (TWapi*) api;
 @end

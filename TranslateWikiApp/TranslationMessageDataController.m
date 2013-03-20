@@ -8,7 +8,7 @@
 
 #import "TranslationMessageDataController.h"
 #import "TranslationMessage.h"
-#import "TWapi.h"
+
 
 @implementation TranslationMessageDataController
 
@@ -51,18 +51,19 @@
     [self.masterTranslationMessageList removeObjectAtIndex:index];
 }
 
--(void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj ByUserId:(NSString*)userId{
+-(void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj Using:(TWapi*) api
+{
     NSInteger offset=0;
     if(self.masterTranslationMessageList!=nil)
         offset=[self countOfList];
-    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[TWapi TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset ByUserId:userId] copyItems:YES];
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset] copyItems:YES];
     NSLog(@"%@",result); //DEBUG
     
     NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
     //we expect an array, otherwise will be runtime exception
     
     for (NSDictionary* msg in newData) {
-        [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:[msg objectForKey:@"definition"] withTranslation:[msg objectForKey:@"translation"] withLanguage:@"es" withKey:[msg objectForKey:@"key"] withRevision:[msg objectForKey:@"revision"] withAccepted:NO]];
+        [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withKey:msg[@"key"] withRevision:msg[@"revision"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
     }
 }
 @end

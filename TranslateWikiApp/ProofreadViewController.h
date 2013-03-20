@@ -7,17 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TranslationMessage;
-@class TranslationMessageDataController;
-@class TWUser;
+
+#import "TranslationMessage.h"
+#import "TranslationMessageDataController.h"
+#import "TWUser.h"
+#import "TWapi.h"
 
 @interface ProofreadViewController : UITableViewController
 @property (strong, nonatomic) TranslationMessageDataController* dataController;
-@property  (retain, nonatomic) TWUser* loggedUser;
 @property (nonatomic) NSInteger msgIndex;
 @property (weak, nonatomic) IBOutlet UILabel *messageKeyLable;
 @property (weak, nonatomic) IBOutlet UILabel *definitionLable;
 @property (weak, nonatomic) IBOutlet UILabel *translationLable;
+@property (weak, nonatomic) IBOutlet UILabel *acceptCount;
+@property (retain, nonatomic) TWapi *api;
 
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;

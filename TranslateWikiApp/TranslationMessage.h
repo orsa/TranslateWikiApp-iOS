@@ -15,9 +15,11 @@
 @property(nonatomic, copy)NSString* key;
 @property(nonatomic, copy)NSString* revision;
 @property(nonatomic)BOOL isAccepted;
+@property(nonatomic)NSInteger acceptCount;
 
 
--(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withKey:(NSString*)k withRevision:(NSString*)rev withAccepted:(BOOL)accepted;
+
+-(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withKey:(NSString*)k withRevision:(NSString*)rev withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac;
 /*
 //getters
 -(NSString*) source;

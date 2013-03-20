@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "TranslationMessageDataController.h"
+#import "TranslationMessage.h"
+#import "ProofreadViewController.h"
+#import "TWUser.h"
+#import "TWapi.h"
+#import "KeychainItemWrapper.h"
+
+
 @class TranslationMessageDataController;
 @class TWUser;
 
@@ -14,10 +23,11 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
-@property  (retain, nonatomic) NSString *loggedUserName;
-@property  (retain, nonatomic) TWUser* loggedUser;
+//@property  (retain, nonatomic) NSString *loggedUserName;
+//@property  (retain, nonatomic) TWUser* loggedUser;
+@property (retain, nonatomic) TWapi *api;
 
 
--(void)setUserName:(NSString *)userName;
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
