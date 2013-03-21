@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TranslationMessageDataController;
+@class TWapi;
 
 @interface PrefsViewController : UITableViewController
+@property (strong, nonatomic) TranslationMessageDataController* dataController;
+@property (retain, nonatomic) TWapi *api;
+@property (weak, nonatomic) IBOutlet UITextField *langTextField;
+@property (weak, nonatomic) IBOutlet UITextField *projTextField;
+
+- (IBAction)pushDone:(id)sender;
 
 @end

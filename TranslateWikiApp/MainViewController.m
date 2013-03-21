@@ -18,13 +18,17 @@
 
 @implementation MainViewController
 
-static NSInteger TUPLE_SIZE=10;
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showMessage"]) {
         ProofreadViewController *detailViewController = [segue destinationViewController];
         
         detailViewController.msgIndex = [_msgTableView indexPathForSelectedRow].row;
+        detailViewController.dataController  = _dataController;
+        detailViewController.api = _api;
+    }
+    if ([[segue identifier] isEqualToString:@"showPrefs"]) {
+        PrefsViewController *detailViewController = [segue destinationViewController];
+    
         detailViewController.dataController  = _dataController;
         detailViewController.api = _api;
     }
@@ -65,7 +69,7 @@ static NSInteger TUPLE_SIZE=10;
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleOfSize:TUPLE_SIZE ForLanguage:(_api.user.preferredLang) Project:@"!recent" Using: _api];
+    [self.dataController addMessagesTupleUsingApi: _api];
     [self.msgTableView reloadData];
 }
 

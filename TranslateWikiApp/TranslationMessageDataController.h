@@ -18,5 +18,5 @@
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;
-- (void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj Using: (TWapi*) api;
+- (void)addMessagesTupleUsingApi: (TWapi*) api;
 @end

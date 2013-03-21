@@ -23,6 +23,7 @@
             _userId=@"";
         
         _preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];
+        _preferredProj = @"!recent";
         
         return self;
     }

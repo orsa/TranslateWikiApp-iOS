@@ -12,6 +12,8 @@
 
 @implementation TranslationMessageDataController
 
+static NSInteger TUPLE_SIZE=10;
+
 - (void)initializeDefaultDataList {
     NSMutableArray *MessageList = [[NSMutableArray alloc] init];
     self.masterTranslationMessageList = MessageList;
@@ -51,11 +53,14 @@
     [self.masterTranslationMessageList removeObjectAtIndex:index];
 }
 
--(void)addMessagesTupleOfSize:(int)size ForLanguage:(NSString*)lang Project:(NSString*)proj Using:(TWapi*) api
+-(void)addMessagesTupleUsingApi:(TWapi*) api
 {
     NSInteger offset=0;
     if(self.masterTranslationMessageList!=nil)
         offset=[self countOfList];
+    NSInteger size=TUPLE_SIZE;
+    NSString* lang=api.user.preferredLang;
+    NSString* proj=api.user.preferredProj;
     NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset] copyItems:YES];
     NSLog(@"%@",result); //DEBUG
     

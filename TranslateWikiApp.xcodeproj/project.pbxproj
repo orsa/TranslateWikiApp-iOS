@@ -24,7 +24,6 @@
 		6410023A1692180F000202A9 /* TWapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002391692180F000202A9 /* TWapi.m */; };
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
-		6469FB8C16F9BAE90006E765 /* mwapi in Resources */ = {isa = PBXBuildFile; fileRef = 6469FB8B16F9BAE90006E765 /* mwapi */; };
 		6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6469FB9216FADED80006E765 /* PrefsViewController.m */; };
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
@@ -59,7 +58,6 @@
 		644D676B1695E74D00B7C7F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		6469FB8B16F9BAE90006E765 /* mwapi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mwapi; path = ../mwapi; sourceTree = "<group>"; };
 		6469FB9116FADED80006E765 /* PrefsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsViewController.h; sourceTree = "<group>"; };
 		6469FB9216FADED80006E765 /* PrefsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsViewController.m; sourceTree = "<group>"; };
 		649BA2DA169B822B003561BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 		641001F51691B217000202A9 = {
 			isa = PBXGroup;
 			children = (
-				6469FB8B16F9BAE90006E765 /* mwapi */,
 				6410020A1691B218000202A9 /* TranslateWikiApp */,
 				641002031691B218000202A9 /* Frameworks */,
 				641002011691B218000202A9 /* Products */,
@@ -230,7 +227,6 @@
 				641002211691B218000202A9 /* MainStoryboard_iPad.storyboard in Resources */,
 				64026A6A16971E27002A65CC /* imgres.jpeg in Resources */,
 				FC00039B16A378BC00DDF068 /* 1358192448_arrow_down.png in Resources */,
-				6469FB8C16F9BAE90006E765 /* mwapi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

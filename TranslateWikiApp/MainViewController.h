@@ -11,6 +11,7 @@
 #import "TranslationMessageDataController.h"
 #import "TranslationMessage.h"
 #import "ProofreadViewController.h"
+#import "PrefsViewController.h"
 #import "TWUser.h"
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
