@@ -11,13 +11,23 @@
 @class TWapi;
 
 @interface PrefsViewController : UITableViewController
-@property (strong, nonatomic) TranslationMessageDataController* dataController;
-@property (retain, nonatomic) TWapi *api;
-@property (weak, nonatomic) IBOutlet UITextField *langTextField;
-@property (weak, nonatomic) IBOutlet UITextField *projTextField;
+<UIPickerViewDataSource, UIPickerViewDelegate>
+{
+    IBOutlet UIPickerView *pickerView;
+    IBOutlet UITextField *langTextField;
+    IBOutlet UITextField *projTextField;
+    NSArray *arrLang;
+    NSArray *arrProj;
+}
+
+@property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
+@property (nonatomic, retain) IBOutlet UITextField *langTextField;
+@property (nonatomic, retain) IBOutlet UITextField *projTextField;
+@property (nonatomic, retain) TWapi *api;
 
 - (IBAction)pushDone:(id)sender;
 -(NSString*)getNewLang;
 -(NSString*)getNewProj;
+
 
 @end

@@ -24,8 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
-//@property  (retain, nonatomic) NSString *loggedUserName;
-//@property  (retain, nonatomic) TWUser* loggedUser;
 @property (retain, nonatomic) TWapi *api;
 
 

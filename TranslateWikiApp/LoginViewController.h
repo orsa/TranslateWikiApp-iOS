@@ -14,12 +14,11 @@
 
 @class MainViewController;
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<UITextFieldDelegate>
+
 
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *password;
-//@property (copy, nonatomic) NSString *userId;
-
 @property (retain, nonatomic) TWUser *cur_user;
 @property (retain, nonatomic) TWapi *api;
 

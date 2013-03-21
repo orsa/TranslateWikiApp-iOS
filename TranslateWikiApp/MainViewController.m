@@ -29,7 +29,7 @@
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
         PrefsViewController *detailViewController = [segue destinationViewController];
     
-        detailViewController.dataController  = _dataController;
+       // detailViewController.dataController  = _dataController; //What for???
         detailViewController.api = _api;
     }
 }

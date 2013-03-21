@@ -47,7 +47,7 @@
         if([resultString isEqualToString:@"Success"])
         {
             //then we can skip the login screen
-            self.userName = nameString;
+            _userName = nameString;
             [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
         }
         else
@@ -65,14 +65,14 @@
 
 - (IBAction)submitLogin:(id)sender {
        
-    self.userName = self.usernameText.text;
-    self.password = self.passwordText.text;
+    _userName = _usernameText.text;
+    _password = _passwordText.text;
     
-    NSString *nameString = self.userName;
-    NSString *passwString = self.password;
+    NSString *nameString = _userName;
+    NSString *passwString = _password;
     _api.user.userName = nameString;
 
-    self.ResultLabel.text = [_api TWLoginRequestWithPassword:passwString]; //login via API
+    _ResultLabel.text = [_api TWLoginRequestWithPassword:passwString]; //login via API
     
     if([ self.ResultLabel.text isEqualToString:@"Success"])
     {
@@ -98,5 +98,18 @@
         [vc setApi:_api];
     }
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    if(textField == _usernameText){
+        [_passwordText becomeFirstResponder];
+    }
+    else if(textField == _passwordText){
+        [_passwordText resignFirstResponder];
+        [self submitLogin:self];
+    }
+    return YES;
+}
+
 
 @end
