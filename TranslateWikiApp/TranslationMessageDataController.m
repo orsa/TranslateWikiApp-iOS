@@ -59,8 +59,8 @@ static NSInteger TUPLE_SIZE=10;
     if(self.masterTranslationMessageList!=nil)
         offset=[self countOfList];
     NSInteger size=TUPLE_SIZE;
-    NSString* lang=api.user.preferredLang;
-    NSString* proj=api.user.preferredProj;
+    NSString* lang=api.user.pref.preferredLang;
+    NSString* proj=api.user.pref.preferredProj;
     NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset] copyItems:YES];
     NSLog(@"%@",result); //DEBUG
     

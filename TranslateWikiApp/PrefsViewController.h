@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *projTextField;
 
 - (IBAction)pushDone:(id)sender;
+-(NSString*)getNewLang;
+-(NSString*)getNewProj;
 
 @end

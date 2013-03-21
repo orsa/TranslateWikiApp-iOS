@@ -40,7 +40,7 @@
     if(!([newLang isEqualToString:@""]))
         return newLang;
     else
-        return _api.user.preferredLang;
+        return _api.user.pref.preferredLang;
 }
 
 -(NSString*)getNewProj
@@ -50,7 +50,7 @@
     if(!([newProj isEqualToString:@""]))
         return newProj;
     else
-        return _api.user.preferredProj;
+        return _api.user.pref.preferredProj;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -59,8 +59,8 @@
     {
         MainViewController *ViewController = [segue destinationViewController];
         
-        _api.user.preferredLang=[self getNewLang];
-        _api.user.preferredProj=[self getNewProj];
+        _api.user.pref.preferredLang=[self getNewLang];
+        _api.user.pref.preferredProj=[self getNewProj];
         
         [_dataController removeAllObjects];
         [_dataController addMessagesTupleUsingApi:_api];

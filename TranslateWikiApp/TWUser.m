@@ -7,7 +7,6 @@
 //
 
 #import "TWUser.h"
-#import "TWapi.h"
 
 @implementation TWUser
 
@@ -22,8 +21,7 @@
         if (!_userId)
             _userId=@"";
         
-        _preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];
-        _preferredProj = @"!recent";
+        _pref=[[TWUserPreferences alloc] init];
         
         return self;
     }

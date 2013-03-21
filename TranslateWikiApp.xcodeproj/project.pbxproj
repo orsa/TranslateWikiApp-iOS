@@ -29,6 +29,7 @@
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
 		64F5E4D716AEDC7A00442603 /* ProofreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */; };
+		F1657D7D16FB485A003DFF41 /* TWUserPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = F1657D7C16FB485A003DFF41 /* TWUserPreferences.m */; };
 		FC00039B16A378BC00DDF068 /* 1358192448_arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessageDataController.m; sourceTree = "<group>"; };
 		64F5E4D516AEDC7A00442603 /* ProofreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProofreadViewController.h; sourceTree = "<group>"; };
 		64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProofreadViewController.m; sourceTree = "<group>"; };
+		F1657D7B16FB485A003DFF41 /* TWUserPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUserPreferences.h; sourceTree = "<group>"; };
+		F1657D7C16FB485A003DFF41 /* TWUserPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWUserPreferences.m; sourceTree = "<group>"; };
 		FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1358192448_arrow_down.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +126,8 @@
 				64F5E4C316AE9B7200442603 /* TranslationMessage.m */,
 				640A1A3916AF0C9E004B0DB8 /* TWUser.h */,
 				640A1A3A16AF0C9E004B0DB8 /* TWUser.m */,
+				F1657D7B16FB485A003DFF41 /* TWUserPreferences.h */,
+				F1657D7C16FB485A003DFF41 /* TWUserPreferences.m */,
 				64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */,
 				64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */,
 				644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */,
@@ -248,6 +253,7 @@
 				64F5E4D716AEDC7A00442603 /* ProofreadViewController.m in Sources */,
 				640A1A3B16AF0C9E004B0DB8 /* TWUser.m in Sources */,
 				6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */,
+				F1657D7D16FB485A003DFF41 /* TWUserPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
