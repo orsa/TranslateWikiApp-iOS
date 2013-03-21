@@ -59,7 +59,7 @@
     NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset] copyItems:YES];
     NSLog(@"%@",result); //DEBUG
     
-    NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:[[result objectForKey:@"query"] objectForKey:@"messagecollection"]];
+    NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
     //we expect an array, otherwise will be runtime exception
     
     for (NSDictionary* msg in newData) {
