@@ -16,12 +16,15 @@
     IBOutlet UIPickerView *pickerView;
     IBOutlet UITextField *langTextField;
     IBOutlet UITextField *projTextField;
+    IBOutlet UISwitch *proofreadOnlySwitch;
     NSArray *arrLang;
     NSArray *arrProj;
+    NSArray *arrLangCodes;
 }
 
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, retain) IBOutlet UITextField *langTextField;
+@property (nonatomic, retain) IBOutlet UISwitch *proofreadOnlySwitch;
 @property (nonatomic, retain) IBOutlet UITextField *projTextField;
 @property (nonatomic, retain) TWapi *api;
 

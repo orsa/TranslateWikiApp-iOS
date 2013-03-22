@@ -12,5 +12,6 @@
 
 @property(nonatomic, copy)NSString* preferredLang;
 @property(nonatomic, copy)NSString* preferredProj;
+@property(nonatomic)bool proofreadOnly;
 
 @end

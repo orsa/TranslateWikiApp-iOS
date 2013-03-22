@@ -11,7 +11,6 @@
 
 
 
-
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
@@ -20,6 +19,7 @@
 
 @end
 
+@class AppDelegate;
 
 @implementation LoginViewController
 
@@ -41,7 +41,7 @@
     if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""])
     { //found credentials
         
-        _api.user.userName   =  nameString;
+        _api.user.userName  =  nameString;
         
         NSString *resultString = [_api TWLoginRequestWithPassword:passwString]; //try login
         if([resultString isEqualToString:@"Success"])
@@ -54,6 +54,15 @@
         { //login fail, need to re-login and update credentals
             [loginKC resetKeychainItem];
         }
+    }
+    else if([[NSUserDefaults standardUserDefaults] objectForKey:@"recentLoginUserName"]!=nil)
+    {
+        _usernameText.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"recentLoginUserName"];
+        [_passwordText becomeFirstResponder];
+    }
+    else
+    {
+        [_usernameText becomeFirstResponder];
     }
 }
 
@@ -90,11 +99,8 @@
 {
     if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
     {
+        [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:@"recentLoginUserName"];
         MainViewController *vc = [segue destinationViewController];
-        
-        //[vc setUserName:_userName];
-        //[vc setLoggedUser:[[TWUser alloc] initWithUsreName:_userName]];
-        //[[vc loggedUser] setUserId:(_userId)];
         [vc setApi:_api];
     }
 }

@@ -36,13 +36,13 @@
                                     <outlet property="delegate" destination="2" id="UUA-8H-c5J"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YpO-QU-EVb">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YpO-QU-EVb">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aLN-dK-weM"/>
                                     <constraint firstAttribute="width" constant="179" id="brG-8a-EBs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="Yn9-PK-o3p"/>
                                 </connections>
@@ -221,7 +221,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sEa-mi-Lv2"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sEa-mi-Lv2"/>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -246,6 +246,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-VY-2PH">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="Kxl-G6-Caf"/>
+                                                        <constraint firstAttribute="height" constant="44" id="UO9-IM-QH6"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <state key="normal" title="SAVE">
@@ -260,8 +261,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Xtd-VY-2PH" firstAttribute="top" secondItem="M7W-hA-M6C" secondAttribute="top" constant="1" id="4ie-K7-uyI"/>
                                             <constraint firstItem="Xtd-VY-2PH" firstAttribute="centerX" secondItem="M7W-hA-M6C" secondAttribute="centerX" type="default" id="ZKP-kb-qM8"/>
+                                            <constraint firstItem="Xtd-VY-2PH" firstAttribute="top" secondItem="M7W-hA-M6C" secondAttribute="top" type="default" id="vnx-eo-IR1"/>
                                         </constraints>
                                     </tableViewCell>
                                 </cells>
@@ -277,6 +278,7 @@
                         <outlet property="langTextField" destination="Puy-lm-S7b" id="yWM-a0-ZfT"/>
                         <outlet property="pickerView" destination="NET-Z9-d1s" id="FUb-YQ-Lqh"/>
                         <outlet property="projTextField" destination="aY7-yt-kaY" id="Uhv-SN-PGo"/>
+                        <outlet property="proofreadOnlySwitch" destination="sEa-mi-Lv2" id="BFy-Dg-e99"/>
                         <segue destination="4Xz-Nx-oCb" kind="modal" identifier="setPrefs" id="wnd-EU-5pS"/>
                     </connections>
                 </tableViewController>
@@ -707,6 +709,7 @@
                 <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="ProofreadViewController" superclassName="UITableViewController">
@@ -728,7 +731,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wnd-EU-5pS"/>
+        <segue reference="Pvs-N6-HLp"/>
         <segue reference="U5j-Zg-J2c"/>
     </inferredMetricsTieBreakers>
 </document>

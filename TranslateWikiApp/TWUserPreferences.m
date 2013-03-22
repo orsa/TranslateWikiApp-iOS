@@ -16,6 +16,7 @@
     {
         _preferredLang = [[NSLocale preferredLanguages] objectAtIndex:0];
         _preferredProj = @"!recent";
+        _proofreadOnly = true;
         return self;
     }
     return nil;

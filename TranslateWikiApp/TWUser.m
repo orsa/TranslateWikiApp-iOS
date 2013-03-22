@@ -21,7 +21,7 @@
         if (!_userId)
             _userId=@"";
         
-        _pref=[[TWUserPreferences alloc] init];
+        //_pref=[[TWUserPreferences alloc] init];
         
         return self;
     }

@@ -25,6 +25,9 @@
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
 		6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6469FB9216FADED80006E765 /* PrefsViewController.m */; };
+		6491440716FCB15A00FEEACB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6491440616FCB15A00FEEACB /* CoreData.framework */; };
+		6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6491440816FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld */; };
+		6491440D16FCD07600FEEACB /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6491440C16FCD07600FEEACB /* Message.m */; };
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
@@ -61,6 +64,10 @@
 		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		6469FB9116FADED80006E765 /* PrefsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsViewController.h; sourceTree = "<group>"; };
 		6469FB9216FADED80006E765 /* PrefsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsViewController.m; sourceTree = "<group>"; };
+		6491440616FCB15A00FEEACB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6491440916FCB7A000FEEACB /* TranslateWikiApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TranslateWikiApp.xcdatamodel; sourceTree = "<group>"; };
+		6491440B16FCD07600FEEACB /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6491440C16FCD07600FEEACB /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		649BA2DA169B822B003561BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		649BA2DD169B8B32003561BA /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		64F5E4C216AE9B7200442603 /* TranslationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessage.h; sourceTree = "<group>"; };
@@ -79,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6491440716FCB15A00FEEACB /* CoreData.framework in Frameworks */,
 				644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */,
 				641002051691B218000202A9 /* UIKit.framework in Frameworks */,
 				641002071691B218000202A9 /* Foundation.framework in Frameworks */,
@@ -109,6 +117,7 @@
 		641002031691B218000202A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6491440616FCB15A00FEEACB /* CoreData.framework */,
 				644D676B1695E74D00B7C7F5 /* Security.framework */,
 				641002041691B218000202A9 /* UIKit.framework */,
 				641002061691B218000202A9 /* Foundation.framework */,
@@ -154,6 +163,9 @@
 				641002181691B218000202A9 /* Default@2x.png */,
 				64026A6916971E27002A65CC /* imgres.jpeg */,
 				6410021A1691B218000202A9 /* Default-568h@2x.png */,
+				6491440816FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld */,
+				6491440B16FCD07600FEEACB /* Message.h */,
+				6491440C16FCD07600FEEACB /* Message.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -254,6 +266,8 @@
 				640A1A3B16AF0C9E004B0DB8 /* TWUser.m in Sources */,
 				6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */,
 				F1657D7D16FB485A003DFF41 /* TWUserPreferences.m in Sources */,
+				6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */,
+				6491440D16FCD07600FEEACB /* Message.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +397,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6491440816FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6491440916FCB7A000FEEACB /* TranslateWikiApp.xcdatamodel */,
+			);
+			currentVersion = 6491440916FCB7A000FEEACB /* TranslateWikiApp.xcdatamodel */;
+			path = TranslateWikiApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 641001F71691B217000202A9 /* Project object */;
 }

@@ -13,6 +13,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"defaultLanguage"]==nil){
+        [defaults setObject:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:@"defaultLanguage"];
+    }
+    if ([defaults objectForKey:@"defaultProject"]==nil){
+        [defaults setObject:@"!recent" forKey:@"defaultProject"];
+    }
+    if ([defaults objectForKey:@"proofreadOnlyState"]==nil){
+        [defaults setBool:YES forKey:@"proofreadOnlyState"];
+    }
+    
+    
     return YES;
 }
 							

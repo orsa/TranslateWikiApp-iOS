@@ -22,17 +22,26 @@
 @synthesize pickerView;
 @synthesize langTextField;
 @synthesize projTextField;
-
+@synthesize proofreadOnlySwitch;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [pickerView setHidden:YES];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
-    arrLang = [[NSArray alloc] initWithObjects:@"en", @"es", @"he", @"fr", nil];
-    arrProj = [[NSArray alloc] initWithObjects:@"core", @"!recent", nil]; //can use api:action=query&meta=messagegroups to get them all
-    langTextField.text = _api.user.pref.preferredLang;
-    projTextField.text = _api.user.pref.preferredProj;
+    
+    arrLang = [[NSArray alloc] initWithObjects:@"Arabic", @"Armenian", @"Belarusian", @"Bosnian", @"Chamorro", @"Chinese", @"Croatian", @"Czech", @"Danish", @"English", @"Estonian", @"Finnish", @"French", @"Georgian", @"German", @"Greek, Modern", @"Hebrew", @"Hindi", @"Hungarian", @"Italian", @"Japanese", @"Korean", @"Kurdish", @"Lao", @"Latin", @"Lithuanian", @"Macedonian", @"Nepali", @"Norwegian", @"Persian", @"Slovak", @"Thai", @"Tibetan", @"Urdu", @"Yiddish", nil];
+    
+    arrLangCodes = [[NSArray alloc] initWithObjects:@"ar", @"hy", @"be", @"bs", @"ch", @"zh", @"hr", @"cs", @"da", @"en", @"et", @"fi", @"fr", @"ka", @"de", @"el", @"he", @"hi", @"hu", @"it", @"ja", @"ko", @"ku", @"lo", @"la", @"lt", @"mk", @"ne", @"no", @"fa", @"sk", @"th", @"bo", @"ur", @"yi", nil];
+    
+    arrProj = [[NSArray alloc] initWithObjects:@"!recent", @"core", nil]; //can use api:action=query&meta=messagegroups to get them all
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    langTextField.text = [arrLang objectAtIndex:[arrLangCodes indexOfObject:[defaults objectForKey:@"defaultLanguage"]]];
+    projTextField.text = [defaults objectForKey:@"defaultProject"];
+    [proofreadOnlySwitch setOn:[defaults boolForKey:@"proofreadOnlyState"] animated:NO];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,23 +51,39 @@
 }
 
 - (IBAction)pushDone:(id)sender {
-    _api.user.pref.preferredLang=[self getNewLang];
-    _api.user.pref.preferredProj=[self getNewProj];
+  //  _api.user.pref.preferredLang=[self getNewLang];
+  //  _api.user.pref.preferredProj=[self getNewProj];
+   // _api.user.pref.proofreadOnly = [proofreadOnlySwitch state];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[self getNewLang] forKey:@"defaultLanguage"];
+    [defaults setObject:[self getNewProj] forKey:@"defaultProject"];
+    bool state = [proofreadOnlySwitch state];
+    [defaults setBool:state forKey:@"proofreadOnlyState"];
+    
     [self performSegueWithIdentifier:@"setPrefs" sender:self];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     [pickerView setHidden:YES];
-    if (langTextField.editing == YES) {
+    NSInteger i = 0;
+    if (langTextField.editing == YES)
+    {
+        flag = 1;
         [langTextField resignFirstResponder];
         [pickerView setHidden:NO];
-        flag = 1;
-    }else if (projTextField.editing == YES) {
+        i = [arrLang indexOfObject:langTextField.text];
+        [pickerView selectRow:i inComponent:0 animated:NO];
+    }
+    else if (projTextField.editing == YES)
+    {
+        flag = 2;
         [projTextField resignFirstResponder];
         [pickerView setHidden:NO];
-        flag = 2;
+        i = [arrProj indexOfObject:projTextField.text];
     }
     [pickerView reloadAllComponents];
+    [pickerView selectRow:i inComponent:0 animated:NO];
 }
 
 -(NSString*)getNewLang
@@ -66,9 +91,9 @@
     NSString* newLang=langTextField.text;
     
     if(!([newLang isEqualToString:@""]))
-        return newLang;
+        return [arrLangCodes objectAtIndex:[arrLang indexOfObject:newLang]];
     else
-        return _api.user.pref.preferredLang;
+        return [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
 }
 
 -(NSString*)getNewProj
@@ -78,7 +103,7 @@
     if(!([newProj isEqualToString:@""]))
         return newProj;
     else
-        return _api.user.pref.preferredProj;
+        return [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

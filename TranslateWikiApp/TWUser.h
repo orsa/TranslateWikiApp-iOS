@@ -15,7 +15,7 @@
 @property(nonatomic, copy)NSString* userId;
 @property BOOL isLoggedin;
 @property(nonatomic, copy)NSHTTPCookie* authCookie;
-@property(nonatomic, retain)TWUserPreferences* pref;
+//@property(nonatomic, retain)TWUserPreferences* pref;
 
 -(id) init;
 

@@ -11,6 +11,7 @@
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MainViewController.h"
+#import "AppDelegate.h"
 
 @class MainViewController;
 
