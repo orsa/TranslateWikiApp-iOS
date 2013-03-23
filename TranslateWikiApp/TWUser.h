@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TWUserPreferences.h"
 
 @interface TWUser : NSObject
 
@@ -15,7 +14,6 @@
 @property(nonatomic, copy)NSString* userId;
 @property BOOL isLoggedin;
 @property(nonatomic, copy)NSHTTPCookie* authCookie;
-//@property(nonatomic, retain)TWUserPreferences* pref;
 
 -(id) init;
 

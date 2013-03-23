@@ -60,9 +60,9 @@
         _usernameText.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"recentLoginUserName"];
         [_passwordText becomeFirstResponder];
     }
-    else
+    else //unknown recent user
     {
-        [_usernameText becomeFirstResponder];
+        [_usernameText becomeFirstResponder]; //set focus on username text field 
     }
 }
 
@@ -72,11 +72,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)submitLogin:(id)sender {
-       
+- (IBAction)submitLogin:(id)sender
+{       
     _userName = _usernameText.text;
     _password = _passwordText.text;
-    
     NSString *nameString = _userName;
     NSString *passwString = _password;
     _api.user.userName = nameString;
@@ -85,14 +84,17 @@
     
     if([ self.ResultLabel.text isEqualToString:@"Success"])
     {
-        //store credentials in keychain
-        KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
-        [loginKC resetKeychainItem];
-        [loginKC setObject:nameString forKey:(__bridge id)kSecAttrAccount];
-        [loginKC setObject:passwString forKey:(__bridge id)kSecValueData];
-        
+        [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
         [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
     }
+}
+
++ (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString
+{
+    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
+    [loginKC resetKeychainItem];
+    [loginKC setObject:nameString forKey:(__bridge id)kSecAttrAccount];
+    [loginKC setObject:passwString forKey:(__bridge id)kSecValueData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

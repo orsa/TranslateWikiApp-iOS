@@ -20,6 +20,8 @@
     NSArray *arrLang;
     NSArray *arrProj;
     NSArray *arrLangCodes;
+    NSString *selectedProjCode;
+    NSString *selectedLangCode;
 }
 
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
@@ -29,6 +31,8 @@
 @property (nonatomic, retain) TWapi *api;
 
 - (IBAction)pushDone:(id)sender;
+- (IBAction)touchSwitch:(id)sender;
+-(void)backgroundTap:(UITapGestureRecognizer *)tapGR;
 -(NSString*)getNewLang;
 -(NSString*)getNewProj;
 

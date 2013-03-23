@@ -34,13 +34,14 @@
     
     arrLangCodes = [[NSArray alloc] initWithObjects:@"ar", @"hy", @"be", @"bs", @"ch", @"zh", @"hr", @"cs", @"da", @"en", @"et", @"fi", @"fr", @"ka", @"de", @"el", @"he", @"hi", @"hu", @"it", @"ja", @"ko", @"ku", @"lo", @"la", @"lt", @"mk", @"ne", @"no", @"fa", @"sk", @"th", @"bo", @"ur", @"yi", nil];
     
-    arrProj = [[NSArray alloc] initWithObjects:@"!recent", @"core", nil]; //can use api:action=query&meta=messagegroups to get them all
+    //arrProj = [[NSArray alloc] initWithObjects:@"!recent", @"core", nil]; //can use api:action=query&meta=messagegroups to get them all
+    arrProj = [_api TWProjectListMaxDepth:0];
+    NSLog(@"%@",arrProj); //Debug
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     langTextField.text = [arrLang objectAtIndex:[arrLangCodes indexOfObject:[defaults objectForKey:@"defaultLanguage"]]];
-    projTextField.text = [defaults objectForKey:@"defaultProject"];
+    projTextField.text =  arrProj[[self indexOfProjCode:[defaults objectForKey:@"defaultProject"]]][@"label"];
     [proofreadOnlySwitch setOn:[defaults boolForKey:@"proofreadOnlyState"] animated:NO];
-    
     
 }
 
@@ -50,11 +51,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)pushDone:(id)sender {
-  //  _api.user.pref.preferredLang=[self getNewLang];
-  //  _api.user.pref.preferredProj=[self getNewProj];
-   // _api.user.pref.proofreadOnly = [proofreadOnlySwitch state];
-    
+- (IBAction)pushDone:(id)sender
+{
+    self.pickerView.hidden = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[self getNewLang] forKey:@"defaultLanguage"];
     [defaults setObject:[self getNewProj] forKey:@"defaultProject"];
@@ -62,6 +61,15 @@
     [defaults setBool:state forKey:@"proofreadOnlyState"];
     
     [self performSegueWithIdentifier:@"setPrefs" sender:self];
+}
+
+- (IBAction)touchSwitch:(id)sender {
+    self.pickerView.hidden = YES;
+    flag = 0;
+}
+
+-(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
+    [self touchSwitch:self];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -80,7 +88,7 @@
         flag = 2;
         [projTextField resignFirstResponder];
         [pickerView setHidden:NO];
-        i = [arrProj indexOfObject:projTextField.text];
+        i = [self indexOfProjlabel:projTextField.text];
     }
     [pickerView reloadAllComponents];
     [pickerView selectRow:i inComponent:0 animated:NO];
@@ -88,20 +96,18 @@
 
 -(NSString*)getNewLang
 {
-    NSString* newLang=langTextField.text;
+ //   NSString* newLang=langTextField.text;
     
-    if(!([newLang isEqualToString:@""]))
-        return [arrLangCodes objectAtIndex:[arrLang indexOfObject:newLang]];
+    if(selectedLangCode)
+        return selectedLangCode;
     else
         return [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
 }
 
 -(NSString*)getNewProj
 {
-    NSString* newProj=projTextField.text;
-    
-    if(!([newProj isEqualToString:@""]))
-        return newProj;
+    if(selectedProjCode)
+        return selectedProjCode;
     else
         return [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
 }
@@ -135,9 +141,9 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (flag == 1)
-        return [arrLang objectAtIndex:row];
+        return arrLang[row];
     else if(flag == 2)
-        return [arrProj objectAtIndex:row];
+        return (arrProj[row][@"label"]);
     else
         return nil;
 }
@@ -146,16 +152,44 @@
     [textField resignFirstResponder];
 }
 
--(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
-    self.pickerView.hidden = YES;
-    flag = 0;
+-(void)pickerView:(UIPickerView *)pickerV didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString *text = [self pickerView:pickerV titleForRow:row forComponent:component];
+    if (flag == 1)
+    {
+        self.langTextField.text = text;
+        selectedLangCode = arrLangCodes[row];
+    }
+    else if (flag == 2)
+    {
+        self.projTextField.text = text;
+        selectedProjCode = arrProj[row][@"id"];
+    }
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    NSString *text = [self pickerView:pickerView titleForRow:row forComponent:component];
-    UITextField *current = nil;
-    if (flag == 1) current = self.langTextField;
-    else if (flag == 2) current = self.projTextField;
-    current.text = text;
+
+-(int)indexOfProjCode:(NSString*)pcode{
+    int i=0;
+    for(NSDictionary * aproj in arrProj)
+    {
+        if ([pcode isEqualToString:aproj[@"id"]]) {
+            return i;
+        }
+        else i++;
+    }
+    return 0;
 }
+
+-(int)indexOfProjlabel:(NSString*)plabel{
+    int i=0;
+    for(NSDictionary * aproj in arrProj)
+    {
+        if ([plabel isEqualToString:aproj[@"label"]]) {
+            return i;
+        }
+        else i++;
+    }
+    return 0;
+}
+
 @end

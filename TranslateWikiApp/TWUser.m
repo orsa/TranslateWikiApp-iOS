@@ -15,14 +15,7 @@
     if (self) {
         _userName=@"";
         _isLoggedin=NO;
-        _userId=@"";
-        
-       // _userId = [TWapi TWUserIdRequestOfUserName:(NSString*)userName];
-        if (!_userId)
-            _userId=@"";
-        
-        //_pref=[[TWUserPreferences alloc] init];
-        
+        if (!_userId) _userId=@"";
         return self;
     }
     return nil;

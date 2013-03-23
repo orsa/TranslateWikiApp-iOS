@@ -28,11 +28,13 @@
 		6491440716FCB15A00FEEACB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6491440616FCB15A00FEEACB /* CoreData.framework */; };
 		6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6491440816FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld */; };
 		6491440D16FCD07600FEEACB /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6491440C16FCD07600FEEACB /* Message.m */; };
+		6491440F16FE166900FEEACB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6491440E16FE166900FEEACB /* icon.png */; };
+		6491441116FE16E900FEEACB /* icon_HD.png in Resources */ = {isa = PBXBuildFile; fileRef = 6491441016FE16E900FEEACB /* icon_HD.png */; };
+		6491441316FE1BDE00FEEACB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6491441216FE1BDE00FEEACB /* Default.png */; };
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
 		64F5E4D716AEDC7A00442603 /* ProofreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */; };
-		F1657D7D16FB485A003DFF41 /* TWUserPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = F1657D7C16FB485A003DFF41 /* TWUserPreferences.m */; };
 		FC00039B16A378BC00DDF068 /* 1358192448_arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,9 @@
 		6491440916FCB7A000FEEACB /* TranslateWikiApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TranslateWikiApp.xcdatamodel; sourceTree = "<group>"; };
 		6491440B16FCD07600FEEACB /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		6491440C16FCD07600FEEACB /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		6491440E16FE166900FEEACB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		6491441016FE16E900FEEACB /* icon_HD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_HD.png; path = ../icon_HD.png; sourceTree = "<group>"; };
+		6491441216FE1BDE00FEEACB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		649BA2DA169B822B003561BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		649BA2DD169B8B32003561BA /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		64F5E4C216AE9B7200442603 /* TranslationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessage.h; sourceTree = "<group>"; };
@@ -76,8 +81,6 @@
 		64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessageDataController.m; sourceTree = "<group>"; };
 		64F5E4D516AEDC7A00442603 /* ProofreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProofreadViewController.h; sourceTree = "<group>"; };
 		64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProofreadViewController.m; sourceTree = "<group>"; };
-		F1657D7B16FB485A003DFF41 /* TWUserPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUserPreferences.h; sourceTree = "<group>"; };
-		F1657D7C16FB485A003DFF41 /* TWUserPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWUserPreferences.m; sourceTree = "<group>"; };
 		FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1358192448_arrow_down.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,8 +138,6 @@
 				64F5E4C316AE9B7200442603 /* TranslationMessage.m */,
 				640A1A3916AF0C9E004B0DB8 /* TWUser.h */,
 				640A1A3A16AF0C9E004B0DB8 /* TWUser.m */,
-				F1657D7B16FB485A003DFF41 /* TWUserPreferences.h */,
-				F1657D7C16FB485A003DFF41 /* TWUserPreferences.m */,
 				64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */,
 				64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */,
 				644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */,
@@ -155,6 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */,
+				6491441216FE1BDE00FEEACB /* Default.png */,
+				6491441016FE16E900FEEACB /* icon_HD.png */,
+				6491440E16FE166900FEEACB /* icon.png */,
 				6410020C1691B218000202A9 /* TranslateWikiApp-Info.plist */,
 				6410020D1691B218000202A9 /* InfoPlist.strings */,
 				641002101691B218000202A9 /* main.m */,
@@ -244,6 +248,9 @@
 				641002211691B218000202A9 /* MainStoryboard_iPad.storyboard in Resources */,
 				64026A6A16971E27002A65CC /* imgres.jpeg in Resources */,
 				FC00039B16A378BC00DDF068 /* 1358192448_arrow_down.png in Resources */,
+				6491440F16FE166900FEEACB /* icon.png in Resources */,
+				6491441116FE16E900FEEACB /* icon_HD.png in Resources */,
+				6491441316FE1BDE00FEEACB /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +272,6 @@
 				64F5E4D716AEDC7A00442603 /* ProofreadViewController.m in Sources */,
 				640A1A3B16AF0C9E004B0DB8 /* TWUser.m in Sources */,
 				6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */,
-				F1657D7D16FB485A003DFF41 /* TWUserPreferences.m in Sources */,
 				6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */,
 				6491440D16FCD07600FEEACB /* Message.m in Sources */,
 			);
@@ -359,6 +365,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TranslateWikiApp/TranslateWikiApp-Prefix.pch";
 				INFOPLIST_FILE = "TranslateWikiApp/TranslateWikiApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -370,6 +377,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TranslateWikiApp/TranslateWikiApp-Prefix.pch";
 				INFOPLIST_FILE = "TranslateWikiApp/TranslateWikiApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

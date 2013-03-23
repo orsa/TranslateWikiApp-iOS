@@ -17,10 +17,11 @@
 
 @interface LoginViewController : UIViewController<UITextFieldDelegate>
 
-
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *password;
 @property (retain, nonatomic) TWUser *cur_user;
 @property (retain, nonatomic) TWapi *api;
+
++ (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString;
 
 @end

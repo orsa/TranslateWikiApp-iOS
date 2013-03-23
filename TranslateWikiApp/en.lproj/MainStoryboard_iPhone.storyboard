@@ -29,7 +29,7 @@
                                     <action selector="submitLogin:" destination="2" eventType="touchUpInside" id="3as-g4-2ja"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4W-QF-JsK">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4W-QF-JsK">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
@@ -159,7 +159,7 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Puy-lm-S7b">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="4ZC-cV-wZQ"/>
+                                                        <constraint firstAttribute="width" constant="180" id="Pfj-Rt-a0J"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -171,10 +171,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="Puy-lm-S7b" firstAttribute="leading" secondItem="9Pd-sq-6WS" secondAttribute="leading" constant="121" id="5Tw-cI-kxt"/>
                                             <constraint firstItem="kg3-kk-2AH" firstAttribute="leading" secondItem="9Pd-sq-6WS" secondAttribute="leading" constant="30" id="J3F-oH-Qtm"/>
                                             <constraint firstItem="Puy-lm-S7b" firstAttribute="top" secondItem="9Pd-sq-6WS" secondAttribute="top" constant="8" id="Tbu-JN-49n"/>
                                             <constraint firstItem="Puy-lm-S7b" firstAttribute="centerY" secondItem="kg3-kk-2AH" secondAttribute="centerY" type="default" id="Wd1-kO-RCW"/>
-                                            <constraint firstAttribute="trailing" secondItem="Puy-lm-S7b" secondAttribute="trailing" constant="30" id="iIk-zz-uys"/>
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2K3-GE-JlV">
@@ -189,11 +189,11 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aY7-yt-kaY">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="aY7-yt-kaY">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="kds-17-UhI"/>
+                                                        <constraint firstAttribute="width" constant="180" id="YyG-DX-nM5"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="4bw-jd-BhM" id="Va8-Fu-nTU"/>
@@ -203,8 +203,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="aY7-yt-kaY" firstAttribute="leading" secondItem="2K3-GE-JlV" secondAttribute="leading" constant="121" id="00B-hD-cZJ"/>
                                             <constraint firstItem="bZS-qP-aLG" firstAttribute="leading" secondItem="2K3-GE-JlV" secondAttribute="leading" constant="30" id="9Ym-MF-raf"/>
-                                            <constraint firstAttribute="trailing" secondItem="aY7-yt-kaY" secondAttribute="trailing" constant="30" id="bWe-8O-grf"/>
                                             <constraint firstItem="bZS-qP-aLG" firstAttribute="top" secondItem="2K3-GE-JlV" secondAttribute="top" constant="11" id="oU2-zR-kvf"/>
                                             <constraint firstItem="aY7-yt-kaY" firstAttribute="centerY" secondItem="2K3-GE-JlV" secondAttribute="centerY" type="default" id="q4T-Ez-Jql"/>
                                         </constraints>
@@ -221,7 +221,11 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sEa-mi-Lv2"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sEa-mi-Lv2">
+                                                    <connections>
+                                                        <action selector="touchSwitch:" destination="4bw-jd-BhM" eventType="valueChanged" id="pQd-Ps-ngo"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -679,59 +683,13 @@
         <image name="1358192448_arrow_down.png" width="16" height="16"/>
         <image name="imgres.jpeg" width="192" height="256"/>
     </resources>
-    <classes>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitLogin:"/>
-                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="LogoutButton:"/>
-                <relationship kind="action" name="clearMessages:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PrefsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pushDone:"/>
-                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="ProofreadViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProofreadViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pushAccept:"/>
-                <relationship kind="action" name="pushDone:"/>
-                <relationship kind="action" name="pushReject:"/>
-                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="definitionLable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="messageKeyLable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="translationLable" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Pvs-N6-HLp"/>
+        <segue reference="wnd-EU-5pS"/>
         <segue reference="U5j-Zg-J2c"/>
     </inferredMetricsTieBreakers>
 </document>
