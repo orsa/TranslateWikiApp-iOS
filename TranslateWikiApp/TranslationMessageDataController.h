@@ -12,11 +12,13 @@
 @class TranslationMessage;
 @interface TranslationMessageDataController : NSObject
 @property (nonatomic, copy) NSMutableArray *masterTranslationMessageList;
+@property (atomic) NSInteger offset;
 
-- (NSUInteger)countOfList;
+- (NSInteger)countOfList;
 - (TranslationMessage *)objectInListAtIndex:(NSUInteger)theIndex;
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;
-- (void)addMessagesTupleUsingApi: (TWapi*) api;
+- (void)addMessagesTupleUsingApi: (TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext;
++(BOOL)checkIsRejectedMessageWithKey:(NSString*)key byUserWithId:(NSInteger)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext;
 @end

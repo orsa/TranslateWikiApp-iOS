@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 @class TranslationMessageDataController;
 @class TWapi;
 
@@ -22,6 +23,7 @@
     NSArray *arrLangCodes;
     NSString *selectedProjCode;
     NSString *selectedLangCode;
+    NSManagedObjectContext *managedObjectContext;
 }
 
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
@@ -29,6 +31,7 @@
 @property (nonatomic, retain) IBOutlet UISwitch *proofreadOnlySwitch;
 @property (nonatomic, retain) IBOutlet UITextField *projTextField;
 @property (nonatomic, retain) TWapi *api;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)pushDone:(id)sender;
 - (IBAction)touchSwitch:(id)sender;

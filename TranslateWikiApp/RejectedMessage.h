@@ -1,8 +1,8 @@
 //
-//  Message.h
+//  RejectedMessage.h
 //  TranslateWikiApp
 //
-//  Created by Or Sagi on 22/3/13.
+//  Created by Tomer Tuchner on 3/27/13.
 //  Copyright (c) 2013 translatewiki.net. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Message : NSManagedObject
+@interface RejectedMessage : NSManagedObject
 
 @property (nonatomic, retain) NSString * key;
-@property (nonatomic, retain) NSNumber * rejected;
+@property (nonatomic, retain) NSNumber * userid;
 
 @end

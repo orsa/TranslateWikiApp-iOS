@@ -20,13 +20,14 @@
 @class TranslationMessageDataController;
 @class TWUser;
 
-@interface MainViewController : UIViewController<UITableViewDataSource>
+@interface MainViewController : UIViewController<UITableViewDataSource>{
+    NSManagedObjectContext *managedObjectContext;
+}
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
 @property (retain, nonatomic) TWapi *api;
-
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

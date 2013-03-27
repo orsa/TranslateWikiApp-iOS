@@ -11,13 +11,14 @@
 #import "TranslationMessageDataController.h"
 #import "TWapi.h"
 #import "MainViewController.h"
+#import "RejectedMessage.h"
 
 @interface ProofreadViewController ()
 - (void)configureView;
 @end
 
 @implementation ProofreadViewController
-
+@synthesize managedObjectContext;
 
 - (void)configureView
 {
@@ -62,6 +63,7 @@
 - (IBAction)pushReject:(id)sender
 {
     [[self activeMsg] setIsAccepted:NO];
+    [self coreDataRejectMessage];
     [self.dataController removeObjectAtIndex:(self.msgIndex)];
     [self performSegueWithIdentifier:@"setReview" sender:self]; 
 }
@@ -77,6 +79,7 @@
         MainViewController *ViewController = [segue destinationViewController];
         ViewController.dataController = self.dataController;
         ViewController.api = _api;
+        ViewController.managedObjectContext = self.managedObjectContext;
     }
 }
 
@@ -84,4 +87,18 @@
 {
     return [self.dataController objectInListAtIndex:(self.msgIndex)];
 }
+
+-(void)coreDataRejectMessage{
+    RejectedMessage *mess = (RejectedMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
+    
+    [mess setKey:[[self activeMsg] key]];
+    NSNumber* userid=[NSNumber numberWithInteger:[[_api user] userId]];
+    [mess setUserid:userid];
+    
+    NSError *error = nil;
+    if (![managedObjectContext save:&error]) {
+        // Handle the error.
+    }
+}
+
 @end

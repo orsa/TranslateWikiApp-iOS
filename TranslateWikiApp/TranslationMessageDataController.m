@@ -28,12 +28,13 @@ static NSInteger TUPLE_SIZE=10;
 - (id)init {
     if (self = [super init]) {
         [self initializeDefaultDataList];
+        _offset=0;
         return self;
     }
     return nil;
 }
 
-- (NSUInteger)countOfList {
+- (NSInteger)countOfList{
     return [self.masterTranslationMessageList count];
 }
 
@@ -53,22 +54,44 @@ static NSInteger TUPLE_SIZE=10;
     [self.masterTranslationMessageList removeObjectAtIndex:index];
 }
 
--(void)addMessagesTupleUsingApi:(TWapi*) api
+-(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
-    NSInteger offset=0;
-    if(self.masterTranslationMessageList!=nil)
-        offset=[self countOfList];
-    NSInteger size=TUPLE_SIZE;
-    NSString* lang=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
-    NSString* proj=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
-    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:size OffsetToStart:offset] copyItems:YES];
-    NSLog(@"%@",result); //DEBUG
+    NSInteger numberOfMessagesRemaining=TUPLE_SIZE;
+    while(numberOfMessagesRemaining>0)
+    {
+        NSString* lang=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
+        NSString* proj=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
+        NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
+        NSLog(@"%@",result); //DEBUG
     
-    NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
-    //we expect an array, otherwise will be runtime exception
+        NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
+        //we expect an array, otherwise will be runtime exception
     
-    for (NSDictionary* msg in newData) {
-        [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withKey:msg[@"key"] withRevision:msg[@"revision"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
+        for (NSDictionary* msg in newData) {
+            BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithKey:msg[@"key"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
+            if(!isRejected){
+                numberOfMessagesRemaining=numberOfMessagesRemaining-1;
+                [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withKey:msg[@"key"] withRevision:msg[@"revision"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
+            }
+        }
+        NSInteger numberOfMessagesNotRejected=TUPLE_SIZE-numberOfMessagesRemaining;
+        _offset=_offset+numberOfMessagesNotRejected;
     }
 }
+
++(BOOL)checkIsRejectedMessageWithKey:(NSString*)key byUserWithId:(NSInteger)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userid == %d AND key==%@", userid, key];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil) {
+        // Handle the error.
+    }
+    return [mutableFetchResults count]>0;//message was rejected iff it appears in the database
+}
+
 @end

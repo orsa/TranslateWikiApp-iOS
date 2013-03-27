@@ -23,6 +23,7 @@
 @synthesize langTextField;
 @synthesize projTextField;
 @synthesize proofreadOnlySwitch;
+@synthesize managedObjectContext;
 
 - (void)viewDidLoad
 {
@@ -119,6 +120,7 @@
         MainViewController *ViewController = [segue destinationViewController];
         ViewController.api = _api;
         [ViewController.dataController removeAllObjects];
+        ViewController.managedObjectContext = self.managedObjectContext;
     }
 }
 

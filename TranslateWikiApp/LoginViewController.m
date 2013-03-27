@@ -22,7 +22,7 @@
 @class AppDelegate;
 
 @implementation LoginViewController
-
+@synthesize managedObjectContext;
 
 - (void)viewDidLoad
 {
@@ -104,6 +104,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:@"recentLoginUserName"];
         MainViewController *vc = [segue destinationViewController];
         [vc setApi:_api];
+        [vc setManagedObjectContext:self.managedObjectContext];
     }
 }
 

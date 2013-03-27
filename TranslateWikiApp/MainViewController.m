@@ -17,6 +17,7 @@
 @end
 
 @implementation MainViewController
+@synthesize managedObjectContext;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showMessage"]) {
@@ -25,12 +26,13 @@
         detailViewController.msgIndex = [_msgTableView indexPathForSelectedRow].row;
         detailViewController.dataController  = _dataController;
         detailViewController.api = _api;
+        detailViewController.managedObjectContext = self.managedObjectContext;
     }
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
         PrefsViewController *detailViewController = [segue destinationViewController];
     
-       // detailViewController.dataController  = _dataController; //What for???
         detailViewController.api = _api;
+        detailViewController.managedObjectContext = self.managedObjectContext;
     }
 }
 
@@ -69,7 +71,7 @@
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleUsingApi: _api];
+    [self.dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext];
     [self.msgTableView reloadData];
 }
 
@@ -158,6 +160,5 @@
         
     }
 }
-
 
 @end

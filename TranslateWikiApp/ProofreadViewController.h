@@ -13,7 +13,10 @@
 #import "TWUser.h"
 #import "TWapi.h"
 
-@interface ProofreadViewController : UITableViewController
+@interface ProofreadViewController : UITableViewController{
+    NSManagedObjectContext *managedObjectContext;
+}
+
 @property (strong, nonatomic) TranslationMessageDataController* dataController;
 @property (nonatomic) NSInteger msgIndex;
 @property (weak, nonatomic) IBOutlet UILabel *messageKeyLable;
@@ -21,9 +24,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *translationLable;
 @property (weak, nonatomic) IBOutlet UILabel *acceptCount;
 @property (retain, nonatomic) TWapi *api;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (IBAction)pushDone:(id)sender;
+- (void)coreDataRejectMessage;
 
 @end

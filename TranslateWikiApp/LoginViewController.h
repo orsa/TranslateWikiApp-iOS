@@ -15,12 +15,15 @@
 
 @class MainViewController;
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate>
+@interface LoginViewController : UIViewController<UITextFieldDelegate>{
+    NSManagedObjectContext *managedObjectContext;
+}
 
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *password;
 @property (retain, nonatomic) TWUser *cur_user;
 @property (retain, nonatomic) TWapi *api;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString;
 
