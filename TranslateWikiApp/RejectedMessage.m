@@ -11,7 +11,7 @@
 
 @implementation RejectedMessage
 
-@dynamic key;
+@dynamic revision;
 @dynamic userid;
 
 @end
