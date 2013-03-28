@@ -15,7 +15,7 @@
     if (self) {
         _userName=@"";
         _isLoggedin=NO;
-        if (!_userId) _userId=@"";
+        if (!_userId) _userId=0;
         return self;
     }
     return nil;
