@@ -231,9 +231,8 @@
 -(void)coreDataRejectMessage{
     RejectedMessage *mess = (RejectedMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     
-    [mess setKey:[[_dataController objectInListAtIndex:selectedIndexPath.row] key]];
-    NSNumber* userid=[NSNumber numberWithInteger:[[_api user] userId]];
-    [mess setUserid:userid];
+    [mess setRevision:[[_dataController objectInListAtIndex:selectedIndexPath.row] revision]];
+    [mess setUserid:[[_api user] userId]];
     
     NSError *error = nil;
     if (![managedObjectContext save:&error]) {

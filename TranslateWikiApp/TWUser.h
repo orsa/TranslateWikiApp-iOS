@@ -11,7 +11,7 @@
 @interface TWUser : NSObject
 
 @property(nonatomic, copy)NSString* userName;
-@property NSInteger userId;
+@property(nonatomic, copy)NSString* userId;
 @property BOOL isLoggedin;
 @property(nonatomic, copy)NSHTTPCookie* authCookie;
 
