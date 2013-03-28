@@ -105,6 +105,7 @@
         MainViewController *vc = [segue destinationViewController];
         [vc setApi:_api];
         [vc setManagedObjectContext:self.managedObjectContext];
+        [vc addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
     }
 }
 

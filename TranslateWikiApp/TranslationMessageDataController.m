@@ -48,6 +48,7 @@ static NSInteger TUPLE_SIZE=10;
 
 - (void)removeAllObjects{
     [self.masterTranslationMessageList removeAllObjects];
+    _offset=0;
 }
 
 - (void)removeObjectAtIndex:(NSInteger)index{
@@ -61,6 +62,7 @@ static NSInteger TUPLE_SIZE=10;
     {
         NSString* lang=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
         NSString* proj=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
+        NSInteger queryLimit=numberOfMessagesRemaining;
         NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
         NSLog(@"%@",result); //DEBUG
     
@@ -74,8 +76,7 @@ static NSInteger TUPLE_SIZE=10;
                 [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withKey:msg[@"key"] withRevision:msg[@"revision"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
             }
         }
-        NSInteger numberOfMessagesNotRejected=TUPLE_SIZE-numberOfMessagesRemaining;
-        _offset=_offset+numberOfMessagesNotRejected;
+        _offset=_offset+queryLimit;
     }
 }
 

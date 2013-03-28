@@ -82,10 +82,6 @@
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
-    else{
-        [self addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
-    }
-
 }
 
 - (void)didReceiveMemoryWarning

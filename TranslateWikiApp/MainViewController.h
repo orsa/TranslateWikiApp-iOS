@@ -29,5 +29,5 @@
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+-(void)addMessagesTuple;
 @end
