@@ -92,8 +92,7 @@
     RejectedMessage *mess = (RejectedMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     
     [mess setKey:[[self activeMsg] key]];
-    NSNumber* userid=[NSNumber numberWithInteger:[[_api user] userId]];
-    [mess setUserid:userid];
+    [mess setUserid:[[_api user] userId]];
     
     NSError *error = nil;
     if (![managedObjectContext save:&error]) {

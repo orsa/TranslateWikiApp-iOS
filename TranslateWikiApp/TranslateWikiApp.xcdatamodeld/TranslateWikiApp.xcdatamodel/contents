@@ -2,7 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12A269" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="RejectedMessage" representedClassName="RejectedMessage" syncable="YES">
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="RejectedMessage" positionX="160" positionY="192" width="128" height="75"/>

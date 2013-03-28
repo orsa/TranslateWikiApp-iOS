@@ -80,11 +80,11 @@ static NSInteger TUPLE_SIZE=10;
     }
 }
 
-+(BOOL)checkIsRejectedMessageWithKey:(NSString*)key byUserWithId:(NSInteger)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext{
++(BOOL)checkIsRejectedMessageWithKey:(NSString*)key byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userid == %d AND key==%@", userid, key];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userid == %@ AND key==%@", userid, key];
     [request setPredicate:predicate];
     
     NSError *error = nil;

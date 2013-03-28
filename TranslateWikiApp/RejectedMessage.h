@@ -13,6 +13,6 @@
 @interface RejectedMessage : NSManagedObject
 
 @property (nonatomic, retain) NSString * key;
-@property (nonatomic, retain) NSNumber * userid;
+@property (nonatomic, retain) NSString * userid;
 
 @end
