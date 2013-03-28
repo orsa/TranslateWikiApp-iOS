@@ -8,6 +8,7 @@
 
 
 #import "MainViewController.h"
+#import "LoginViewController.h"
 
 
 @interface MainViewController ()
@@ -33,6 +34,10 @@
         
         detailViewController.api = _api;
         detailViewController.managedObjectContext = self.managedObjectContext;
+    }
+    if([[segue identifier] isEqualToString:@"gotoLogin"]) {
+        LoginViewController *destViewController = [segue destinationViewController];
+        destViewController.managedObjectContext=self.managedObjectContext;
     }
 }
 
