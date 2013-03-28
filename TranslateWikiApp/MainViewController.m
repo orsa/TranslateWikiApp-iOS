@@ -30,7 +30,7 @@
     }
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
         PrefsViewController *detailViewController = [segue destinationViewController];
-    
+        
         detailViewController.api = _api;
         detailViewController.managedObjectContext = self.managedObjectContext;
     }

@@ -121,6 +121,7 @@
         ViewController.api = _api;
         [ViewController.dataController removeAllObjects];
         ViewController.managedObjectContext = self.managedObjectContext;
+        [ViewController addMessagesTuple];
     }
 }
 
