@@ -20,5 +20,5 @@
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;
 - (void)addMessagesTupleUsingApi: (TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+(BOOL)checkIsRejectedMessageWithRevision:(NSString*)revision byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext;
++(BOOL)checkIsRejectedMessageWithKey:(NSString*)key byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext;
 @end

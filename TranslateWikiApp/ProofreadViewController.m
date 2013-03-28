@@ -91,7 +91,7 @@
 -(void)coreDataRejectMessage{
     RejectedMessage *mess = (RejectedMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     
-    [mess setRevision:[[self activeMsg] revision]];
+    [mess setKey:[[self activeMsg] key]];
     [mess setUserid:[[_api user] userId]];
     
     NSError *error = nil;

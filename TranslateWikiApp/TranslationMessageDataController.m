@@ -70,7 +70,7 @@ static NSInteger TUPLE_SIZE=10;
         //we expect an array, otherwise will be runtime exception
     
         for (NSDictionary* msg in newData) {
-            BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
+            BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithKey:msg[@"key"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
             if(!isRejected){
                 numberOfMessagesRemaining=numberOfMessagesRemaining-1;
                 [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withKey:msg[@"key"] withRevision:msg[@"revision"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
@@ -80,11 +80,11 @@ static NSInteger TUPLE_SIZE=10;
     }
 }
 
-+(BOOL)checkIsRejectedMessageWithRevision:(NSString*)revision byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext{
++(BOOL)checkIsRejectedMessageWithKey:(NSString*)key byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userid == %@ AND revision==%@", userid, revision];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userid == %@ AND key==%@", userid, key];
     [request setPredicate:predicate];
     
     NSError *error = nil;
