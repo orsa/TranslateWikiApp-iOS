@@ -16,14 +16,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dstLabel;
 @property (weak, nonatomic) IBOutlet UILabel *acceptCount;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn;
 @property (retain, nonatomic) TWapi * api;
 @property(nonatomic, retain)TranslationMessage * msg;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (IBAction)pushAccept:(id)sender;
-- (IBAction)pushReject:(id)sender;
-- (void)coreDataRejectMessage;
+- (void)setExpanded:(BOOL)exp;
 
 @end

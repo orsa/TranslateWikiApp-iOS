@@ -10,7 +10,6 @@
 
 #import "TranslationMessageDataController.h"
 #import "TranslationMessage.h"
-#import "ProofreadViewController.h"
 #import "PrefsViewController.h"
 #import "TWUser.h"
 #import "TWapi.h"
@@ -30,6 +29,7 @@
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;

@@ -35,7 +35,6 @@
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
-		64F5E4D716AEDC7A00442603 /* ProofreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
 		FC00039B16A378BC00DDF068 /* 1358192448_arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */; };
 /* End PBXBuildFile section */
@@ -82,8 +81,6 @@
 		64F5E4C316AE9B7200442603 /* TranslationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessage.m; sourceTree = "<group>"; };
 		64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessageDataController.h; sourceTree = "<group>"; };
 		64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessageDataController.m; sourceTree = "<group>"; };
-		64F5E4D516AEDC7A00442603 /* ProofreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProofreadViewController.h; sourceTree = "<group>"; };
-		64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProofreadViewController.m; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
 		FC00039A16A378BC00DDF068 /* 1358192448_arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1358192448_arrow_down.png; sourceTree = "<group>"; };
@@ -189,8 +186,6 @@
 				6469FB9216FADED80006E765 /* PrefsViewController.m */,
 				649BA2DD169B8B32003561BA /* MainViewController.h */,
 				649BA2DA169B822B003561BA /* MainViewController.m */,
-				64F5E4D516AEDC7A00442603 /* ProofreadViewController.h */,
-				64F5E4D616AEDC7A00442603 /* ProofreadViewController.m */,
 				641002221691B218000202A9 /* LoginViewController.h */,
 				641002231691B218000202A9 /* LoginViewController.m */,
 			);
@@ -278,7 +273,6 @@
 				649BA2DB169B822B003561BA /* MainViewController.m in Sources */,
 				64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */,
 				64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */,
-				64F5E4D716AEDC7A00442603 /* ProofreadViewController.m in Sources */,
 				640A1A3B16AF0C9E004B0DB8 /* TWUser.m in Sources */,
 				6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */,
 				6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */,

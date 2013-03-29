@@ -25,15 +25,8 @@
 @synthesize selectedIndexPath;
 @synthesize managedObjectContext;
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showMessage"]) {
-        ProofreadViewController *detailViewController = [segue destinationViewController];
-        
-        detailViewController.msgIndex = [_msgTableView indexPathForSelectedRow].row;
-        detailViewController.dataController  = _dataController;
-        detailViewController.api = _api;
-        detailViewController.managedObjectContext = self.managedObjectContext;
-    }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
         PrefsViewController *detailViewController = [segue destinationViewController];
         
@@ -42,7 +35,7 @@
     }
     if([[segue identifier] isEqualToString:@"gotoLogin"]) {
         LoginViewController *destViewController = [segue destinationViewController];
-        destViewController.managedObjectContext=self.managedObjectContext;
+        destViewController.managedObjectContext = self.managedObjectContext;
     }
 }
 
@@ -57,20 +50,21 @@
 {
     [super awakeFromNib];
     if (!self.dataController)
+    {
         self.dataController = [[TranslationMessageDataController alloc] init];
-    
+        selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    }
 }
-
+/*
 -(id)init
 {
     self=[super init];
     if(self){
-        selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
         return self;
     }
     return nil;
-}
-
+}*/
+/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -79,7 +73,7 @@
     }
     return self;
 }
-
+*/
 -(void)addMessagesTuple
 {
     [self.dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext];
@@ -93,9 +87,12 @@
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+  //  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   //  [_msgTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-  //  [self tableView:_msgTableView didSelectRowAtIndexPath:indexPath];
+ //   [self tableView:_msgTableView didSelectRowAtIndexPath:indexPath];
+  //  [self.msgTableView reloadData];
+  //  [self.msgTableView beginUpdates];
+  //  [self.msgTableView endUpdates];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,8 +107,9 @@
     [loginKC resetKeychainItem];
 }
 
-- (IBAction)clearMessages:(UIButton *)sender {
-    
+- (IBAction)clearMessages:(UIButton *)sender
+{
+    selectedIndexPath = nil;
     [self.dataController removeAllObjects];
     [self.msgTableView reloadData];
 }
@@ -133,7 +131,7 @@
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
     NSString *identifier;
-    if(indexPath.row<[self.dataController countOfList])
+    if(indexPath.row<[self.dataController countOfList] && [self.dataController countOfList]>0)
     {
         identifier=CellIdentifier;
         MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
@@ -141,12 +139,9 @@
         {
             msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
+        [msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
         msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
         msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
-        if ([[self.dataController objectInListAtIndex:indexPath.row] isAccepted])
-            [msgCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-        else
-            [msgCell setAccessoryType:UITableViewCellAccessoryNone];
         return msgCell;
     }
     else
@@ -172,14 +167,13 @@
         {
             //do deselect precedures
             msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
-            msgCell.acceptBtn.hidden = TRUE;
-            msgCell.rejectBtn.hidden = TRUE;
+            [msgCell setExpanded:FALSE];
+            msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",msgCell.msg.acceptCount];
         }
         if (!selectedIndexPath || selectedIndexPath.row != indexPath.row) {
             selectedIndexPath = [indexPath copy];
             msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:indexPath];
-            msgCell.acceptBtn.hidden = FALSE;
-            msgCell.rejectBtn.hidden = FALSE;
+            [msgCell setExpanded:TRUE];
         }else
             selectedIndexPath = nil;
         
@@ -199,9 +193,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //check if the index actually exists
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
-        return 225;
-    }else if (indexPath.row<[self.dataController countOfList])
-        return 80;
+        return 200; //expanded cell height
+    }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
+        return 74;  //unexpanded cell height
     return 50;
 }
 
@@ -215,17 +209,21 @@
         [[_dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
         [[_dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[_dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
     }
+    
     // here we'll take this cell away
+    [self.dataController removeObjectAtIndex:selectedIndexPath.row];
+    //selectedIndexPath = nil;
+    [self.msgTableView reloadData];
 }
 
 - (IBAction)pushReject:(id)sender
 {
-    [[_dataController objectInListAtIndex:selectedIndexPath] setIsAccepted:NO];
+    [[_dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
     [self coreDataRejectMessage];
-    
-    [self.dataController removeObjectAtIndex:selectedIndexPath];
-    selectedIndexPath = nil;
-    //
+    // here we'll take this cell away
+    [self.dataController removeObjectAtIndex:selectedIndexPath.row];
+    //selectedIndexPath = nil;
+    [self.msgTableView reloadData];
 }
 
 -(void)coreDataRejectMessage{

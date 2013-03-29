@@ -8,9 +8,7 @@
 
 #import "MsgCell.h"
 
-@implementation MsgCell{
-    
-}
+@implementation MsgCell
 @synthesize managedObjectContext;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -29,6 +27,17 @@
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
+
+- (void)setExpanded:(BOOL)exp
+{
+    [_acceptBtn setHidden:!exp];
+    [_rejectBtn setHidden:!exp];
+    [_infoLabel setHidden:!exp];
+    [_acceptCount setHidden:!exp];
+    [_srcLabel sizeToFit];
+    [_dstLabel sizeToFit];
+}
+
 /*
 - (IBAction)pushAccept:(id)sender
 {
