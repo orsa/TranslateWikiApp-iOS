@@ -9,7 +9,7 @@
 #import <Security/Security.h>
 #import "LoginViewController.h"
 
-
+#define myAppDelegate [[UIApplication sharedApplication] delegate]
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;

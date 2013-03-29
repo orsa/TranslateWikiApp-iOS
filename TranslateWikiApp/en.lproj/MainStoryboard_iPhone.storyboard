@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -247,10 +247,10 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-VY-2PH">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-VY-2PH">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="Kxl-G6-Caf"/>
-                                                        <constraint firstAttribute="height" constant="44" id="UO9-IM-QH6"/>
+                                                        <constraint firstAttribute="height" constant="45" id="cbX-aa-b6u"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <state key="normal" title="SAVE">
@@ -380,22 +380,76 @@
                                     <constraint firstAttribute="height" constant="434" id="3CL-4V-CHC"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="1" reuseIdentifier="myCell" editingAccessoryType="disclosureIndicator" textLabel="gqH-9h-nor" detailTextLabel="iXx-3X-ZJZ" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="NCu-bR-SHE">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="50"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="1" reuseIdentifier="myCell" editingAccessoryType="disclosureIndicator" rowHeight="225" id="NCu-bR-SHE" customClass="MsgCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="225"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="gqH-9h-nor">
-                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="rejectButton" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPc-QY-3IP">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="55" id="QiG-gM-gZu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Button" image="reject.png">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="pushReject:" destination="4Xz-Nx-oCb" eventType="touchUpInside" id="pW3-g8-L0H"/>
+                                                    </connections>
+                                                </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="acceptButton" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-61-P5i">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55" id="jPN-aN-2Bc"/>
+                                                        <constraint firstAttribute="width" constant="55" id="xB7-K4-xls"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Button" image="accept.png">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="pushAccept:" destination="4Xz-Nx-oCb" eventType="touchUpInside" id="Who-Fw-pfN"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" restorationIdentifier="" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="17" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="9lI-cF-Vrx">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="308" id="6YW-2K-WEz"/>
+                                                        <constraint firstAttribute="height" constant="44" id="YE5-Kh-zyQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="51" translatesAutoresizingMaskIntoConstraints="NO" id="iXx-3X-ZJZ">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" restorationIdentifier="" text="Detail" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" preferredMaxLayoutWidth="308" translatesAutoresizingMaskIntoConstraints="NO" id="8b7-aM-qVd">
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="308" id="Qdu-nk-f8l"/>
+                                                        <constraint firstAttribute="height" constant="40" id="oIK-pN-sv6"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Accept Count:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97s-nT-sVP">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lca-XY-m0j">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -403,12 +457,31 @@
                                         <accessibility key="accessibilityConfiguration">
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
+                                        <constraints>
+                                            <constraint firstItem="9lI-cF-Vrx" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="5" id="21k-9h-PIr"/>
+                                            <constraint firstItem="CPc-QY-3IP" firstAttribute="top" secondItem="tPJ-61-P5i" secondAttribute="top" type="default" id="2qK-Zu-wYY"/>
+                                            <constraint firstItem="CPc-QY-3IP" firstAttribute="trailing" secondItem="9lI-cF-Vrx" secondAttribute="trailing" type="default" id="8SY-1g-tIk"/>
+                                            <constraint firstItem="8b7-aM-qVd" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="37" id="LSl-U3-6KE"/>
+                                            <constraint firstItem="9lI-cF-Vrx" firstAttribute="leading" secondItem="tPJ-61-P5i" secondAttribute="leading" type="default" id="RHc-UK-geD"/>
+                                            <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="1" id="cPd-Ws-oZC"/>
+                                            <constraint firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" constant="5" id="hdg-Wa-Wkj"/>
+                                            <constraint firstItem="8b7-aM-qVd" firstAttribute="centerX" secondItem="NCu-bR-SHE" secondAttribute="centerX" type="default" id="kTy-Qe-bNm"/>
+                                            <constraint firstAttribute="bottom" secondItem="97s-nT-sVP" secondAttribute="bottom" constant="63" id="mCC-yY-Xed"/>
+                                            <constraint firstItem="97s-nT-sVP" firstAttribute="leading" secondItem="8b7-aM-qVd" secondAttribute="leading" type="default" id="mW3-IL-I3a"/>
+                                            <constraint firstItem="lca-XY-m0j" firstAttribute="baseline" secondItem="97s-nT-sVP" secondAttribute="baseline" type="default" id="n5Q-cz-mY7"/>
+                                            <constraint firstItem="CPc-QY-3IP" firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" type="default" id="vh0-xR-W7x"/>
+                                            <constraint firstItem="lca-XY-m0j" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="131" id="xQa-mL-0KN"/>
+                                        </constraints>
                                         <connections>
-                                            <segue destination="IHe-hK-KQm" kind="modal" identifier="showMessage" id="Icl-cB-HgX"/>
+                                            <outlet property="acceptBtn" destination="tPJ-61-P5i" id="YU8-ig-we9"/>
+                                            <outlet property="acceptCount" destination="lca-XY-m0j" id="crw-8Q-7Zq"/>
+                                            <outlet property="dstLabel" destination="8b7-aM-qVd" id="QDe-Xn-JSj"/>
+                                            <outlet property="rejectBtn" destination="CPc-QY-3IP" id="ILc-r5-qJ2"/>
+                                            <outlet property="srcLabel" destination="9lI-cF-Vrx" id="f4V-XJ-WwF"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="42" id="dqM-1h-T59">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="42"/>
+                                        <rect key="frame" x="0.0" y="247" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
@@ -671,25 +744,87 @@
                         <outlet property="definitionLable" destination="4fi-Oh-mVe" id="7d5-8p-EoE"/>
                         <outlet property="messageKeyLable" destination="Mhj-8s-iLl" id="Q2M-Si-d0u"/>
                         <outlet property="translationLable" destination="Or9-Ob-KEE" id="7w4-uL-7Hl"/>
-                        <segue destination="4Xz-Nx-oCb" kind="modal" identifier="setReview" id="wfa-a2-Jlo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gI4-bA-QQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-235" y="-1773"/>
+            <point key="canvasLocation" x="-759" y="-1643"/>
         </scene>
     </scenes>
     <resources>
         <image name="1358192448_arrow_down.png" width="16" height="16"/>
+        <image name="accept.png" width="600" height="600"/>
         <image name="imgres.jpeg" width="192" height="256"/>
+        <image name="reject.png" width="600" height="600"/>
     </resources>
+    <classes>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LogoutButton:"/>
+                <relationship kind="action" name="clearMessages:" candidateClass="UIButton"/>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MsgCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pushDone:"/>
+                <relationship kind="action" name="touchSwitch:"/>
+                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+        <class className="ProofreadViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProofreadViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushDone:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="definitionLable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="messageKeyLable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="translationLable" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Cck-tq-IvP"/>
         <segue reference="wnd-EU-5pS"/>
-        <segue reference="U5j-Zg-J2c"/>
     </inferredMetricsTieBreakers>
 </document>

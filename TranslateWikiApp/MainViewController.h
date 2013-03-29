@@ -15,6 +15,7 @@
 #import "TWUser.h"
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
+#import "MsgCell.h"
 
 
 @class TranslationMessageDataController;
@@ -24,10 +25,14 @@
     NSManagedObjectContext *managedObjectContext;
 }
 
+@property (retain) NSIndexPath* selectedIndexPath;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)pushAccept:(id)sender;
+- (IBAction)pushReject:(id)sender;
+- (void)coreDataRejectMessage;
 -(void)addMessagesTuple;
 @end

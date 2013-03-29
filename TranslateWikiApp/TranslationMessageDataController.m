@@ -29,6 +29,7 @@ static NSInteger TUPLE_SIZE=10;
     if (self = [super init]) {
         [self initializeDefaultDataList];
         _offset=0;
+
         return self;
     }
     return nil;
@@ -94,5 +95,13 @@ static NSInteger TUPLE_SIZE=10;
     }
     return [mutableFetchResults count]>0;//message was rejected iff it appears in the database
 }
-
+/*
+-(void) removeActive(){
+    if (_activeMsgIndex>-1)
+    {
+        
+        _activeMsgIndex=-1;
+    }
+}
+ */
 @end
