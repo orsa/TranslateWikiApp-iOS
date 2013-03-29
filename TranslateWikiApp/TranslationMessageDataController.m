@@ -12,8 +12,6 @@
 
 @implementation TranslationMessageDataController
 
-static NSInteger TUPLE_SIZE=10;
-
 - (void)initializeDefaultDataList {
     NSMutableArray *MessageList = [[NSMutableArray alloc] init];
     self.masterTranslationMessageList = MessageList;
@@ -58,7 +56,9 @@ static NSInteger TUPLE_SIZE=10;
 
 -(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
-    NSInteger numberOfMessagesRemaining=TUPLE_SIZE;
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSString * tupSizeText = [defaults objectForKey:@"defaultTupleSize"];
+    NSInteger numberOfMessagesRemaining = [tupSizeText integerValue];
     while(numberOfMessagesRemaining>0)
     {
         NSString* lang=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];

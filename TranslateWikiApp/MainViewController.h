@@ -31,6 +31,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
+- (IBAction)pushPrefs:(id)sender;
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (void)coreDataRejectMessage;

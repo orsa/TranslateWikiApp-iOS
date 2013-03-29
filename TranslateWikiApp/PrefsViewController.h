@@ -26,6 +26,8 @@
     NSManagedObjectContext *managedObjectContext;
 }
 
+- (IBAction)editingEnded:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *tupleSizeTextView;
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, retain) IBOutlet UITextField *langTextField;
 @property (nonatomic, retain) IBOutlet UISwitch *proofreadOnlySwitch;
@@ -33,7 +35,6 @@
 @property (nonatomic, retain) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (IBAction)pushDone:(id)sender;
 - (IBAction)touchSwitch:(id)sender;
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR;
 -(NSString*)getNewLang;

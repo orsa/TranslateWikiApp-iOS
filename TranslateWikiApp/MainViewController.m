@@ -29,7 +29,6 @@
 {
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
         PrefsViewController *detailViewController = [segue destinationViewController];
-        
         detailViewController.api = _api;
         detailViewController.managedObjectContext = self.managedObjectContext;
     }
@@ -39,10 +38,10 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-
-    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",_api.user.userName];
-    
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
+    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",_api.user.userName];    
     [super viewWillAppear:animated];
 }
 
@@ -55,25 +54,7 @@
         selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
     }
 }
-/*
--(id)init
-{
-    self=[super init];
-    if(self){
-        return self;
-    }
-    return nil;
-}*/
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+
 -(void)addMessagesTuple
 {
     [self.dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext];
@@ -87,12 +68,6 @@
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
-  //  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-  //  [_msgTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
- //   [self tableView:_msgTableView didSelectRowAtIndexPath:indexPath];
-  //  [self.msgTableView reloadData];
-  //  [self.msgTableView beginUpdates];
-  //  [self.msgTableView endUpdates];
 }
 
 - (void)didReceiveMemoryWarning
@@ -200,7 +175,6 @@
 }
 
 
-
 - (IBAction)pushAccept:(id)sender
 {
     bool success = [_api TWTranslationReviewRequest:[_dataController objectInListAtIndex:selectedIndexPath.row].revision]; //accept this translation via API
@@ -212,7 +186,7 @@
     
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
-    //selectedIndexPath = nil;
+    if([self.dataController countOfList]<1) selectedIndexPath = nil;
     [self.msgTableView reloadData];
 }
 
@@ -222,7 +196,7 @@
     [self coreDataRejectMessage];
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
-    //selectedIndexPath = nil;
+    if([self.dataController countOfList]<1) selectedIndexPath = nil;
     [self.msgTableView reloadData];
 }
 
@@ -236,6 +210,11 @@
     if (![managedObjectContext save:&error]) {
         // Handle the error.
     }
+}
+
+- (IBAction)pushPrefs:(id)sender
+{
     
 }
+
 @end

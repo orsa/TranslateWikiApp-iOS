@@ -22,6 +22,9 @@
     if ([defaults objectForKey:@"defaultProject"]==nil){
         [defaults setObject:@"!recent" forKey:@"defaultProject"];
     }
+    if ([defaults objectForKey:@"defaultTupleSize"]==nil){
+        [defaults setObject:@"10" forKey:@"defaultTupleSize"];
+    }
     if ([defaults objectForKey:@"proofreadOnlyState"]==nil){
         [defaults setBool:YES forKey:@"proofreadOnlyState"];
     }
