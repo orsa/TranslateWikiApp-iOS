@@ -61,11 +61,12 @@
     NSInteger numberOfMessagesRemaining = [tupSizeText integerValue];
     while(numberOfMessagesRemaining>0)
     {
-        NSString* lang=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
-        NSString* proj=[[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
+        LoadUserDefaults();
+        NSString* lang=getUserDefaultskey(LANG_key);
+        NSString* proj=getUserDefaultskey(PROJ_key);
         NSInteger queryLimit=numberOfMessagesRemaining;
         NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
-        NSLog(@"%@",result); //DEBUG
+       // LOG(result); //DEBUG
     
         NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
         //we expect an array, otherwise will be runtime exception

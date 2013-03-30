@@ -7,9 +7,6 @@
 //
 
 #import "PrefsViewController.h"
-#import "MainViewController.h"
-#import "TranslationMessageDataController.h"
-#import "TWapi.h"
 
 @interface PrefsViewController ()
 
@@ -20,11 +17,13 @@
     BOOL didChange; //use to mark that preferenses were updated
     int flag;       //use to distinguish between active pickerviews
 }
-@synthesize pickerView;
+//@synthesize pickerView;
 @synthesize langTextField;
 @synthesize projTextField;
 @synthesize proofreadOnlySwitch;
-@synthesize managedObjectContext;
+@synthesize tupleSizeTextView;
+@synthesize didChange;
+@synthesize selectedProjCode;
 
 - (void)viewDidLoad
 {
@@ -32,27 +31,24 @@
     [self setTitle:@"Preferences"];
     [self.navigationController setNavigationBarHidden:NO];
     
-    [pickerView setHidden:YES];
+  //  [pickerView setHidden:YES];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
     
-    arrLang = [[NSArray alloc] initWithObjects:@"Arabic", @"Armenian", @"Belarusian", @"Bosnian", @"Chamorro", @"Chinese", @"Croatian", @"Czech", @"Danish", @"English", @"Estonian", @"Finnish", @"French", @"Georgian", @"German", @"Greek, Modern", @"Hebrew", @"Hindi", @"Hungarian", @"Italian", @"Japanese", @"Korean", @"Kurdish", @"Lao", @"Latin", @"Lithuanian", @"Macedonian", @"Nepali", @"Norwegian", @"Persian", @"Slovak", @"Thai", @"Tibetan", @"Urdu", @"Yiddish", nil];
-    
-    arrLangCodes = [[NSArray alloc] initWithObjects:@"ar", @"hy", @"be", @"bs", @"ch", @"zh", @"hr", @"cs", @"da", @"en", @"et", @"fi", @"fr", @"ka", @"de", @"el", @"he", @"hi", @"hu", @"it", @"ja", @"ko", @"ku", @"lo", @"la", @"lt", @"mk", @"ne", @"no", @"fa", @"sk", @"th", @"bo", @"ur", @"yi", nil];
-    
-    arrProj = [_api TWProjectListMaxDepth:0];
-    NSLog(@"%@",arrProj); //Debug
+    arrLang = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
+    arrLangCodes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
+    arrProj = [_api TWProjectListMaxDepth:0]; //requesting project list via api - level-0 only
+    //LOG(arrProj); //Debug
     
     didChange = NO;
-    flag= 0;
+    //flag= 0;
     
-    [langTextField setInputView:pickerView];
-    [projTextField setInputView:pickerView];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    langTextField.text = [arrLang objectAtIndex:[arrLangCodes indexOfObject:[defaults objectForKey:@"defaultLanguage"]]];
-    projTextField.text =  arrProj[[self indexOfProjCode:[defaults objectForKey:@"defaultProject"]]][@"label"];
-    _tupleSizeTextView.text = [defaults objectForKey:@"defaultTupleSize"];
-    [proofreadOnlySwitch setOn:[defaults boolForKey:@"proofreadOnlyState"] animated:NO];
+   //load from NSUserDefaults
+    LoadUserDefaults();
+    langTextField.text = [arrLang objectAtIndex:[arrLangCodes indexOfObject:getUserDefaultskey(LANG_key)]];
+    projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
+    selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+    tupleSizeTextView.text = getUserDefaultskey(TUPSIZE_key);
+    [proofreadOnlySwitch setOn:getBoolUserDefaultskey(PRMODE_key) animated:NO];
     
 }
 
@@ -62,84 +58,92 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"projBrowser"])
+    {
+        ProjectBrowserViewController *ViewController = [segue destinationViewController];
+        ViewController.srcArr = arrProj;
+    }
+    /*if([[segue identifier] isEqualToString:@"langPicker"]) {
+        SearchViewController * ViewController = [segue destinationViewController];
+    }*/
+}
+
 - (IBAction)touchSwitch:(id)sender {
-    self.pickerView.hidden = YES;
+   // flag = 0;
     didChange = YES;
-    flag = 0;
+   // self.pickerView.hidden = YES;
+    [tupleSizeTextView resignFirstResponder];
+  //  [self.view endEditing:YES];
 }
 
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
-    self.pickerView.hidden = YES;
-    flag = 0;
-    [_tupleSizeTextView resignFirstResponder];
-    
+   // flag = 0;
+   // self.pickerView.hidden = YES;
+    [tupleSizeTextView resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    //[textField resignFirstResponder];
+    //[self.view endEditing:YES];
     return YES;
 }
 
--(IBAction)editingEnded:(id)sender{
-    [sender resignFirstResponder];
-}
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    [pickerView setHidden:YES];
-    NSInteger i = 0;
+    //[textField resignFirstResponder];
+   /* [pickerView setHidden:YES];
+    self.pickerView.hidden = YES;
+    NSInteger i = 0; */
     if (langTextField.editing == YES)
     {
-        flag = 1;
-        [langTextField resignFirstResponder];
-        [pickerView setHidden:NO];
-        i = [arrLang indexOfObject:langTextField.text];
-        [pickerView selectRow:i inComponent:0 animated:NO];
-    }
+        [self performSegueWithIdentifier:@"langPicker" sender:self];
+      //  flag = 1;
+      //  [pickerView setHidden:NO];
+      //  i = [arrLang indexOfObject:langTextField.text];
+      //  [pickerView selectRow:i inComponent:0 animated:NO];
+     }
     else if (projTextField.editing == YES)
     {
-        flag = 2;
-        [projTextField resignFirstResponder];
-        [pickerView setHidden:NO];
-        i = [self indexOfProjlabel:projTextField.text];
+        [self performSegueWithIdentifier:@"projBrowser" sender:self];
+      //  flag = 2;
+      //  [projTextField resignFirstResponder];
+      //  [pickerView setHidden:NO];
+      //  i = [self indexOfProjlabel:projTextField.text];
     }
-    [pickerView reloadAllComponents];
-    [pickerView selectRow:i inComponent:0 animated:NO];
+   // [pickerView reloadAllComponents];
+   // [pickerView selectRow:i inComponent:0 animated:NO];
+    
 }
 
 -(NSString*)getNewLang
 {
- //   NSString* newLang=langTextField.text;
-    
-    if(selectedLangCode)
-        return selectedLangCode;
-    else
-        return [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultLanguage"];
+    return [arrLangCodes objectAtIndex:[arrLang indexOfObject:langTextField.text]];
 }
 
 -(NSString*)getNewProj
 {
-    if(selectedProjCode)
         return selectedProjCode;
-    else
-        return [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultProject"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.pickerView.hidden = YES;
-    [_tupleSizeTextView resignFirstResponder];
+    
+   // self.pickerView.hidden = YES;
+    [tupleSizeTextView resignFirstResponder];
+    [self.view endEditing:YES];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
-    {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[self getNewLang] forKey:@"defaultLanguage"];
-        [defaults setObject:[self getNewProj] forKey:@"defaultProject"];
-        [defaults setObject:_tupleSizeTextView.text forKey:@"defaultTupleSize"];
+    { //set new preferences
+        LoadUserDefaults();
+        setUserDefaultskey([self getNewLang], LANG_key);
+        setUserDefaultskey([self getNewProj], PROJ_key);
+        setUserDefaultskey(tupleSizeTextView.text, TUPSIZE_key);
         bool state = [proofreadOnlySwitch state];
-        [defaults setBool:state forKey:@"proofreadOnlyState"];
+        setBoolUserDefaultskey(state, PRMODE_key);
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
         [ViewController.dataController removeAllObjects];
-        // ViewController.managedObjectContext = self.managedObjectContext;
         [ViewController addMessagesTuple];
     }
 }
@@ -149,7 +153,7 @@
     //One column
     return 1;
 }
-
+/*
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (flag == 1)
@@ -171,7 +175,6 @@
 }
 
 
-
 -(void)pickerView:(UIPickerView *)pickerV didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     didChange = YES;
@@ -187,7 +190,7 @@
         selectedProjCode = arrProj[row][@"id"];
     }
 }
-
+*/
 
 -(int)indexOfProjCode:(NSString*)pcode{
     int i=0;
@@ -215,16 +218,14 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (textField == _tupleSizeTextView)
+    if (textField == tupleSizeTextView)
     {
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         NSString *expression = @"^0*(([0-4]?[0-9]?)|(50?))$"; //regexp which restrics input to a range of 0 to 50
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:nil];
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
-                                                            options:0
-                                                              range:NSMakeRange(0, [newString length])];
+                                                                            options:NSRegularExpressionCaseInsensitive
+                                                                            error:nil];
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
         if (numberOfMatches == 0)
             return NO;
     }    

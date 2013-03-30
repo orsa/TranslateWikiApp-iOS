@@ -10,6 +10,8 @@
 
 @implementation MsgCell
 @synthesize managedObjectContext;
+@synthesize srcLabel;
+@synthesize dstLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -34,8 +36,19 @@
     [_rejectBtn setHidden:!exp];
     [_infoLabel setHidden:!exp];
     [_acceptCount setHidden:!exp];
-    [_srcLabel sizeToFit];
-    [_dstLabel sizeToFit];
+    [_keyinfoLabel setHidden:!exp];
+    [_keyLabel setHidden:!exp];
+    
+    
+    srcLabel.numberOfLines = (exp?3:1);
+    dstLabel.numberOfLines = (exp?3:1);
+    [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
+    [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
+    srcLabel.frame = CGRectMake(5, 0, 308, (exp?70:28));
+    dstLabel.frame = CGRectMake(5, (exp?70:28), 308, (exp?70:28));
+    [srcLabel sizeToFit];
+    [dstLabel sizeToFit];
+    
 }
 
 /*

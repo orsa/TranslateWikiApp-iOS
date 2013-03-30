@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "constants.h"
 #import "TWapi.h"
 #import "TWUser.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     NSManagedObjectModel *managedObjectModel;

@@ -6,12 +6,14 @@
 //  Copyright (c) 2012 translatewiki.net. All rights reserved.
 //
 
+#import <Security/Security.h>
 #import <UIKit/UIKit.h>
 #import "TWUser.h"
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MainViewController.h"
 #import "AppDelegate.h"
+#import "constants.h"
 
 @class MainViewController;
 

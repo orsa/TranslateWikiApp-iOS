@@ -6,10 +6,7 @@
 //  Copyright (c) 2012 translatewiki.net. All rights reserved.
 //
 
-#import <Security/Security.h>
 #import "LoginViewController.h"
-
-#define myAppDelegate [[UIApplication sharedApplication] delegate]
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -37,7 +34,7 @@
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
-    
+    LoadUserDefaults();
     if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""])
     { //found credentials
         
@@ -55,9 +52,9 @@
             [loginKC resetKeychainItem];
         }
     }
-    else if([[NSUserDefaults standardUserDefaults] objectForKey:@"recentLoginUserName"]!=nil)
+    else if(getUserDefaultskey(RECENT_USER_key)!=nil)
     {
-        _usernameText.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"recentLoginUserName"];
+        _usernameText.text = getUserDefaultskey(RECENT_USER_key);
         [_passwordText becomeFirstResponder];
     }
     else //unknown recent user
@@ -73,7 +70,8 @@
 }
 
 - (IBAction)submitLogin:(id)sender
-{       
+{
+    ShowNetworkActivityIndicator();
     _userName = _usernameText.text;
     _password = _passwordText.text;
     NSString *nameString = _userName;
@@ -101,7 +99,8 @@
 {
     if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
     {
-        [[NSUserDefaults standardUserDefaults] setObject:_userName forKey:@"recentLoginUserName"];
+        LoadUserDefaults();
+        setUserDefaultskey(_userName,RECENT_USER_key);
         MainViewController *vc = [segue destinationViewController];
         [vc setApi:_api];
         [vc setManagedObjectContext:self.managedObjectContext];

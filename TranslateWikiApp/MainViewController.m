@@ -6,19 +6,14 @@
 //  Copyright (c) 2013 translatewiki.net. All rights reserved.
 //
 
-
 #import "MainViewController.h"
-#import "LoginViewController.h"
-
 
 @interface MainViewController ()
 {
-    
 
 }
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
-
 @end
 
 @implementation MainViewController
@@ -30,7 +25,6 @@
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
         PrefsViewController *detailViewController = [segue destinationViewController];
         detailViewController.api = _api;
-        detailViewController.managedObjectContext = self.managedObjectContext;
     }
     if([[segue identifier] isEqualToString:@"gotoLogin"]) {
         LoginViewController *destViewController = [segue destinationViewController];
@@ -41,7 +35,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES];
-    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",_api.user.userName];    
+    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",_api.user.userName];
+    HideNetworkActivityIndicator();
     [super viewWillAppear:animated];
 }
 
@@ -117,6 +112,11 @@
         [msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
         msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
         msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
+        msgCell.keyLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] key];
+        msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
+        
+        //msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",msgCell.msg.acceptCount];
+        
         return msgCell;
     }
     else
@@ -143,7 +143,7 @@
             //do deselect precedures
             msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
             [msgCell setExpanded:FALSE];
-            msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",msgCell.msg.acceptCount];
+            
         }
         if (!selectedIndexPath || selectedIndexPath.row != indexPath.row) {
             selectedIndexPath = [indexPath copy];
@@ -174,6 +174,7 @@
     return 50;
 }
 
+#pragma mark - button actions
 
 - (IBAction)pushAccept:(id)sender
 {

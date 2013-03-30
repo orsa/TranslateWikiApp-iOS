@@ -7,26 +7,35 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
 
 @implementation AppDelegate
+
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    ShowNetworkActivityIndicator();
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"defaultLanguage"]==nil){
-        [defaults setObject:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:@"defaultLanguage"];
+    NSMutableArray *l = [[NSMutableArray alloc] init];
+    LoadUserDefaults();
+    if (getUserDefaultskey(LANG_key)==nil){
+        setUserDefaultskey(PREFERRED_LANG(0), LANG_key);
+        //[l addObject:PREFERRED_LANG(0)];
     }
-    if ([defaults objectForKey:@"defaultProject"]==nil){
-        [defaults setObject:@"!recent" forKey:@"defaultProject"];
+    if (getUserDefaultskey(PROJ_key)==nil){
+        setUserDefaultskey(@"!recent", PROJ_key);
     }
-    if ([defaults objectForKey:@"defaultTupleSize"]==nil){
-        [defaults setObject:@"10" forKey:@"defaultTupleSize"];
+    if (getUserDefaultskey(TUPSIZE_key)==nil){
+        setUserDefaultskey(INITIAL_TUPLE_SIZE, TUPSIZE_key);
     }
-    if ([defaults objectForKey:@"proofreadOnlyState"]==nil){
-        [defaults setBool:YES forKey:@"proofreadOnlyState"];
+    if (getUserDefaultskey(PRMODE_key)==nil){
+        setBoolUserDefaultskey(YES, PRMODE_key);
+    }
+    if (getUserDefaultskey(RECENT_LANG_key)==nil){
+        setUserDefaultskey(l, RECENT_LANG_key);
     }
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;

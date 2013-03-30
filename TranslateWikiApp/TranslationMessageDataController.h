@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TWapi.h"
+#import "constants.h"
 
 @class TranslationMessage;
 @interface TranslationMessageDataController : NSObject

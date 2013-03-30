@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dstLabel;
 @property (weak, nonatomic) IBOutlet UILabel *acceptCount;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *keyinfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *keyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn;
 @property (retain, nonatomic) TWapi * api;
