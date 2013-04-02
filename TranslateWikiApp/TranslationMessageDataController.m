@@ -70,6 +70,8 @@
     
         NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
         //we expect an array, otherwise will be runtime exception
+        
+        BOOL stopLoop=[newData count]<numberOfMessagesRemaining;
     
         for (NSDictionary* msg in newData) {
             BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
@@ -79,6 +81,8 @@
             }
         }
         _offset=_offset+queryLimit;
+        if(stopLoop)
+            break;
     }
 }
 
