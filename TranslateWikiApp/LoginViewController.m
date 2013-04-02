@@ -85,6 +85,8 @@
         [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
         [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
     }
+    else
+        HideNetworkActivityIndicator();
 }
 
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString
