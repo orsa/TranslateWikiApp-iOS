@@ -229,10 +229,13 @@
     NSString* lang=PREFERRED_LANG(0);
     NSString* proj=@"!recent";
     NSString* tuple=INITIAL_TUPLE_SIZE;
+    bool mode=YES;//proofread ON
+    
     selectedProjCode=proj;
     projTextField.text=@"Recent translations";
     langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
     tupleSizeTextView.text=tuple;
+    proofreadOnlySwitch.on=mode;
     didChange=YES;
 }
 
