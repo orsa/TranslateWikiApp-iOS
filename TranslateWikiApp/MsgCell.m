@@ -46,8 +46,8 @@
     [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    srcLabel.frame = CGRectMake(5, 0, 308, (exp?70:28));
-    dstLabel.frame = CGRectMake(5, (exp?70:28), 308, (exp?70:28));
+    srcLabel.frame = CGRectMake(5, 0, 308, 70);
+    dstLabel.frame = CGRectMake(5, 70, 308, 70);
 }
 
 /*

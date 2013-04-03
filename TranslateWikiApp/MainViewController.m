@@ -169,7 +169,7 @@
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
         return 250; //expanded cell height
     }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
-        return 56;  //unexpanded cell height
+        return 140;  //unexpanded cell height
     return 50;
 }
 
