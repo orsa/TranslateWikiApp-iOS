@@ -17,7 +17,9 @@
 @synthesize mySearchBar;
 @synthesize LangTable;
 @synthesize filteredArr;
+@synthesize filteredRec;
 @synthesize srcArr;
+@synthesize recentProj;
 @synthesize isFiltered;
 @synthesize didChange;
 @synthesize dstProjLabel;
@@ -38,6 +40,25 @@
 	// Do any additional setup after loading the view.
     isFiltered = NO;
     didChange = NO;
+    
+    LoadUserDefaults();
+    recentProj = getUserDefaultskey(RECENT_PROJ_key);
+    
+    
+    NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
+    //SomeObjectClass *item;
+    NSUInteger index = 0;
+    
+    //filter the duplicate
+    for(NSDictionary * p1 in srcArr){
+        for(NSDictionary * p2 in recentProj){
+            if ([p1[@"label"] isEqualToString:p2[@"label"]])
+                [discardedItems addIndex:index];
+        }
+        index++;
+    }
+    [srcArr removeObjectsAtIndexes:discardedItems];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +78,16 @@
         ViewController.didChange = didChange;
         ViewController.projTextField.text = dstProjLabel;
         ViewController.selectedProjCode =  dstProjID;
+        NSDictionary *dst = [[NSDictionary alloc] initWithObjectsAndKeys: dstProjLabel ,@"label", dstProjID, @"id" , nil];
+        NSMutableArray * updatedRecentProj = [[NSMutableArray alloc] init];
+        [updatedRecentProj addObject:dst];  //insert selected project to be first in the queue
+        for(int i=0; i<recentProj.count && i<MAX_RECENT_PROJ-1; i++)
+        {
+            if (![dstProjLabel isEqualToString:recentProj[i][@"label"]]) //avoid duplicates
+                [updatedRecentProj addObject:recentProj[i]];
+        }
+        LoadUserDefaults();
+        setUserDefaultskey(updatedRecentProj, RECENT_PROJ_key); //store updated
     }
 }
 
@@ -64,29 +95,46 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (isFiltered)
-        return [filteredArr count];
-    else
-        return [srcArr count];
+    switch (section) {
+        case 0:
+            if (isFiltered)
+                return [filteredRec count];
+            else
+                return [recentProj count];
+            break;
+        default:
+            if (isFiltered)
+                return [filteredArr count];
+            else
+                return [srcArr count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * identifier=@"b";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
-    if (isFiltered)
-    {
-        cell.textLabel.text = filteredArr[indexPath.row][@"label"];
-    }
-    else
-    {
-        cell.textLabel.text = srcArr[indexPath.row][@"label"];
+    NSString * identifier;
+    UITableViewCell *cell;
+    switch (indexPath.section) {
+        case 0:
+            identifier=@"rec";
+            cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            if (isFiltered)
+                cell.textLabel.text = filteredRec[indexPath.row][@"label"];
+            else
+                cell.textLabel.text = recentProj[indexPath.row][@"label"];
+            break;
+        default:
+            identifier=@"b";
+            cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath]; 
+            if (isFiltered)
+                cell.textLabel.text = filteredArr[indexPath.row][@"label"];
+            else
+                cell.textLabel.text = srcArr[indexPath.row][@"label"];
     }
     
     return cell;
@@ -97,9 +145,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     didChange = YES;
-    dstProjLabel = (isFiltered?filteredArr[indexPath.row][@"label"]:srcArr[indexPath.row][@"label"]);
-    dstProjID = (isFiltered?filteredArr[indexPath.row][@"id"]:srcArr[indexPath.row][@"id"]);
+    switch (indexPath.section) {
+        case 0:
+            dstProjLabel = (isFiltered?filteredRec[indexPath.row][@"label"]:recentProj[indexPath.row][@"label"]);
+            dstProjID = (isFiltered?filteredRec[indexPath.row][@"id"]:recentProj[indexPath.row][@"id"]);
+            break;
+        default:
+            dstProjLabel = (isFiltered?filteredArr[indexPath.row][@"label"]:srcArr[indexPath.row][@"label"]);
+            dstProjID = (isFiltered?filteredArr[indexPath.row][@"id"]:srcArr[indexPath.row][@"id"]);
+            break;
+    }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 30;
 }
 
 #pragma mark - search bar methods
@@ -115,15 +175,24 @@
     {
         isFiltered = YES;
     }
+    filteredRec = [[NSMutableArray alloc] init];
     filteredArr = [[NSMutableArray alloc] init];
     
     //fast enumeration
-    for (NSDictionary * langName in srcArr)
+    for (NSDictionary * projName in recentProj)
     {
-        NSRange langRange = [langName[@"label"] rangeOfString:searchText options:NSCaseInsensitiveSearch];
-        if (langRange.location != NSNotFound)
+        NSRange projRange = [projName[@"label"] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        if (projRange.location != NSNotFound)
         {
-            [filteredArr addObject:langName];
+            [filteredRec addObject:projName];
+        }
+    }
+    for (NSDictionary * projName in srcArr)
+    {
+        NSRange projRange = [projName[@"label"] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        if (projRange.location != NSNotFound)
+        {
+            [filteredArr addObject:projName];
         }
     }
     [LangTable reloadData];

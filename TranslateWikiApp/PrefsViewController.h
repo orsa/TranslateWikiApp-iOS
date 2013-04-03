@@ -33,7 +33,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *tupleSizeTextView;
-//@property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, retain) IBOutlet UITextField *langTextField;
 @property (nonatomic, retain) IBOutlet UISwitch *proofreadOnlySwitch;
 @property (nonatomic, retain) IBOutlet UITextField *projTextField;

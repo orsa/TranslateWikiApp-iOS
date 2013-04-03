@@ -31,7 +31,6 @@
     [self setTitle:@"Preferences"];
     [self.navigationController setNavigationBarHidden:NO];
     
-  //  [pickerView setHidden:YES];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
     
     arrLang = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
@@ -63,7 +62,7 @@
     if ([[segue identifier] isEqualToString:@"projBrowser"])
     {
         ProjectBrowserViewController *ViewController = [segue destinationViewController];
-        ViewController.srcArr = arrProj;
+        ViewController.srcArr = [[NSMutableArray alloc]initWithArray:arrProj];
     }
     /*if([[segue identifier] isEqualToString:@"langPicker"]) {
         SearchViewController * ViewController = [segue destinationViewController];
@@ -71,25 +70,17 @@
 }
 
 - (IBAction)touchSwitch:(id)sender {
-   // flag = 0;
     didChange = YES;
-   // self.pickerView.hidden = YES;
     [tupleSizeTextView resignFirstResponder];
-  //  [self.view endEditing:YES];
 }
 
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
-   // flag = 0;
-   // self.pickerView.hidden = YES;
     [tupleSizeTextView resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    //[textField resignFirstResponder];
-    //[self.view endEditing:YES];
     return YES;
 }
-
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
@@ -123,7 +114,6 @@
 {
     [super viewWillDisappear:animated];
     
-    // self.pickerView.hidden = YES;
     [tupleSizeTextView resignFirstResponder];
     [self.view endEditing:YES];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
@@ -145,44 +135,6 @@
     //One column
     return 1;
 }
-/*
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if (flag == 1)
-        return arrLang.count;
-    else if(flag == 2)
-        return arrProj.count;
-    else
-        return nil;
-}
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (flag == 1)
-        return arrLang[row];
-    else if(flag == 2)
-        return (arrProj[row][@"label"]);
-    else
-        return nil;
-}
-
-
--(void)pickerView:(UIPickerView *)pickerV didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    didChange = YES;
-    NSString *text = [self pickerView:pickerV titleForRow:row forComponent:component];
-    if (flag == 1)
-    {
-        self.langTextField.text = text;
-        selectedLangCode = arrLangCodes[row];
-    }
-    else if (flag == 2)
-    {
-        self.projTextField.text = text;
-        selectedProjCode = arrProj[row][@"id"];
-    }
-}
-*/
 
 -(int)indexOfProjCode:(NSString*)pcode{
     int i=0;
@@ -226,6 +178,9 @@
 }
 
 -(IBAction)restoreDefaults:(id)sender{
+    
+    //TODO: add alert message
+    
     NSString* lang=PREFERRED_LANG(0);
     NSString* proj=@"!recent";
     NSString* tuple=INITIAL_TUPLE_SIZE;
@@ -235,7 +190,7 @@
     projTextField.text=@"Recent translations";
     langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
     tupleSizeTextView.text=tuple;
-    proofreadOnlySwitch.on=mode;
+    [proofreadOnlySwitch setOn:mode animated:YES];
     didChange=YES;
 }
 
@@ -244,8 +199,9 @@
     UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(5.0, 198, 300, 80)];
     UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
-    myButton.frame = CGRectMake(55, 0, 200, 44);
-    
+    myButton.frame = CGRectMake(8, 0, 200, 40);
+    //[myButton setBackgroundColor:[UIColor redColor]];
+    [myButton setTintColor:[UIColor redColor]];
     [myButton setTitle:@"Restore Defaults" forState:UIControlStateNormal];
     [myButton addTarget:self action:@selector(restoreDefaults:) forControlEvents:UIControlEventTouchUpInside];
     

@@ -13,14 +13,16 @@
 @end
 
 @implementation SearchViewController{
-    NSMutableArray * recentLanguages;
-    NSMutableArray * locallanguages;
-}
 
+}
 @synthesize mySearchBar;
 @synthesize LangTable;
 @synthesize filteredArr;
+@synthesize filteredRec;
+@synthesize filteredLoc;
 @synthesize srcArr;
+@synthesize recentLanguages;
+@synthesize localLanguages;
 @synthesize isFiltered;
 @synthesize didChange;
 @synthesize dstLang;
@@ -40,21 +42,26 @@
 	// Do any additional setup after loading the view.
     srcArr = [[NSMutableArray alloc] initWithObjects:LANGUAGE_NAMES];
     NSArray * codes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
+    NSArray * names = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
     isFiltered = NO;
+    
+    //prepare recent languages
     LoadUserDefaults();
     recentLanguages = getUserDefaultskey(RECENT_LANG_key);
-    for(NSString * l in recentLanguages)
-        [srcArr removeObject:l];
-    locallanguages = [[NSMutableArray alloc] init];
+
+    [srcArr removeObjectsInArray:recentLanguages]; //filter the duplicate
+    
+    //prepare local preferred languages
+    localLanguages = [[NSMutableArray alloc] init];
     NSInteger index;
-    for(NSString * l in [NSLocale preferredLanguages]){
-        if (locallanguages.count<MAX_LOCAL_LANG)
+    for(NSString * l in [NSLocale preferredLanguages]){ //decode languages
+        if (localLanguages.count<MAX_LOCAL_LANG)
         {
             index = [codes indexOfObject:l];
-            if (index!=NSNotFound)
+            if (index!=NSNotFound && ![recentLanguages containsObject:names[index]]) //we add it if not already in recents
             {
-                [locallanguages addObject:srcArr[index]];
-                [srcArr removeObjectAtIndex:index];
+                [localLanguages addObject:names[index]];
+                [srcArr removeObject:names[index]]; //filter the duplicate
             }
         }
         else break;
@@ -73,22 +80,20 @@
     [super viewWillDisappear:animated];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
     {
-        //LoadUserDefaults();
-        //setUserDefaultskey(dstLang, LANG_key);
         PrefsViewController *ViewController = (PrefsViewController *)[self.navigationController topViewController];
         ViewController.didChange = didChange;
         ViewController.langTextField.text = dstLang;
-        if (![recentLanguages containsObject:dstLang]) //update recent languages array
+        
+        //update recent languages array
+        NSMutableArray * updatedRecentLanguages = [[NSMutableArray alloc] init];
+        [updatedRecentLanguages addObject:dstLang];  //insert selected language to be first in the queue
+        for(int i=0; i<recentLanguages.count && i<MAX_RECENT_LANG-1; i++)
         {
-            NSMutableArray * updatedRecentLanguages = [[NSMutableArray alloc] init];
-            [updatedRecentLanguages addObject:dstLang];
-            for(int i=0; i<recentLanguages.count && i<MAX_RECENT_LANG-1; i++)
-            {
+            if (![dstLang isEqualToString:recentLanguages[i]]) //avoid duplicates
                 [updatedRecentLanguages addObject:recentLanguages[i]];
-            }
-            LoadUserDefaults();
-            setUserDefaultskey(updatedRecentLanguages, RECENT_LANG_key);
         }
+        LoadUserDefaults();
+        setUserDefaultskey(updatedRecentLanguages, RECENT_LANG_key); //store updated
     }
 }
 
@@ -96,18 +101,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 3;  // 1)recent languages  2)local languages  3)all the rest
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
-            if (recentLanguages) return recentLanguages.count;
-            else return 0;
+            if (isFiltered)
+                return filteredRec.count;
+            else return recentLanguages.count;
             break;
         case 1:
-            return locallanguages.count;
+            if (isFiltered)
+                return filteredLoc.count;
+            else
+                return localLanguages.count;
             break;
         default:
             if (isFiltered)
@@ -126,27 +135,28 @@
         case 0:
             identifier=@"rec";
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            cell.textLabel.text = recentLanguages[indexPath.row];
+            if (isFiltered)
+                cell.textLabel.text = filteredRec[indexPath.row];
+            else
+                cell.textLabel.text = recentLanguages[indexPath.row];
             break;
         case 1:
             identifier=@"loc";
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            cell.textLabel.text = locallanguages[indexPath.row];
+            if (isFiltered)
+                cell.textLabel.text = filteredLoc[indexPath.row];
+            else
+                cell.textLabel.text = localLanguages[indexPath.row];
             break;
         default:
             identifier=@"a";
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             if (isFiltered)
-            {
                 cell.textLabel.text = filteredArr[indexPath.row];
-            }
             else
-            {
                 cell.textLabel.text = srcArr[indexPath.row];
-            }
             break;
     }
-    
     return cell;
 }
 
@@ -157,15 +167,19 @@
     didChange = YES;
     switch (indexPath.section) {
         case 0:
-            dstLang = recentLanguages[indexPath.row];
+            dstLang = (isFiltered ? filteredRec[indexPath.row] : recentLanguages[indexPath.row]);
             break;
         case 1:
-            dstLang = locallanguages[indexPath.row];
+            dstLang = (isFiltered ? filteredLoc[indexPath.row] : localLanguages[indexPath.row]);
             break;
         default:
-            dstLang = (isFiltered?filteredArr[indexPath.row]:srcArr[indexPath.row]);
+            dstLang = (isFiltered ? filteredArr[indexPath.row] : srcArr[indexPath.row]);
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 30;
 }
 
 #pragma mark - search bar methods
@@ -181,9 +195,27 @@
     {
         isFiltered = YES;
     }
+    filteredRec = [[NSMutableArray alloc] init];
+    filteredLoc = [[NSMutableArray alloc] init];
     filteredArr = [[NSMutableArray alloc] init];
     
     //fast enumeration
+    for (NSString * langName in recentLanguages)
+    {
+        NSRange langRange = [langName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        if (langRange.location != NSNotFound)
+        {
+            [filteredRec addObject:langName];
+        }
+    }
+    for (NSString * langName in localLanguages)
+    {
+        NSRange langRange = [langName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        if (langRange.location != NSNotFound)
+        {
+            [filteredLoc addObject:langName];
+        }
+    }
     for (NSString * langName in srcArr)
     {
         NSRange langRange = [langName rangeOfString:searchText options:NSCaseInsensitiveSearch];

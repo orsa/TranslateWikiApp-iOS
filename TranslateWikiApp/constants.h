@@ -17,12 +17,13 @@
 #define MAX_LOCAL_LANG 2
 
 //keys for NSUserDefaults
-#define LANG_key    @"defaultLanguage"
-#define RECENT_LANG_key    @"recentLanguages"
-#define PROJ_key    @"defaultProject"
-#define TUPSIZE_key @"defaultTupleSize"
-#define PRMODE_key  @"proofreadOnlyState"
-#define RECENT_USER_key  @"recentLoginUserName"
+#define LANG_key        @"defaultLanguage"
+#define PROJ_key        @"defaultProject"
+#define TUPSIZE_key     @"defaultTupleSize"
+#define PRMODE_key      @"proofreadOnlyState"
+#define RECENT_LANG_key @"recentLanguages"
+#define RECENT_PROJ_key @"recentProjects"
+#define RECENT_USER_key @"recentLoginUserName"
 
 //pseudo-static data
 #define LANGUAGE_NAMES  @"Arabic", @"Armenian", @"Belarusian", @"Bosnian", @"Chamorro", @"Chinese", @"Croatian", @"Czech", @"Danish", @"English", @"Estonian", @"Finnish", @"French", @"Georgian", @"German", @"Greek, Modern", @"Hebrew", @"Hindi", @"Hungarian", @"Italian", @"Japanese", @"Korean", @"Kurdish", @"Lao", @"Latin", @"Lithuanian", @"Macedonian", @"Nepali", @"Norwegian", @"Persian", @"Slovak", @"Thai", @"Tibetan", @"Urdu", @"Yiddish", nil

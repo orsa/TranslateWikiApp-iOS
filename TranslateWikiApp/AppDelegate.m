@@ -37,6 +37,10 @@
     if (getUserDefaultskey(RECENT_LANG_key)==nil){
         setUserDefaultskey(l, RECENT_LANG_key);
     }
+    if (getUserDefaultskey(RECENT_LANG_key)==nil){
+        NSMutableArray *p = [[NSMutableArray alloc] init];
+        setUserDefaultskey(p, RECENT_PROJ_key);
+    }
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     LoginViewController *controller = (LoginViewController *)navigationController.topViewController;
