@@ -91,29 +91,21 @@
 }
 
 
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    //[textField resignFirstResponder];
-   /* [pickerView setHidden:YES];
-    self.pickerView.hidden = YES;
-    NSInteger i = 0; */
-    if (langTextField.editing == YES)
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if (textField==langTextField)
     {
+        [tupleSizeTextView resignFirstResponder];
         [self performSegueWithIdentifier:@"langPicker" sender:self];
-      //  flag = 1;
-      //  [pickerView setHidden:NO];
-      //  i = [arrLang indexOfObject:langTextField.text];
-      //  [pickerView selectRow:i inComponent:0 animated:NO];
-     }
-    else if (projTextField.editing == YES)
-    {
-        [self performSegueWithIdentifier:@"projBrowser" sender:self];
-      //  flag = 2;
-      //  [projTextField resignFirstResponder];
-      //  [pickerView setHidden:NO];
-      //  i = [self indexOfProjlabel:projTextField.text];
+        return NO;
     }
-   // [pickerView reloadAllComponents];
-   // [pickerView selectRow:i inComponent:0 animated:NO];
+    else if (textField==projTextField)
+    {
+        [tupleSizeTextView resignFirstResponder];
+        [self performSegueWithIdentifier:@"projBrowser" sender:self];
+        return NO;
+    }
+    return YES;
     
 }
 
@@ -131,7 +123,7 @@
 {
     [super viewWillDisappear:animated];
     
-   // self.pickerView.hidden = YES;
+    // self.pickerView.hidden = YES;
     [tupleSizeTextView resignFirstResponder];
     [self.view endEditing:YES];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
@@ -228,7 +220,8 @@
         NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
         if (numberOfMatches == 0)
             return NO;
-    }    
+    }
+    didChange=YES;
     return YES;
 }
 
