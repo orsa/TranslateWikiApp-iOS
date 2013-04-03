@@ -109,12 +109,11 @@
         {
             msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        [msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
         msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
         msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
         msgCell.keyLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] key];
         msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
-        
+        [msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
         //msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",msgCell.msg.acceptCount];
         
         return msgCell;
@@ -168,9 +167,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //check if the index actually exists
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
-        return 200; //expanded cell height
+        return 250; //expanded cell height
     }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
-        return 74;  //unexpanded cell height
+        return 56;  //unexpanded cell height
     return 50;
 }
 

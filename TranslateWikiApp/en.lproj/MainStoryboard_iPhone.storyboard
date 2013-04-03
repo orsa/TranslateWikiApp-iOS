@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -507,11 +507,11 @@
                                     <constraint firstAttribute="height" constant="434" id="3CL-4V-CHC"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="1" reuseIdentifier="myCell" editingAccessoryType="disclosureIndicator" rowHeight="200" id="NCu-bR-SHE" customClass="MsgCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="200"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="1" reuseIdentifier="myCell" editingAccessoryType="disclosureIndicator" rowHeight="250" id="NCu-bR-SHE" customClass="MsgCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="rejectButton" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPc-QY-3IP">
@@ -550,7 +550,7 @@
                                                 <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" restorationIdentifier="" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="none" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lI-cF-Vrx">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="308" id="fMe-M6-DOU"/>
-                                                        <constraint firstAttribute="height" constant="24" id="z8I-Ds-UR5"/>
+                                                        <constraint firstAttribute="height" constant="70" id="z2L-oJ-Q5u"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -558,7 +558,7 @@
                                                 </label>
                                                 <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" restorationIdentifier="" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="none" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8b7-aM-qVd">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="C9o-cc-YDf"/>
+                                                        <constraint firstAttribute="height" constant="70" id="CbG-cC-beo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -605,26 +605,26 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                         <constraints>
-                                            <constraint firstItem="xSB-lg-p5g" firstAttribute="baseline" secondItem="rUy-Pv-Czn" secondAttribute="baseline" type="default" id="6tK-6i-sB8"/>
-                                            <constraint firstItem="8b7-aM-qVd" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="18" id="Bc2-lV-THn"/>
+                                            <constraint firstItem="tPJ-61-P5i" firstAttribute="bottom" secondItem="CPc-QY-3IP" secondAttribute="bottom" type="default" id="1Eo-Ah-Vaz"/>
+                                            <constraint firstItem="xSB-lg-p5g" firstAttribute="top" secondItem="rUy-Pv-Czn" secondAttribute="top" type="default" id="39L-Bk-En7"/>
                                             <constraint firstItem="rUy-Pv-Czn" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="6" id="FQ2-1R-Xxr"/>
-                                            <constraint firstItem="97s-nT-sVP" firstAttribute="baseline" secondItem="lca-XY-m0j" secondAttribute="baseline" type="default" id="IPs-Yz-cik"/>
-                                            <constraint firstItem="xSB-lg-p5g" firstAttribute="top" secondItem="rUy-Pv-Czn" secondAttribute="top" type="default" id="IbZ-U2-b6F"/>
+                                            <constraint firstItem="xSB-lg-p5g" firstAttribute="baseline" secondItem="rUy-Pv-Czn" secondAttribute="baseline" type="default" id="Fm0-Ud-EaV"/>
+                                            <constraint firstItem="lca-XY-m0j" firstAttribute="top" secondItem="97s-nT-sVP" secondAttribute="top" type="default" id="GBr-rd-wPY"/>
                                             <constraint firstItem="lca-XY-m0j" firstAttribute="leading" secondItem="97s-nT-sVP" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="L9v-ka-A5v"/>
+                                            <constraint firstItem="8b7-aM-qVd" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="70" id="NrJ-yF-BPj"/>
+                                            <constraint firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" constant="13" id="OI6-8q-ABv"/>
                                             <constraint firstItem="xSB-lg-p5g" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="39" id="OY8-tg-ihi"/>
                                             <constraint firstItem="9lI-cF-Vrx" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="5" id="Qea-15-rzP"/>
                                             <constraint firstItem="rUy-Pv-Czn" firstAttribute="leading" secondItem="97s-nT-sVP" secondAttribute="leading" type="default" id="Qej-R9-h7O"/>
-                                            <constraint firstItem="CPc-QY-3IP" firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" type="default" id="UGA-9p-F7o"/>
-                                            <constraint firstItem="97s-nT-sVP" firstAttribute="top" secondItem="lca-XY-m0j" secondAttribute="top" type="default" id="Yw1-il-IaI"/>
-                                            <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="2" id="alu-GU-hH8"/>
-                                            <constraint firstItem="CPc-QY-3IP" firstAttribute="top" secondItem="tPJ-61-P5i" secondAttribute="top" type="default" id="arn-eZ-asq"/>
-                                            <constraint firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" constant="5" id="boB-af-svZ"/>
+                                            <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="default" id="YrJ-lN-hOa"/>
+                                            <constraint firstItem="tPJ-61-P5i" firstAttribute="top" secondItem="CPc-QY-3IP" secondAttribute="top" type="default" id="Zjq-uR-zBs"/>
                                             <constraint firstItem="8b7-aM-qVd" firstAttribute="trailing" secondItem="CPc-QY-3IP" secondAttribute="trailing" type="default" id="eMt-sr-pga"/>
                                             <constraint firstItem="8b7-aM-qVd" firstAttribute="leading" secondItem="tPJ-61-P5i" secondAttribute="leading" type="default" id="eYX-ia-zcn"/>
-                                            <constraint firstAttribute="bottom" secondItem="97s-nT-sVP" secondAttribute="bottom" constant="60" id="hzC-2p-UIB"/>
-                                            <constraint firstItem="rUy-Pv-Czn" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="97" id="mlM-dI-LYS"/>
+                                            <constraint firstAttribute="bottom" secondItem="rUy-Pv-Czn" secondAttribute="bottom" constant="89" id="m0c-K2-bHh"/>
                                             <constraint firstItem="8b7-aM-qVd" firstAttribute="trailing" secondItem="9lI-cF-Vrx" secondAttribute="trailing" type="default" id="qNE-Ik-fB8"/>
                                             <constraint firstItem="8b7-aM-qVd" firstAttribute="leading" secondItem="9lI-cF-Vrx" secondAttribute="leading" type="default" id="sdK-Cf-Qaw"/>
+                                            <constraint firstAttribute="bottom" secondItem="97s-nT-sVP" secondAttribute="bottom" constant="68" id="ta9-gD-fqg"/>
+                                            <constraint firstItem="lca-XY-m0j" firstAttribute="baseline" secondItem="97s-nT-sVP" secondAttribute="baseline" type="default" id="wHD-XF-R1l"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="acceptBtn" destination="tPJ-61-P5i" id="YU8-ig-we9"/>
@@ -638,7 +638,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="42" id="dqM-1h-T59">
-                                        <rect key="frame" x="0.0" y="222" width="320" height="42"/>
+                                        <rect key="frame" x="0.0" y="272" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
@@ -792,76 +792,6 @@
         <image name="recent.png" width="155" height="134"/>
         <image name="reject.png" width="600" height="600"/>
     </resources>
-    <classes>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitLogin:"/>
-                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pushAccept:"/>
-                <relationship kind="action" name="pushPrefs:"/>
-                <relationship kind="action" name="pushReject:"/>
-                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="mainTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MsgCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NSMutableArray" superclassName="NSArray">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
-        </class>
-        <class className="PrefsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="touchSwitch:"/>
-                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProjectBrowserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSArray"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

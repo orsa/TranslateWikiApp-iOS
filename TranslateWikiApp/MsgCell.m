@@ -44,11 +44,10 @@
     dstLabel.numberOfLines = (exp?3:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
-    srcLabel.frame = CGRectMake(5, 0, 308, (exp?70:28));
-    dstLabel.frame = CGRectMake(5, (exp?70:28), 308, (exp?70:28));
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    
+    srcLabel.frame = CGRectMake(5, 0, 308, (exp?70:28));
+    dstLabel.frame = CGRectMake(5, (exp?70:28), 308, (exp?70:28));
 }
 
 /*
