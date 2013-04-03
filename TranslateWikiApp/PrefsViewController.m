@@ -225,4 +225,35 @@
     return YES;
 }
 
+-(IBAction)restoreDefaults:(id)sender{
+    NSString* lang=PREFERRED_LANG(0);
+    NSString* proj=@"!recent";
+    NSString* tuple=INITIAL_TUPLE_SIZE;
+    selectedProjCode=proj;
+    projTextField.text=@"Recent translations";
+    langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
+    tupleSizeTextView.text=tuple;
+    didChange=YES;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(5.0, 198, 300, 80)];
+    UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    myButton.frame = CGRectMake(55, 0, 200, 44);
+    
+    [myButton setTitle:@"Restore Defaults" forState:UIControlStateNormal];
+    [myButton addTarget:self action:@selector(restoreDefaults:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [customFooterView addSubview:myButton];
+    
+    return customFooterView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 53.0;
+}
+
 @end
