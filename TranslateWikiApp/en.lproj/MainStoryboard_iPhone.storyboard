@@ -630,25 +630,49 @@
                                             <outlet property="srcLabel" destination="9lI-cF-Vrx" id="f4V-XJ-WwF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="42" id="dqM-1h-T59">
-                                        <rect key="frame" x="0.0" y="272" width="320" height="42"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="generalCell" textLabel="wGP-C4-hvv" detailTextLabel="Txr-TZ-bxW" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="dqM-1h-T59">
+                                        <rect key="frame" x="0.0" y="272" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGP-C4-hvv">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txr-TZ-bxW">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="42" id="G33-rm-iT3">
+                                        <rect key="frame" x="0.0" y="322" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qci-eF-ptF">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXA-Gq-MNQ">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="eVI-pj-qxs"/>
+                                                        <constraint firstAttribute="height" constant="21" id="aSW-17-g9F"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-mP-82S">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="flK-4I-Mkg">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="8sr-8u-Omn"/>
-                                                        <constraint firstAttribute="height" constant="23" id="UBZ-LY-C4F"/>
+                                                        <constraint firstAttribute="width" constant="30" id="RgX-OW-xm4"/>
+                                                        <constraint firstAttribute="height" constant="23" id="VhI-dw-S1Q"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -658,11 +682,11 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                         <constraints>
-                                            <constraint firstItem="FwA-mP-82S" firstAttribute="centerX" secondItem="qci-eF-ptF" secondAttribute="centerX" type="default" id="2kW-Ud-sbo"/>
-                                            <constraint firstItem="FwA-mP-82S" firstAttribute="top" secondItem="dqM-1h-T59" secondAttribute="top" constant="14" id="9jU-B2-dNK"/>
-                                            <constraint firstItem="qci-eF-ptF" firstAttribute="leading" secondItem="dqM-1h-T59" secondAttribute="leading" type="default" id="EGA-Jr-DNO"/>
-                                            <constraint firstItem="qci-eF-ptF" firstAttribute="trailing" secondItem="dqM-1h-T59" secondAttribute="trailing" type="default" id="hpw-O0-qdu"/>
-                                            <constraint firstItem="qci-eF-ptF" firstAttribute="top" secondItem="dqM-1h-T59" secondAttribute="top" type="default" id="nQk-fj-AOL"/>
+                                            <constraint firstItem="RXA-Gq-MNQ" firstAttribute="trailing" secondItem="G33-rm-iT3" secondAttribute="trailing" type="default" id="2nx-5j-erd"/>
+                                            <constraint firstItem="flK-4I-Mkg" firstAttribute="centerX" secondItem="RXA-Gq-MNQ" secondAttribute="centerX" type="default" id="4gp-2M-3CN"/>
+                                            <constraint firstItem="flK-4I-Mkg" firstAttribute="top" secondItem="G33-rm-iT3" secondAttribute="top" constant="14" id="YbK-fh-aYY"/>
+                                            <constraint firstItem="RXA-Gq-MNQ" firstAttribute="leading" secondItem="G33-rm-iT3" secondAttribute="leading" type="default" id="kSa-kZ-tKs"/>
+                                            <constraint firstItem="RXA-Gq-MNQ" firstAttribute="top" secondItem="G33-rm-iT3" secondAttribute="top" type="default" id="wQm-Ea-1G2"/>
                                         </constraints>
                                     </tableViewCell>
                                 </prototypes>
@@ -806,81 +830,6 @@
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
-    <classes>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitLogin:"/>
-                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pushAccept:"/>
-                <relationship kind="action" name="pushPrefs:"/>
-                <relationship kind="action" name="pushReject:"/>
-                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="mainTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MsgCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PrefsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="restoreDefaults:"/>
-                <relationship kind="action" name="touchSwitch:"/>
-                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProjectBrowserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
-                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

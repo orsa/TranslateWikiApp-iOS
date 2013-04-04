@@ -180,20 +180,29 @@
 -(IBAction)restoreDefaults:(id)sender{
     
     //TODO: add alert message
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Do you really mean that?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+    [alert show];
     
-    NSString* lang=PREFERRED_LANG(0);
-    NSString* proj=@"!recent";
-    NSString* tuple=INITIAL_TUPLE_SIZE;
-    bool mode=YES;//proofread ON
-    
-    selectedProjCode=proj;
-    projTextField.text=@"Recent translations";
-    langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
-    tupleSizeTextView.text=tuple;
-    [proofreadOnlySwitch setOn:mode animated:YES];
-    didChange=YES;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1)  //clicked ok at the alert
+    {
+        NSString* lang=PREFERRED_LANG(0);
+        NSString* proj=@"!recent";
+        NSString* tuple=INITIAL_TUPLE_SIZE;
+        bool mode=YES;//proofread ON
+        
+        selectedProjCode=proj;
+        projTextField.text=@"Recent translations";
+        langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
+        tupleSizeTextView.text=tuple;
+        [proofreadOnlySwitch setOn:mode animated:YES];
+        didChange=YES;
+    }
+    
+}
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(5.0, 198, 300, 80)];
