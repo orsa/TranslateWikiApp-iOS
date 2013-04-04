@@ -62,7 +62,7 @@
     if ([[segue identifier] isEqualToString:@"projBrowser"])
     {
         ProjectBrowserViewController *ViewController = [segue destinationViewController];
-        ViewController.srcArr = [[NSMutableArray alloc]initWithArray:arrProj];
+        ViewController.originalSrc = [[NSMutableArray alloc]initWithArray:arrProj];
     }
     /*if([[segue identifier] isEqualToString:@"langPicker"]) {
         SearchViewController * ViewController = [segue destinationViewController];

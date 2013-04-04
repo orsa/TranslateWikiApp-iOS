@@ -47,7 +47,7 @@
     
     //prepare recent languages
     LoadUserDefaults();
-    recentLanguages = getUserDefaultskey(RECENT_LANG_key);
+    recentLanguages = [[NSMutableArray alloc] initWithArray: getUserDefaultskey(RECENT_LANG_key)];
 
     [srcArr removeObjectsInArray:recentLanguages]; //filter the duplicate
     
@@ -180,6 +180,28 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 30;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (indexPath.section == 0);
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if(isFiltered){
+            [recentLanguages removeObject:[filteredRec objectAtIndex:indexPath.row]];
+        }
+        else{
+            [recentLanguages removeObjectAtIndex:indexPath.row];
+        }
+        srcArr = [[NSMutableArray alloc] initWithObjects:LANGUAGE_NAMES];
+        [srcArr removeObjectsInArray:recentLanguages];
+        if (mySearchBar.text) [self searchBar:mySearchBar textDidChange:mySearchBar.text];
+        [tableView reloadData];
+        LoadUserDefaults();
+        setUserDefaultskey(recentLanguages, RECENT_LANG_key); //store updated
+    }
 }
 
 #pragma mark - search bar methods

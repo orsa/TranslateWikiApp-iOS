@@ -24,6 +24,7 @@
 @synthesize didChange;
 @synthesize dstProjLabel;
 @synthesize dstProjID;
+@synthesize originalSrc;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,15 +42,14 @@
     isFiltered = NO;
     didChange = NO;
     
+    srcArr = [[NSMutableArray alloc] initWithArray:originalSrc];
+    
     LoadUserDefaults();
-    recentProj = getUserDefaultskey(RECENT_PROJ_key);
-    
-    
-    NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
-    //SomeObjectClass *item;
-    NSUInteger index = 0;
+    recentProj = [[NSMutableArray alloc] initWithArray:getUserDefaultskey(RECENT_PROJ_key)];
     
     //filter the duplicate
+    NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
+    NSUInteger index = 0;
     for(NSDictionary * p1 in srcArr){
         for(NSDictionary * p2 in recentProj){
             if ([p1[@"label"] isEqualToString:p2[@"label"]])
@@ -160,6 +160,44 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 30;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+   return (indexPath.section == 0);
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if(isFiltered){
+            NSMutableArray * temp = [[NSMutableArray alloc] initWithArray:recentProj];
+            [recentProj removeAllObjects];
+            NSString * label = [filteredRec objectAtIndex:indexPath.row][@"label"];
+            for(NSDictionary * pr in temp){
+                if (![label isEqualToString:pr[@"label"]])
+                    [recentProj addObject:pr];
+            }
+        }
+        else{
+            [recentProj removeObjectAtIndex:indexPath.row];
+        }
+       srcArr = [[NSMutableArray alloc] initWithArray:originalSrc]; 
+        //filter the duplicate
+        NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
+        NSUInteger index = 0;
+        for(NSDictionary * p1 in srcArr){
+            for(NSDictionary * p2 in recentProj){
+                if ([p1[@"label"] isEqualToString:p2[@"label"]])
+                    [discardedItems addIndex:index];
+            }
+            index++;
+        }
+        [srcArr removeObjectsAtIndexes:discardedItems];
+        if (mySearchBar.text) [self searchBar:mySearchBar textDidChange:mySearchBar.text];
+        [tableView reloadData];
+        LoadUserDefaults();
+        setUserDefaultskey(recentProj, RECENT_PROJ_key); //store updated
+    }
 }
 
 #pragma mark - search bar methods

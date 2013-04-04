@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet NSMutableArray *filteredArr;
 @property (strong, nonatomic) IBOutlet NSMutableArray *filteredRec;
 @property (strong, nonatomic) IBOutlet NSMutableArray *srcArr;
+@property (strong, nonatomic) IBOutlet NSArray *originalSrc;
 @property (strong, nonatomic) IBOutlet NSMutableArray *recentProj;
 @property (weak, nonatomic) NSString * dstProjLabel;
 @property (weak, nonatomic) NSString * dstProjID;
