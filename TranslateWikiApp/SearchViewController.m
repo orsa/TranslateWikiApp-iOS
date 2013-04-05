@@ -32,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -40,6 +41,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.title=@"Language Selection";
     srcArr = [[NSMutableArray alloc] initWithObjects:LANGUAGE_NAMES];
     NSArray * codes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
     NSArray * names = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];

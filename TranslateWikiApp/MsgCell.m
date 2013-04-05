@@ -40,15 +40,22 @@
     [_keyinfoLabel setHidden:!exp];
     [_keyLabel setHidden:!exp];
     
-    srcLabel.numberOfLines = (exp?3:1);
-    dstLabel.numberOfLines = (exp?3:1);
+    srcLabel.numberOfLines = (exp?0:1);
+    dstLabel.numberOfLines = (exp?0:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
+    
+    float h1 = [MsgCell optimalHeightForLabel:srcLabel];
+    float h2 = [MsgCell optimalHeightForLabel:srcLabel];
+    srcLabel.frame = CGRectMake(4, 0, 310, (exp?h1:28));
+    dstLabel.frame = CGRectMake(4, (exp?h1:25), 310, (exp?h2:25));
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    
-    srcLabel.frame = CGRectMake(5, 0, 308, (exp?70:28));
-    dstLabel.frame = CGRectMake(5, (exp?70:28), 308, (exp?70:28));
+}
+
++(float)optimalHeightForLabel:(UILabel*)lable
+{
+    return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;
 }
 
 /*

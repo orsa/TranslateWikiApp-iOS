@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.title = @"Project Browser";
     isFiltered = NO;
     didChange = NO;
     

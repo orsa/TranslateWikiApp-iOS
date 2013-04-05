@@ -35,7 +35,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES];
-    self.GreetingMessage.text = [NSString stringWithFormat:@"Hello, %@!",_api.user.userName];
+    self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
     HideNetworkActivityIndicator();
     [super viewWillAppear:animated];
 }
@@ -170,7 +170,7 @@
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
         return 250; //expanded cell height
     }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
-        return 70;  //unexpanded cell height
+        return 65;  //unexpanded cell height
     return 50;
 }
 
@@ -212,6 +212,8 @@
         // Handle the error.
     }
 }
+
+
 
 - (IBAction)pushPrefs:(id)sender
 {

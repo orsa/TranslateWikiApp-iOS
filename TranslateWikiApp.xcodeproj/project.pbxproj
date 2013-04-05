@@ -46,6 +46,9 @@
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
+		64F890F5170F2900008DCCA6 /* CleaningIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F2170F2900008DCCA6 /* CleaningIcon_small.png */; };
+		64F890F6170F2900008DCCA6 /* logout_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F3170F2900008DCCA6 /* logout_icon.png */; };
+		64F890F7170F2900008DCCA6 /* settings_icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F4170F2900008DCCA6 /* settings_icon_small.png */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +108,9 @@
 		64F5E4C316AE9B7200442603 /* TranslationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessage.m; sourceTree = "<group>"; };
 		64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessageDataController.h; sourceTree = "<group>"; };
 		64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessageDataController.m; sourceTree = "<group>"; };
+		64F890F2170F2900008DCCA6 /* CleaningIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CleaningIcon_small.png; sourceTree = "<group>"; };
+		64F890F3170F2900008DCCA6 /* logout_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_icon.png; sourceTree = "<group>"; };
+		64F890F4170F2900008DCCA6 /* settings_icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon_small.png; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,8 +223,13 @@
 		649AA82D170CE7CB00578145 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				64F890F2170F2900008DCCA6 /* CleaningIcon_small.png */,
+				64F890F3170F2900008DCCA6 /* logout_icon.png */,
+				64F890F4170F2900008DCCA6 /* settings_icon_small.png */,
+				6462A2E81705BFCB00E1DCD6 /* accept.png */,
 				649AA825170CE79B00578145 /* accept1.png */,
 				649AA826170CE79B00578145 /* accept2.png */,
+				6462A2E71705BFCB00E1DCD6 /* reject.png */,
 				649AA829170CE7A900578145 /* reject1.png */,
 				649AA82A170CE7A900578145 /* reject2.png */,
 				6492406C170D793A00705D91 /* magnifier_small.png */,
@@ -229,8 +240,6 @@
 				6491441216FE1BDE00FEEACB /* Default.png */,
 				6491441016FE16E900FEEACB /* icon_HD.png */,
 				6491440E16FE166900FEEACB /* icon.png */,
-				6462A2E71705BFCB00E1DCD6 /* reject.png */,
-				6462A2E81705BFCB00E1DCD6 /* accept.png */,
 				64026A6916971E27002A65CC /* imgres.jpeg */,
 			);
 			name = graphics;
@@ -307,6 +316,9 @@
 				649AA82B170CE7A900578145 /* reject1.png in Resources */,
 				649AA82C170CE7A900578145 /* reject2.png in Resources */,
 				6492406D170D793A00705D91 /* magnifier_small.png in Resources */,
+				64F890F5170F2900008DCCA6 /* CleaningIcon_small.png in Resources */,
+				64F890F6170F2900008DCCA6 /* logout_icon.png in Resources */,
+				64F890F7170F2900008DCCA6 /* settings_icon_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,7 +47,8 @@
     projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
     selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
     tupleSizeTextView.text = getUserDefaultskey(TUPSIZE_key);
-    [proofreadOnlySwitch setOn:getBoolUserDefaultskey(PRMODE_key) animated:NO];
+    bool state = getBoolUserDefaultskey(PRMODE_key);
+    [proofreadOnlySwitch setOn:state animated:NO];
     
 }
 
@@ -122,7 +123,7 @@
         setUserDefaultskey([self getNewLang], LANG_key);
         setUserDefaultskey([self getNewProj], PROJ_key);
         setUserDefaultskey(tupleSizeTextView.text, TUPSIZE_key);
-        bool state = [proofreadOnlySwitch state];
+        bool state = [proofreadOnlySwitch isOn];
         setBoolUserDefaultskey(state, PRMODE_key);
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
         [ViewController.dataController removeAllObjects];

@@ -26,5 +26,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (void)setExpanded:(NSNumber*)expNumber;
++(float)optimalHeightForLabel:(UILabel*)lable;
 
 @end
