@@ -30,8 +30,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setExpanded:(BOOL)exp
+- (void)setExpanded:(NSNumber*)expNumber
 {
+    BOOL exp=[expNumber boolValue];
     [_acceptBtn setHidden:!exp];
     [_rejectBtn setHidden:!exp];
     [_infoLabel setHidden:!exp];
@@ -39,16 +40,31 @@
     [_keyinfoLabel setHidden:!exp];
     [_keyLabel setHidden:!exp];
     
-    
     srcLabel.numberOfLines = (exp?3:1);
     dstLabel.numberOfLines = (exp?3:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    srcLabel.frame = CGRectMake(5, 0, 308, 70);
-    dstLabel.frame = CGRectMake(5, 70, 308, 70);
+    
+    srcLabel.frame = CGRectMake(5, 0, 308, (exp?70:28));
+    dstLabel.frame = CGRectMake(5, (exp?70:28), 308, (exp?70:28));
 }
+
+/*
+ CGSize srcSize = [srcLabel.text sizeWithFont:srcLabel.font constrainedToSize:CGSizeMake(308,FLT_MAX) lineBreakMode:srcLabel.lineBreakMode];
+ CGSize dstSize = [dstLabel.text sizeWithFont:dstLabel.font constrainedToSize:CGSizeMake(308,FLT_MAX) lineBreakMode:dstLabel.lineBreakMode];
+ 
+ srcLabel.frame = CGRectMake(5, 0, 308, (exp?srcSize.height:28));
+ dstLabel.frame = CGRectMake(5, (exp?srcSize.height:28), 308, (exp?dstSize.height:28));
+ keyLabel.frame = CGRectMake(keyLabel.frame.origin.x, srcSize.height+dstSize.height, keyLabel.frame.size.width, keyLabel.frame.size.height);
+ keyinfoLabel.frame = CGRectMake(keyinfoLabel.frame.origin.x, srcSize.height+dstSize.height, keyinfoLabel.frame.size.width, keyinfoLabel.frame.size.height);
+ acceptCount.frame = CGRectMake(acceptCount.frame.origin.x, srcSize.height+dstSize.height+21, acceptCount.frame.size.width, acceptCount.frame.size.height);
+ infoLabel.frame = CGRectMake(infoLabel.frame.origin.x, srcSize.height+dstSize.height+21, infoLabel.frame.size.width, infoLabel.frame.size.height);
+ acceptBtn.frame = CGRectMake(acceptBtn.frame.origin.x, srcSize.height+dstSize.height+42, acceptBtn.frame.size.width, acceptBtn.frame.size.height);
+ rejectBtn.frame = CGRectMake(rejectBtn.frame.origin.x, srcSize.height+dstSize.height+42, rejectBtn.frame.size.width, rejectBtn.frame.size.height);
+ self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 110+srcSize.height+dstSize.height);
+ */
 
 /*
 - (IBAction)pushAccept:(id)sender

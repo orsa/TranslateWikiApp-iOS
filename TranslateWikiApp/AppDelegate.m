@@ -12,7 +12,6 @@
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ShowNetworkActivityIndicator();
     return YES;
 }
 

@@ -113,8 +113,8 @@
         msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
         msgCell.keyLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] key];
         msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
-        [msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
-        //msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",msgCell.msg.acceptCount];
+        //[msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
+        [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
         
         return msgCell;
     }
@@ -128,7 +128,6 @@
         }
         return moreCell;
     }
-    
     return nil;
 }
 
@@ -141,13 +140,15 @@
         {
             //do deselect precedures
             msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
-            [msgCell setExpanded:FALSE];
+            //[msgCell setExpanded:[NSNumber numberWithBool:FALSE]];
+            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
             
         }
         if (!selectedIndexPath || selectedIndexPath.row != indexPath.row) {
             selectedIndexPath = [indexPath copy];
             msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:indexPath];
-            [msgCell setExpanded:TRUE];
+            //[msgCell setExpanded:[NSNumber numberWithBool:TRUE]];
+            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
         }else
             selectedIndexPath = nil;
         
@@ -169,7 +170,7 @@
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
         return 250; //expanded cell height
     }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
-        return 140;  //unexpanded cell height
+        return 70;  //unexpanded cell height
     return 50;
 }
 

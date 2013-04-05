@@ -25,6 +25,6 @@
 @property(nonatomic, retain)TranslationMessage * msg;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (void)setExpanded:(BOOL)exp;
+- (void)setExpanded:(NSNumber*)expNumber;
 
 @end
