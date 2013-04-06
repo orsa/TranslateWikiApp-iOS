@@ -126,6 +126,7 @@
         bool state = [proofreadOnlySwitch isOn];
         setBoolUserDefaultskey(state, PRMODE_key);
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
+        ViewController.translationState=!state;
         [ViewController.dataController removeAllObjects];
         [ViewController addMessagesTuple];
     }

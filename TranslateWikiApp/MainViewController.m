@@ -110,13 +110,17 @@
     {
         if (translationState)
         {
-            UITableViewCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier forIndexPath:indexPath];
+            TranslationCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier forIndexPath:indexPath];
             
             if (!trMsgCell)
             {
-                trMsgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
-                [trMsgCell setNeedsDisplay];
+                trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
+               // [trMsgCell setNeedsDisplay];
             }
+            trMsgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
+            trMsgCell.suggestionsData  = [[NSMutableArray alloc] init];
+            [trMsgCell.suggestionsData addObject:@"ababababa"];
+           // [trMsgCell.inputTable reloadData];
             return trMsgCell;
         }
         else{
@@ -132,7 +136,6 @@
         msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
         //[msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
         [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
-            
         return msgCell;
         }
         
