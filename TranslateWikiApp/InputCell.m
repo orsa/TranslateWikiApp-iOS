@@ -26,7 +26,7 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)pushSend:(id)sender {
+- (IBAction)pushSendBtn:(id)sender {
     
 }
 @end

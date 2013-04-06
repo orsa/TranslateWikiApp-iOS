@@ -11,11 +11,11 @@
 #import "TWapi.h"
 
 @interface InputCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UITextView *inputText;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
-- (IBAction)pushSend:(id)sender;
 @property(nonatomic, retain)TranslationMessage * msg;
 @property (retain, nonatomic) TWapi * api;
+
+- (IBAction)pushSendBtn:(id)sender;
 
 @end

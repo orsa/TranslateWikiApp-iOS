@@ -15,9 +15,6 @@
 @synthesize frameImg;
 
 
-- (IBAction)pushSend:(id)sender {
-}
-
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];

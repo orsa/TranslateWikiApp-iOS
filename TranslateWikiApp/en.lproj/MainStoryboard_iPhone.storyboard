@@ -693,7 +693,7 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="pushSend:" destination="EKj-if-SXs" eventType="touchUpInside" id="nfG-St-TdZ"/>
+                                                                            <action selector="pushSendBtn:" destination="EKj-if-SXs" eventType="touchUpInside" id="Y5m-R1-Bdh"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -708,9 +708,7 @@
                                                                 <constraint firstItem="Y3I-YN-PSK" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="user" id="x8o-VH-2Cy"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="doneButton" destination="Y3I-YN-PSK" id="M9l-Ja-GGJ"/>
                                                                 <outlet property="inputText" destination="6dq-dQ-833" id="bfK-uB-BkT"/>
-                                                                <outlet property="pushSend" destination="Y3I-YN-PSK" id="Rco-OT-Qpo"/>
                                                                 <outlet property="sendBtn" destination="Y3I-YN-PSK" id="JAg-tU-LS6"/>
                                                             </connections>
                                                         </tableViewCell>
@@ -934,8 +932,7 @@
         <class className="InputCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
             <relationships>
-                <relationship kind="action" name="pushSend:"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
+                <relationship kind="action" name="pushSendBtn:"/>
                 <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
             </relationships>
@@ -1016,10 +1013,8 @@
         <class className="TranslationCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
             <relationships>
-                <relationship kind="action" name="pushSend:"/>
                 <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="suggestionsData" candidateClass="NSMutableArray"/>
             </relationships>
