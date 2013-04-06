@@ -52,6 +52,7 @@
 		64F890FA17102D36008DCCA6 /* InputPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890F917102D36008DCCA6 /* InputPaneView.m */; };
 		64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FC1710396D008DCCA6 /* TranslationCell.m */; };
 		64F8910017106842008DCCA6 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FF17106842008DCCA6 /* InputCell.m */; };
+		64F891021710AD2B008DCCA6 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F891011710AD2B008DCCA6 /* frame.png */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		64F890FC1710396D008DCCA6 /* TranslationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationCell.m; sourceTree = "<group>"; };
 		64F890FE17106842008DCCA6 /* InputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCell.h; sourceTree = "<group>"; };
 		64F890FF17106842008DCCA6 /* InputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCell.m; sourceTree = "<group>"; };
+		64F891011710AD2B008DCCA6 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				64F890F2170F2900008DCCA6 /* CleaningIcon_small.png */,
+				64F891011710AD2B008DCCA6 /* frame.png */,
 				64F890F3170F2900008DCCA6 /* logout_icon.png */,
 				64F890F4170F2900008DCCA6 /* settings_icon_small.png */,
 				6462A2E81705BFCB00E1DCD6 /* accept.png */,
@@ -334,6 +337,7 @@
 				64F890F5170F2900008DCCA6 /* CleaningIcon_small.png in Resources */,
 				64F890F6170F2900008DCCA6 /* logout_icon.png in Resources */,
 				64F890F7170F2900008DCCA6 /* settings_icon_small.png in Resources */,
+				64F891021710AD2B008DCCA6 /* frame.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

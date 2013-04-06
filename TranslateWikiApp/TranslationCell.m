@@ -11,6 +11,28 @@
 @implementation TranslationCell
 
 @synthesize suggestionsData;
+@synthesize srcLabel;
+@synthesize frameImg;
+
+- (void)setExpanded:(NSNumber*)expNumber
+{
+    BOOL exp=[expNumber boolValue];
+    
+    srcLabel.numberOfLines = (exp?0:1);
+
+    [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
+
+    float h = [TranslationCell optimalHeightForLabel:srcLabel];
+    [srcLabel sizeToFit];
+    
+    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h:28));
+    frameImg.frame = CGRectMake(4, (exp?h+2:25), self.frame.size.width - 4, (exp?self.frame.size.height-h-10:25));
+}
+
++(float)optimalHeightForLabel:(UILabel*)lable
+{
+    return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;
+}
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

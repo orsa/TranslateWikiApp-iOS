@@ -46,11 +46,11 @@
     [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     
     float h1 = [MsgCell optimalHeightForLabel:srcLabel];
-    float h2 = [MsgCell optimalHeightForLabel:srcLabel];
+    float h2 = [MsgCell optimalHeightForLabel:dstLabel];
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    srcLabel.frame = CGRectMake(4, 0, 310, (exp?h1:28));
-    dstLabel.frame = CGRectMake(4, (exp?h1:25), 310, (exp?h2:25));
+    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h1:28));
+    dstLabel.frame = CGRectMake(4, (exp?h1:25), self.frame.size.width - 4, (exp?h2:25));
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable

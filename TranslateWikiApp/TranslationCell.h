@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet NSMutableArray *suggestionsData;
 @property (strong, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UITableView *inputTable;
+@property (weak, nonatomic) IBOutlet UIImageView *frameImg;
 
 
 

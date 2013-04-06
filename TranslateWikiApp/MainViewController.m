@@ -106,7 +106,7 @@
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
     
-    NSString *identifier;
+
     if(indexPath.row<[self.dataController countOfList] && [self.dataController countOfList]>0)
     {
         if (translationState)
@@ -132,11 +132,10 @@
             return trMsgCell;
         }
         else{
-        identifier=CellIdentifier;
-        MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+        MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         if (!msgCell)
         {
-            msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
         msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
@@ -150,11 +149,10 @@
     }
     else
     {
-        identifier=moreCellIdentifier;
-        UITableViewCell *moreCell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+        UITableViewCell *moreCell = [tableView dequeueReusableCellWithIdentifier:moreCellIdentifier forIndexPath:indexPath];
         if (!moreCell)
         {
-            moreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            moreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:moreCellIdentifier];
         }
         return moreCell;
     }
@@ -204,10 +202,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //check if the index actually exists
-    if (translationState)
-        return 250;
+    if (translationState && indexPath.row<self.dataController.countOfList)
+    {
+     //   NSString * text1 = [self.dataController objectInListAtIndex:indexPath.row].source;
+     //   float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
+     //   return ((h1+10)*(2+[self.dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
+        return 240;
+    }
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
-        return 250; //expanded cell height
+        
+        NSString * text1 = [self.dataController objectInListAtIndex:indexPath.row].source;
+        NSString * text2 = [self.dataController objectInListAtIndex:indexPath.row].translation;
+        float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
+        float h2 = [text2 sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
+        return (h1+h2+100); //expanded cell height
     }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
         return 65;  //unexpanded cell height
     return 50;
