@@ -18,5 +18,7 @@
 
 
 
+- (void)setExpanded:(NSNumber*)expNumber;
+
 
 @end

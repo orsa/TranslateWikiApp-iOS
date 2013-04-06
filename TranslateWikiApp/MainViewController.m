@@ -105,7 +105,6 @@
     static NSString *transCellIdentifier = @"translationCell";
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
-    
 
     if(indexPath.row<[self.dataController countOfList] && [self.dataController countOfList]>0)
     {
@@ -127,23 +126,24 @@
             {
                 [trMsgCell.suggestionsData addObject:d[@"suggestion"]];
             }
-                
+            //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
            [trMsgCell.inputTable reloadData];
             return trMsgCell;
         }
-        else{
-        MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        if (!msgCell)
+        else
         {
-            msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
-        msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
-        msgCell.keyLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] key];
-        msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
-        //[msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
-        [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
-        return msgCell;
+            MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+            if (!msgCell)
+            {
+                msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
+            msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
+            msgCell.keyLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] key];
+            msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
+         
+            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
+            return msgCell;
         }
         
     }
@@ -161,42 +161,58 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (translationState)
+    if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
-        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
-        [tableView beginUpdates];
-        [tableView endUpdates];
-        
-    }
-    else if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
-    {
-        MsgCell * msgCell;
-        if(selectedIndexPath)
+        if (translationState)
         {
-            //do deselect precedures
-            msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
-            //[msgCell setExpanded:[NSNumber numberWithBool:FALSE]];
-            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+            TranslationCell * trMsgCell;
+            if(selectedIndexPath)
+            {
+                //do deselect precedures
+                trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
+               // [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+            }
+            if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
+            {
+                selectedIndexPath = [indexPath copy];
+                trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
+               // [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
+            }
+            else
+                selectedIndexPath = nil;
             
+            [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+            [tableView beginUpdates];
+            [tableView endUpdates];
         }
-        if (!selectedIndexPath || selectedIndexPath.row != indexPath.row) {
-            selectedIndexPath = [indexPath copy];
-            msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:indexPath];
-            //[msgCell setExpanded:[NSNumber numberWithBool:TRUE]];
-            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
-        }else
-            selectedIndexPath = nil;
-        
-        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
-        [tableView beginUpdates];
-        [tableView endUpdates];
-        
-    }else
+        else 
+        {
+            MsgCell * msgCell;
+            if(selectedIndexPath)
+            {
+                //do deselect precedures
+                msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
+                [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+            }
+            if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
+            {
+                selectedIndexPath = [indexPath copy];
+                msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:indexPath];
+                [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
+            }
+            else
+                selectedIndexPath = nil;
+            
+            [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+            [tableView beginUpdates];
+            [tableView endUpdates];
+        }
+    }
+    else
     {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         // NSInteger previousCount=[tableData count];
         [self addMessagesTuple];
-        
     }
 }
 

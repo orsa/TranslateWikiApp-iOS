@@ -14,10 +14,13 @@
 @synthesize srcLabel;
 @synthesize frameImg;
 
+
+- (IBAction)pushSend:(id)sender {
+}
+
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];
-    
     srcLabel.numberOfLines = (exp?0:1);
 
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
