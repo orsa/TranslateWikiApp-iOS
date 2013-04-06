@@ -49,6 +49,8 @@
 		64F890F5170F2900008DCCA6 /* CleaningIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F2170F2900008DCCA6 /* CleaningIcon_small.png */; };
 		64F890F6170F2900008DCCA6 /* logout_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F3170F2900008DCCA6 /* logout_icon.png */; };
 		64F890F7170F2900008DCCA6 /* settings_icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F4170F2900008DCCA6 /* settings_icon_small.png */; };
+		64F890FA17102D36008DCCA6 /* InputPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890F917102D36008DCCA6 /* InputPaneView.m */; };
+		64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FC1710396D008DCCA6 /* TranslationCell.m */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,10 @@
 		64F890F2170F2900008DCCA6 /* CleaningIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CleaningIcon_small.png; sourceTree = "<group>"; };
 		64F890F3170F2900008DCCA6 /* logout_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_icon.png; sourceTree = "<group>"; };
 		64F890F4170F2900008DCCA6 /* settings_icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_icon_small.png; sourceTree = "<group>"; };
+		64F890F817102D36008DCCA6 /* InputPaneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputPaneView.h; sourceTree = "<group>"; };
+		64F890F917102D36008DCCA6 /* InputPaneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputPaneView.m; sourceTree = "<group>"; };
+		64F890FB1710396D008DCCA6 /* TranslationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationCell.h; sourceTree = "<group>"; };
+		64F890FC1710396D008DCCA6 /* TranslationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationCell.m; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,9 +182,13 @@
 				644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */,
 				6462A2E41705BF6E00E1DCD6 /* MsgCell.h */,
 				6462A2E51705BF6E00E1DCD6 /* MsgCell.m */,
+				64F890FB1710396D008DCCA6 /* TranslationCell.h */,
+				64F890FC1710396D008DCCA6 /* TranslationCell.m */,
 				6469FB9016FADE580006E765 /* View Controllers */,
 				641002131691B218000202A9 /* AppDelegate.h */,
 				641002141691B218000202A9 /* AppDelegate.m */,
+				64F890F817102D36008DCCA6 /* InputPaneView.h */,
+				64F890F917102D36008DCCA6 /* InputPaneView.m */,
 				6462A2EB1705C06800E1DCD6 /* MainStoryboard_iPhone.storyboard */,
 				6410021F1691B218000202A9 /* MainStoryboard_iPad.storyboard */,
 				6410020B1691B218000202A9 /* Supporting Files */,
@@ -344,6 +354,8 @@
 				6462A2E61705BF6E00E1DCD6 /* MsgCell.m in Sources */,
 				6478F0E217074B9900F2F26E /* SearchViewController.m in Sources */,
 				6478F0E5170761C400F2F26E /* ProjectBrowserViewController.m in Sources */,
+				64F890FA17102D36008DCCA6 /* InputPaneView.m in Sources */,
+				64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

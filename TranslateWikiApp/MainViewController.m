@@ -19,6 +19,7 @@
 @implementation MainViewController
 @synthesize selectedIndexPath;
 @synthesize managedObjectContext;
+@synthesize translationState;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -63,6 +64,8 @@
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
+    LoadUserDefaults();
+    translationState=!getBoolUserDefaultskey(PRMODE_key);
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,11 +101,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *transCellIdentifier = @"translationCell";
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
+    
     NSString *identifier;
     if(indexPath.row<[self.dataController countOfList] && [self.dataController countOfList]>0)
     {
+        if (translationState)
+        {
+            UITableViewCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier forIndexPath:indexPath];
+            
+            if (!trMsgCell)
+            {
+                trMsgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
+                [trMsgCell setNeedsDisplay];
+            }
+            return trMsgCell;
+        }
+        else{
         identifier=CellIdentifier;
         MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         if (!msgCell)
@@ -115,8 +132,10 @@
         msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
         //[msgCell setExpanded:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
         [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
-        
+            
         return msgCell;
+        }
+        
     }
     else
     {
@@ -167,6 +186,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //check if the index actually exists
+    if (translationState)
+        return 250;
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
         return 250; //expanded cell height
     }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
@@ -212,7 +233,6 @@
         // Handle the error.
     }
 }
-
 
 
 - (IBAction)pushPrefs:(id)sender

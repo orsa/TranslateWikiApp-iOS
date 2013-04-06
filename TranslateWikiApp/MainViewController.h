@@ -16,6 +16,8 @@
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MsgCell.h"
+#import "InputPaneView.h"
+#import"TranslationCell.h"
 
 @class TranslationMessageDataController;
 @class TWUser;
@@ -30,6 +32,8 @@
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+@property BOOL translationState;
+@property (strong, nonatomic) IBOutlet TranslationCell *trCell;
 
 - (IBAction)pushPrefs:(id)sender;
 - (IBAction)pushAccept:(id)sender;
