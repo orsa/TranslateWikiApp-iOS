@@ -12,14 +12,15 @@
 @property(nonatomic, copy)NSString* source;
 @property(nonatomic, copy)NSString* translation;
 @property(nonatomic, copy)NSString* language;
+@property(nonatomic, copy)NSString* project;
 @property(nonatomic, copy)NSString* key;
 @property(nonatomic, copy)NSString* revision;
+@property(nonatomic, copy)NSString* title;
 @property(nonatomic)BOOL isAccepted;
 @property(nonatomic)NSInteger acceptCount;
 
 
-
--(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withKey:(NSString*)k withRevision:(NSString*)rev withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac;
+-(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withProject:(NSString*)proj withKey:(NSString*)k withRevision:(NSString*)rev withTitle:(NSString*)mTitle withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac;
 /*
 //getters
 -(NSString*) source;

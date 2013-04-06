@@ -65,7 +65,7 @@
         NSString* lang=getUserDefaultskey(LANG_key);
         NSString* proj=getUserDefaultskey(PROJ_key);
         NSInteger queryLimit=numberOfMessagesRemaining;
-        NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
+        NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[ api TWTranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
        // LOG(result); //DEBUG
     
         NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
@@ -74,10 +74,12 @@
         BOOL stopLoop=[newData count]<numberOfMessagesRemaining;
     
         for (NSDictionary* msg in newData) {
-            BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
+            BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"properties"][@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
             if(!isRejected){
                 numberOfMessagesRemaining=numberOfMessagesRemaining-1;
-                [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withKey:msg[@"key"] withRevision:msg[@"revision"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
+                //NSMutableDictionary* transAids=[api TWTranslationAidsForTitle:msg[@"title"] withProject:proj];
+                //NSString* suggestion=[NSString stringWithFormat:@"%@ by %@", transAids[@"mt"][0][@"target"], transAids[@"mt"][0][@"service"]];
+                [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]]];
             }
         }
         _offset=_offset+queryLimit;
