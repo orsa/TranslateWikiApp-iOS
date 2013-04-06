@@ -21,6 +21,7 @@
 @synthesize managedObjectContext;
 @synthesize translationState;
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
@@ -53,7 +54,7 @@
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext];
+    [self.dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState];
     [self.msgTableView reloadData];
 }
 
@@ -118,8 +119,15 @@
                // [trMsgCell setNeedsDisplay];
             }
             trMsgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
-            trMsgCell.suggestionsData  = [[NSMutableArray alloc] init];
-            [trMsgCell.suggestionsData addObject:@"ababababa"];
+            if (trMsgCell.suggestionsData)
+                [trMsgCell.suggestionsData removeAllObjects];
+            else
+                trMsgCell.suggestionsData = [[NSMutableArray alloc] init];
+            for (NSDictionary *d in [self.dataController objectInListAtIndex:indexPath.row].suggestions)
+            {
+                [trMsgCell.suggestionsData addObject:d[@"suggestion"]];
+            }
+                
            // [trMsgCell.inputTable reloadData];
             return trMsgCell;
         }
@@ -155,7 +163,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
+    if (translationState)
+    {
+        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+        [tableView beginUpdates];
+        [tableView endUpdates];
+        
+    }
+    else if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
         MsgCell * msgCell;
         if(selectedIndexPath)

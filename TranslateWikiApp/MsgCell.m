@@ -47,10 +47,10 @@
     
     float h1 = [MsgCell optimalHeightForLabel:srcLabel];
     float h2 = [MsgCell optimalHeightForLabel:srcLabel];
-    srcLabel.frame = CGRectMake(4, 0, 310, (exp?h1:28));
-    dstLabel.frame = CGRectMake(4, (exp?h1:25), 310, (exp?h2:25));
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
+    srcLabel.frame = CGRectMake(4, 0, 310, (exp?h1:28));
+    dstLabel.frame = CGRectMake(4, (exp?h1:25), 310, (exp?h2:25));
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable

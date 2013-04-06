@@ -12,6 +12,7 @@
 
 @synthesize suggestionsData;
 
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -36,7 +37,6 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -77,6 +77,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row<suggestionsData.count)
+    {
+        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+        NSIndexPath * lastIP = [NSIndexPath indexPathForRow:suggestionsData.count inSection:0];
+        InputCell * inCell = (InputCell*)[tableView cellForRowAtIndexPath:lastIP];
+        inCell.inputText.text = suggestionsData[indexPath.row];
+        [tableView beginUpdates];
+        [tableView endUpdates];
+        
+    }
     
 }
 

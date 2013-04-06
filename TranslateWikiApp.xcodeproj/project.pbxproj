@@ -51,6 +51,7 @@
 		64F890F7170F2900008DCCA6 /* settings_icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F4170F2900008DCCA6 /* settings_icon_small.png */; };
 		64F890FA17102D36008DCCA6 /* InputPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890F917102D36008DCCA6 /* InputPaneView.m */; };
 		64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FC1710396D008DCCA6 /* TranslationCell.m */; };
+		64F8910017106842008DCCA6 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FF17106842008DCCA6 /* InputCell.m */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,8 @@
 		64F890F917102D36008DCCA6 /* InputPaneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputPaneView.m; sourceTree = "<group>"; };
 		64F890FB1710396D008DCCA6 /* TranslationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationCell.h; sourceTree = "<group>"; };
 		64F890FC1710396D008DCCA6 /* TranslationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationCell.m; sourceTree = "<group>"; };
+		64F890FE17106842008DCCA6 /* InputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCell.h; sourceTree = "<group>"; };
+		64F890FF17106842008DCCA6 /* InputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCell.m; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +187,8 @@
 				6462A2E51705BF6E00E1DCD6 /* MsgCell.m */,
 				64F890FB1710396D008DCCA6 /* TranslationCell.h */,
 				64F890FC1710396D008DCCA6 /* TranslationCell.m */,
+				64F890FE17106842008DCCA6 /* InputCell.h */,
+				64F890FF17106842008DCCA6 /* InputCell.m */,
 				6469FB9016FADE580006E765 /* View Controllers */,
 				641002131691B218000202A9 /* AppDelegate.h */,
 				641002141691B218000202A9 /* AppDelegate.m */,
@@ -356,6 +361,7 @@
 				6478F0E5170761C400F2F26E /* ProjectBrowserViewController.m in Sources */,
 				64F890FA17102D36008DCCA6 /* InputPaneView.m in Sources */,
 				64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */,
+				64F8910017106842008DCCA6 /* InputCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
