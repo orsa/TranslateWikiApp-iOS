@@ -22,6 +22,7 @@
 @synthesize translationState;
 
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showPrefs"]) {
@@ -65,8 +66,7 @@
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
     }
-    LoadUserDefaults();
-    translationState=!getBoolUserDefaultskey(PRMODE_key);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,7 +128,7 @@
                 [trMsgCell.suggestionsData addObject:d[@"suggestion"]];
             }
                 
-           // [trMsgCell.inputTable reloadData];
+           [trMsgCell.inputTable reloadData];
             return trMsgCell;
         }
         else{

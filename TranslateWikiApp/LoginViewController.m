@@ -104,6 +104,7 @@
         LoadUserDefaults();
         setUserDefaultskey(_userName,RECENT_USER_key);
         MainViewController *vc = [segue destinationViewController];
+        vc.translationState=!getBoolUserDefaultskey(PRMODE_key);
         [vc setApi:_api];
         [vc setManagedObjectContext:self.managedObjectContext];
         [vc addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
