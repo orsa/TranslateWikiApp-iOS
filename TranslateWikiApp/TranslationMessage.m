@@ -23,10 +23,23 @@
         _title=mTitle;
         _isAccepted=accepted;
         _acceptCount=ac;
+        _suggestions=[NSMutableArray alloc];
         
         return self;
     }
     return nil;
+}
+
+-(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids
+{
+    int i=0;
+    NSMutableArray* sugg=translationAids[@"mt"];
+    for(NSMutableDictionary* suggElem in sugg){
+        _suggestions[i]=[NSMutableDictionary alloc];
+        _suggestions[i][@"suggestion"]=suggElem[@"target"];
+        _suggestions[i][@"service"]=suggElem[@"service"];
+        i=i+1;
+    }
 }
 
 @end
