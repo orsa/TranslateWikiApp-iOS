@@ -119,7 +119,9 @@
             }
             trMsgCell.api=_api;
             trMsgCell.msg=[self.dataController objectInListAtIndex:indexPath.row];
+            trMsgCell.container=self.dataController;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
+            trMsgCell.msgTableView=self.msgTableView;
             if (trMsgCell.suggestionsData)
                 [trMsgCell.suggestionsData removeAllObjects];
             else

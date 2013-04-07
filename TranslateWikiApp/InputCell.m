@@ -29,5 +29,6 @@
 
 - (IBAction)pushSendBtn:(id)sender {
     [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text]];
+    [_father removeFromList];
 }
 @end

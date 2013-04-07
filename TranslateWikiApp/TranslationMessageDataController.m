@@ -41,6 +41,10 @@
     return [self.masterTranslationMessageList objectAtIndex:theIndex];
 }
 
+- (NSInteger)indexOfObject:(TranslationMessage*)msg{
+    return [self.masterTranslationMessageList indexOfObject:msg];
+}
+
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message{
     [self.masterTranslationMessageList addObject:message];
 }

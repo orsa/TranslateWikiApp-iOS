@@ -17,6 +17,7 @@
 
 - (NSInteger)countOfList;
 - (TranslationMessage *)objectInListAtIndex:(NSUInteger)theIndex;
+- (NSInteger)indexOfObject:(TranslationMessage*)msg;
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;

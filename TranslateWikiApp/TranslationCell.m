@@ -7,6 +7,7 @@
 //
 
 #import "TranslationCell.h"
+#import "InputCell.h"
 
 @implementation TranslationCell
 
@@ -94,9 +95,16 @@
         InputCell* inCell=(InputCell*)cell;
         inCell.api=_api;
         inCell.msg=_msg;
+        inCell.father=self;
     }
     
     return cell;
+}
+
+-(void)removeFromList
+{
+    [_container removeObjectAtIndex:[_container indexOfObject:_msg]];
+    [_msgTableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
