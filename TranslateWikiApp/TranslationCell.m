@@ -91,6 +91,9 @@
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:inputCellIdentifier];
         }
+        InputCell* inCell=(InputCell*)cell;
+        inCell.api=_api;
+        inCell.msg=_msg;
     }
     
     return cell;

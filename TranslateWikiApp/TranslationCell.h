@@ -14,8 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UITableView *inputTable;
 @property (weak, nonatomic) IBOutlet UIImageView *frameImg;
-
-
+@property(nonatomic, retain)TranslationMessage * msg;
+@property (retain, nonatomic) TWapi* api;
 
 
 - (void)setExpanded:(NSNumber*)expNumber;

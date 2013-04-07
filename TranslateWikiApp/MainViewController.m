@@ -117,12 +117,14 @@
                 trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
                // [trMsgCell setNeedsDisplay];
             }
-            trMsgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
+            trMsgCell.api=_api;
+            trMsgCell.msg=[self.dataController objectInListAtIndex:indexPath.row];
+            trMsgCell.srcLabel.text = [trMsgCell.msg source];
             if (trMsgCell.suggestionsData)
                 [trMsgCell.suggestionsData removeAllObjects];
             else
                 trMsgCell.suggestionsData = [[NSMutableArray alloc] init];
-            for (NSDictionary *d in [self.dataController objectInListAtIndex:indexPath.row].suggestions)
+            for (NSDictionary *d in trMsgCell.msg.suggestions)
             {
                 [trMsgCell.suggestionsData addObject:d[@"suggestion"]];
             }

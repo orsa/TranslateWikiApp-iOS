@@ -17,7 +17,7 @@
 
 - (NSInteger)countOfList;
 - (TranslationMessage *)objectInListAtIndex:(NSUInteger)theIndex;
-- (void)addTranslationMessageWithMessage:(TranslationMessage *)message andAids:transAids;
+- (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;
 - (void)addMessagesTupleUsingApi: (TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof;

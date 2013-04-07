@@ -9,6 +9,7 @@
 #import "InputCell.h"
 
 @implementation InputCell
+@synthesize inputText;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,6 +28,6 @@
 }
 
 - (IBAction)pushSendBtn:(id)sender {
-    
+    [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text]];
 }
 @end

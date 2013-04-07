@@ -41,10 +41,8 @@
     return [self.masterTranslationMessageList objectAtIndex:theIndex];
 }
 
-- (void)addTranslationMessageWithMessage:(TranslationMessage *)message andAids:transAids{
-    [message addSuggestionsFromResponse:transAids];
+- (void)addTranslationMessageWithMessage:(TranslationMessage *)message{
     [self.masterTranslationMessageList addObject:message];
-    
 }
 
 - (void)removeAllObjects{
@@ -85,8 +83,12 @@
             BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"properties"][@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
             if(!isRejected){
                 numberOfMessagesRemaining=numberOfMessagesRemaining-1;
-                NSMutableDictionary* transAids=[api TWTranslationAidsForTitle:msg[@"title"] withProject:proj];
-                [self addTranslationMessageWithMessage:[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]] andAids:transAids];
+                TranslationMessage* message=[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]];
+                if(!isProof){
+                    NSMutableDictionary* transAids=[api TWTranslationAidsForTitle:msg[@"title"] withProject:proj];
+                    [message addSuggestionsFromResponse:transAids];
+                }
+                [self addTranslationMessageWithMessage:message];
             }
         }
         _offset=_offset+queryLimit;
