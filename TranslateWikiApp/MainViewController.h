@@ -29,6 +29,8 @@
 @property (retain) NSIndexPath* selectedIndexPath;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
+@property (nonatomic, retain) UITextView* initialActiveTextView;
+@property (nonatomic, retain) UITextView* activeTextView;
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;

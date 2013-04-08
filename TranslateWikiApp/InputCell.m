@@ -27,8 +27,16 @@
     // Configure the view for the selected state
 }
 
+-(void)textViewDidBeginEditing:(UITextView*)textView
+{
+    [inputText setText:@""];
+    [_father setActiveTextViewPointer:inputText];
+}
+
 - (IBAction)pushSendBtn:(id)sender {
     [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text]];
+    [inputText resignFirstResponder];
     [_father removeFromList];
+    [_father setActiveTextViewPointer:[_father initialActiveTextView]];
 }
 @end

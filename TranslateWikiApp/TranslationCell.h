@@ -11,7 +11,9 @@
 #import "TWapi.h"
 #import "TranslationMessageDataController.h"
 
+@class InputCell;
 @interface TranslationCell : UITableViewCell <UITableViewDelegate, UITableViewDataSource>
+
 @property (strong, nonatomic) IBOutlet NSMutableArray *suggestionsData;
 @property (strong, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UITableView *inputTable;
@@ -20,9 +22,13 @@
 @property (retain, nonatomic) TWapi* api;
 @property (retain, nonatomic) TranslationMessageDataController * container;
 @property (retain, nonatomic) UITableView* msgTableView;
+@property (atomic) UITextView* __strong * activeTextViewPtr;
+@property (retain, nonatomic) UITextView* initialActiveTextView;
+@property (retain, nonatomic) InputCell* inputCell;
 
 - (void)setExpanded:(NSNumber*)expNumber;
 -(void)removeFromList;
+-(void)setActiveTextViewPointer:(UITextView *)newActive;
 
 
 @end

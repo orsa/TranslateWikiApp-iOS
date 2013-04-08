@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "InputCell.h"
 
 @interface MainViewController ()
 {
@@ -41,6 +42,9 @@
     self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
     HideNetworkActivityIndicator();
     [super viewWillAppear:animated];
+    //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
+    if(translationState)
+        _initialActiveTextView=_activeTextView=[[UITextView alloc] init];
 }
 
 - (void)awakeFromNib
@@ -90,6 +94,15 @@
 
 #pragma mark - Table view data source
 
+//-(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
+//    if(translationState && self.activeTextView!=self.initialActiveTextView){
+//        [_activeTextView resignFirstResponder];
+//        if([[_activeTextView text] isEqualToString:@""])
+//            [_activeTextView setText:@"your translation..."];
+//        _activeTextView=_initialActiveTextView;
+//    }
+//}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -121,6 +134,8 @@
             trMsgCell.msg=[self.dataController objectInListAtIndex:indexPath.row];
             trMsgCell.container=self.dataController;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
+            trMsgCell.activeTextViewPtr=&_activeTextView;
+            trMsgCell.initialActiveTextView=_initialActiveTextView;
             trMsgCell.msgTableView=self.msgTableView;
             if (trMsgCell.suggestionsData)
                 [trMsgCell.suggestionsData removeAllObjects];

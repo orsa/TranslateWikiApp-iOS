@@ -96,9 +96,15 @@
         inCell.api=_api;
         inCell.msg=_msg;
         inCell.father=self;
+        self.inputCell=inCell;
     }
     
     return cell;
+}
+
+-(void)setActiveTextViewPointer:(UITextView *)newActive
+{
+    *_activeTextViewPtr=newActive;
 }
 
 -(void)removeFromList
