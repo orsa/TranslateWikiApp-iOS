@@ -76,7 +76,7 @@
         else{
             result=[[NSMutableDictionary alloc] initWithDictionary:[ api TWUntranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
         }
-       // LOG(result); //DEBUG
+        LOG(result); //DEBUG
     
         NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
         //we expect an array, otherwise will be runtime exception

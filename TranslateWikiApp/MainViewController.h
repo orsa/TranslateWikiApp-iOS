@@ -17,7 +17,8 @@
 #import "KeychainItemWrapper.h"
 #import "MsgCell.h"
 #import "InputPaneView.h"
-#import"TranslationCell.h"
+#import "TranslationCell.h"
+#import "InputCell.h"
 
 @class TranslationMessageDataController;
 @class TWUser;
@@ -41,5 +42,6 @@
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (void)coreDataRejectMessage;
+- (IBAction)pushMore:(id)sender;
 -(void)addMessagesTuple;
 @end

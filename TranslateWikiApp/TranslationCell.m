@@ -54,7 +54,6 @@
     return self;
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -81,7 +80,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:suggestCellIdentifier forIndexPath:indexPath];
         if (!cell)
         {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:inputCellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:suggestCellIdentifier];
         }
         cell.textLabel.text = suggestionsData[indexPath.row];
     }
@@ -110,6 +109,7 @@
 -(void)removeFromList
 {
     [_container removeObjectAtIndex:[_container indexOfObject:_msg]];
+    
     [_msgTableView reloadData];
 }
 
@@ -120,8 +120,13 @@
         [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
         NSIndexPath * lastIP = [NSIndexPath indexPathForRow:suggestionsData.count inSection:0];
         InputCell * inCell = (InputCell*)[tableView cellForRowAtIndexPath:lastIP];
-        inCell.inputText.text = suggestionsData[indexPath.row];
         [tableView beginUpdates];
+        
+     
+        [inCell.inputText becomeFirstResponder];
+        inCell.inputText.text = suggestionsData[indexPath.row];
+        [inCell textViewDidChange:inCell.inputText];
+        
         [tableView endUpdates];
         
     }

@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "InputCell.h"
+
 
 @interface MainViewController ()
 {
@@ -77,19 +77,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)LogoutButton:(id)sender {
-    [_api TWLogoutRequest];
-    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
-    [loginKC resetKeychainItem];
-}
-
-- (IBAction)clearMessages:(UIButton *)sender
-{
-    selectedIndexPath = nil;
-    [self.dataController removeAllObjects];
-    [self.msgTableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -190,6 +177,9 @@
                 //do deselect precedures
                 trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
                // [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+                
+                [trMsgCell.msgTableView reloadData];
+                [trMsgCell.msgTableView.inputView resignFirstResponder];
             }
             if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
             {
@@ -271,6 +261,7 @@
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
     if([self.dataController countOfList]<1) selectedIndexPath = nil;
     [self.msgTableView reloadData];
+    if([self.dataController countOfList]<1) [self addMessagesTuple];
 }
 
 - (IBAction)pushReject:(id)sender
@@ -281,6 +272,7 @@
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
     if([self.dataController countOfList]<1) selectedIndexPath = nil;
     [self.msgTableView reloadData];
+    if([self.dataController countOfList]<1) [self addMessagesTuple];
 }
 
 -(void)coreDataRejectMessage{
@@ -295,6 +287,23 @@
     }
 }
 
+- (IBAction)pushMore:(id)sender {
+    
+    
+}
+
+- (IBAction)LogoutButton:(id)sender {
+    [_api TWLogoutRequest];
+    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
+    [loginKC resetKeychainItem];
+}
+
+- (IBAction)clearMessages:(UIButton *)sender
+{
+    selectedIndexPath = nil;
+    [self.dataController removeAllObjects];
+    [self.msgTableView reloadData];
+}
 
 - (IBAction)pushPrefs:(id)sender
 {

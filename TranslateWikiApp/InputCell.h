@@ -17,7 +17,9 @@
 @property(nonatomic, retain)TranslationMessage * msg;
 @property (retain, nonatomic) TWapi * api;
 @property (retain, nonatomic) TranslationCell * father;
+@property (weak, nonatomic) IBOutlet UIView *BtnView;
 
+- (void)textViewDidChange:(UITextView *)textView;
 - (IBAction)pushSendBtn:(id)sender;
 
 @end

@@ -10,6 +10,8 @@
 
 @implementation InputCell
 @synthesize inputText;
+@synthesize sendBtn;
+@synthesize BtnView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,8 +31,55 @@
 
 -(void)textViewDidBeginEditing:(UITextView*)textView
 {
-    [inputText setText:@""];
+    if(![sendBtn isUserInteractionEnabled])
+    {
+        [inputText setText:@""];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [BtnView setFrame:CGRectMake(self.frame.size.width-50, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
+            [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-50, BtnView.frame.size.height)];
+        } completion:nil];
+    }
+    
+    [inputText setTextColor:[UIColor blackColor]];
     [_father setActiveTextViewPointer:inputText];
+}
+
+-(void)textViewDidEndEditing:(UITextView*)textView
+{
+    if([[inputText text] isEqualToString:@""])
+    {
+        [inputText setTextColor:[UIColor lightGrayColor]];
+        [inputText setText:@"Your translation"];
+    }
+    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
+        [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-5, BtnView.frame.size.height)];
+    } completion:nil];
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if(![[inputText text] isEqualToString:@""])
+    {
+        [sendBtn setUserInteractionEnabled:YES];
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [BtnView setFrame:CGRectMake(self.frame.size.width-50, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
+            [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-50, BtnView.frame.size.height)];
+            } completion:nil];
+    }
+    else
+    {
+        [sendBtn setUserInteractionEnabled:NO];
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
+            [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-5, BtnView.frame.size.height)];
+        } completion:nil];
+
+    }
+
 }
 
 - (IBAction)pushSendBtn:(id)sender {
