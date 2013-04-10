@@ -687,6 +687,10 @@
                                                                         <subviews>
                                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3I-YN-PSK">
                                                                                 <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="50" type="user" id="Zmr-WL-l3T"/>
+                                                                                    <constraint firstAttribute="width" constant="50" type="user" id="vll-HV-m5s"/>
+                                                                                </constraints>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                                 <state key="normal" title="Done">
                                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -701,23 +705,22 @@
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="Y3I-YN-PSK" firstAttribute="bottom" secondItem="TuS-Ww-QqS" secondAttribute="bottom" type="default" id="FnF-9m-RhX"/>
-                                                                            <constraint firstItem="Y3I-YN-PSK" firstAttribute="top" secondItem="TuS-Ww-QqS" secondAttribute="top" type="default" id="S5W-DR-MHG"/>
-                                                                            <constraint firstItem="Y3I-YN-PSK" firstAttribute="leading" secondItem="TuS-Ww-QqS" secondAttribute="leading" type="default" id="a4N-dy-8bw"/>
-                                                                            <constraint firstItem="Y3I-YN-PSK" firstAttribute="trailing" secondItem="TuS-Ww-QqS" secondAttribute="trailing" type="default" id="akH-sn-ltk"/>
+                                                                            <constraint firstItem="Y3I-YN-PSK" firstAttribute="leading" secondItem="TuS-Ww-QqS" secondAttribute="leading" type="default" id="GAp-SC-EAT"/>
+                                                                            <constraint firstAttribute="width" constant="50" type="user" id="W0I-Xr-dtj"/>
+                                                                            <constraint firstItem="Y3I-YN-PSK" firstAttribute="top" secondItem="TuS-Ww-QqS" secondAttribute="top" type="default" id="sKu-0o-zd9"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="TuS-Ww-QqS" secondAttribute="trailing" constant="-45" id="Xvj-pA-4Tq"/>
+                                                                <constraint firstAttribute="trailing" secondItem="TuS-Ww-QqS" secondAttribute="trailing" constant="-45" type="user" id="0TA-bq-7QC"/>
+                                                                <constraint firstItem="TuS-Ww-QqS" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="user" id="G2X-lV-D7W"/>
                                                                 <constraint firstItem="6dq-dQ-833" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="user" id="laI-T4-zmA"/>
-                                                                <constraint firstItem="6dq-dQ-833" firstAttribute="leading" secondItem="EKj-if-SXs" secondAttribute="leading" type="default" id="luJ-BF-lJM"/>
+                                                                <constraint firstItem="6dq-dQ-833" firstAttribute="leading" secondItem="EKj-if-SXs" secondAttribute="leading" type="user" id="luJ-BF-lJM"/>
+                                                                <constraint firstItem="TuS-Ww-QqS" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="user" id="oZN-hO-4Vv"/>
                                                                 <constraint firstItem="6dq-dQ-833" firstAttribute="top" secondItem="EKj-if-SXs" secondAttribute="top" type="user" id="oyS-5M-Lcd"/>
-                                                                <constraint firstItem="TuS-Ww-QqS" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="default" id="roc-46-dJH"/>
-                                                                <constraint firstItem="TuS-Ww-QqS" firstAttribute="leading" secondItem="EKj-if-SXs" secondAttribute="leading" constant="289" id="wBs-aC-h8U"/>
-                                                                <constraint firstItem="TuS-Ww-QqS" firstAttribute="top" secondItem="EKj-if-SXs" secondAttribute="top" type="default" id="xi1-Ms-YMh"/>
+                                                                <constraint firstItem="TuS-Ww-QqS" firstAttribute="top" secondItem="EKj-if-SXs" secondAttribute="top" type="user" id="xi1-Ms-YMh"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="BtnView" destination="TuS-Ww-QqS" id="d6d-F0-TaI"/>
@@ -942,6 +945,100 @@
         <image name="reject2.png" width="600" height="600"/>
         <image name="settings_icon_small.png" width="28" height="28"/>
     </resources>
+    <classes>
+        <class className="InputCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushSendBtn:"/>
+                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushMore:"/>
+                <relationship kind="action" name="pushPrefs:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="mainTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="trCell" candidateClass="TranslationCell"/>
+            </relationships>
+        </class>
+        <class className="MsgCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="restoreDefaults:"/>
+                <relationship kind="action" name="touchSwitch:"/>
+                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProjectBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
+                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="TranslationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

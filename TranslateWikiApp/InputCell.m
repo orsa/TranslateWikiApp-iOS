@@ -38,7 +38,7 @@
     else
     {
         [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [BtnView setFrame:CGRectMake(self.frame.size.width-50, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
+            [BtnView setFrame:CGRectMake(self.frame.size.width-50, 0, 50, BtnView.frame.size.height)];
             [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-50, BtnView.frame.size.height)];
         } completion:nil];
     }
@@ -55,7 +55,7 @@
         [inputText setText:@"Your translation"];
     }
     [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
+        [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, 50, BtnView.frame.size.height)];
         [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-5, BtnView.frame.size.height)];
     } completion:nil];
 }
