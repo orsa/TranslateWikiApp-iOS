@@ -129,6 +129,12 @@
         ViewController.translationState=!state;
         [ViewController.dataController removeAllObjects];
         [ViewController addMessagesTuple];
+        if(ViewController.selectedIndexPath && ViewController.dataController.countOfList>0)
+            ViewController.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+        else
+        {
+            ViewController.selectedIndexPath=nil;
+        }
     }
 }
 

@@ -85,7 +85,9 @@
 - (IBAction)pushSendBtn:(id)sender {
     [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text]];
     [inputText resignFirstResponder];
-    [_father removeFromList];
+    
+    [_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
+    
     [_father setActiveTextViewPointer:[_father initialActiveTextView]];
 }
 @end

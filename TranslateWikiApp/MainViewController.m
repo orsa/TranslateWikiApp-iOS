@@ -53,7 +53,8 @@
     if (!self.dataController)
     {
         self.dataController = [[TranslationMessageDataController alloc] init];
-        selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+        if(selectedIndexPath && self.dataController.countOfList>0)
+            selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
     }
 }
 
@@ -124,14 +125,14 @@
             trMsgCell.activeTextViewPtr=&_activeTextView;
             trMsgCell.initialActiveTextView=_initialActiveTextView;
             trMsgCell.msgTableView=self.msgTableView;
-            if (trMsgCell.suggestionsData)
+            /*if (trMsgCell.suggestionsData)
                 [trMsgCell.suggestionsData removeAllObjects];
             else
                 trMsgCell.suggestionsData = [[NSMutableArray alloc] init];
             for (NSDictionary *d in trMsgCell.msg.suggestions)
             {
                 [trMsgCell.suggestionsData addObject:d[@"suggestion"]];
-            }
+            }*/
             //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
            [trMsgCell.inputTable reloadData];
             return trMsgCell;

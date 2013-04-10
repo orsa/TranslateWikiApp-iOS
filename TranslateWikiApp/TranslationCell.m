@@ -11,9 +11,12 @@
 
 @implementation TranslationCell
 
-@synthesize suggestionsData;
+
 @synthesize srcLabel;
 @synthesize frameImg;
+@synthesize msg;
+@synthesize inputTable;
+@synthesize inputCell;
 
 
 - (void)setExpanded:(NSNumber*)expNumber
@@ -67,7 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return suggestionsData.count + 1;
+    return msg.suggestions.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +85,7 @@
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:suggestCellIdentifier];
         }
-        cell.textLabel.text = suggestionsData[indexPath.row];
+        cell.textLabel.text = msg.suggestions[indexPath.row][@"suggestion"];
     }
     else
     {
@@ -93,7 +96,7 @@
         }
         InputCell* inCell=(InputCell*)cell;
         inCell.api=_api;
-        inCell.msg=_msg;
+        inCell.msg=msg;
         inCell.father=self;
         self.inputCell=inCell;
     }
@@ -108,23 +111,23 @@
 
 -(void)removeFromList
 {
-    [_container removeObjectAtIndex:[_container indexOfObject:_msg]];
-    
+    [_container removeObjectAtIndex:[_container indexOfObject:msg]];
+    [inputCell.inputText setText:@""];
     [_msgTableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row<suggestionsData.count)
+    if (indexPath.row<msg.suggestions.count)
     {
         [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
-        NSIndexPath * lastIP = [NSIndexPath indexPathForRow:suggestionsData.count inSection:0];
+        NSIndexPath * lastIP = [NSIndexPath indexPathForRow:msg.suggestions.count inSection:0];
         InputCell * inCell = (InputCell*)[tableView cellForRowAtIndexPath:lastIP];
         [tableView beginUpdates];
         
      
         [inCell.inputText becomeFirstResponder];
-        inCell.inputText.text = suggestionsData[indexPath.row];
+        inCell.inputText.text = msg.suggestions[indexPath.row][@"suggestion"];
         [inCell textViewDidChange:inCell.inputText];
         
         [tableView endUpdates];
