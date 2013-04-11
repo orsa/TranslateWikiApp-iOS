@@ -112,7 +112,8 @@
 -(void)removeFromList
 {
     [_container removeObjectAtIndex:[_container indexOfObject:msg]];
-    [inputCell.inputText setText:@""];
+    [inputCell.inputText setText:@"Your Translation"];
+    [inputCell.inputText setTextColor:[UIColor grayColor]];
     [_msgTableView reloadData];
 }
 
