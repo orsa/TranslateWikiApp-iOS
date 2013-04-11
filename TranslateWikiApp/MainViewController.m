@@ -21,6 +21,7 @@
 @synthesize selectedIndexPath;
 @synthesize managedObjectContext;
 @synthesize translationState;
+@synthesize dataController;
 
 
 
@@ -50,17 +51,17 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    if (!self.dataController)
+    if (!dataController)
     {
-        self.dataController = [[TranslationMessageDataController alloc] init];
-        if(selectedIndexPath && self.dataController.countOfList>0)
+        dataController = [[TranslationMessageDataController alloc] init];
+        if(selectedIndexPath && dataController.countOfList>0)
             selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
     }
 }
 
 -(void)addMessagesTuple
 {
-    [self.dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState];
+    [dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState];
     [self.msgTableView reloadData];
 }
 
@@ -98,7 +99,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataController countOfList]+1;
+    return [dataController countOfList]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,34 +108,40 @@
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
 
-    if(indexPath.row<[self.dataController countOfList] && [self.dataController countOfList]>0)
+    if(indexPath.row<[dataController countOfList] && [dataController countOfList]>0)
     {
         if (translationState)
         {
-            TranslationCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier forIndexPath:indexPath];
+            TranslationCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier];
             
-            if (!trMsgCell)
+            if (trMsgCell==nil)
             {
                 trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
-               // [trMsgCell setNeedsDisplay];
             }
             trMsgCell.api=_api;
-            trMsgCell.msg=[self.dataController objectInListAtIndex:indexPath.row];
-            trMsgCell.container=self.dataController;
+            trMsgCell.msg=[dataController objectInListAtIndex:indexPath.row];
+            trMsgCell.container=dataController;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
             trMsgCell.activeTextViewPtr=&_activeTextView;
             trMsgCell.initialActiveTextView=_initialActiveTextView;
             trMsgCell.msgTableView=self.msgTableView;
-            /*if (trMsgCell.suggestionsData)
-                [trMsgCell.suggestionsData removeAllObjects];
-            else
-                trMsgCell.suggestionsData = [[NSMutableArray alloc] init];
-            for (NSDictionary *d in trMsgCell.msg.suggestions)
-            {
-                [trMsgCell.suggestionsData addObject:d[@"suggestion"]];
-            }*/
+            
+            float h1 = trMsgCell.inputTable.rowHeight*(trMsgCell.msg.suggestions.count+1) + 1;
+            trMsgCell.frameImg.transform = CGAffineTransformIdentity;
+            trMsgCell.inputTable.transform = CGAffineTransformIdentity;
+            trMsgCell.frameImg.frame = CGRectMake(trMsgCell.frameImg.frame.origin.x,
+                                                  trMsgCell.srcLabel.frame.size.height,
+                                                  trMsgCell.frameImg.frame.size.width,
+                                                  h1+16);
+            trMsgCell.inputTable.frame = CGRectMake(trMsgCell.inputTable.frame.origin.x,
+                                                    trMsgCell.frameImg.frame.origin.y + 13 ,
+                                                    trMsgCell.inputTable.frame.size.width,
+                                                    h1);
+            
+            
             //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
-           [trMsgCell.inputTable reloadData];
+            [trMsgCell.inputTable reloadData];
+            
             return trMsgCell;
         }
         else
@@ -144,10 +151,10 @@
             {
                 msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            msgCell.srcLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] source];
-            msgCell.dstLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] translation];
-            msgCell.keyLabel.text = [[self.dataController objectInListAtIndex:indexPath.row] key];
-            msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[self.dataController objectInListAtIndex:indexPath.row] acceptCount]];
+            msgCell.srcLabel.text = [[dataController objectInListAtIndex:indexPath.row] source];
+            msgCell.dstLabel.text = [[dataController objectInListAtIndex:indexPath.row] translation];
+            msgCell.keyLabel.text = [[dataController objectInListAtIndex:indexPath.row] key];
+            msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[dataController objectInListAtIndex:indexPath.row] acceptCount]];
          
             [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
             return msgCell;
@@ -228,21 +235,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //check if the index actually exists
-    if (translationState && indexPath.row<self.dataController.countOfList)
+    if (translationState && indexPath.row<dataController.countOfList)
     {
-     //   NSString * text1 = [self.dataController objectInListAtIndex:indexPath.row].source;
+     //   NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
      //   float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
-     //   return ((h1+10)*(2+[self.dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
-        return 240;
+     //   return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
+        float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
+        return 50*n+30;
+      //  return 240;
     }
     if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
         
-        NSString * text1 = [self.dataController objectInListAtIndex:indexPath.row].source;
-        NSString * text2 = [self.dataController objectInListAtIndex:indexPath.row].translation;
+        NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
+        NSString * text2 = [dataController objectInListAtIndex:indexPath.row].translation;
         float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
         float h2 = [text2 sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
         return (h1+h2+100); //expanded cell height
-    }else if (indexPath.row<_dataController.countOfList && _dataController.countOfList>0)
+    }else if (indexPath.row<dataController.countOfList && dataController.countOfList>0)
         return 65;  //unexpanded cell height
     return 50;
 }
@@ -251,11 +260,11 @@
 
 - (IBAction)pushAccept:(id)sender
 {
-    bool success = [_api TWTranslationReviewRequest:[_dataController objectInListAtIndex:selectedIndexPath.row].revision]; //accept this translation via API
+    bool success = [_api TWTranslationReviewRequest:[dataController objectInListAtIndex:selectedIndexPath.row].revision]; //accept this translation via API
     if (success)
     {
-        [[_dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
-        [[_dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[_dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
+        [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
+        [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
     }
     
     // here we'll take this cell away
@@ -267,7 +276,7 @@
 
 - (IBAction)pushReject:(id)sender
 {
-    [[_dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
+    [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
     [self coreDataRejectMessage];
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
@@ -279,7 +288,7 @@
 -(void)coreDataRejectMessage{
     RejectedMessage *mess = (RejectedMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     
-    [mess setRevision:[[_dataController objectInListAtIndex:selectedIndexPath.row] revision]];
+    [mess setRevision:[[dataController objectInListAtIndex:selectedIndexPath.row] revision]];
     [mess setUserid:[[_api user] userId]];
     
     NSError *error = nil;
@@ -302,7 +311,7 @@
 - (IBAction)clearMessages:(UIButton *)sender
 {
     selectedIndexPath = nil;
-    [self.dataController removeAllObjects];
+    [dataController removeAllObjects];
     [self.msgTableView reloadData];
 }
 
