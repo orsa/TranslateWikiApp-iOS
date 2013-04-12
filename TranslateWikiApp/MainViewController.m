@@ -46,6 +46,13 @@
     //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
     if(translationState)
         _initialActiveTextView=_activeTextView=[[UITextView alloc] init];
+    
+    //makes the keyboard show the current language symbols
+    LoadUserDefaults();
+    NSString * st = getUserDefaultskey(LANG_key);
+    NSArray * arr = [NSArray arrayWithObjects: st, nil];
+    setUserDefaultskey(arr, @"AppleLanguages");
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)awakeFromNib
