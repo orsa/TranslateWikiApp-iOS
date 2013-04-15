@@ -22,7 +22,7 @@
 @synthesize managedObjectContext;
 @synthesize translationState;
 @synthesize dataController;
-
+//@synthesize msgTableView;
 
 
 

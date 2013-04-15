@@ -41,16 +41,6 @@
         setUserDefaultskey(p, RECENT_PROJ_key);
     }
     
-    //lookup credentials in keychain
-    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
-    NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
-    NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
-    
-    if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""]) //we have s.t in keychain
-    { //found credentials
-        
-    }
-    
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     LoginViewController *controller = (LoginViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;    
