@@ -1,18 +1,18 @@
 //
-//  SearchViewController.m
+//  LanguagePickerViewController.m
 //  TranslateWikiApp
 //
 //  Created by Or Sagi on 30/3/13.
 //  Copyright (c) 2013 translatewiki.net. All rights reserved.
 //
 
-#import "SearchViewController.h"
+#import "LanguagePickerViewController.h"
 
-@interface SearchViewController ()
+@interface LanguagePickerViewController ()
 
 @end
 
-@implementation SearchViewController{
+@implementation LanguagePickerViewController{
 
 }
 @synthesize mySearchBar;
@@ -32,7 +32,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
     }
     return self;
 }
@@ -66,9 +65,9 @@
                 [srcArr removeObject:names[index]]; //filter the duplicate
             }
         }
-        else break;
+        else
+            break;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,7 +184,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (indexPath.section == 0);
+    return (indexPath.section == 0); //we allow "editing mode" only for the recent languages section
 }
 
 // Override to support editing the table view.

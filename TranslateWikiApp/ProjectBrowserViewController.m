@@ -53,7 +53,7 @@
     NSUInteger index = 0;
     for(NSDictionary * p1 in srcArr){
         for(NSDictionary * p2 in recentProj){
-            if ([p1[@"label"] isEqualToString:p2[@"label"]])
+            if (p1[@"label"] && [p1[@"label"] isEqualToString:p2[@"label"]])
                 [discardedItems addIndex:index];
         }
         index++;
@@ -73,13 +73,13 @@
     [super viewWillDisappear:animated];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
     {
-        //LoadUserDefaults();
-        //setUserDefaultskey(dstProj, PROJ_key);
         PrefsViewController *ViewController = (PrefsViewController *)[self.navigationController topViewController];
-        ViewController.didChange = didChange;
+        ViewController.didChange = YES;
         ViewController.projTextField.text = dstProjLabel;
         ViewController.selectedProjCode =  dstProjID;
         NSDictionary *dst = [[NSDictionary alloc] initWithObjectsAndKeys: dstProjLabel ,@"label", dstProjID, @"id" , nil];
+        
+        //update recent projects data
         NSMutableArray * updatedRecentProj = [[NSMutableArray alloc] init];
         [updatedRecentProj addObject:dst];  //insert selected project to be first in the queue
         for(int i=0; i<recentProj.count && i<MAX_RECENT_PROJ-1; i++)
@@ -88,7 +88,7 @@
                 [updatedRecentProj addObject:recentProj[i]];
         }
         LoadUserDefaults();
-        setUserDefaultskey(updatedRecentProj, RECENT_PROJ_key); //store updated
+        setUserDefaultskey(updatedRecentProj, RECENT_PROJ_key); //store updated recent projects data
     }
 }
 
@@ -96,7 +96,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 2; //one section for recents, one for all the others
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -164,22 +164,26 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-   return (indexPath.section == 0);
+   return (indexPath.section == 0); //we allow "editing mode" only for the recent projects section
 }
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if(isFiltered){
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        if(isFiltered)
+        {
             NSMutableArray * temp = [[NSMutableArray alloc] initWithArray:recentProj];
             [recentProj removeAllObjects];
             NSString * label = [filteredRec objectAtIndex:indexPath.row][@"label"];
-            for(NSDictionary * pr in temp){
+            for(NSDictionary * pr in temp)
+            {
                 if (![label isEqualToString:pr[@"label"]])
                     [recentProj addObject:pr];
             }
         }
-        else{
+        else
+        {
             [recentProj removeObjectAtIndex:indexPath.row];
         }
        srcArr = [[NSMutableArray alloc] initWithArray:originalSrc]; 
@@ -241,6 +245,5 @@
 {
     [mySearchBar resignFirstResponder];
 }
-
 
 @end

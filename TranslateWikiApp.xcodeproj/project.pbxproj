@@ -29,7 +29,7 @@
 		6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6469FB9216FADED80006E765 /* PrefsViewController.m */; };
 		6478F0D7170706DE00F2F26E /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6478F0D6170706DE00F2F26E /* down_arrow.png */; };
 		6478F0D917071E5C00F2F26E /* magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 6478F0D817071E5C00F2F26E /* magnifier.png */; };
-		6478F0E217074B9900F2F26E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6478F0E117074B9900F2F26E /* SearchViewController.m */; };
+		6478F0E217074B9900F2F26E /* LanguagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6478F0E117074B9900F2F26E /* LanguagePickerViewController.m */; };
 		6478F0E5170761C400F2F26E /* ProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6478F0E4170761C400F2F26E /* ProjectBrowserViewController.m */; };
 		6478F0E817078C5A00F2F26E /* local.png in Resources */ = {isa = PBXBuildFile; fileRef = 6478F0E617078C5A00F2F26E /* local.png */; };
 		6478F0E917078C5A00F2F26E /* recent.png in Resources */ = {isa = PBXBuildFile; fileRef = 6478F0E717078C5A00F2F26E /* recent.png */; };
@@ -90,8 +90,8 @@
 		6478F0D11706E6A000F2F26E /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		6478F0D6170706DE00F2F26E /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
 		6478F0D817071E5C00F2F26E /* magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifier.png; sourceTree = "<group>"; };
-		6478F0E017074B9900F2F26E /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		6478F0E117074B9900F2F26E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		6478F0E017074B9900F2F26E /* LanguagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguagePickerViewController.h; sourceTree = "<group>"; };
+		6478F0E117074B9900F2F26E /* LanguagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguagePickerViewController.m; sourceTree = "<group>"; };
 		6478F0E3170761C300F2F26E /* ProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectBrowserViewController.h; sourceTree = "<group>"; };
 		6478F0E4170761C400F2F26E /* ProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectBrowserViewController.m; sourceTree = "<group>"; };
 		6478F0E617078C5A00F2F26E /* local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = local.png; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 		6469FB9016FADE580006E765 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6478F0E017074B9900F2F26E /* SearchViewController.h */,
-				6478F0E117074B9900F2F26E /* SearchViewController.m */,
+				6478F0E017074B9900F2F26E /* LanguagePickerViewController.h */,
+				6478F0E117074B9900F2F26E /* LanguagePickerViewController.m */,
 				6478F0E3170761C300F2F26E /* ProjectBrowserViewController.h */,
 				6478F0E4170761C400F2F26E /* ProjectBrowserViewController.m */,
 				6469FB9116FADED80006E765 /* PrefsViewController.h */,
@@ -361,7 +361,7 @@
 				6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */,
 				F19B1704170372BD009934AC /* RejectedMessage.m in Sources */,
 				6462A2E61705BF6E00E1DCD6 /* MsgCell.m in Sources */,
-				6478F0E217074B9900F2F26E /* SearchViewController.m in Sources */,
+				6478F0E217074B9900F2F26E /* LanguagePickerViewController.m in Sources */,
 				6478F0E5170761C400F2F26E /* ProjectBrowserViewController.m in Sources */,
 				64F890FA17102D36008DCCA6 /* InputPaneView.m in Sources */,
 				64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */,

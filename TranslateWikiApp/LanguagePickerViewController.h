@@ -1,5 +1,5 @@
 //
-//  SearchViewController.h
+//  LanguagePickerViewController.h
 //  TranslateWikiApp
 //
 //  Created by Or Sagi on 30/3/13.
@@ -10,7 +10,7 @@
 #import "constants.h"
 #import "PrefsViewController.h"
 
-@interface SearchViewController : UIViewController
+@interface LanguagePickerViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 {
     

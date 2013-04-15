@@ -13,7 +13,7 @@
 #import "TranslationMessageDataController.h"
 #import "TWapi.h"
 #import "ProjectBrowserViewController.h"
-#import "SearchViewController.h"
+#import "LanguagePickerViewController.h"
 
 @class TranslationMessageDataController;
 @class TWapi;
