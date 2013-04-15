@@ -9,7 +9,6 @@
 #import "TranslationMessageDataController.h"
 #import "TranslationMessage.h"
 
-
 @implementation TranslationMessageDataController
 
 - (void)initializeDefaultDataList {
@@ -58,50 +57,84 @@
     [self.masterTranslationMessageList removeObjectAtIndex:index];
 }
 
--(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof
+
+//***********************************************************
+//This method is invoked when API responses with new messages
+//***********************************************************
+-(void) handleResponse:(NSDictionary*)response Error:(NSError*)error Api:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof completionHandler:(void (^)())completionBlock
+{
+    if (error) {
+        NSLog(@"%@", error);
+        return;
+    }
+    
+    NSLog(@"%@", response);
+    
+    NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:response[@"query"][@"messagecollection"]];
+    //we expect an array, otherwise will be runtime exception
+    
+    //  BOOL stopLoop=[newData count]<numberOfMessagesRemaining;
+    
+    for (NSDictionary* msg in newData) { //insert messages to datacontroller
+        BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"properties"][@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
+        if(!isRejected){
+           // msgLimit=msgLimit-1;
+            TranslationMessage* message=[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]];
+            if(!isProof){
+                NSMutableDictionary* transAids=[api TWTranslationAidsForTitle:msg[@"title"] withProject:proj];
+                [message addSuggestionsFromResponse:transAids];
+            }
+            [self addTranslationMessageWithMessage:message];
+        }
+    }
+    _offset=_offset+newData.count;
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        completionBlock();
+    });
+    
+}
+
+//***********************************************************
+// From here we prepare and invoke API asynchronous request
+//***********************************************************
+-(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof completionHandler:(void (^)())completionBlock
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSString * tupSizeText = [defaults objectForKey:@"defaultTupleSize"];
     NSInteger numberOfMessagesRemaining = [tupSizeText integerValue];
-    while(numberOfMessagesRemaining>0)
+   // while(numberOfMessagesRemaining>0)
     {
         LoadUserDefaults();
         NSString* lang=getUserDefaultskey(LANG_key);
         NSString* proj=getUserDefaultskey(PROJ_key);
-        NSInteger queryLimit=numberOfMessagesRemaining;
-        NSMutableDictionary *result;
-        if(isProof){
-            result=[[NSMutableDictionary alloc] initWithDictionary:[ api TWTranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
+        //NSInteger queryLimit=numberOfMessagesRemaining;
+        //NSMutableDictionary *result;
+        if(isProof) //case of proofread mode;
+        {
+            __block NSInteger msgLimit = numberOfMessagesRemaining;
+            [api TWTranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:msgLimit OffsetToStart:_offset completionHandler:^(NSDictionary *response, NSError *error)
+            {
+                [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof completionHandler:completionBlock];
+            }];
         }
-        else{
-            result=[[NSMutableDictionary alloc] initWithDictionary:[ api TWUntranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset] copyItems:YES];
+      else{  //case of full translation mode
+          __block NSInteger msgLimit = numberOfMessagesRemaining;
+          [api TWUntranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:msgLimit OffsetToStart:_offset completionHandler:^(NSDictionary *response, NSError *error)
+           {
+               [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof completionHandler:completionBlock];
+           }];
+          
         }
-        LOG(result); //DEBUG
+        //LOG(result); //DEBUG
     
-        NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:result[@"query"][@"messagecollection"]];
-        //we expect an array, otherwise will be runtime exception
-        
-        BOOL stopLoop=[newData count]<numberOfMessagesRemaining;
-    
-        for (NSDictionary* msg in newData) {
-            BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"properties"][@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
-            if(!isRejected){
-                numberOfMessagesRemaining=numberOfMessagesRemaining-1;
-                TranslationMessage* message=[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]];
-                if(!isProof){
-                    NSMutableDictionary* transAids=[api TWTranslationAidsForTitle:msg[@"title"] withProject:proj];
-                    [message addSuggestionsFromResponse:transAids];
-                }
-                [self addTranslationMessageWithMessage:message];
-            }
-        }
-        _offset=_offset+queryLimit;
-        if(stopLoop)
-            break;
+             //  if(stopLoop)
+    //        break;
     }
 }
 
-+(BOOL)checkIsRejectedMessageWithRevision:(NSString*)revision byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext{
++(BOOL)checkIsRejectedMessageWithRevision:(NSString*)revision byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     [request setEntity:entity];
@@ -115,13 +148,5 @@
     }
     return [mutableFetchResults count]>0;//message was rejected iff it appears in the database
 }
-/*
--(void) removeActive(){
-    if (_activeMsgIndex>-1)
-    {
-        
-        _activeMsgIndex=-1;
-    }
-}
- */
+
 @end

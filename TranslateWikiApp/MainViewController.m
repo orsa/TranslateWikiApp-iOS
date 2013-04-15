@@ -22,6 +22,7 @@
 @synthesize managedObjectContext;
 @synthesize translationState;
 @synthesize dataController;
+//@synthesize msgTableView;
 
 
 
@@ -68,8 +69,12 @@
 
 -(void)addMessagesTuple
 {
-    [dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState];
-    [self.msgTableView reloadData];
+    __weak typeof(self) weakself = self; //avoid retain cycle
+    
+    [dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState completionHandler:^(){
+    	[weakself.msgTableView reloadData];
+    }] ;
+    
 }
 
 - (void)viewDidLoad

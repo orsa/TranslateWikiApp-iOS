@@ -21,6 +21,9 @@
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message;
 - (void)removeAllObjects;
 - (void)removeObjectAtIndex:(NSInteger)index;
-- (void)addMessagesTupleUsingApi: (TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof;
+-(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof completionHandler:(void (^)())completionBlock;
 +(BOOL)checkIsRejectedMessageWithRevision:(NSString*)revision byUserWithId:(NSString*)userid usingObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
+-(void) handleResponse:(NSDictionary*)response Error:(NSError*)error Api:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof completionHandler:(void (^)())completionBlock;
+
 @end
