@@ -96,7 +96,7 @@
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         completionBlock();
     });
-    if(!stopLoop)
+    if(!stopLoop && numberOfMessagesRemaining>0)
         [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
     
 }
