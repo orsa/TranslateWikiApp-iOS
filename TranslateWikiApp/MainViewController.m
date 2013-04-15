@@ -14,7 +14,7 @@
 
 }
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
-@property (weak, nonatomic) IBOutlet UITableView *msgTableView;
+
 @end
 
 @implementation MainViewController
@@ -22,6 +22,7 @@
 @synthesize managedObjectContext;
 @synthesize translationState;
 @synthesize dataController;
+@synthesize msgTableView;
 //@synthesize msgTableView;
 
 

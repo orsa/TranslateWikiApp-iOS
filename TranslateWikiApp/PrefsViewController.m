@@ -135,6 +135,7 @@
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
         ViewController.translationState=!state;
         [ViewController.dataController removeAllObjects];
+        [ViewController.msgTableView reloadData];
         [ViewController addMessagesTuple];
         if(ViewController.selectedIndexPath && ViewController.dataController.countOfList>0)
             ViewController.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];

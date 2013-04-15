@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property BOOL translationState;
 @property (strong, nonatomic) IBOutlet TranslationCell *trCell;
+@property (weak, nonatomic) IBOutlet UITableView *msgTableView;
 
 - (IBAction)pushPrefs:(id)sender;
 - (IBAction)pushAccept:(id)sender;

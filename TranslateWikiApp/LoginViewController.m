@@ -35,14 +35,13 @@
     NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
     LoadUserDefaults();
-    __block BOOL answered = NO;
     if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""]) //we have s.t in keychain
     { //found credentials
         
         _api.user.userName  =  nameString;
         
-       [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
-           answered = YES;
+       [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error)
+        {
            if([resultString isEqualToString:@"Success"])
            {
                //then we can skip the login screen
@@ -54,7 +53,6 @@
                [loginKC resetKeychainItem];
            }
         }]; //try login
-        while(!answered) {}
     }
     else if(getUserDefaultskey(RECENT_USER_key)!=nil)
     {
