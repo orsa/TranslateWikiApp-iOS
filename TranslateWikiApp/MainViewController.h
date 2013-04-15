@@ -30,8 +30,6 @@
 @property (retain) NSIndexPath* selectedIndexPath;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
-@property (nonatomic, retain) UITextView* initialActiveTextView;
-@property (nonatomic, retain) UITextView* activeTextView;
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -39,10 +37,8 @@
 @property (strong, nonatomic) IBOutlet TranslationCell *trCell;
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
 
-- (IBAction)pushPrefs:(id)sender;
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (void)coreDataRejectMessage;
-- (IBAction)pushMore:(id)sender;
 -(void)addMessagesTuple;
 @end

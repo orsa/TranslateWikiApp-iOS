@@ -104,11 +104,6 @@
     return cell;
 }
 
--(void)setActiveTextViewPointer:(UITextView *)newActive
-{
-    *_activeTextViewPtr=newActive;
-}
-
 -(void)removeFromList
 {
     [_container removeObjectAtIndex:[_container indexOfObject:msg]];

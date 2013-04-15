@@ -21,13 +21,9 @@
 @property (retain, nonatomic) TWapi* api;
 @property (retain, nonatomic) TranslationMessageDataController * container;
 @property (retain, nonatomic) UITableView* msgTableView;
-@property (atomic) UITextView* __strong * activeTextViewPtr;
-@property (retain, nonatomic) UITextView* initialActiveTextView;
 @property (retain, nonatomic) InputCell* inputCell;
 
 - (void)setExpanded:(NSNumber*)expNumber;
 -(void)removeFromList;
--(void)setActiveTextViewPointer:(UITextView *)newActive;
-
 
 @end

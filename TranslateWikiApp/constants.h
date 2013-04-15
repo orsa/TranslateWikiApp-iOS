@@ -37,6 +37,7 @@
 
 #define COMMONLANGUAGE_CODES @"ar", @"hy", @"be", @"bs", @"ch", @"zh", @"hr", @"cs", @"da", @"en", @"et", @"fi", @"fr", @"ka", @"de", @"el", @"he", @"hi", @"hu", @"it", @"ja", @"ko", @"ku", @"lo", @"la", @"lt", @"mk", @"ne", @"no", @"fa", @"sk", @"th", @"bo", @"ur", @"yi", nil //35 items
 
+#define alertMessages @{@"NoName": @"You left the user name field empty", @"Illegal":@"You provided an illegal user name", @"NotExists":@"The user name you provided doesn't exist", @"EmptyPass": @"You left the password field empty", @"WrongPass": @"The password you provided is incorrect", @"WrongPluginPass": @"Authentication plugin rejected the password", @"CreateBlocked": @"The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation", @"Throttled": @"You've logged in too many times in a short time. Please wait 5 minutes.", @"Blocked": @"Can't login. User is blocked"}
 
 //code snippets
 #define myAppDelegate       [[UIApplication sharedApplication] delegate]

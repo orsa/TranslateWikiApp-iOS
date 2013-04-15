@@ -45,9 +45,6 @@
     self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
     HideNetworkActivityIndicator();
     [super viewWillAppear:animated];
-    //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
-    if(translationState)
-        _initialActiveTextView=_activeTextView=[[UITextView alloc] init];
     
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
@@ -96,15 +93,6 @@
 
 #pragma mark - Table view data source
 
-//-(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
-//    if(translationState && self.activeTextView!=self.initialActiveTextView){
-//        [_activeTextView resignFirstResponder];
-//        if([[_activeTextView text] isEqualToString:@""])
-//            [_activeTextView setText:@"your translation..."];
-//        _activeTextView=_initialActiveTextView;
-//    }
-//}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -135,8 +123,6 @@
             trMsgCell.msg=[dataController objectInListAtIndex:indexPath.row];
             trMsgCell.container=dataController;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
-            trMsgCell.activeTextViewPtr=&_activeTextView;
-            trMsgCell.initialActiveTextView=_initialActiveTextView;
             trMsgCell.msgTableView=self.msgTableView;
             
             float h1 = trMsgCell.inputTable.rowHeight*(trMsgCell.msg.suggestions.count+1) + 1;
@@ -241,7 +227,6 @@
     else
     {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
-        // NSInteger previousCount=[tableData count];
         [self addMessagesTuple];
     }
 }
@@ -281,6 +266,11 @@
             [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
             [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
         }*/
+        if(!success || error){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Couldn't accept this message." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            NSLog(@"%@", error);
+        }
         
     }]; 
     
@@ -312,19 +302,14 @@
     NSError *error = nil;
     if (![managedObjectContext save:&error]) {
         // Handle the error.
+        NSLog(@"%@", error);
     }
-}
-
-- (IBAction)pushMore:(id)sender {
-    
-    
 }
 
 - (IBAction)LogoutButton:(id)sender {
     [_api TWLogoutRequest:^(NSDictionary* response, NSError* error){
-        
-         // handle errors
-        
+        //Handle the error
+        NSLog(@"%@", error);
     }];
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     [loginKC resetKeychainItem];
@@ -336,11 +321,6 @@
     selectedIndexPath = nil;
     [dataController removeAllObjects];
     [self.msgTableView reloadData];
-}
-
-- (IBAction)pushPrefs:(id)sender
-{
-    
 }
 
 @end

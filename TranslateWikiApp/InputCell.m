@@ -44,7 +44,6 @@
     }
     
     [inputText setTextColor:[UIColor blackColor]];
-    [_father setActiveTextViewPointer:inputText];
 }
 
 -(void)textViewDidEndEditing:(UITextView*)textView
@@ -91,7 +90,5 @@
     [inputText resignFirstResponder];
     
     [_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
-    
-    [_father setActiveTextViewPointer:[_father initialActiveTextView]];
 }
 @end

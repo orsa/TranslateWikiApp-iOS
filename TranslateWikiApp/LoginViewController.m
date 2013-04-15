@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "constants.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -42,12 +43,21 @@
         
        [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error)
         {
-           if([resultString isEqualToString:@"Success"])
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            if(error){//request error
+                alert.message=@"Couldn't complete request. Please check your connectivity.";
+                [alert show];
+            }
+            else if([resultString isEqualToString:@"Success"])
            {
                //then we can skip the login screen
                _userName = nameString;
                [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
            }
+            else if(alertMessages[resultString]!=nil){
+                alert.message=alertMessages[resultString];
+                [alert show];
+            }
            else
            { //login fail, need to re-login and update credentals
                [loginKC resetKeychainItem];
@@ -84,10 +94,19 @@
     //[_api TWLoginRequestWithPassword:passwString]; //login via API
      [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
          _ResultLabel.text = resultString;
-         if([ _ResultLabel.text isEqualToString:@"Success"])
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+         if(error){//request error
+             alert.message=@"Couldn't complete request. Please check your connectivity.";
+             [alert show];
+         }
+         else if([resultString isEqualToString:@"Success"])
          {
              [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
              [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
+         }
+         else if(alertMessages[resultString]!=nil){
+             alert.message=alertMessages[resultString];
+             [alert show];
          }
          else
              HideNetworkActivityIndicator();
