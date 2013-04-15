@@ -81,8 +81,12 @@
            // msgLimit=msgLimit-1;
             TranslationMessage* message=[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]];
             if(!isProof){
-                NSMutableDictionary* transAids=[api TWTranslationAidsForTitle:msg[@"title"] withProject:proj];
-                [message addSuggestionsFromResponse:transAids];
+                [api TWTranslationAidsForTitle:msg[@"title"] withProject:proj completionHandler:^(NSDictionary* transAids, NSError* error){
+                    [message addSuggestionsFromResponse:transAids[@"helpers"]];
+                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                        completionBlock();});
+                }];
+                
             }
             [self addTranslationMessageWithMessage:message];
         }

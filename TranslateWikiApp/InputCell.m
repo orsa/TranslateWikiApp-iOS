@@ -83,7 +83,11 @@
 }
 
 - (IBAction)pushSendBtn:(id)sender {
-    [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text]];
+    [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(BOOL success, NSError * error){
+        
+        //check errors etc.
+        
+    }];
     [inputText resignFirstResponder];
     
     [_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.

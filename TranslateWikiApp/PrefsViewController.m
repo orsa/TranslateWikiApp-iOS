@@ -25,6 +25,8 @@
 @synthesize didChange;
 @synthesize selectedProjCode;
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,7 +37,12 @@
     
     arrLang = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
     arrLangCodes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
-    arrProj = [_api TWProjectListMaxDepth:0]; //requesting project list via api - level-0 only
+    [_api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
+        arrProj = [NSArray arrayWithArray:newArrProj];
+        LoadUserDefaults();
+        projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
+        selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+    }]; //requesting project list via api - level-0 only
     //LOG(arrProj); //Debug
     
     didChange = NO;
@@ -44,8 +51,8 @@
    //load from NSUserDefaults
     LoadUserDefaults();
     langTextField.text = [arrLang objectAtIndex:[arrLangCodes indexOfObject:getUserDefaultskey(LANG_key)]];
-    projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
-    selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+    //projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
+    //selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
     tupleSizeTextView.text = getUserDefaultskey(TUPSIZE_key);
     bool state = getBoolUserDefaultskey(PRMODE_key);
     [proofreadOnlySwitch setOn:state animated:NO];

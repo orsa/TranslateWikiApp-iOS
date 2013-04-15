@@ -272,12 +272,17 @@
 
 - (IBAction)pushAccept:(id)sender
 {
-    bool success = [_api TWTranslationReviewRequest:[dataController objectInListAtIndex:selectedIndexPath.row].revision]; //accept this translation via API
-    if (success)
-    {
-        [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
-        [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
-    }
+    //accept this translation via API
+    [_api TWTranslationReviewRequest:[dataController objectInListAtIndex:selectedIndexPath.row].revision completionHandler:^(BOOL success, NSError * error){
+        
+       /* if (success)
+        {
+            [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
+            [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
+        }*/
+        
+    }]; 
+    
     
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
@@ -315,9 +320,14 @@
 }
 
 - (IBAction)LogoutButton:(id)sender {
-    [_api TWLogoutRequest];
+    [_api TWLogoutRequest:^(NSDictionary* response, NSError* error){
+        
+         // handle errors
+        
+    }];
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     [loginKC resetKeychainItem];
+    
 }
 
 - (IBAction)clearMessages:(UIButton *)sender

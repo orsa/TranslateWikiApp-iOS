@@ -35,22 +35,26 @@
     NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
     LoadUserDefaults();
-    if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""])
+    __block BOOL answered = NO;
+    if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""]) //we have s.t in keychain
     { //found credentials
         
         _api.user.userName  =  nameString;
         
-        NSString *resultString = [_api TWLoginRequestWithPassword:passwString]; //try login
-        if([resultString isEqualToString:@"Success"])
-        {
-            //then we can skip the login screen
-            _userName = nameString;
-            [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
-        }
-        else
-        { //login fail, need to re-login and update credentals
-            [loginKC resetKeychainItem];
-        }
+       [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
+           answered = YES;
+           if([resultString isEqualToString:@"Success"])
+           {
+               //then we can skip the login screen
+               _userName = nameString;
+               [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
+           }
+           else
+           { //login fail, need to re-login and update credentals
+               [loginKC resetKeychainItem];
+           }
+        }]; //try login
+        while(!answered) {}
     }
     else if(getUserDefaultskey(RECENT_USER_key)!=nil)
     {
@@ -61,6 +65,7 @@
     {
         [_usernameText becomeFirstResponder]; //set focus on username text field 
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,15 +83,17 @@
     NSString *passwString = _password;
     _api.user.userName = nameString;
 
-    _ResultLabel.text = [_api TWLoginRequestWithPassword:passwString]; //login via API
-    
-    if([ self.ResultLabel.text isEqualToString:@"Success"])
-    {
-        [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
-        [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
-    }
-    else
-        HideNetworkActivityIndicator();
+    //[_api TWLoginRequestWithPassword:passwString]; //login via API
+     [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
+         _ResultLabel.text = resultString;
+         if([ _ResultLabel.text isEqualToString:@"Success"])
+         {
+             [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
+             [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
+         }
+         else
+             HideNetworkActivityIndicator();
+     }];
 }
 
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString
