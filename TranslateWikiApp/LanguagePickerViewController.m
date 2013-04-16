@@ -27,6 +27,7 @@
 @synthesize didChange;
 @synthesize dstLang;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -157,7 +158,14 @@
             else
                 cell.textLabel.text = srcArr[indexPath.row];
             break;
+            
     }
+    NSArray * codes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
+    NSArray * names = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:codes[[names indexOfObject:cell.textLabel.text]]];
+    NSString *translated = [locale displayNameForKey:NSLocaleIdentifier value:codes[[names indexOfObject:cell.textLabel.text]]];
+    cell.detailTextLabel.text = translated;
+    
     return cell;
 }
 

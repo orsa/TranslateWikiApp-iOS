@@ -52,6 +52,7 @@
     NSArray * arr = [NSArray arrayWithObjects: st, nil];
     setUserDefaultskey(arr, @"AppleLanguages");
     [[NSUserDefaults standardUserDefaults] synchronize];
+    msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, 210, 0); //make room for keyboard
 }
 
 - (void)awakeFromNib
@@ -174,6 +175,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES]; 
+    
     if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
         if (translationState)

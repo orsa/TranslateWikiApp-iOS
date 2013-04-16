@@ -305,19 +305,16 @@
                             <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="C5J-Ki-FOK">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="373" type="user" id="pMf-wL-IlW"/>
-                                </constraints>
                                 <prototypes>
-                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rec" textLabel="unD-HM-wsr" imageView="1rB-Xa-ybm" rowHeight="30" style="IBUITableViewCellStyleDefault" id="K9P-cQ-NMe">
+                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rec" textLabel="unD-HM-wsr" detailTextLabel="2cd-Zr-GPa" imageView="1rB-Xa-ybm" rowHeight="30" style="IBUITableViewCellStyleValue1" id="K9P-cQ-NMe">
                                         <rect key="frame" x="0.0" y="22" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="unD-HM-wsr">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="unD-HM-wsr">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
@@ -325,22 +322,27 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="34" height="29"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cd-Zr-GPa">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="loc" textLabel="Ugx-cE-1zk" imageView="of9-cw-Wd5" rowHeight="30" style="IBUITableViewCellStyleDefault" id="aIP-3A-GZD">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="loc" textLabel="Ugx-cE-1zk" detailTextLabel="6LZ-wP-c1s" imageView="of9-cw-Wd5" rowHeight="30" style="IBUITableViewCellStyleValue1" id="aIP-3A-GZD">
                                         <rect key="frame" x="0.0" y="52" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="Ugx-cE-1zk">
-                                                    <rect key="frame" x="43" y="0.0" width="267" height="29"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" id="Ugx-cE-1zk">
+                                                    <rect key="frame" x="43" y="4" width="35" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
@@ -348,21 +350,31 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="33" height="29"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LZ-wP-c1s">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="33" reuseIdentifier="a" textLabel="c61-2O-NtK" rowHeight="30" style="IBUITableViewCellStyleDefault" id="CEl-dF-64C">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="33" reuseIdentifier="a" textLabel="c61-2O-NtK" detailTextLabel="qZ0-en-fzv" rowHeight="30" style="IBUITableViewCellStyleValue1" id="CEl-dF-64C">
                                         <rect key="frame" x="0.0" y="82" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c61-2O-NtK">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="c61-2O-NtK">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ0-en-fzv">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
@@ -380,11 +392,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9bE-Wq-7ui" firstAttribute="trailing" secondItem="GuA-4l-YDj" secondAttribute="trailing" type="default" id="8pJ-CJ-Dvb"/>
+                            <constraint firstItem="C5J-Ki-FOK" firstAttribute="bottom" secondItem="GuA-4l-YDj" secondAttribute="bottom" type="user" id="Eif-D0-EuH"/>
                             <constraint firstItem="9bE-Wq-7ui" firstAttribute="top" secondItem="GuA-4l-YDj" secondAttribute="top" type="default" id="NyU-6T-96a"/>
+                            <constraint firstItem="C5J-Ki-FOK" firstAttribute="top" secondItem="GuA-4l-YDj" secondAttribute="top" constant="43" type="user" id="Y0x-nZ-wlT"/>
                             <constraint firstItem="9bE-Wq-7ui" firstAttribute="leading" secondItem="GuA-4l-YDj" secondAttribute="leading" type="default" id="cBU-zz-Id1"/>
                             <constraint firstItem="C5J-Ki-FOK" firstAttribute="leading" secondItem="GuA-4l-YDj" secondAttribute="leading" type="default" id="fYI-16-oRh"/>
                             <constraint firstItem="C5J-Ki-FOK" firstAttribute="trailing" secondItem="GuA-4l-YDj" secondAttribute="trailing" type="default" id="oUC-dt-sDH"/>
-                            <constraint firstItem="C5J-Ki-FOK" firstAttribute="top" secondItem="GuA-4l-YDj" secondAttribute="top" constant="43" type="user" id="uDx-zJ-xby"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sCB-GM-27A"/>
@@ -468,7 +481,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pushPrefs:" destination="4Xz-Nx-oCb" eventType="touchUpInside" id="OuB-5h-xWW"/>
                                     <segue destination="4bw-jd-BhM" kind="push" identifier="showPrefs" id="ffg-RV-9Gc"/>
                                 </connections>
                             </button>
@@ -479,7 +491,7 @@
                                     <constraint firstAttribute="width" constant="30" id="Cf4-XD-COd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" image="magnifier_small.png">
+                                <state key="normal" image="mag_grey.png">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -490,6 +502,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="0NY-zg-2yL">
                                 <color key="backgroundColor" red="0.82678168659999995" green="0.84073859650000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
@@ -778,7 +791,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="aSW-17-g9F"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="flK-4I-Mkg">
@@ -860,9 +873,6 @@
                             </searchBar>
                             <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QUk-HI-CQe">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="373" type="user" id="uZ0-5q-TI2"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rec" textLabel="YuA-sY-isS" imageView="KBK-1a-rF9" rowHeight="30" style="IBUITableViewCellStyleDefault" id="xQK-vh-1Ox">
                                         <rect key="frame" x="0.0" y="22" width="320" height="30"/>
@@ -912,11 +922,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QUk-HI-CQe" firstAttribute="top" secondItem="fDC-Is-wtA" secondAttribute="top" constant="43" type="user" id="4NK-lu-KCH"/>
                             <constraint firstItem="QUk-HI-CQe" firstAttribute="leading" secondItem="fDC-Is-wtA" secondAttribute="leading" type="default" id="CLQ-7n-Jpo"/>
                             <constraint firstItem="QUk-HI-CQe" firstAttribute="trailing" secondItem="fDC-Is-wtA" secondAttribute="trailing" type="default" id="CPd-5z-uIq"/>
                             <constraint firstItem="ith-33-G7f" firstAttribute="top" secondItem="fDC-Is-wtA" secondAttribute="top" type="default" id="EPq-pT-BEU"/>
                             <constraint firstItem="ith-33-G7f" firstAttribute="leading" secondItem="fDC-Is-wtA" secondAttribute="leading" type="default" id="FMm-ww-1sA"/>
+                            <constraint firstItem="QUk-HI-CQe" firstAttribute="top" secondItem="fDC-Is-wtA" secondAttribute="top" constant="43" type="user" id="QBz-Pc-No7"/>
+                            <constraint firstItem="QUk-HI-CQe" firstAttribute="bottom" secondItem="fDC-Is-wtA" secondAttribute="bottom" type="user" id="bYc-Tq-Bpw"/>
                             <constraint firstItem="ith-33-G7f" firstAttribute="trailing" secondItem="fDC-Is-wtA" secondAttribute="trailing" type="default" id="uh6-be-pGn"/>
                         </constraints>
                     </view>
@@ -940,11 +951,103 @@
         <image name="imgres.jpeg" width="192" height="256"/>
         <image name="local.png" width="158" height="138"/>
         <image name="logout_icon.png" width="36" height="36"/>
-        <image name="magnifier_small.png" width="28" height="28"/>
+        <image name="mag_grey.png" width="31" height="29"/>
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
         <image name="settings_icon_small.png" width="28" height="28"/>
     </resources>
+    <classes>
+        <class className="InputCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushSendBtn:"/>
+                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="LanguagePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PushMessages" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="mainTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="trCell" candidateClass="TranslationCell"/>
+            </relationships>
+        </class>
+        <class className="MsgCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="restoreDefaults:"/>
+                <relationship kind="action" name="touchSwitch:"/>
+                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="proofreadOnlySwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProjectBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
+                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="TranslationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
