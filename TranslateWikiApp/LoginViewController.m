@@ -41,30 +41,26 @@
         
         _api.user.userName  =  nameString;
         
-       [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error)
+        __block BOOL isDone=NO;
+        [_api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            if(error){//request error
-                alert.message=@"Couldn't complete request. Please check your connectivity.";
-                [alert show];
-            }
-            else if([resultString isEqualToString:@"Success"])
+            isDone=YES;
+            if([resultString isEqualToString:@"Success"])
            {
                //then we can skip the login screen
                _userName = nameString;
                [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
            }
-            else if(alertMessages[resultString]!=nil){
-                alert.message=alertMessages[resultString];
-                [alert show];
-            }
            else
            { //login fail, need to re-login and update credentals
                [loginKC resetKeychainItem];
            }
         }]; //try login
+        while(!isDone){
+            [NSThread sleepForTimeInterval:1];
+        }
     }
-    else if(getUserDefaultskey(RECENT_USER_key)!=nil)
+    else if(getUserDefaultskey(RECENT_USER_key)!=nil)//known user but not password
     {
         _usernameText.text = getUserDefaultskey(RECENT_USER_key);
         [_passwordText becomeFirstResponder];
@@ -108,8 +104,7 @@
              alert.message=alertMessages[resultString];
              [alert show];
          }
-         else
-             HideNetworkActivityIndicator();
+         HideNetworkActivityIndicator();
      }];
 }
 
