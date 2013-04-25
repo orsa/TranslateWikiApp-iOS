@@ -3,7 +3,7 @@
 //  TranslateWikiApp
 //
 //  Created by Or Sagi on 22/1/13.
-//  Copyright (c) 2013 translatewiki.net. All rights reserved.
+//  Copyright 2013 Or Sagi, Tomer Tuchner
 //
 
 #import <Foundation/Foundation.h>

@@ -3,7 +3,7 @@
 //  TranslateWikiApp
 //
 //  Created by Or Sagi on 31/12/12.
-//  Copyright (c) 2012 translatewiki.net. All rights reserved.
+//  Copyright 2013 Or Sagi, Tomer Tuchner
 //
 
 #import <UIKit/UIKit.h>
