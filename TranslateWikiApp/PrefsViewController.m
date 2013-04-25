@@ -154,6 +154,7 @@
         ViewController.translationState=!state;
         [ViewController.dataController removeAllObjects];
         [ViewController.msgTableView reloadData];
+        [ViewController clearTextBoxes];
         [ViewController addMessagesTuple];
         if(ViewController.selectedIndexPath && ViewController.dataController.countOfList>0)
             ViewController.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];

@@ -79,6 +79,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _transCells=[[NSMutableSet alloc] init];
     if (!_api.user.isLoggedin)
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
@@ -120,6 +121,8 @@
             {
                 trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
             }
+            [_transCells addObject:trMsgCell];
+            
             trMsgCell.api=_api;
             trMsgCell.msg=[dataController objectInListAtIndex:indexPath.row];
             trMsgCell.container=dataController;
@@ -255,6 +258,15 @@
     }else if (indexPath.row<dataController.countOfList && dataController.countOfList>0)
         return 65;  //unexpanded cell height
     return 50;
+}
+
+-(void)clearTextBoxes
+{
+    for(id obj in _transCells){
+        TranslationCell* transCell=(TranslationCell*)obj;
+        [transCell clearTextBox];
+    }
+    [_transCells removeAllObjects];
 }
 
 #pragma mark - button actions

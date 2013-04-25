@@ -34,11 +34,12 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property BOOL translationState;
-@property (strong, nonatomic) IBOutlet TranslationCell *trCell;
+@property (nonatomic, copy) NSMutableSet* transCells;//needed for initializing textboxes after preferences change
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
 
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (void)coreDataRejectMessage;
 -(void)addMessagesTuple;
+-(void)clearTextBoxes;
 @end

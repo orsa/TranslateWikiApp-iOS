@@ -50,8 +50,7 @@
 {
     if([[inputText text] isEqualToString:@""])
     {
-        [inputText setTextColor:[UIColor lightGrayColor]];
-        [inputText setText:@"Your translation"];
+        [_father clearTextBox];
     }
     [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, 50, BtnView.frame.size.height)];

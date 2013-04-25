@@ -45,19 +45,19 @@
         [_api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
             isDone=YES;
-            if([resultString isEqualToString:@"Success"])
+            if(error==nil && [resultString isEqualToString:@"Success"])
            {
                //then we can skip the login screen
                _userName = nameString;
                [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
            }
            else
-           { //login fail, need to re-login and update credentals
+           { //login fail, need to re-login and update credentials
                [loginKC resetKeychainItem];
            }
         }]; //try login
         while(!isDone){
-            [NSThread sleepForTimeInterval:1];
+            [NSThread sleepForTimeInterval:0.1];
         }
     }
     else if(getUserDefaultskey(RECENT_USER_key)!=nil)//known user but not password

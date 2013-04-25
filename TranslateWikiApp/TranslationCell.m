@@ -107,9 +107,14 @@
 -(void)removeFromList
 {
     [_container removeObjectAtIndex:[_container indexOfObject:msg]];
-    [inputCell.inputText setText:@"Your Translation"];
-    [inputCell.inputText setTextColor:[UIColor grayColor]];
+    [self clearTextBox];
     [_msgTableView reloadData];
+}
+
+-(void)clearTextBox
+{
+    [inputCell.inputText setText:@"Your translation"];
+    [inputCell.inputText setTextColor:[UIColor lightGrayColor]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
