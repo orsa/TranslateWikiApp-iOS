@@ -32,7 +32,6 @@
 
 @synthesize langTextField;
 @synthesize projTextField;
-@synthesize proofreadOnlySwitch;
 @synthesize tupleSizeTextView;
 @synthesize didChange;
 @synthesize selectedProjCode;
@@ -79,8 +78,6 @@
     
     //load from NSUserDefaults
     tupleSizeTextView.text = getUserDefaultskey(TUPSIZE_key);
-    bool state = getBoolUserDefaultskey(PRMODE_key);
-    [proofreadOnlySwitch setOn:state animated:NO];
     
 }
 
@@ -160,18 +157,19 @@
         setUserDefaultskey([self getNewProj], PROJ_key);
         if (![tupleSizeTextView.text isEqualToString:@""])
             setUserDefaultskey(tupleSizeTextView.text, TUPSIZE_key);
-        BOOL state = [proofreadOnlySwitch isOn];
-        setBoolUserDefaultskey(state, PRMODE_key);
+
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
-        ViewController.translationState=!state;
-        [ViewController.dataController removeAllObjects];
-        [ViewController.msgTableView reloadData];
-        [ViewController clearTextBoxes];
-        [ViewController addMessagesTuple];
-        if(ViewController.selectedIndexPath && ViewController.dataController.countOfList>0)
-            ViewController.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-        else
-            ViewController.selectedIndexPath=nil;
+        if (ViewController.class == [MainViewController class])
+        {
+            [ViewController.dataController removeAllObjects];
+            [ViewController.msgTableView reloadData];
+            [ViewController clearTextBoxes];
+            [ViewController addMessagesTuple];
+            if(ViewController.selectedIndexPath && ViewController.dataController.countOfList>0)
+                ViewController.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+            else
+                ViewController.selectedIndexPath=nil;
+        }
     }
 }
 
@@ -225,49 +223,80 @@
     return YES;
 }
 
+-(IBAction)logout:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Do you really want to log out?" delegate:self cancelButtonTitle:@"Oh, no" otherButtonTitles:@"Yes",nil];
+    [alert setTag:1];
+    [alert show];
+}
+
 -(IBAction)restoreDefaults:(id)sender
 {   //show alert
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Do you really mean that?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+    [alert setTag:2];
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 1)  //clicked ok at the alert
-    {
-        NSString* lang=PREFERRED_LANG(0);
-        NSString* proj=@"!recent";
-        NSString* tuple=INITIAL_TUPLE_SIZE;
-        BOOL mode=YES;//proofread ON
-        
-        selectedProjCode=proj;
-        projTextField.text=@"Recent translations";
-        langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
-        tupleSizeTextView.text=tuple;
-        [proofreadOnlySwitch setOn:mode animated:YES];
-        didChange=YES;
+    switch (alertView.tag) {
+        case 1:
+            if (buttonIndex == 1)  //clicked ok at the alert
+            {
+                [_api TWLogoutRequest:^(NSDictionary* response, NSError* error){
+                    //Handle the error
+                    NSLog(@"%@", error);
+                }];
+                KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
+                [loginKC resetKeychainItem];
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            break;
+        case 2:
+            if (buttonIndex == 1)  //clicked ok at the alert
+            {
+                NSString* lang=PREFERRED_LANG(0);
+                NSString* proj=@"!recent";
+                NSString* tuple=INITIAL_TUPLE_SIZE;
+                
+                selectedProjCode=proj;
+                projTextField.text=@"Recent translations";
+                langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
+                tupleSizeTextView.text=tuple;
+                didChange=YES;
+            }
+            break;
+        default:
+            break;
     }
     
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(5.0, 198, 300, 80)];
-    UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-
-    myButton.frame = CGRectMake(8, 0, 200, 40);
-    //[myButton setBackgroundColor:[UIColor redColor]];
-    [myButton setTintColor:[UIColor redColor]];
-    [myButton setTitle:@"Restore Defaults" forState:UIControlStateNormal];
-    [myButton addTarget:self action:@selector(restoreDefaults:) forControlEvents:UIControlEventTouchUpInside];
+    UIView* customFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, 300, 200)];
+    UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [customFooterView addSubview:myButton];
+    logoutButton.frame = CGRectMake(9, 10, 300, 35);
+    resetButton.frame = CGRectMake(9, 50, 300, 35);
+    
+    [logoutButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
+    [resetButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
+    
+    [logoutButton setTitleColor:[UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1] forState:UIControlStateNormal];
+    [resetButton setTitleColor:[UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1] forState:UIControlStateNormal];
+    
+    [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+    [resetButton setTitle:@"Restore Defaults" forState:UIControlStateNormal];
+    
+    [logoutButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    [resetButton addTarget:self action:@selector(restoreDefaults:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [customFooterView addSubview:logoutButton];
+    [customFooterView addSubview:resetButton];
     
     return customFooterView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 53.0;
 }
 
 @end

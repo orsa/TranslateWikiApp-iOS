@@ -20,6 +20,7 @@
 
 #import "MainViewController.h"
 
+@class MenuView;
 
 @interface MainViewController ()
 {
@@ -35,8 +36,7 @@
 @synthesize translationState;
 @synthesize dataController;
 @synthesize msgTableView;
-//@synthesize msgTableView;
-
+@synthesize menuView;
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -53,10 +53,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
     HideNetworkActivityIndicator();
-    [super viewWillAppear:animated];
+    menuView.mainVC=self;
+    [menuView setHidden:YES];
+    [menuView setFrame:CGRectMake(0, 31, 31, 0)];
+    
+    [self.view bringSubviewToFront:menuView];
+    //[menuView reloadInputViews];
     
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
@@ -92,6 +98,8 @@
 {
     [super viewDidLoad];
     _transCells=[[NSMutableSet alloc] init];
+    [menuView setHidden:YES];
+    [menuView setFrame:CGRectMake(0, 31, 31, 0)];
     if (!_api.user.isLoggedin)
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
@@ -320,6 +328,25 @@
     if([self.dataController countOfList]<1) [self addMessagesTuple];
 }
 
+- (IBAction)openMenu:(id)sender {
+    [self.view bringSubviewToFront:menuView];
+    if (menuView.hidden){
+        [menuView setHidden:NO];
+        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 200, 120)]; } completion:nil];
+    }
+    else{
+        
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 31, 0)]; } completion:^(BOOL comp){
+            if (comp) [menuView setHidden:YES];
+        }];
+        
+    }
+}
+
+- (IBAction)pushPrefs:(id)sender {
+    [self performSegueWithIdentifier:@"showPrefs" sender:self];
+}
+
 -(void)coreDataRejectMessage{
     RejectedMessage *mess = (RejectedMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext];
     
@@ -343,7 +370,7 @@
     
 }
 
-- (IBAction)clearMessages:(UIButton *)sender
+- (IBAction)clearMessages:(id)sender
 {
     selectedIndexPath = nil;
     [dataController removeAllObjects];

@@ -34,6 +34,12 @@
 @implementation LoginViewController
 @synthesize managedObjectContext;
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

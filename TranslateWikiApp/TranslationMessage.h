@@ -20,7 +20,6 @@
 @property(nonatomic)BOOL isAccepted;
 @property(nonatomic)NSInteger acceptCount;
 
-
 -(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withProject:(NSString*)proj withKey:(NSString*)k withRevision:(NSString*)rev withTitle:(NSString*)mTitle withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac;
 -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids;
 /*

@@ -16,29 +16,32 @@
 #import "TWapi.h"
 #import "KeychainItemWrapper.h"
 #import "MsgCell.h"
-#import "InputPaneView.h"
 #import "TranslationCell.h"
 #import "InputCell.h"
+#import "MenuView.h"
 
 @class TranslationMessageDataController;
 @class TWUser;
+@class MenuView;
 
 @interface MainViewController : UIViewController<UITableViewDataSource>{
     NSManagedObjectContext *managedObjectContext;
 }
 
 @property (retain) NSIndexPath* selectedIndexPath;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *PushMessages;
 @property (nonatomic, retain) TranslationMessageDataController * dataController;
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property BOOL translationState;
 @property (nonatomic, copy) NSMutableSet* transCells;//needed for initializing textboxes after preferences change
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
+@property (weak, nonatomic) IBOutlet MenuView *menuView;
 
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
+- (IBAction)openMenu:(id)sender;
+- (IBAction)pushPrefs:(id)sender;
+- (IBAction)clearMessages:(id)sender;
 - (void)coreDataRejectMessage;
 -(void)addMessagesTuple;
 -(void)clearTextBoxes;
