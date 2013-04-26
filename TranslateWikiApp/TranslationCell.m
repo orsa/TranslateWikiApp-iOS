@@ -127,6 +127,7 @@
 {
     [inputCell.inputText setText:@"Your translation"];
     [inputCell.inputText setTextColor:[UIColor lightGrayColor]];
+    [inputCell.sendBtn setUserInteractionEnabled:NO];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
