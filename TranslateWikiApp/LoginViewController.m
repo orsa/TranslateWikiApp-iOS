@@ -108,10 +108,10 @@
     //[_api TWLoginRequestWithPassword:passwString]; //login via API
      [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
          _ResultLabel.text = resultString;
-         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+         LoadDefaultAlertView();
          if(error){//request error
-             alert.message=@"Couldn't complete request. Please check your connectivity.";
-             [alert show];
+             AlertSetMessage(@"Couldn't complete request. Please check your connectivity.");
+             AlertShow();
          }
          else if([resultString isEqualToString:@"Success"])
          {
@@ -119,8 +119,8 @@
              [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
          }
          else if(alertMessages[resultString]!=nil){
-             alert.message=alertMessages[resultString];
-             [alert show];
+             AlertSetMessage(alertMessages[resultString]);
+             AlertShow();
          }
          HideNetworkActivityIndicator();
      }];

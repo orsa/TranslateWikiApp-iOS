@@ -34,15 +34,37 @@
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];
+    _isExpanded=exp;
     srcLabel.numberOfLines = (exp?0:1);
-
+    
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
 
-    float h = [TranslationCell optimalHeightForLabel:srcLabel];
+    float sourceH = max([TranslationCell optimalHeightForLabel:srcLabel], 50);
+    if(!exp)
+        sourceH=50;
     [srcLabel sizeToFit];
     
-    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h:28));
-    frameImg.frame = CGRectMake(4, (exp?h+2:25), self.frame.size.width - 4, (exp?self.frame.size.height-h-10:25));
+    frameImg.transform = CGAffineTransformIdentity;
+    inputTable.transform = CGAffineTransformIdentity;
+    
+    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width, sourceH);
+    
+    float tableHeight=[self tableHeight];
+    
+    frameImg.frame = CGRectMake(frameImg.frame.origin.x,
+                                          srcLabel.frame.size.height,
+                                          frameImg.frame.size.width,
+                                          tableHeight+16);
+    inputTable.frame = CGRectMake(inputTable.frame.origin.x,
+                                            frameImg.frame.origin.y + 13 ,
+                                            inputTable.frame.size.width,
+                                            tableHeight);
+    
+    for(id obj in _suggestionLabels){
+        UILabel* label=(UILabel*)obj;
+        label.numberOfLines=(exp?0:1);
+        [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
+    }
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable
@@ -56,6 +78,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        _isExpanded=FALSE;
+        _suggestionLabels=[[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -64,7 +88,8 @@
 {
     self = [super init];
     if (self) {
-        
+        _isExpanded=FALSE;
+        _suggestionLabels=[[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -75,6 +100,22 @@
 
 }
 
+
+-(void)removeFromList
+{
+    [_container removeObjectAtIndex:[_container indexOfObject:msg]];
+    [self clearTextBox];
+    [_msgTableView reloadData];
+}
+
+-(void)clearTextBox
+{
+    [inputCell.inputText setText:@"Your translation"];
+    [inputCell.inputText setTextColor:[UIColor lightGrayColor]];
+    [inputCell.sendBtn setUserInteractionEnabled:NO];
+}
+
+#pragma mark inputTable
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -98,6 +139,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:suggestCellIdentifier];
         }
         cell.textLabel.text = msg.suggestions[indexPath.row][@"suggestion"];
+        [_suggestionLabels addObject:cell.textLabel];
     }
     else
     {
@@ -114,20 +156,6 @@
     }
     
     return cell;
-}
-
--(void)removeFromList
-{
-    [_container removeObjectAtIndex:[_container indexOfObject:msg]];
-    [self clearTextBox];
-    [_msgTableView reloadData];
-}
-
--(void)clearTextBox
-{
-    [inputCell.inputText setText:@"Your translation"];
-    [inputCell.inputText setTextColor:[UIColor lightGrayColor]];
-    [inputCell.sendBtn setUserInteractionEnabled:NO];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,5 +178,22 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BOOL isValid=indexPath.row<(msg.suggestions.count+1);
+    if(!isValid)
+        return 50;
+    if(indexPath.row<msg.suggestions.count){
+        if(!_isExpanded)
+            return 50;//unexpanded suggestion cell
+        return max([msg.suggestions[indexPath.row][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
+    }
+    else
+        return 50;//textView height, expanded and unexpanded
+}
+
+-(CGFloat)tableHeight{
+    [inputTable layoutIfNeeded];
+    return [inputTable contentSize].height;
+}
 
 @end

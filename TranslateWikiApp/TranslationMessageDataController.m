@@ -60,6 +60,10 @@
     [self.masterTranslationMessageList addObject:message];
 }
 
+- (BOOL)isEmpty{
+    return [self countOfList]==0;
+}
+
 - (void)removeAllObjects{
     [self.masterTranslationMessageList removeAllObjects];
     _offset=0;
@@ -107,6 +111,13 @@
     
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         completionBlock();
+        if([self isEmpty]){//if no messages were found, output an alert
+            //need to get correct project name and language name
+            LoadDefaultAlertView();
+            NSString* alertMessage=[NSString stringWithFormat:@"No messages were found for project \"%@\" and language %@, in %@ mode", proj, lang, isProof ? @"proofread" : @"translation"];
+            AlertSetMessage(alertMessage);
+            AlertShow();
+        }
     });
     if(!stopLoop && numberOfMessagesRemaining>0)
         [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];

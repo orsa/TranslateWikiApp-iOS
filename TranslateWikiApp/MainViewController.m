@@ -148,21 +148,10 @@
             trMsgCell.container=dataController;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
             trMsgCell.msgTableView=self.msgTableView;
+            trMsgCell.suggestionLabels=[[NSMutableSet alloc] init];
+            trMsgCell.isExpanded=FALSE;
             
-            float h1 = trMsgCell.inputTable.rowHeight*(trMsgCell.msg.suggestions.count+1) + 1;
-            trMsgCell.frameImg.transform = CGAffineTransformIdentity;
-            trMsgCell.inputTable.transform = CGAffineTransformIdentity;
-            trMsgCell.frameImg.frame = CGRectMake(trMsgCell.frameImg.frame.origin.x,
-                                                  trMsgCell.srcLabel.frame.size.height,
-                                                  trMsgCell.frameImg.frame.size.width,
-                                                  h1+16);
-            trMsgCell.inputTable.frame = CGRectMake(trMsgCell.inputTable.frame.origin.x,
-                                                    trMsgCell.frameImg.frame.origin.y + 13 ,
-                                                    trMsgCell.inputTable.frame.size.width,
-                                                    h1);
-            
-            
-            //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
+            [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
             [trMsgCell.inputTable reloadData];
             
             return trMsgCell;
@@ -198,7 +187,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES]; 
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
@@ -209,7 +198,7 @@
             {
                 //do deselect precedures
                 trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
-               // [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+                [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
                 
                 [trMsgCell.msgTableView reloadData];
                 [trMsgCell.msgTableView.inputView resignFirstResponder];
@@ -218,7 +207,7 @@
             {
                 selectedIndexPath = [indexPath copy];
                 trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
-               // [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
+                [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
             }
             else
                 selectedIndexPath = nil;
@@ -258,26 +247,40 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BOOL isSelected=selectedIndexPath && indexPath.row == selectedIndexPath.row;
+    BOOL isValid=indexPath.row<dataController.countOfList && dataController.countOfList>0;
     //check if the index actually exists
-    if (translationState && indexPath.row<dataController.countOfList)
+    if(!isValid)
+        return 50;
+    if (translationState)
     {
-     //   NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
-     //   float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
-     //   return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
-        float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
-        return 50*n+30;
+        if(isSelected){
+            NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
+            float h1 = max([text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, 50);
+            float height=h1;
+            for(NSMutableDictionary* suggestion in [dataController objectInListAtIndex:indexPath.row].suggestions){
+                NSString* sugg=suggestion[@"suggestion"];
+                height+=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
+            }
+            return height+80;
+        //return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
       //  return 240;
+        }else{
+            float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
+            return 50*n+30;
+        }
     }
-    if(selectedIndexPath && indexPath.row == selectedIndexPath.row) {
+    else{//proofread
+        if(isSelected) {
         
-        NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
-        NSString * text2 = [dataController objectInListAtIndex:indexPath.row].translation;
-        float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
-        float h2 = [text2 sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
-        return (h1+h2+100); //expanded cell height
-    }else if (indexPath.row<dataController.countOfList && dataController.countOfList>0)
-        return 65;  //unexpanded cell height
-    return 50;
+            NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
+            NSString * text2 = [dataController objectInListAtIndex:indexPath.row].translation;
+            float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
+            float h2 = [text2 sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
+            return (h1+h2+100); //expanded proofread cell height
+        }else
+            return 65;  //unexpanded proofread cell height
+    }
 }
 
 -(void)clearTextBoxes
@@ -302,8 +305,8 @@
             [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
         }*/
         if(!success || error){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Couldn't accept this message." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert show];
+            LoadAlertView(@"Alert", @"Couldn't accept this message.", @"Ok");
+            AlertShow();
             NSLog(@"%@", error);
         }
         

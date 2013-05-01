@@ -62,11 +62,17 @@
 #define ShowNetworkActivityIndicator()  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
 #define HideNetworkActivityIndicator()  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
 
+#define max(a, b)                   a>b ? a : b
 #define LoadUserDefaults()          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]
 #define getUserDefaultskey(X)       [defaults objectForKey:X]
 #define setUserDefaultskey(X,Y)     [defaults setObject:X forKey:Y]
 #define getBoolUserDefaultskey(X)   [defaults boolForKey:X]
 #define setBoolUserDefaultskey(X,Y) [defaults setBool:X forKey:Y]
+#define LoadAlertView(Title, Message, CancelButtonTitle)             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:nil]
+#define LoadAlertViewWithOthers(Title, Message, CancelButtonTitle, OtherButtonTitles)             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:OtherButtonTitles,nil]
+#define LoadDefaultAlertView()      LoadAlertView(@"Alert", @"", @"Ok")
+#define AlertSetMessage(Message)    alert.message=Message
+#define AlertShow()                 [alert show]
 
 
 //***********************

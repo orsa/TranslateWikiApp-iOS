@@ -22,6 +22,8 @@
 @property (retain, nonatomic) TranslationMessageDataController * container;
 @property (retain, nonatomic) UITableView* msgTableView;
 @property (retain, nonatomic) InputCell* inputCell;
+@property (atomic) BOOL isExpanded;
+@property (retain, nonatomic)NSMutableSet* suggestionLabels;
 
 - (void)setExpanded:(NSNumber*)expNumber;
 -(void)removeFromList;

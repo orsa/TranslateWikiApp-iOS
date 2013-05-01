@@ -225,14 +225,14 @@
 
 -(IBAction)logout:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Do you really want to log out?" delegate:self cancelButtonTitle:@"Oh, no" otherButtonTitles:@"Yes",nil];
+    LoadAlertViewWithOthers(@"Alert", @"Do you really want to log out?", @"Oh, no", @"Yes");
     [alert setTag:1];
     [alert show];
 }
 
 -(IBAction)restoreDefaults:(id)sender
 {   //show alert
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Do you really mean that?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+    LoadAlertViewWithOthers(@"Alert", @"Do you really mean that?", @"Cancel", @"Ok");
     [alert setTag:2];
     [alert show];
 }
