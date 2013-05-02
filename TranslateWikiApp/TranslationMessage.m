@@ -19,6 +19,7 @@
 //  limitations under the License.
 
 #import "TranslationMessage.h"
+#import "constants.h"
 
 @implementation TranslationMessage
 
@@ -51,6 +52,48 @@
         NSString* service=suggElem[@"service"];
         _suggestions[i][@"suggestion"]=suggElem[@"target"];
         _suggestions[i][@"service"]=service;
+        i=i+1;
+    }
+    NSMutableArray* ttmserver=translationAids[@"ttmserver"];
+    NSMutableArray* TMsuggestionsArray=[[NSMutableArray alloc] init];
+    int j=0;
+    for(NSMutableDictionary* suggElem in ttmserver){
+        __block NSString* suggestion=suggElem[@"target"];
+        if([[TMsuggestionsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            NSMutableDictionary* sugg=(NSMutableDictionary*)evaluatedObject;
+            NSString* suggString=sugg[@"suggestion"];
+            if([suggString isEqualToString:suggestion])
+                return YES;
+            else
+                return NO;
+        }]] count]>0)//if suggestion already appeared
+            break;
+        TMsuggestionsArray[j]=[[NSMutableDictionary alloc] init];
+        TMsuggestionsArray[j][@"suggestion"]=suggestion;
+        NSNumber* quality=(NSNumber*)suggElem[@"quality"];
+        TMsuggestionsArray[j][@"quality"]=quality;
+        j=j+1;
+    }
+    int suggCount=[TMsuggestionsArray count];
+    [TMsuggestionsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSMutableDictionary* sugg1=(NSMutableDictionary*)obj1;
+        NSMutableDictionary* sugg2=(NSMutableDictionary*)obj2;
+        double quality1=[(NSNumber*)sugg1[@"quality"] doubleValue];
+        double quality2=[(NSNumber*)sugg2[@"quality"] doubleValue];
+        
+        if(quality1>quality2)
+            return NSOrderedAscending;
+        else{
+            if(quality1<quality2)
+                return NSOrderedDescending;
+            else
+                return NSOrderedSame;
+        }
+        
+    }];//sorting array according to quality
+    int iterations=min(suggCount, MAX_NUMBER_OF_SUGGESTIONS-[_suggestions count]);
+    for(j=0; j<iterations; j=j+1){
+        _suggestions[i]=TMsuggestionsArray[j];
         i=i+1;
     }
 }

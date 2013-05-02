@@ -22,6 +22,7 @@
 #define MAX_RECENT_PROJ 3
 #define MAX_RECENT_LANG 3
 #define MAX_LOCAL_LANG 2
+#define MAX_NUMBER_OF_SUGGESTIONS 3
 
 //***********************
 //keys for NSUserDefaults
@@ -65,6 +66,7 @@
 #define HideNetworkActivityIndicator()  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
 
 #define max(a, b)                   a>b ? a : b
+#define min(a, b)                   a>b ? b : a
 #define LoadUserDefaults()          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]
 #define getUserDefaultskey(X)       [defaults objectForKey:X]
 #define setUserDefaultskey(X,Y)     [defaults setObject:X forKey:Y]
