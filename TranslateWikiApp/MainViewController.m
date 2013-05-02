@@ -187,8 +187,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    
     if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
         if (translationState)
@@ -216,7 +214,7 @@
             [tableView beginUpdates];
             [tableView endUpdates];
         }
-        else 
+        else //proofread state
         {
             MsgCell * msgCell;
             if(selectedIndexPath)
@@ -238,8 +236,9 @@
             [tableView beginUpdates];
             [tableView endUpdates];
         }
+        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-    else
+    else //"more" cell button 
     {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         [self addMessagesTuple];
