@@ -60,22 +60,32 @@
         _api.user.userName  =  nameString;
         
         __block BOOL isDone=NO;
+        __block BOOL didLogin=NO;
+        //send login request to api
         [_api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
-            isDone=YES;
             if(error==nil && [resultString isEqualToString:@"Success"])
            {
-               //then we can skip the login screen
-               _userName = nameString;
-               [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
+               didLogin=YES;
+               isDone=YES;
            }
            else
-           { //login fail, need to re-login and update credentials
-               [loginKC resetKeychainItem];
+           {
+               didLogin=NO;
+               isDone=YES;
            }
-        }]; //try login
+        }];
         while(!isDone){
             [NSThread sleepForTimeInterval:0.1];
+        }
+        if(didLogin){
+            //then we can skip the login screen
+            _userName = nameString;
+            [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
+        }
+        else{//login fail, need to re-login and update credentials
+            [loginKC resetKeychainItem];
+            [_usernameText becomeFirstResponder];
         }
     }
     else if(getUserDefaultskey(RECENT_USER_key)!=nil)//known user but not password
