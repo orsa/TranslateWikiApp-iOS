@@ -148,7 +148,7 @@
             trMsgCell.container=dataController;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
             trMsgCell.msgTableView=self.msgTableView;
-            trMsgCell.suggestionLabels=[[NSMutableSet alloc] init];
+            trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
             trMsgCell.isExpanded=FALSE;
             
             [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
@@ -260,7 +260,8 @@
             float height=h1;
             for(NSMutableDictionary* suggestion in [dataController objectInListAtIndex:indexPath.row].suggestions){
                 NSString* sugg=suggestion[@"suggestion"];
-                height+=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
+                float suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
+                height+=suggHeight;
             }
             return height+80;
         //return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);

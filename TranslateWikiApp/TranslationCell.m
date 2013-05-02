@@ -49,22 +49,53 @@
     
     srcLabel.frame = CGRectMake(4, 0, self.frame.size.width, sourceH);
     
-    float tableHeight=[self tableHeight];
+    [inputTable sizeToFit];
+    [frameImg sizeToFit];
     
+    //setting the origin
     frameImg.frame = CGRectMake(frameImg.frame.origin.x,
-                                          srcLabel.frame.size.height,
-                                          frameImg.frame.size.width,
-                                          tableHeight+16);
+                                sourceH,
+                                frameImg.frame.size.width,
+                                frameImg.frame.size.height);
     inputTable.frame = CGRectMake(inputTable.frame.origin.x,
-                                            frameImg.frame.origin.y + 13 ,
-                                            inputTable.frame.size.width,
-                                            tableHeight);
+                                  sourceH + 13 ,
+                                  inputTable.frame.size.width,
+                                  inputTable.frame.size.height);
     
-    for(id obj in _suggestionLabels){
-        UILabel* label=(UILabel*)obj;
+    //setting frames of inside cells and calculating table height
+    
+    float tableHeight=50;//height of textView
+    float cellOrigin=0;//origin of cell, relative to origin of table
+    int i=0;
+    for(id obj in _suggestionCells){
+        UITableViewCell* cell=(UITableViewCell*)obj;
+        UILabel* label=[cell textLabel];
         label.numberOfLines=(exp?0:1);
         [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
+        
+        float cellHeight=(exp?[self getSizeOfSuggestionNumber:i]:50);
+        tableHeight+=cellHeight;
+        cell.frame = CGRectMake(cell.frame.origin.x,
+                                cellOrigin,
+                                cell.frame.size.width,
+                                cellHeight);
+        cellOrigin+=cellHeight;
+        i+=1;
     }
+    inputCell.frame = CGRectMake(inputCell.frame.origin.x,
+                                 cellOrigin,
+                                 inputCell.frame.size.width,
+                                 50);
+    
+    //setting height
+    frameImg.frame = CGRectMake(frameImg.frame.origin.x,
+                                frameImg.frame.origin.y,
+                                frameImg.frame.size.width,
+                                tableHeight+16);
+    inputTable.frame = CGRectMake(inputTable.frame.origin.x,
+                                  inputTable.frame.origin.y ,
+                                  inputTable.frame.size.width,
+                                  tableHeight);
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable
@@ -79,7 +110,7 @@
     if (self) {
         // Initialization code
         _isExpanded=FALSE;
-        _suggestionLabels=[[NSMutableSet alloc] init];
+        _suggestionCells=[[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -89,7 +120,7 @@
     self = [super init];
     if (self) {
         _isExpanded=FALSE;
-        _suggestionLabels=[[NSMutableSet alloc] init];
+        _suggestionCells=[[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -139,7 +170,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:suggestCellIdentifier];
         }
         cell.textLabel.text = msg.suggestions[indexPath.row][@"suggestion"];
-        [_suggestionLabels addObject:cell.textLabel];
+        //[_suggestionLabels addObject:cell.textLabel];
+        [_suggestionCells addObject:cell];
     }
     else
     {
@@ -185,15 +217,23 @@
     if(indexPath.row<msg.suggestions.count){
         if(!_isExpanded)
             return 50;//unexpanded suggestion cell
-        return max([msg.suggestions[indexPath.row][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
+        float ret=[self getSizeOfSuggestionNumber:indexPath.row];
+        return ret;
     }
     else
         return 50;//textView height, expanded and unexpanded
 }
 
--(CGFloat)tableHeight{
-    [inputTable layoutIfNeeded];
-    return [inputTable contentSize].height;
+/*-(CGFloat)tableHeight{
+    float height=50;//height of textView
+    for(int i=0; i<msg.suggestions.count; i++){
+        height+=[self getSizeOfSuggestionNumber:i];
+    }
+    return height;
+}*/
+
+-(CGFloat)getSizeOfSuggestionNumber:(NSInteger)i{
+    return max([msg.suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(inputTable.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
 }
 
 @end

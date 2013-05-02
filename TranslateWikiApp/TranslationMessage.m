@@ -45,13 +45,37 @@
 -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids
 {
     int i=0;
-    NSMutableArray* sugg=translationAids[@"mt"];
-    for(NSMutableDictionary* suggElem in sugg){
+    NSMutableArray* mt=translationAids[@"mt"];
+    for(NSMutableDictionary* suggElem in mt){
         _suggestions[i]=[[NSMutableDictionary alloc] init];
+        NSString* service=suggElem[@"service"];
         _suggestions[i][@"suggestion"]=suggElem[@"target"];
-        _suggestions[i][@"service"]=suggElem[@"service"];
+        _suggestions[i][@"service"]=service;
         i=i+1;
     }
 }
+
+/*
+ -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids
+ {
+ int i=0;
+ NSMutableArray* mt=translationAids[@"mt"];
+ for(NSMutableDictionary* suggElem in mt){
+ _suggestions[i]=[[NSMutableDictionary alloc] init];
+ NSString* service=suggElem[@"service"];
+ _suggestions[i][@"suggestion"]=[NSString stringWithFormat:@"%@\nBy %@", suggElem[@"target"], service];
+ _suggestions[i][@"service"]=service;
+ i=i+1;
+ }
+ NSMutableArray* ttmserver=translationAids[@"ttmserver"];
+ for(NSMutableDictionary* suggElem in ttmserver){
+ _suggestions[i]=[[NSMutableDictionary alloc] init];
+ NSString* quality=suggElem[@"quality"];//(int)number
+ _suggestions[i][@"suggestion"]=[NSString stringWithFormat:@"%@\nFrom server memory, quality: %@", suggElem[@"target"], quality];
+ _suggestions[i][@"quality"]=quality;
+ i=i+1;
+ }
+ }
+ */
 
 @end

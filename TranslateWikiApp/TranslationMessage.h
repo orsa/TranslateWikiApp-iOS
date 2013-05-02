@@ -16,7 +16,7 @@
 @property(nonatomic, copy)NSString* key;
 @property(nonatomic, copy)NSString* revision;
 @property(nonatomic, copy)NSString* title;
-@property(nonatomic, copy)NSMutableArray* suggestions;//each object in the array is NSMutableDictionary with two keys: "suggestion" and "service"
+@property(nonatomic, copy)NSMutableArray* suggestions;//each object in the array is NSMutableDictionary with the key "suggestion" and the optional keys "service" and "quality"
 @property(nonatomic)BOOL isAccepted;
 @property(nonatomic)NSInteger acceptCount;
 
