@@ -211,8 +211,6 @@
                 selectedIndexPath = nil;
             
             [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
-            [tableView beginUpdates];
-            [tableView endUpdates];
         }
         else //proofread state
         {
@@ -233,9 +231,9 @@
                 selectedIndexPath = nil;
             
             [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
-            [tableView beginUpdates];
-            [tableView endUpdates];
         }
+        [tableView beginUpdates];
+        [tableView endUpdates];
         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
     else //"more" cell button 
@@ -253,7 +251,8 @@
         return 50;
     if (translationState)
     {
-        if(isSelected){
+        if(isSelected)
+        {
             NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
             float h1 = max([text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, 50);
             float height=h1;
@@ -263,16 +262,16 @@
                 height+=suggHeight;
             }
             return height+80;
-        //return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
-      //  return 240;
+            //return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
+            //return 240;
         }else{
             float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
             return 50*n+30;
         }
     }
-    else{//proofread
-        if(isSelected) {
-        
+    else{   //proofread
+        if(isSelected)
+        {        
             NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
             NSString * text2 = [dataController objectInListAtIndex:indexPath.row].translation;
             float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
@@ -309,9 +308,7 @@
             AlertShow();
             NSLog(@"%@", error);
         }
-        
     }]; 
-    
     
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
@@ -324,6 +321,7 @@
 {
     [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
     [self coreDataRejectMessage];
+    
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
     if([self.dataController countOfList]<1) selectedIndexPath = nil;
@@ -333,16 +331,15 @@
 
 - (IBAction)openMenu:(id)sender {
     [self.view bringSubviewToFront:menuView];
-    if (menuView.hidden){
+    if (menuView.hidden){ //closed
+        [menuView setFrame:CGRectMake(0, 31, 31, 0)];
         [menuView setHidden:NO];
         [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 200, 120)]; } completion:nil];
     }
-    else{
-        
+    else{ //already opened
         [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 31, 0)]; } completion:^(BOOL comp){
             if (comp) [menuView setHidden:YES];
         }];
-        
     }
 }
 

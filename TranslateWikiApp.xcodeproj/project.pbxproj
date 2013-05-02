@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64026A6A16971E27002A65CC /* imgres.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64026A6916971E27002A65CC /* imgres.jpeg */; };
+		640727F71732E5D400F2E1BF /* SuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 640727F61732E5D400F2E1BF /* SuggestionCell.m */; };
 		640A1A3B16AF0C9E004B0DB8 /* TWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 640A1A3A16AF0C9E004B0DB8 /* TWUser.m */; };
 		641002051691B218000202A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641002041691B218000202A9 /* UIKit.framework */; };
 		641002071691B218000202A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641002061691B218000202A9 /* Foundation.framework */; };
@@ -58,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		64026A6916971E27002A65CC /* imgres.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imgres.jpeg; sourceTree = "<group>"; };
+		640727F51732E5D400F2E1BF /* SuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionCell.h; sourceTree = "<group>"; };
+		640727F61732E5D400F2E1BF /* SuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionCell.m; sourceTree = "<group>"; };
 		640A1A3916AF0C9E004B0DB8 /* TWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUser.h; sourceTree = "<group>"; };
 		640A1A3A16AF0C9E004B0DB8 /* TWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWUser.m; sourceTree = "<group>"; };
 		641002001691B218000202A9 /* TranslateWikiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslateWikiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +191,8 @@
 				64F890FC1710396D008DCCA6 /* TranslationCell.m */,
 				64F890FE17106842008DCCA6 /* InputCell.h */,
 				64F890FF17106842008DCCA6 /* InputCell.m */,
+				640727F51732E5D400F2E1BF /* SuggestionCell.h */,
+				640727F61732E5D400F2E1BF /* SuggestionCell.m */,
 				64462DD5172AD802002B3556 /* MenuView.h */,
 				64462DD6172AD802002B3556 /* MenuView.m */,
 				6469FB9016FADE580006E765 /* View Controllers */,
@@ -374,6 +379,7 @@
 				64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */,
 				64F8910017106842008DCCA6 /* InputCell.m in Sources */,
 				64462DD7172AD802002B3556 /* MenuView.m in Sources */,
+				640727F71732E5D400F2E1BF /* SuggestionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,10 +36,9 @@
     BOOL exp=[expNumber boolValue];
     _isExpanded=exp;
     srcLabel.numberOfLines = (exp?0:1);
-    
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
 
-    float sourceH = max([TranslationCell optimalHeightForLabel:srcLabel], 50);
+    float sourceH = max([TranslationCell optimalHeightForLabel:srcLabel]+1, 50);
     if(!exp)
         sourceH=50;
     [srcLabel sizeToFit];
@@ -47,25 +46,14 @@
     frameImg.transform = CGAffineTransformIdentity;
     inputTable.transform = CGAffineTransformIdentity;
     
-    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width, sourceH);
+    srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-4, sourceH);
     
-    [inputTable sizeToFit];
-    [frameImg sizeToFit];
-    
-    //setting the origin
-    frameImg.frame = CGRectMake(frameImg.frame.origin.x,
-                                sourceH,
-                                frameImg.frame.size.width,
-                                frameImg.frame.size.height);
-    inputTable.frame = CGRectMake(inputTable.frame.origin.x,
-                                  sourceH + 13 ,
-                                  inputTable.frame.size.width,
-                                  inputTable.frame.size.height);
+    //[inputTable sizeToFit];
+    //[frameImg sizeToFit];
     
     //setting frames of inside cells and calculating table height
-    
-    float tableHeight=50;//height of textView
     float cellOrigin=0;//origin of cell, relative to origin of table
+    float cellHeight;
     int i=0;
     for(id obj in _suggestionCells){
         UITableViewCell* cell=(UITableViewCell*)obj;
@@ -73,29 +61,25 @@
         label.numberOfLines=(exp?0:1);
         [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
         
-        float cellHeight=(exp?[self getSizeOfSuggestionNumber:i]:50);
-        tableHeight+=cellHeight;
-        cell.frame = CGRectMake(cell.frame.origin.x,
-                                cellOrigin,
-                                cell.frame.size.width,
-                                cellHeight);
+        cellHeight=(exp?max([self getSizeOfSuggestionNumber:i],50):50);
+        
         cellOrigin+=cellHeight;
         i+=1;
     }
-    inputCell.frame = CGRectMake(inputCell.frame.origin.x,
-                                 cellOrigin,
-                                 inputCell.frame.size.width,
-                                 50);
     
-    //setting height
-    frameImg.frame = CGRectMake(frameImg.frame.origin.x,
-                                frameImg.frame.origin.y,
-                                frameImg.frame.size.width,
-                                tableHeight+16);
-    inputTable.frame = CGRectMake(inputTable.frame.origin.x,
-                                  inputTable.frame.origin.y ,
-                                  inputTable.frame.size.width,
+    float tableHeight = cellHeight + 50;
+    
+    //setting the origin & height
+    frameImg.frame = CGRectMake(1,
+                                sourceH,
+                                self.frame.size.width - 2,
+                                tableHeight+16 /*self.frame.size.height - sourceH - 1*/);
+    
+    inputTable.frame = CGRectMake(frameImg.frame.origin.x+ 0.025* frameImg.frame.size.width,
+                                  sourceH + 14 ,
+                                  0.95* frameImg.frame.size.width,
                                   tableHeight);
+    
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable
@@ -128,9 +112,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
 }
-
 
 -(void)removeFromList
 {
@@ -197,17 +179,15 @@
         [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
         NSIndexPath * lastIP = [NSIndexPath indexPathForRow:msg.suggestions.count inSection:0];
         InputCell * inCell = (InputCell*)[tableView cellForRowAtIndexPath:lastIP];
+        
         [tableView beginUpdates];
         
-     
         [inCell.inputText becomeFirstResponder];
         inCell.inputText.text = msg.suggestions[indexPath.row][@"suggestion"];
         [inCell textViewDidChange:inCell.inputText];
         
         [tableView endUpdates];
-        
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
