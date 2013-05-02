@@ -59,6 +59,7 @@
     int j=0;
     for(NSMutableDictionary* suggElem in ttmserver){
         __block NSString* suggestion=suggElem[@"target"];
+        NSNumber* quality=(NSNumber*)suggElem[@"quality"];
         if([[TMsuggestionsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             NSMutableDictionary* sugg=(NSMutableDictionary*)evaluatedObject;
             NSString* suggString=sugg[@"suggestion"];
@@ -67,10 +68,11 @@
             else
                 return NO;
         }]] count]>0)//if suggestion already appeared
-            break;
+            continue;
+        if([quality doubleValue]<MESSAGE_ACCURACY_TRESHOLD)//if accuracy isn't enough
+            continue;
         TMsuggestionsArray[j]=[[NSMutableDictionary alloc] init];
         TMsuggestionsArray[j][@"suggestion"]=suggestion;
-        NSNumber* quality=(NSNumber*)suggElem[@"quality"];
         TMsuggestionsArray[j][@"quality"]=quality;
         j=j+1;
     }

@@ -23,6 +23,7 @@
 #define MAX_RECENT_LANG 3
 #define MAX_LOCAL_LANG 2
 #define MAX_NUMBER_OF_SUGGESTIONS 3
+#define MESSAGE_ACCURACY_TRESHOLD 0.80
 
 //***********************
 //keys for NSUserDefaults
