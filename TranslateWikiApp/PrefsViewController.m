@@ -35,6 +35,7 @@
 @synthesize tupleSizeTextView;
 @synthesize didChange;
 @synthesize selectedProjCode;
+@synthesize maxMsgLengthTextField;
 
 
 - (void)viewDidLoad
@@ -78,7 +79,7 @@
     
     //load from NSUserDefaults
     tupleSizeTextView.text = getUserDefaultskey(TUPSIZE_key);
-    
+    maxMsgLengthTextField.text = getUserDefaultskey(MAX_MSG_LEN_key);
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,6 +150,8 @@
     [super viewWillDisappear:animated];
     
     [tupleSizeTextView resignFirstResponder];
+    [maxMsgLengthTextField resignFirstResponder];
+    
     [self.view endEditing:YES];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
     { //set new preferences
@@ -157,7 +160,8 @@
         setUserDefaultskey([self getNewProj], PROJ_key);
         if (![tupleSizeTextView.text isEqualToString:@""])
             setUserDefaultskey(tupleSizeTextView.text, TUPSIZE_key);
-
+        if (![tupleSizeTextView.text isEqualToString:@""])
+            setUserDefaultskey(maxMsgLengthTextField.text, MAX_MSG_LEN_key);
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
         if (ViewController.class == [MainViewController class])
         {
@@ -220,6 +224,10 @@
          if (![textField.text isEqualToString:@""])
                didChange=YES;
     }
+    else if (textField==maxMsgLengthTextField)
+    {
+        didChange=YES;
+    }
     return YES;
 }
 
@@ -239,7 +247,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (alertView.tag) {
-        case 1:
+        case 1: //alert result for logout
             if (buttonIndex == 1)  //clicked ok at the alert
             {
                 [_api TWLogoutRequest:^(NSDictionary* response, NSError* error){
@@ -252,18 +260,22 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
             break;
-        case 2:
+        case 2: //alert result for restore
             if (buttonIndex == 1)  //clicked ok at the alert
             {
                 NSString* lang=PREFERRED_LANG(0);
                 NSString* proj=@"!recent";
                 NSString* tuple=INITIAL_TUPLE_SIZE;
+                NSString* maxLen = INITIAL_MAX_LENGTH;
                 
                 selectedProjCode=proj;
                 projTextField.text=@"Recent translations";
                 langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
                 tupleSizeTextView.text=tuple;
+                maxMsgLengthTextField.text = maxLen;
+                
                 didChange=YES;
+                
             }
             break;
         default:
@@ -274,12 +286,13 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* customFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, 300, 200)];
+    UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(tableView.frame.origin.x, 0,
+                                                                      tableView.frame.size.width, 85)];
     UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    logoutButton.frame = CGRectMake(9, 10, 300, 35);
-    resetButton.frame = CGRectMake(9, 50, 300, 35);
+    logoutButton.frame = CGRectMake(tableView.frame.origin.x + 10, 6, tableView.frame.size.width-20, 34);
+    resetButton.frame = CGRectMake(tableView.frame.origin.x + 10, 44, tableView.frame.size.width-20, 34);
     
     [logoutButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
     [resetButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];

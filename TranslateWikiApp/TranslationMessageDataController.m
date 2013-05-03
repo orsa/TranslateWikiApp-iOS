@@ -77,7 +77,7 @@
 //***********************************************************
 //This method is invoked when API responses with new messages
 //***********************************************************
--(void) handleResponse:(NSDictionary*)response Error:(NSError*)error Api:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof MessRemain:(NSInteger)numberOfMessagesRemaining completionHandler:(void (^)())completionBlock
+-(void) handleResponse:(NSDictionary*)response Error:(NSError*)error Api:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof MaxMessageLength:(NSInteger)maxMsgLen MessRemain:(NSInteger)numberOfMessagesRemaining completionHandler:(void (^)())completionBlock
 {
     if (error) {
         NSLog(@"%@", error);
@@ -93,10 +93,12 @@
     
     for (NSDictionary* msg in newData) { //insert messages to datacontroller
         BOOL isRejected=[TranslationMessageDataController checkIsRejectedMessageWithRevision:msg[@"properties"][@"revision"] byUserWithId:[[api user] userId] usingObjectContext:managedObjectContext];
-        if(!isRejected){
+        if(!isRejected && [msg[@"definition"] length]<=maxMsgLen)
+        {
             numberOfMessagesRemaining=numberOfMessagesRemaining-1;
             TranslationMessage* message=[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]];
-            if(!isProof){
+            if(!isProof)
+            {
                 [api TWTranslationAidsForTitle:msg[@"title"] withProject:proj completionHandler:^(NSDictionary* transAids, NSError* error){
                     [message addSuggestionsFromResponse:transAids[@"helpers"]];
                     dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -120,7 +122,7 @@
         }
     });
     if(!stopLoop && numberOfMessagesRemaining>0)
-        [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
+        [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof  MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
     
 }
 
@@ -130,13 +132,15 @@
 -(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof completionHandler:(void (^)())completionBlock
 {
     LoadUserDefaults();
-    NSString * tupSizeText = [defaults objectForKey:@"defaultTupleSize"];
+    NSString * tupSizeText = getUserDefaultskey(TUPSIZE_key);//[defaults objectForKey:@"defaultTupleSize"];
     NSInteger numberOfMessagesRemaining = [tupSizeText integerValue];
+    NSString * maxMsgLenText = getUserDefaultskey(MAX_MSG_LEN_key);
+    NSInteger maxMsgLen = [maxMsgLenText integerValue];
     NSString* lang=getUserDefaultskey(LANG_key);
     NSString* proj=getUserDefaultskey(PROJ_key);
     //NSInteger queryLimit=numberOfMessagesRemaining;
     //NSMutableDictionary *result;
-    [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
+    [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
 
         //LOG(result); //DEBUG
     
@@ -147,19 +151,19 @@
 //***********************************************************
 // Actual invoke of API asynchronous request
 //***********************************************************
--(void)doRequestsWithApi:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof MessRemain:(NSInteger)numberOfMessagesRemaining completionHandler:(void (^)())completionBlock
+-(void)doRequestsWithApi:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof MaxMessageLength:(NSInteger)maxMsgLen MessRemain:(NSInteger)numberOfMessagesRemaining completionHandler:(void (^)())completionBlock
  {
     if(isProof) //case of proofread mode;
     {
         [api TWTranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset completionHandler:^(NSDictionary *response, NSError *error)
          {
-             [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
+             [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
          }];
     }
     else{  //case of full translation mode
         [api TWUntranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset completionHandler:^(NSDictionary *response, NSError *error)
          {
-             [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
+             [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining completionHandler:completionBlock];
          }];
         
     }

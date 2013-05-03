@@ -37,6 +37,8 @@
 @synthesize dataController;
 @synthesize msgTableView;
 @synthesize menuView;
+@synthesize menuTable;
+@synthesize menuBtn;
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -55,17 +57,19 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-    self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
+    //self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
     HideNetworkActivityIndicator();
     menuView.mainVC=self;
     [menuView setHidden:YES];
     [menuView setFrame:CGRectMake(0, 31, 31, 0)];
-    
+    [menuTable reloadData];
     [self.view bringSubviewToFront:menuView];
     //[menuView reloadInputViews];
     
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
+    translationState = !getBoolUserDefaultskey(PRMODE_key);
+    [menuBtn setTitle:(translationState ? @"▾ Translate" : @"▾ Proofread" ) forState:UIControlStateNormal];
     NSString * st = getUserDefaultskey(LANG_key);
     NSArray * arr = [NSArray arrayWithObjects: st, nil];
     setUserDefaultskey(arr, @"AppleLanguages");
@@ -256,17 +260,19 @@
             NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
             float h1 = max([text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, 50);
             float height=h1;
+            float suggHeight;
+            NSString* sugg;
             for(NSMutableDictionary* suggestion in [dataController objectInListAtIndex:indexPath.row].suggestions){
-                NSString* sugg=suggestion[@"suggestion"];
-                float suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
+                sugg=suggestion[@"suggestion"];
+                suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
                 height+=suggHeight;
             }
             return height+80;
-            //return ((h1+10)*(2+[dataController objectInListAtIndex:indexPath.row].suggestions.count) + 110);
-            //return 240;
-        }else{
+        }
+        else //not expanded
+        {
             float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
-            return 50*n+30;
+            return 50*n+25;
         }
     }
     else{   //proofread

@@ -42,6 +42,9 @@
     if (getUserDefaultskey(TUPSIZE_key)==nil){
         setUserDefaultskey(INITIAL_TUPLE_SIZE, TUPSIZE_key);
     }
+    if (getUserDefaultskey(MAX_MSG_LEN_key)==nil){
+        setUserDefaultskey(INITIAL_MAX_LENGTH, MAX_MSG_LEN_key);
+    }
     if (getUserDefaultskey(PRMODE_key)==nil){
         setBoolUserDefaultskey(YES, PRMODE_key);
     }

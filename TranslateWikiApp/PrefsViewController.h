@@ -38,6 +38,7 @@
 @property (nonatomic, retain) TWapi *api;
 @property (nonatomic, retain) NSString *selectedProjCode;
 @property BOOL didChange;
+@property (weak, nonatomic) IBOutlet UITextField *maxMsgLengthTextField;
 
 - (IBAction)touchSwitch:(id)sender;
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR;

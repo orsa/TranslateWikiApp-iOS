@@ -131,6 +131,7 @@
                 setBoolUserDefaultskey(NO, PRMODE_key);
                 [mainVC clearMessages:self];
                 [mainVC addMessagesTuple];
+                [mainVC.menuBtn setTitle:@"▾ Translate" forState:UIControlStateNormal];
             }
             break;
         case 1:
@@ -144,6 +145,7 @@
                 [mainVC clearTextBoxes];
                 [mainVC clearMessages:self];
                 [mainVC addMessagesTuple];
+                [mainVC.menuBtn setTitle:@"▾ Proofread" forState:UIControlStateNormal];
             }
             
             break;

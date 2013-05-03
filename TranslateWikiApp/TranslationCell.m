@@ -47,21 +47,22 @@
     inputTable.transform = CGAffineTransformIdentity;
     
     srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-4, sourceH);
-    
-    //[inputTable sizeToFit];
-    //[frameImg sizeToFit];
+    [inputTable sizeToFit];
+    [frameImg sizeToFit];
     
     //setting frames of inside cells and calculating table height
     float cellOrigin=0;//origin of cell, relative to origin of table
     float cellHeight;
     int i=0;
+    UITableViewCell* cell;
+    UILabel* label;
     for(id obj in _suggestionCells){
-        UITableViewCell* cell=(UITableViewCell*)obj;
-        UILabel* label=[cell textLabel];
+        cell=(UITableViewCell*)obj;
+        label=[cell textLabel];
         label.numberOfLines=(exp?0:1);
         [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
         
-        cellHeight=(exp?max([self getSizeOfSuggestionNumber:i],50):50);
+        cellHeight=(exp?[self getSizeOfSuggestionNumber:i]:50);
         
         cellOrigin+=cellHeight;
         i+=1;
@@ -70,15 +71,22 @@
     float tableHeight = cellHeight + 50;
     
     //setting the origin & height
+    
+    //[UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [frameImg setFrame:CGRectMake(1,sourceH,self.frame.size.width - 2,tableHeight+15)]; } completion:nil];
+    
+    //[UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [inputTable setFrame:CGRectMake(frameImg.frame.origin.x+ 0.025* frameImg.frame.size.width,sourceH+14,0.95* frameImg.frame.size.width,tableHeight)]; } completion:nil];
+    
     frameImg.frame = CGRectMake(1,
                                 sourceH,
                                 self.frame.size.width - 2,
-                                tableHeight+16 /*self.frame.size.height - sourceH - 1*/);
+                                tableHeight+15);
+    
     
     inputTable.frame = CGRectMake(frameImg.frame.origin.x+ 0.025* frameImg.frame.size.width,
                                   sourceH + 14 ,
                                   0.95* frameImg.frame.size.width,
                                   tableHeight);
+    
     
 }
 
@@ -202,6 +210,23 @@
     }
     else
         return 50;//textView height, expanded and unexpanded
+}
+
+//this method defines the header of the input table
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{    
+    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,12)];
+    
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    headerLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1];//or
+    headerLabel.textColor = [UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1];
+    headerLabel.font = [UIFont boldSystemFontOfSize:9];
+    headerLabel.frame = CGRectMake(0,0,customView.frame.size.width,12);
+    headerLabel.text =  @"suggestions";    
+
+    [customView addSubview:headerLabel];
+
+    return customView;
 }
 
 /*-(CGFloat)tableHeight{

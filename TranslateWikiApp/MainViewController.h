@@ -36,6 +36,8 @@
 @property (nonatomic, copy) NSMutableSet* transCells;//needed for initializing textboxes after preferences change
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
 @property (weak, nonatomic) IBOutlet MenuView *menuView;
+@property (weak, nonatomic) IBOutlet UITableView *menuTable;
+@property (weak, nonatomic) IBOutlet UIButton *menuBtn;
 
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;

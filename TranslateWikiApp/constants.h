@@ -18,6 +18,7 @@
 //measures
 //***********************
 #define INITIAL_TUPLE_SIZE @"10"  //esier to save as a string
+#define INITIAL_MAX_LENGTH @"100" 
 #define MAX_RECENT_PROJ 3
 #define MAX_RECENT_LANG 3
 #define MAX_LOCAL_LANG 2
@@ -28,6 +29,7 @@
 #define LANG_key        @"defaultLanguage"
 #define PROJ_key        @"defaultProject"
 #define TUPSIZE_key     @"defaultTupleSize"
+#define MAX_MSG_LEN_key @"maxMsgLength"
 #define PRMODE_key      @"proofreadOnlyState"
 #define RECENT_LANG_key @"recentLanguages"
 #define RECENT_PROJ_key @"recentProjects"
