@@ -156,7 +156,7 @@
         default:
             break;
     }
-    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 31, 31, 0)]; } completion:^(BOOL comp){
+    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
         if (comp) [self setHidden:YES];
     }];
 }

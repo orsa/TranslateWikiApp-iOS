@@ -61,7 +61,7 @@
     HideNetworkActivityIndicator();
     menuView.mainVC=self;
     [menuView setHidden:YES];
-    [menuView setFrame:CGRectMake(0, 31, 31, 0)];
+    [menuView setFrame:CGRectMake(0, 31, 90, 0)];
     [menuTable reloadData];
     [self.view bringSubviewToFront:menuView];
     //[menuView reloadInputViews];
@@ -103,7 +103,7 @@
     [super viewDidLoad];
     _transCells=[[NSMutableSet alloc] init];
     [menuView setHidden:YES];
-    [menuView setFrame:CGRectMake(0, 31, 31, 0)];
+    [menuView setFrame:CGRectMake(0, 31, 90, 0)];
     if (!_api.user.isLoggedin)
     {
         [self performSegueWithIdentifier:@"gotoLogin" sender:self];
@@ -338,12 +338,12 @@
 - (IBAction)openMenu:(id)sender {
     [self.view bringSubviewToFront:menuView];
     if (menuView.hidden){ //closed
-        [menuView setFrame:CGRectMake(0, 31, 31, 0)];
+        [menuView setFrame:CGRectMake(0, 31, 90, 0)];
         [menuView setHidden:NO];
-        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 200, 120)]; } completion:nil];
+        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 180, 105)]; } completion:nil];
     }
     else{ //already opened
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 31, 0)]; } completion:^(BOOL comp){
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
             if (comp) [menuView setHidden:YES];
         }];
     }
