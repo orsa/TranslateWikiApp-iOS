@@ -16,8 +16,6 @@
 		6410020F1691B218000202A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6410020D1691B218000202A9 /* InfoPlist.strings */; };
 		641002111691B218000202A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002101691B218000202A9 /* main.m */; };
 		641002151691B218000202A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002141691B218000202A9 /* AppDelegate.m */; };
-		641002191691B218000202A9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 641002181691B218000202A9 /* Default@2x.png */; };
-		6410021B1691B218000202A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6410021A1691B218000202A9 /* Default-568h@2x.png */; };
 		641002241691B218000202A9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002231691B218000202A9 /* LoginViewController.m */; };
 		6410023A1692180F000202A9 /* TWapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 641002391692180F000202A9 /* TWapi.m */; };
 		6438A09B171D8FA000BACAA0 /* mag_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6438A09A171D8FA000BACAA0 /* mag_grey.png */; };
@@ -73,8 +71,6 @@
 		641002121691B218000202A9 /* TranslateWikiApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TranslateWikiApp-Prefix.pch"; sourceTree = "<group>"; };
 		641002131691B218000202A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		641002141691B218000202A9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		641002181691B218000202A9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		6410021A1691B218000202A9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		641002221691B218000202A9 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		641002231691B218000202A9 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6410023816921803000202A9 /* TWapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWapi.h; path = "../../objc-twapi/objc-twapi/TWapi.h"; sourceTree = "<group>"; };
@@ -145,6 +141,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		640BF249173CF3A1002F856A /* TWObjects */ = {
+			isa = PBXGroup;
+			children = (
+				64F5E4C216AE9B7200442603 /* TranslationMessage.h */,
+				64F5E4C316AE9B7200442603 /* TranslationMessage.m */,
+				640A1A3916AF0C9E004B0DB8 /* TWUser.h */,
+				640A1A3A16AF0C9E004B0DB8 /* TWUser.m */,
+				64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */,
+				64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */,
+			);
+			name = TWObjects;
+			sourceTree = "<group>";
+		};
 		641001F51691B217000202A9 = {
 			isa = PBXGroup;
 			children = (
@@ -178,13 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				64824A0C1729646400A9BD0F /* External Libraries */,
+				640BF249173CF3A1002F856A /* TWObjects */,
 				6478F0D11706E6A000F2F26E /* constants.h */,
-				64F5E4C216AE9B7200442603 /* TranslationMessage.h */,
-				64F5E4C316AE9B7200442603 /* TranslationMessage.m */,
-				640A1A3916AF0C9E004B0DB8 /* TWUser.h */,
-				640A1A3A16AF0C9E004B0DB8 /* TWUser.m */,
-				64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */,
-				64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */,
 				6462A2E41705BF6E00E1DCD6 /* MsgCell.h */,
 				6462A2E51705BF6E00E1DCD6 /* MsgCell.m */,
 				64F890FB1710396D008DCCA6 /* TranslationCell.h */,
@@ -208,8 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				649AA82D170CE7CB00578145 /* graphics */,
-				641002181691B218000202A9 /* Default@2x.png */,
-				6410021A1691B218000202A9 /* Default-568h@2x.png */,
 				6410020C1691B218000202A9 /* TranslateWikiApp-Info.plist */,
 				6410020D1691B218000202A9 /* InfoPlist.strings */,
 				6491440816FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld */,
@@ -328,8 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6410020F1691B218000202A9 /* InfoPlist.strings in Resources */,
-				641002191691B218000202A9 /* Default@2x.png in Resources */,
-				6410021B1691B218000202A9 /* Default-568h@2x.png in Resources */,
 				64026A6A16971E27002A65CC /* imgres.jpeg in Resources */,
 				6491440F16FE166900FEEACB /* icon.png in Resources */,
 				6491441116FE16E900FEEACB /* icon_HD.png in Resources */,

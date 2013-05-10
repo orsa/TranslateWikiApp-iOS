@@ -291,7 +291,6 @@
         [projTable reloadData];
     }];
     
-    
 }
 
 @end
