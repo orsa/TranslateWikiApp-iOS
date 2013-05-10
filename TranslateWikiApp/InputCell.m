@@ -52,6 +52,7 @@
     if(![sendBtn isUserInteractionEnabled])
     {
         [inputText setText:@""];
+        
     }
     else
     {

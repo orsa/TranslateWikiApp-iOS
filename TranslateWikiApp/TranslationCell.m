@@ -175,6 +175,16 @@
         inCell.api=_api;
         inCell.msg=msg;
         inCell.inputText.text = msg.userInput;
+        if (!msg.userInput || [msg.userInput isEqualToString:@""])
+        {
+            [inCell.inputText setTextColor:[UIColor grayColor]];
+            inCell.inputText.text = @"Your translation";
+        }
+        else
+        {
+            [inCell.inputText setTextColor:[UIColor blackColor]];
+            inCell.inputText.text = msg.userInput;
+        }
         inCell.father=self;
         self.inputCell=inCell;
     }
