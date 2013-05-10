@@ -683,7 +683,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="294" type="user" id="Nw0-qN-ThV"/>
-                                                        <constraint firstAttribute="height" constant="124" type="user" id="Wpe-5y-ZEx"/>
+                                                        <constraint firstAttribute="height" constant="124" id="UFm-QD-pau"/>
                                                     </constraints>
                                                     <prototypes>
                                                         <tableViewCell contentMode="scaleToFill" restorationIdentifier="suggestionsCell" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="qJu-6O-7vW" style="IBUITableViewCellStyleDefault" id="Fsg-xQ-ysx" customClass="SuggestionCell">
@@ -789,18 +789,16 @@
                                             <constraint firstItem="E0d-DF-toK" firstAttribute="centerX" secondItem="zeX-qo-xMJ" secondAttribute="centerX" type="user" id="62C-R6-eQh"/>
                                             <constraint firstAttribute="trailing" secondItem="zeX-qo-xMJ" secondAttribute="trailing" constant="13" type="user" id="6mJ-DY-80X"/>
                                             <constraint firstItem="Sxp-Wc-L1t" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" type="user" id="7ND-Ce-neK"/>
-                                            <constraint firstAttribute="bottom" secondItem="Sxp-Wc-L1t" secondAttribute="bottom" constant="2" type="user" id="7U1-cd-ORD"/>
                                             <constraint firstItem="Sxp-Wc-L1t" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="49" type="user" id="AtZ-TF-Cxu"/>
                                             <constraint firstItem="Sxp-Wc-L1t" firstAttribute="trailing" secondItem="fit-FC-dAo" secondAttribute="trailing" type="user" id="AyX-Ly-myo"/>
+                                            <constraint firstItem="zeX-qo-xMJ" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="64" id="BQo-aT-ZaN"/>
                                             <constraint firstItem="E0d-DF-toK" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" type="default" id="EEb-DJ-Mvn"/>
                                             <constraint firstItem="E0d-DF-toK" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" constant="2" type="user" id="HrD-Qv-Cyu"/>
                                             <constraint firstItem="Sxp-Wc-L1t" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" type="user" id="Pe9-5N-mN8"/>
-                                            <constraint firstItem="zeX-qo-xMJ" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="63" type="user" id="Xxa-Dn-90R"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zeX-qo-xMJ" secondAttribute="trailing" constant="13" type="user" id="a4y-PL-8iH"/>
                                             <constraint firstItem="zeX-qo-xMJ" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" constant="13" type="user" id="ikA-e1-d2r"/>
                                             <constraint firstItem="Sxp-Wc-L1t" firstAttribute="trailing" secondItem="fit-FC-dAo" secondAttribute="trailing" type="user" id="j3q-g2-tYk"/>
                                             <constraint firstAttribute="trailing" secondItem="E0d-DF-toK" secondAttribute="trailing" constant="2" type="user" id="p8w-yK-f7d"/>
-                                            <constraint firstAttribute="bottom" secondItem="zeX-qo-xMJ" secondAttribute="bottom" constant="11" type="user" id="uuB-hi-kpX"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="frameImg" destination="Sxp-Wc-L1t" id="PrF-3F-CJu"/>
@@ -1053,9 +1051,14 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
+        </class>
         <class className="PrefsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="restoreDefaults:"/>
                 <relationship kind="action" name="touchSwitch:"/>
                 <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>

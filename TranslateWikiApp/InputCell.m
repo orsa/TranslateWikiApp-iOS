@@ -35,6 +35,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        inputText.text = @"";
     }
     return self;
 }
@@ -94,7 +95,7 @@
         } completion:nil];
 
     }
-
+    _msg.userInput = textView.text;
 }
 
 - (IBAction)pushSendBtn:(id)sender {
@@ -107,4 +108,6 @@
     
     [_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
 }
+
+
 @end

@@ -37,6 +37,7 @@
         _isAccepted=accepted;
         _acceptCount=ac;
         _suggestions=[[NSMutableArray alloc] init];
+        _userInput = @"";
         
         return self;
     }

@@ -71,7 +71,9 @@
     translationState = !getBoolUserDefaultskey(PRMODE_key);
     [menuBtn setTitle:(translationState ? @"▾ Translate" : @"▾ Proofread" ) forState:UIControlStateNormal];
     NSString * st = getUserDefaultskey(LANG_key);
-    NSArray * arr = [NSArray arrayWithObjects: st, nil];
+    NSMutableArray * arr = [NSMutableArray arrayWithArray:[NSLocale preferredLanguages]];
+    [arr removeObject:st];
+    [arr insertObject:st atIndex:0];
     setUserDefaultskey(arr, @"AppleLanguages");
     [[NSUserDefaults standardUserDefaults] synchronize];
     msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, 210, 0); //make room for keyboard
@@ -91,8 +93,9 @@
 -(void)addMessagesTuple
 {
     __weak typeof(self) weakself = self; //avoid retain cycle
-    
+    ShowNetworkActivityIndicator();
     [dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState completionHandler:^(){
+        HideNetworkActivityIndicator();
     	[weakself.msgTableView reloadData];
     }] ;
     
@@ -255,6 +258,7 @@
         return 50;
     if (translationState)
     {
+        
         if(isSelected)
         {
             NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
@@ -267,12 +271,12 @@
                 suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
                 height+=suggHeight;
             }
-            return height+80;
+            return height*1.2+80;
         }
         else //not expanded
         {
             float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
-            return 50*n+25;
+            return 50*n+50;
         }
     }
     else{   //proofread

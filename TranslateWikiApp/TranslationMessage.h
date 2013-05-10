@@ -11,6 +11,7 @@
 @interface TranslationMessage : NSObject
 @property(nonatomic, copy)NSString* source;
 @property(nonatomic, copy)NSString* translation;
+@property(nonatomic, copy)NSString* userInput;
 @property(nonatomic, copy)NSString* language;
 @property(nonatomic, copy)NSString* project;
 @property(nonatomic, copy)NSString* key;

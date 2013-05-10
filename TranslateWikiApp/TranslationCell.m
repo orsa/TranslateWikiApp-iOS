@@ -38,9 +38,7 @@
     srcLabel.numberOfLines = (exp?0:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
 
-    float sourceH = max([TranslationCell optimalHeightForLabel:srcLabel]+1, 50);
-    if(!exp)
-        sourceH=50;
+    float sourceH = (exp? max([TranslationCell optimalHeightForLabel:srcLabel]+1, 40): 40);
     [srcLabel sizeToFit];
     
     frameImg.transform = CGAffineTransformIdentity;
@@ -52,7 +50,7 @@
     
     //setting frames of inside cells and calculating table height
     float cellOrigin=0;//origin of cell, relative to origin of table
-    float cellHeight;
+    float cellHeight=0;
     int i=0;
     UITableViewCell* cell;
     UILabel* label;
@@ -62,13 +60,13 @@
         label.numberOfLines=(exp?0:1);
         [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
         
-        cellHeight=(exp?[self getSizeOfSuggestionNumber:i]:50);
+        cellHeight=(exp ? [self getSizeOfSuggestionNumber:i]:50);
         
         cellOrigin+=cellHeight;
         i+=1;
     }
     
-    float tableHeight = cellHeight + 50;
+    float tableHeight = cellOrigin + 62; //the "+62" is for the header and the input cell
     
     //setting the origin & height
     
@@ -79,14 +77,13 @@
     frameImg.frame = CGRectMake(1,
                                 sourceH,
                                 self.frame.size.width - 2,
-                                tableHeight+15);
+                                tableHeight*1.2);
     
     
-    inputTable.frame = CGRectMake(frameImg.frame.origin.x+ 0.025* frameImg.frame.size.width,
-                                  sourceH + 14 ,
-                                  0.95* frameImg.frame.size.width,
+    inputTable.frame = CGRectMake(frameImg.frame.origin.x + 0.025*frameImg.frame.size.width,
+                                  sourceH + frameImg.frame.size.height*0.1 ,
+                                  0.95*frameImg.frame.size.width,
                                   tableHeight);
-    
     
 }
 
@@ -124,7 +121,11 @@
 
 -(void)removeFromList
 {
-    [_container removeObjectAtIndex:[_container indexOfObject:msg]];
+    int index = [_container indexOfObject:msg];
+    [self removeFromSuperview];
+    UITableView* table = (UITableView*)self.superview;
+    [table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [_container removeObjectAtIndex:index];
     [self clearTextBox];
     [_msgTableView reloadData];
 }
@@ -173,6 +174,7 @@
         InputCell* inCell=(InputCell*)cell;
         inCell.api=_api;
         inCell.msg=msg;
+        inCell.inputText.text = msg.userInput;
         inCell.father=self;
         self.inputCell=inCell;
     }
