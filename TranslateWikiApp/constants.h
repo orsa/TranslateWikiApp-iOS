@@ -35,6 +35,7 @@
 #define PRMODE_key      @"proofreadOnlyState"
 #define RECENT_LANG_key @"recentLanguages"
 #define RECENT_PROJ_key @"recentProjects"
+#define ALL_PROJ_key    @"allProjects"
 #define RECENT_USER_key @"recentLoginUserName"
 
 //***********************

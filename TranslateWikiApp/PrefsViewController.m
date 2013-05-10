@@ -50,23 +50,35 @@
     arrLangCodes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
     LoadUserDefaults();
     //requesting project list via api - level-0 only
-    [_api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
+    
+    arrProj = getUserDefaultskey(ALL_PROJ_key);
+    if (!arrProj)
+    {
+        [_api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
         
-        if (error || newArrProj==nil)
-        {
-            NSLog(@"Error occured while loading projects.");
-        }
-        else if (newArrProj.count>0)
-        {
-            arrProj = [NSArray arrayWithArray:newArrProj];
-            //load from NSUserDefaults
-            projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
-            selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
-        }
-        else
-            NSLog(@"No project loaded.");
+            if (error || newArrProj==nil)
+            {
+                NSLog(@"Error occured while loading projects.");
+            }
+            else if (newArrProj.count>0)
+            {
+                arrProj = [NSArray arrayWithArray:newArrProj];
+                setUserDefaultskey(arrProj, ALL_PROJ_key);
+                //load from NSUserDefaults
+                projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
+                selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+            }
+            else
+                NSLog(@"No project loaded.");
             
-    }]; 
+        }];
+    }
+    else if (arrProj.count>0)
+    {
+        //load from NSUserDefaults
+        projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
+        selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+    }
     //LOG(arrProj); //Debug
     
     didChange = NO;
@@ -94,6 +106,7 @@
     {
         ProjectBrowserViewController *ViewController = [segue destinationViewController];
         ViewController.originalSrc = [[NSMutableArray alloc]initWithArray:arrProj];
+        ViewController.api = _api;
     }
 }
 

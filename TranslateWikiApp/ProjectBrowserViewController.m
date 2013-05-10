@@ -27,7 +27,7 @@
 @implementation ProjectBrowserViewController
 
 @synthesize mySearchBar;
-@synthesize LangTable;
+@synthesize projTable;
 @synthesize filteredArr;
 @synthesize filteredRec;
 @synthesize srcArr;
@@ -47,14 +47,8 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)prepareList
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    self.title = @"Project Browser";
-    isFiltered = NO;
-    didChange = NO;
-    
     srcArr = [[NSMutableArray alloc] initWithArray:originalSrc];
     
     LoadUserDefaults();
@@ -71,6 +65,21 @@
         index++;
     }
     [srcArr removeObjectsAtIndexes:discardedItems];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self     action:@selector(refreshProjects:)];
+    NSArray *barButtons = [NSArray arrayWithObjects: reloadButton, nil];
+    self.navigationItem.rightBarButtonItems = barButtons;
+    
+    self.title = @"Project Browser";
+    isFiltered = NO;
+    didChange = NO;
+    
+    [self prepareList];
     
 }
 
@@ -250,12 +259,39 @@
             [filteredArr addObject:projName];
         }
     }
-    [LangTable reloadData];
+    [projTable reloadData];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [mySearchBar resignFirstResponder];
+}
+
+-(IBAction)refreshProjects:(id)sender
+{
+    ShowNetworkActivityIndicator();
+    LoadUserDefaults();
+    [_api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
+        
+        if (error || newArrProj==nil)
+        {
+            NSLog(@"Error occured while loading projects.");
+        }
+        else if (newArrProj.count>0)
+        {
+            originalSrc = [NSArray arrayWithArray:newArrProj];
+            setUserDefaultskey(originalSrc, ALL_PROJ_key);
+            //load from NSUserDefaults
+        }
+        else
+            NSLog(@"No project loaded.");
+        
+        [self prepareList];
+        HideNetworkActivityIndicator();
+        [projTable reloadData];
+    }];
+    
+    
 }
 
 @end
