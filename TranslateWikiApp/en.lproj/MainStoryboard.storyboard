@@ -120,12 +120,12 @@
         <scene sceneID="CF3-jV-8kg">
             <objects>
                 <tableViewController title="Preferences" id="4bw-jd-BhM" customClass="PrefsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="36" sectionHeaderHeight="6" sectionFooterHeight="85" id="UBJ-QA-Lgb">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="36" sectionHeaderHeight="6" sectionFooterHeight="85" id="UBJ-QA-Lgb">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="    Note: Changes take effect automatically." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f1R-7F-WKO">
-                            <rect key="frame" x="0.0" y="237" width="320" height="15"/>
+                            <rect key="frame" x="0.0" y="236" width="320" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -233,7 +233,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Oan-2v-jwe">
-                                        <rect key="frame" x="0.0" y="115" width="320" height="37"/>
+                                        <rect key="frame" x="0.0" y="115" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -485,6 +485,7 @@
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.83529418710000003" green="0.81960791349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="8XJ-Ew-ljR" firstAttribute="leading" secondItem="UPn-Wk-jVx" secondAttribute="leading" type="default" id="6Qy-2G-O5Y"/>
                                     <constraint firstItem="8XJ-Ew-ljR" firstAttribute="top" secondItem="UPn-Wk-jVx" secondAttribute="top" type="default" id="fhS-J3-2rj"/>
@@ -530,7 +531,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="518" type="user" id="ivW-vq-Bas"/>
@@ -847,6 +848,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="4Xz-Nx-oCb" id="goH-Hz-r9X"/>
                                     <outlet property="delegate" destination="4Xz-Nx-oCb" id="D8g-Op-b7a"/>
+                                    <outletCollection property="gestureRecognizers" destination="h5h-6Q-jjk" appends="YES" id="Emb-wM-2Bz"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -861,13 +863,13 @@
                             <constraint firstAttribute="bottom" secondItem="UPn-Wk-jVx" secondAttribute="bottom" constant="413" id="Our-tD-MRg"/>
                             <constraint firstItem="0NY-zg-2yL" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="VC0-09-wa1"/>
                             <constraint firstItem="yi5-1B-wzn" firstAttribute="bottom" secondItem="sNR-hv-aqx" secondAttribute="bottom" type="user" id="W2c-wZ-UuG"/>
+                            <constraint firstItem="UPn-Wk-jVx" firstAttribute="top" secondItem="yi5-1B-wzn" secondAttribute="top" type="default" id="ZVA-Dt-SEr"/>
                             <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="gr9-Oz-k14"/>
                             <constraint firstItem="UPn-Wk-jVx" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="default" id="hVS-58-IXP"/>
                             <constraint firstAttribute="trailing" secondItem="UPn-Wk-jVx" secondAttribute="trailing" constant="140" id="kF7-v0-1hJ"/>
                             <constraint firstItem="ba5-HD-02d" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="nhN-UD-JOB"/>
                             <constraint firstItem="yi5-1B-wzn" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="oHK-hp-lRo"/>
                             <constraint firstItem="0NY-zg-2yL" firstAttribute="bottom" secondItem="2Uz-Bc-Mz0" secondAttribute="bottom" type="default" id="rs4-Gi-lke"/>
-                            <constraint firstItem="UPn-Wk-jVx" firstAttribute="top" secondItem="yi5-1B-wzn" secondAttribute="top" type="default" id="ryA-Zi-0JZ"/>
                             <constraint firstItem="ba5-HD-02d" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="tua-FL-EFO"/>
                             <constraint firstAttribute="trailing" secondItem="0NY-zg-2yL" secondAttribute="trailing" constant="31" type="user" id="wfF-Kf-UOw"/>
                         </constraints>
@@ -884,6 +886,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZe-kh-TcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="h5h-6Q-jjk">
+                    <connections>
+                        <action selector="bgTap:" destination="4Xz-Nx-oCb" id="NpS-KI-rfY"/>
+                        <outlet property="delegate" destination="4Xz-Nx-oCb" id="glY-8Q-DO0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-2803" y="-4082"/>
         </scene>
@@ -986,6 +994,114 @@
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
+    <classes>
+        <class className="InputCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushSendBtn:"/>
+                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="LanguagePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LogoutButton:"/>
+                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="clearMessages:"/>
+                <relationship kind="action" name="closeMenu:"/>
+                <relationship kind="action" name="openMenu:"/>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushPrefs:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MenuView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
+        </class>
+        <class className="MsgCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="restoreDefaults:"/>
+                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProjectBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshProjects:"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
+                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="SuggestionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
+        </class>
+        <class className="TranslationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

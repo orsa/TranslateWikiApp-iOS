@@ -110,13 +110,10 @@
     }
 }
 
-- (IBAction)touchSwitch:(id)sender {
-    didChange = YES;
-    [tupleSizeTextView resignFirstResponder];
-}
 
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
     [tupleSizeTextView resignFirstResponder];
+    [maxMsgLengthTextField resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -127,6 +124,7 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     [tupleSizeTextView resignFirstResponder];
+    [maxMsgLengthTextField resignFirstResponder];
     if (textField==langTextField) //go to language picker
     {
         [self performSegueWithIdentifier:@"langPicker" sender:self];
@@ -239,7 +237,17 @@
     }
     else if (textField==maxMsgLengthTextField)
     {
-        didChange=YES;
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSString *expression = @"^([1-9]?|[1-9][0-9]{0,5}+)$"; // numbers only regexp
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:nil];
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+        if (numberOfMatches == 0)
+            return NO;
+        
+        if (![textField.text isEqualToString:@""])
+            didChange=YES;
     }
     return YES;
 }

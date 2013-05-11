@@ -39,6 +39,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *menuTable;
 @property (weak, nonatomic) IBOutlet UIButton *menuBtn;
 
+
+
+- (IBAction)bgTap:(UITapGestureRecognizer *)sender;
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;
 - (IBAction)openMenu:(id)sender;

@@ -344,13 +344,17 @@
     if (menuView.hidden){ //closed
         [menuView setFrame:CGRectMake(0, 31, 90, 0)];
         [menuView setHidden:NO];
-        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 180, 105)]; } completion:nil];
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 180, 105)]; } completion:nil];
     }
     else{ //already opened
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
+        [self closeMenu:sender];
+    }
+}
+
+- (IBAction)closeMenu:(id)sender {
+        [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
             if (comp) [menuView setHidden:YES];
         }];
-    }
 }
 
 - (IBAction)pushPrefs:(id)sender {
@@ -387,4 +391,21 @@
     [self.msgTableView reloadData];
 }
 
+- (IBAction)bgTap:(UITapGestureRecognizer *)sender {
+    [self closeMenu:sender];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *aTouch = [touches anyObject];
+    if (aTouch.tapCount == 1)
+    {
+        CGPoint p = [aTouch locationInView:menuView.superview];
+        if (!CGRectContainsPoint(menuView.frame, p))
+        {
+            // dismiss the popup
+            [self closeMenu:nil];
+        }
+    }
+}
 @end

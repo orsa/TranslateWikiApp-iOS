@@ -40,10 +40,8 @@
 @property BOOL didChange;
 @property (weak, nonatomic) IBOutlet UITextField *maxMsgLengthTextField;
 
-- (IBAction)touchSwitch:(id)sender;
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR;
 -(NSString*)getNewLang;
 -(NSString*)getNewProj;
-
 
 @end

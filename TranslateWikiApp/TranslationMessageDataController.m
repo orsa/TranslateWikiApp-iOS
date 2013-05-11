@@ -84,7 +84,7 @@
         return;
     }
     
-    NSLog(@"%@", response);
+    //NSLog(@"%@", response); //DEBUG
     
     NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:response[@"query"][@"messagecollection"]];
     //we expect an array, otherwise will be runtime exception
