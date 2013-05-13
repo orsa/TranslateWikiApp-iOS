@@ -19,6 +19,7 @@
 //  limitations under the License.
 
 #import "MainViewController.h"
+#import "QuartzCore/QuartzCore.h"
 
 @class MenuView;
 
@@ -160,7 +161,6 @@
             
             [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
             [trMsgCell.inputTable reloadData];
-            
             return trMsgCell;
         }
         else
@@ -344,9 +344,12 @@
     if (menuView.hidden){ //closed
         [menuView setFrame:CGRectMake(0, 31, 90, 0)];
         [menuView setHidden:NO];
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 180, 105)]; } completion:nil];
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 180, 105)]; } completion:^(BOOL comp){
+            if (comp)[self.view bringSubviewToFront:menuView];
+        }];
     }
     else{ //already opened
+        //[menuView setFrame:CGRectMake(0, 31, 180, 105)];
         [self closeMenu:sender];
     }
 }
