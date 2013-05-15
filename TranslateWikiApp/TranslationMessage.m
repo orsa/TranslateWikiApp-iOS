@@ -46,82 +46,74 @@
 
 -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids
 {
+    //getting the machine translations
     int i=0;
     NSMutableArray* mt=translationAids[@"mt"];
+    NSMutableArray* machineSuggestionArray=[[NSMutableArray alloc] init];
     for(NSMutableDictionary* suggElem in mt){
-        _suggestions[i]=[[NSMutableDictionary alloc] init];
+        machineSuggestionArray[i]=[[NSMutableDictionary alloc] init];
         NSString* service=suggElem[@"service"];
-        _suggestions[i][@"suggestion"]=suggElem[@"target"];
-        _suggestions[i][@"service"]=service;
+        machineSuggestionArray[i][@"suggestion"]=suggElem[@"target"];
+        machineSuggestionArray[i][@"service"]=service;
         i=i+1;
     }
     NSMutableArray* ttmserver=translationAids[@"ttmserver"];
     NSMutableArray* TMsuggestionsArray=[[NSMutableArray alloc] init];
-    int j=0;
+    
+    //getting the translation memory suggestions
+    i=0;
     for(NSMutableDictionary* suggElem in ttmserver){
         __block NSString* suggestion=suggElem[@"target"];
         NSNumber* quality=(NSNumber*)suggElem[@"quality"];
-        if([[TMsuggestionsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-            NSMutableDictionary* sugg=(NSMutableDictionary*)evaluatedObject;
-            NSString* suggString=sugg[@"suggestion"];
-            if([suggString isEqualToString:suggestion])
-                return YES;
-            else
-                return NO;
-        }]] count]>0)//if suggestion already appeared
-            continue;
         if([quality doubleValue]<MESSAGE_ACCURACY_TRESHOLD)//if accuracy isn't enough
             continue;
-        TMsuggestionsArray[j]=[[NSMutableDictionary alloc] init];
-        TMsuggestionsArray[j][@"suggestion"]=suggestion;
-        TMsuggestionsArray[j][@"quality"]=quality;
-        j=j+1;
+        
+        TMsuggestionsArray[i]=[[NSMutableDictionary alloc] init];
+        TMsuggestionsArray[i][@"suggestion"]=suggestion;
+        TMsuggestionsArray[i][@"quality"]=quality;
+        i=i+1;
     }
-    int suggCount=[TMsuggestionsArray count];
+    
+    //sorting memory suggs according to quality
     [TMsuggestionsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSMutableDictionary* sugg1=(NSMutableDictionary*)obj1;
         NSMutableDictionary* sugg2=(NSMutableDictionary*)obj2;
         double quality1=[(NSNumber*)sugg1[@"quality"] doubleValue];
         double quality2=[(NSNumber*)sugg2[@"quality"] doubleValue];
         
-        if(quality1>quality2)
-            return NSOrderedAscending;
-        else{
-            if(quality1<quality2)
-                return NSOrderedDescending;
+        if(quality1>quality2) return NSOrderedAscending; else{ if(quality1<quality2) return NSOrderedDescending; else return NSOrderedSame;}
+    }];
+    
+    //combining machine and memory suggestions, with machine suggs first
+    int j;
+    NSMutableArray* tempSuggArray=[[NSMutableArray alloc] init];
+    for(j=0; j<[machineSuggestionArray count]+[TMsuggestionsArray count]; j=j+1){
+        if(j<[machineSuggestionArray count])
+            tempSuggArray[j]=machineSuggestionArray[j];
+        else
+            tempSuggArray[j]=TMsuggestionsArray[j-[machineSuggestionArray count]];
+    }
+    
+    //clearing duplicates
+    NSMutableArray* uniqueSuggs=[[NSMutableArray alloc] init];
+    for(j=0; j<[tempSuggArray count]; j=j+1){
+        NSString* suggestion=tempSuggArray[j][@"suggestion"];
+        if([[uniqueSuggs filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            NSMutableDictionary* sugg=(NSMutableDictionary*)evaluatedObject;
+            NSString* suggString=sugg[@"suggestion"];
+            if([suggString isEqualToString:suggestion])
+                return YES;
             else
-                return NSOrderedSame;
-        }
-        
-    }];//sorting array according to quality
-    int iterations=min(suggCount, MAX_NUMBER_OF_SUGGESTIONS-[_suggestions count]);
+                return NO;
+        }]] count]==0)//if suggestion never appeared
+            [uniqueSuggs addObject:tempSuggArray[j]];
+    }
+    
+    //putting the final result inside _suggestions, up to the maxmimum capacity
+    int iterations=min([uniqueSuggs count], MAX_NUMBER_OF_SUGGESTIONS);
     for(j=0; j<iterations; j=j+1){
-        _suggestions[i]=TMsuggestionsArray[j];
-        i=i+1;
+        _suggestions[j]=uniqueSuggs[j];
     }
 }
-
-/*
- -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids
- {
- int i=0;
- NSMutableArray* mt=translationAids[@"mt"];
- for(NSMutableDictionary* suggElem in mt){
- _suggestions[i]=[[NSMutableDictionary alloc] init];
- NSString* service=suggElem[@"service"];
- _suggestions[i][@"suggestion"]=[NSString stringWithFormat:@"%@\nBy %@", suggElem[@"target"], service];
- _suggestions[i][@"service"]=service;
- i=i+1;
- }
- NSMutableArray* ttmserver=translationAids[@"ttmserver"];
- for(NSMutableDictionary* suggElem in ttmserver){
- _suggestions[i]=[[NSMutableDictionary alloc] init];
- NSString* quality=suggElem[@"quality"];//(int)number
- _suggestions[i][@"suggestion"]=[NSString stringWithFormat:@"%@\nFrom server memory, quality: %@", suggElem[@"target"], quality];
- _suggestions[i][@"quality"]=quality;
- i=i+1;
- }
- }
- */
 
 @end
