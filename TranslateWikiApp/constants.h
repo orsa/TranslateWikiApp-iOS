@@ -24,6 +24,7 @@
 #define MAX_LOCAL_LANG 3
 #define MAX_NUMBER_OF_SUGGESTIONS 3
 #define MESSAGE_ACCURACY_TRESHOLD 0.80
+#define MAX_MESSAGE_LIST_REQUESTS_ON_ADD_MESSAGE_TUPLE 3
 
 //***********************
 //keys for NSUserDefaults
