@@ -130,6 +130,13 @@
     [_msgTableView reloadData];
 }
 
+-(void)scrollTo
+{
+    int index = [_container indexOfObject:msg];
+    UITableView* table = (UITableView*)self.superview;
+    [table scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
 -(void)clearTextBox
 {
     [inputCell.inputText setText:@"Your translation"];

@@ -49,6 +49,7 @@
 
 -(void)textViewDidBeginEditing:(UITextView*)textView
 {
+    [_father scrollTo];
     if(![sendBtn isUserInteractionEnabled])
     {
         [inputText setText:@""];

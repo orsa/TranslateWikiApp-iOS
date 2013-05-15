@@ -27,6 +27,7 @@
 
 - (void)setExpanded:(NSNumber*)expNumber;
 -(void)removeFromList;
+-(void)scrollTo;
 -(void)clearTextBox;
 
 @end
