@@ -157,13 +157,13 @@
             if (trMsgCell==nil)
             {
                 trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
-                trMsgCell.api=_api;
-                trMsgCell.container=dataController;
-                trMsgCell.msgTableView=self.msgTableView;
             }
             [_transCells addObject:trMsgCell];
             
             trMsgCell.msg=msg;
+            trMsgCell.api=_api;
+            trMsgCell.container=dataController;
+            trMsgCell.msgTableView=self.msgTableView;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
             trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
             trMsgCell.isExpanded=FALSE;
