@@ -22,6 +22,7 @@
 #import "TranslationMessage.h"
 
 @implementation TranslationMessageDataController
+@synthesize translationState;
 
 - (void)initializeDefaultDataList {
     NSMutableArray *MessageList = [[NSMutableArray alloc] init];
@@ -85,7 +86,7 @@
     }
     
     //NSLog(@"%@", response); //DEBUG
-    
+    translationState = !isProof;
     NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:response[@"query"][@"messagecollection"]];
     //we expect an array, otherwise will be runtime exception
     
@@ -116,7 +117,6 @@
     if(continueLoop)
         [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof  MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining IterationsLeft:iterationsToGo-1 completionHandler:completionBlock];
     else{//we finished
-        completionBlock();
         if([self isEmpty]){//if no messages were found, output an alert
             //need to get correct project name and language name
             LoadDefaultAlertView();
@@ -124,6 +124,8 @@
             AlertSetMessage(alertMessage);
             AlertShow();
         }
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            completionBlock();});
     }
     
 }

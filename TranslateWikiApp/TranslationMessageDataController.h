@@ -14,6 +14,7 @@
 @interface TranslationMessageDataController : NSObject
 @property (nonatomic, copy) NSMutableArray *masterTranslationMessageList;
 @property (atomic) NSInteger offset;
+@property BOOL translationState;
 
 - (NSInteger)countOfList;
 - (TranslationMessage *)objectInListAtIndex:(NSUInteger)theIndex;

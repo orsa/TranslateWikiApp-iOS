@@ -53,7 +53,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"Translation";
+            cell.textLabel.text = @"Translate";
             if (mainVC.translationState)
                 [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
             else

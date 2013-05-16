@@ -96,8 +96,16 @@
     __weak typeof(self) weakself = self; //avoid retain cycle
     ShowNetworkActivityIndicator();
     [dataController addMessagesTupleUsingApi: _api andObjectContext:self.managedObjectContext andIsProofread:!translationState completionHandler:^(){
-        HideNetworkActivityIndicator();
-    	[weakself.msgTableView reloadData];
+        if (weakself.translationState!=weakself.dataController.translationState)
+        {
+            [weakself.dataController removeAllObjects];
+        }
+        else
+        {
+            HideNetworkActivityIndicator();
+        }
+        [weakself.msgTableView reloadData];
+        
     }] ;
     
 }
