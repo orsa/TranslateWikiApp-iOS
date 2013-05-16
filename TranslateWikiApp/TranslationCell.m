@@ -233,15 +233,22 @@
 
 //this method defines the header of the input table
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{    
-    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,12)];
+{
+    UIView* customView;
+    if (msg.suggestions.count==0)
+    {
+        customView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,0)];
+        return customView;
+    }
+    
+    customView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,12)];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1];//or
     headerLabel.textColor = [UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1];
     headerLabel.font = [UIFont boldSystemFontOfSize:9];
     headerLabel.frame = CGRectMake(0,0,customView.frame.size.width,12);
-    headerLabel.text =  @"suggestions";    
+    headerLabel.text =  (msg.suggestions.count==1 ? @"suggestion" : @"suggestions");
 
     [customView addSubview:headerLabel];
 
