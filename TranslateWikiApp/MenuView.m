@@ -121,31 +121,31 @@
 {
     [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
     switch (indexPath.row) {
-        case 0:
+        case 0: //click on "translte"
             if (!mainVC.translationState)
             {
                 mainVC.translationState=YES;
-                [tableView reloadData];
-                
                 LoadUserDefaults();
                 setBoolUserDefaultskey(NO, PRMODE_key);
                 [mainVC clearMessages:self];
-                [mainVC addMessagesTuple];
                 [mainVC.menuBtn setTitle:@"▾ Translate" forState:UIControlStateNormal];
+                [mainVC addMessagesTuple];
+                
+                [tableView reloadData];
             }
             break;
-        case 1:
+        case 1: //click on "proofread"
             if (mainVC.translationState)
             {
                 mainVC.translationState=NO;
-                [tableView reloadData];
-                
                 LoadUserDefaults();
                 setBoolUserDefaultskey(YES, PRMODE_key);
                 [mainVC clearTextBoxes];
                 [mainVC clearMessages:self];
-                [mainVC addMessagesTuple];
                 [mainVC.menuBtn setTitle:@"▾ Proofread" forState:UIControlStateNormal];
+                [mainVC addMessagesTuple];
+                
+                [tableView reloadData];
             }
             
             break;
@@ -156,7 +156,7 @@
         default:
             break;
     }
-    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
+    [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
         if (comp) [self setHidden:YES];
     }];
 }

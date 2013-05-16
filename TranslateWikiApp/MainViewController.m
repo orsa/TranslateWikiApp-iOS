@@ -59,7 +59,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     //self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
-    HideNetworkActivityIndicator();
+    //HideNetworkActivityIndicator();
     menuView.mainVC=self;
     [menuView setHidden:YES];
     [menuView setFrame:CGRectMake(0, 31, 90, 0)];
@@ -163,7 +163,7 @@
             [trMsgCell.inputTable reloadData];
             return trMsgCell;
         }
-        else
+        else //proofread mode
         {
             MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
             if (!msgCell)
