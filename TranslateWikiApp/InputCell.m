@@ -26,10 +26,6 @@
 @synthesize BtnView;
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
-}
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -49,7 +45,7 @@
 
 -(void)textViewDidBeginEditing:(UITextView*)textView
 {
-    [_father scrollTo];
+    //[_father scrollTo]; 
     if(![sendBtn isUserInteractionEnabled])
     {
         [inputText setText:@""];

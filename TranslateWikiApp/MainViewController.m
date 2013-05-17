@@ -143,7 +143,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *transCellIdentifier = @"translationCell";
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
 
@@ -151,19 +150,21 @@
     {
         if (translationState)
         {
+            TranslationMessage* msg = [dataController objectInListAtIndex:indexPath.row];
+            NSString *transCellIdentifier = [NSString stringWithFormat:@"translationCell-%i",msg.suggestions.count];
             TranslationCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier];
             
             if (trMsgCell==nil)
             {
                 trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
+                trMsgCell.api=_api;
+                trMsgCell.container=dataController;
+                trMsgCell.msgTableView=self.msgTableView;
             }
             [_transCells addObject:trMsgCell];
             
-            trMsgCell.api=_api;
-            trMsgCell.msg=[dataController objectInListAtIndex:indexPath.row];
-            trMsgCell.container=dataController;
+            trMsgCell.msg=msg;
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
-            trMsgCell.msgTableView=self.msgTableView;
             trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
             trMsgCell.isExpanded=FALSE;
             

@@ -28,9 +28,5 @@
     // Configure the view for the selected state
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UILabel* label=[self textLabel];
-    return (expanded? label.frame.size.height+12 : 50);
-}
 
 @end

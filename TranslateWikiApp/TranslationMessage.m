@@ -39,6 +39,7 @@
         _suggestions=[[NSMutableArray alloc] init];
         _userInput = @"";
         
+        
         return self;
     }
     return nil;
@@ -108,7 +109,6 @@
         }]] count]==0)//if suggestion never appeared
             [uniqueSuggs addObject:tempSuggArray[j]];
     }
-    
     //putting the final result inside _suggestions, up to the maxmimum capacity
     int iterations=min([uniqueSuggs count], MAX_NUMBER_OF_SUGGESTIONS);
     for(j=0; j<iterations; j=j+1){
