@@ -690,7 +690,7 @@
                                                                 <constraint firstAttribute="width" constant="294" type="user" id="Nw0-qN-ThV"/>
                                                             </constraints>
                                                             <prototypes>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="inputCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="EKj-if-SXs" customClass="InputCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="EKj-if-SXs" customClass="InputCell">
                                                                     <rect key="frame" x="0.0" y="12" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -812,7 +812,7 @@
                                                                 <constraint firstAttribute="width" constant="294" type="user" id="ZNs-9x-uGb"/>
                                                             </constraints>
                                                             <prototypes>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="suggestionsCell" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="FWI-ot-2ev" style="IBUITableViewCellStyleDefault" id="iID-0u-aF2" customClass="SuggestionCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="FWI-ot-2ev" style="IBUITableViewCellStyleDefault" id="iID-0u-aF2" customClass="SuggestionCell">
                                                                     <rect key="frame" x="0.0" y="12" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -830,7 +830,7 @@
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </tableViewCell>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="inputCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="xWL-hF-An3" customClass="InputCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="xWL-hF-An3" customClass="InputCell">
                                                                     <rect key="frame" x="0.0" y="62" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -952,7 +952,7 @@
                                                                 <constraint firstAttribute="height" constant="162" id="owW-0S-5RD"/>
                                                             </constraints>
                                                             <prototypes>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="suggestionsCell" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="2I5-0g-oe0" style="IBUITableViewCellStyleDefault" id="axT-vd-nST" customClass="SuggestionCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="2I5-0g-oe0" style="IBUITableViewCellStyleDefault" id="axT-vd-nST" customClass="SuggestionCell">
                                                                     <rect key="frame" x="0.0" y="12" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -970,7 +970,7 @@
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </tableViewCell>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="inputCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="hmj-cN-SFX" customClass="InputCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="hmj-cN-SFX" customClass="InputCell">
                                                                     <rect key="frame" x="0.0" y="62" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1092,7 +1092,7 @@
                                                                 <constraint firstAttribute="width" constant="294" type="user" id="oWE-Qj-21z"/>
                                                             </constraints>
                                                             <prototypes>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="suggestionsCell" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="Wvm-t9-Lhn" style="IBUITableViewCellStyleDefault" id="qDL-zb-Yqq" customClass="SuggestionCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionsCell" textLabel="Wvm-t9-Lhn" style="IBUITableViewCellStyleDefault" id="qDL-zb-Yqq" customClass="SuggestionCell">
                                                                     <rect key="frame" x="0.0" y="12" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1110,7 +1110,7 @@
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </tableViewCell>
-                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="inputCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="mKQ-no-iBP" customClass="InputCell">
+                                                                <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inputCell" id="mKQ-no-iBP" customClass="InputCell">
                                                                     <rect key="frame" x="0.0" y="62" width="294" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1406,6 +1406,112 @@
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
+    <classes>
+        <class className="InputCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushSendBtn:"/>
+                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="LanguagePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LogoutButton:"/>
+                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="clearMessages:"/>
+                <relationship kind="action" name="closeMenu:"/>
+                <relationship kind="action" name="openMenu:"/>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushPrefs:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MenuView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
+        </class>
+        <class className="MsgCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="langTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="projTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProjectBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshProjects:"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
+                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="SuggestionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
+        </class>
+        <class className="TranslationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
