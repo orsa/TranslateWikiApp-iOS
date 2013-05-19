@@ -23,9 +23,11 @@
 @property (retain, nonatomic) UITableView* msgTableView;
 @property (retain, nonatomic) InputCell* inputCell;
 @property (atomic) BOOL isExpanded;
+@property (atomic) BOOL isMinimized;
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
 
 - (void)setExpanded:(NSNumber*)expNumber;
+- (void)setMinimized:(BOOL)minNumber;
 -(void)removeFromList;
 -(void)scrollTo;
 -(void)clearTextBox;

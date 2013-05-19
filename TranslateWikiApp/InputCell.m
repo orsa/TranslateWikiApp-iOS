@@ -103,8 +103,11 @@
         
     }];
     [inputText resignFirstResponder];
+    _father.msg.translated=TRUE;
+    [_father setMinimized:YES];
+    [((UITableView*)_father.superview) reloadData];
     
-    [_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
+    //[_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
 }
 
 

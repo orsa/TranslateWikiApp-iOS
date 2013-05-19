@@ -29,7 +29,7 @@
 @synthesize msg;
 @synthesize inputTable;
 @synthesize inputCell;
-
+@synthesize isMinimized;
 
 - (void)setExpanded:(NSNumber*)expNumber
 {
@@ -87,6 +87,16 @@
     
 }
 
+- (void)setMinimized:(BOOL)minNumber{
+    
+    isMinimized =  minNumber;
+    
+    [frameImg setHidden:isMinimized];
+    [inputTable setHidden:isMinimized];
+    
+    //TODO: add re-edit button, dd current translation button.
+}
+
 +(float)optimalHeightForLabel:(UILabel*)lable
 {
     return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;
@@ -99,6 +109,7 @@
     if (self) {
         // Initialization code
         _isExpanded=FALSE;
+        isMinimized=FALSE;
         _suggestionCells=[[NSMutableSet alloc] init];
     }
     return self;
@@ -109,6 +120,7 @@
     self = [super init];
     if (self) {
         _isExpanded=FALSE;
+        isMinimized=FALSE;
         _suggestionCells=[[NSMutableSet alloc] init];
     }
     return self;

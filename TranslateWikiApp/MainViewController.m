@@ -167,8 +167,16 @@
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
             trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
             trMsgCell.isExpanded=FALSE;
+            trMsgCell.isMinimized = trMsgCell.msg.translated;
             
-            [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
+            
+            [trMsgCell setMinimized:trMsgCell.isMinimized];
+            //[trMsgCell performSelectorOnMainThread:@selector(setMinimized:) withObject:[NSNumber numberWithBool:trMsgCell.isMinimized] waitUntilDone:YES];
+            
+            if (!trMsgCell.isMinimized)
+            {
+                [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
+            }
             [trMsgCell.inputTable reloadData];
             return trMsgCell;
         }
@@ -267,7 +275,9 @@
         return 50;
     if (translationState)
     {
-        
+        bool isMin = ((TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row]).translated;
+        if (isMin)
+            return 50;
         if(isSelected)
         {
             NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
