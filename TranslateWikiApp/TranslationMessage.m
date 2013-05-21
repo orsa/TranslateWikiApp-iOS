@@ -29,7 +29,9 @@
     if (self) {
         _source=def;
         _translation=trans;
+        _translationByUser=@"";
         _translated=FALSE;
+        _minimized=FALSE;
         _language=lang;
         _project=proj;
         _key=k;

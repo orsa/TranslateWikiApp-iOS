@@ -87,14 +87,35 @@
     
 }
 
-- (void)setMinimized:(BOOL)minNumber{
+- (void)setMinimized:(NSNumber*)minNumber{
     
-    isMinimized =  minNumber;
+    BOOL previousMinimized=isMinimized;
+    
+    isMinimized = [minNumber boolValue];
+    
+    msg.minimized=isMinimized;
+    
+    if(previousMinimized==isMinimized)
+        return;
     
     [frameImg setHidden:isMinimized];
     [inputTable setHidden:isMinimized];
-    
-    //TODO: add re-edit button, dd current translation button.
+    [_minimizeButton setHidden:isMinimized];
+    if(isMinimized){//change to minimized
+        [srcLabel setText:msg.translationByUser];
+        [srcLabel setTextColor:[UIColor lightGrayColor]];
+    }
+    else//back to unminimized
+    {
+        [srcLabel setText:msg.source];
+        [srcLabel setTextColor:[UIColor blackColor]];
+        [inputCell textViewDidChange:inputCell.inputText];
+    }
+}
+
+- (IBAction)pushMinimized:(id)sender {
+    [self setMinimized:[NSNumber numberWithBool:TRUE]];
+    [self.msgTableView reloadData];
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable
@@ -111,6 +132,7 @@
         _isExpanded=FALSE;
         isMinimized=FALSE;
         _suggestionCells=[[NSMutableSet alloc] init];
+        
     }
     return self;
 }
@@ -226,6 +248,8 @@
         [inCell textViewDidChange:inCell.inputText];
         
         [tableView endUpdates];
+        
+        //[inCell pushSendBtn:self];
     }
 }
 

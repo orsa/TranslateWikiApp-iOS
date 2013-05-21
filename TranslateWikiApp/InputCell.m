@@ -104,7 +104,8 @@
     }];
     [inputText resignFirstResponder];
     _father.msg.translated=TRUE;
-    [_father setMinimized:YES];
+    _father.msg.translationByUser=[inputText text];
+    [_father setMinimized:[NSNumber numberWithBool:TRUE]];
     [((UITableView*)_father.superview) reloadData];
     
     //[_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.

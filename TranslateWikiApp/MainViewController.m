@@ -167,11 +167,10 @@
             trMsgCell.srcLabel.text = [trMsgCell.msg source];
             trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
             trMsgCell.isExpanded=FALSE;
-            trMsgCell.isMinimized = trMsgCell.msg.translated;
+            trMsgCell.isMinimized = trMsgCell.msg.minimized;
             
             
-            [trMsgCell setMinimized:trMsgCell.isMinimized];
-            //[trMsgCell performSelectorOnMainThread:@selector(setMinimized:) withObject:[NSNumber numberWithBool:trMsgCell.isMinimized] waitUntilDone:YES];
+            [trMsgCell setMinimized:[NSNumber numberWithBool:trMsgCell.isMinimized]];
             
             if (!trMsgCell.isMinimized)
             {
@@ -216,25 +215,35 @@
         if (translationState)
         {
             TranslationCell * trMsgCell;
+            trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
+            if(trMsgCell.isMinimized){//the selection was for minimizing
+                [trMsgCell setMinimized:[NSNumber numberWithBool:FALSE]];
+                [self.msgTableView reloadData];
+                
+            }
+            else{//the selection wasn't for minimizing
             if(selectedIndexPath)
             {
                 //do deselect precedures
                 trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
                 [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
-                
+            
                 [trMsgCell.msgTableView reloadData];
-                [trMsgCell.msgTableView.inputView resignFirstResponder];
+                    [trMsgCell.msgTableView.inputView resignFirstResponder];
             }
             if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
             {
+                //selecting a cell
                 selectedIndexPath = [indexPath copy];
                 trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
+                //expand
                 [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
             }
             else
                 selectedIndexPath = nil;
+            }
             
-            [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
         }
         else //proofread state
         {
@@ -275,7 +284,7 @@
         return 50;
     if (translationState)
     {
-        bool isMin = ((TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row]).translated;
+        bool isMin = ((TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row]).minimized; //translated not enough because it can be translated but still unminimized for re-editing
         if (isMin)
             return 50;
         if(isSelected)
