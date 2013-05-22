@@ -14,6 +14,7 @@
 @property(nonatomic, copy)NSString* translationByUser;
 @property BOOL translated;
 @property BOOL minimized;
+@property BOOL translationCellHasMinimizedButton;//in the beginning doesn't have
 @property(nonatomic, copy)NSString* userInput;
 @property(nonatomic, copy)NSString* language;
 @property(nonatomic, copy)NSString* project;

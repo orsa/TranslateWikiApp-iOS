@@ -45,7 +45,7 @@
 
 -(void)textViewDidBeginEditing:(UITextView*)textView
 {
-    //[_father scrollTo]; 
+    //[_father scrollTo];
     if(![sendBtn isUserInteractionEnabled])
     {
         [inputText setText:@""];
@@ -97,11 +97,11 @@
 }
 
 - (IBAction)pushSendBtn:(id)sender {
-    [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(BOOL success, NSError * error){
+    /*[_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(BOOL success, NSError * error){
         
         //check errors etc.
         
-    }];
+    }];*/
     [inputText resignFirstResponder];
     _father.msg.translated=TRUE;
     _father.msg.translationByUser=[inputText text];
