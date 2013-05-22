@@ -44,7 +44,7 @@
     frameImg.transform = CGAffineTransformIdentity;
     inputTable.transform = CGAffineTransformIdentity;
     
-    srcLabel.frame = CGRectMake(2, srcLabel.frame.origin.y, self.frame.size.width-4, sourceH);
+    srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-4, sourceH);
     [inputTable sizeToFit];
     [frameImg sizeToFit];
     
@@ -75,30 +75,17 @@
     //[UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [inputTable setFrame:CGRectMake(frameImg.frame.origin.x+ 0.025* frameImg.frame.size.width,sourceH+14,0.95* frameImg.frame.size.width,tableHeight)]; } completion:nil];
     
     frameImg.frame = CGRectMake(1,
-                                srcLabel.frame.origin.y+sourceH,
+                                sourceH,
                                 self.frame.size.width - 2,
                                 tableHeight*1.2);
     
     
     inputTable.frame = CGRectMake(frameImg.frame.origin.x + 0.025*frameImg.frame.size.width,
-                                  srcLabel.frame.origin.y + sourceH + frameImg.frame.size.height*0.1 ,
+                                  sourceH + frameImg.frame.size.height*0.1 ,
                                   0.95*frameImg.frame.size.width,
                                   tableHeight);
     
 }
-
--(void)addMinimizeButtonToView{
-    [srcLabel sizeToFit];
-    [frameImg sizeToFit];
-    [inputTable sizeToFit];
-    srcLabel.frame = CGRectMake(srcLabel.frame.origin.x, srcLabel.frame.origin.y+32,
-                                srcLabel.frame.size.width, srcLabel.frame.size.height);
-    frameImg.frame = CGRectMake(frameImg.frame.origin.x, frameImg.frame.origin.y+32,
-                                frameImg.frame.size.width, frameImg.frame.size.height);
-    inputTable.frame = CGRectMake(inputTable.frame.origin.x, inputTable.frame.origin.y+32,
-                                  inputTable.frame.size.width, inputTable.frame.size.height);
-                                
-}//no need to remove minimized button, it sticks
 
 - (void)setMinimized:(NSNumber*)minNumber{
     
@@ -117,16 +104,12 @@
     if(isMinimized){//change to minimized
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.translationByUser waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor lightGrayColor]];
-        if(msg.translationCellHasMinimizedButton==FALSE){
-            msg.translationCellHasMinimizedButton=TRUE;//in order for the heightForCell to know that in the right time
-            [self addMinimizeButtonToView];
-        }
     }
     else//back to unminimized
     {
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.source waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor blackColor]];
-        [inputCell textViewDidChange:inputCell.inputText];//add done button
+        [inputCell textViewDidChange:inputCell.inputText];
     }
 }
 

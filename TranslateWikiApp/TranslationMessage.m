@@ -32,7 +32,6 @@
         _translationByUser=@"";
         _translated=FALSE;
         _minimized=FALSE;
-        _translationCellHasMinimizedButton=FALSE;
         _language=lang;
         _project=proj;
         _key=k;

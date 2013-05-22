@@ -284,28 +284,27 @@
         return 50;
     if (translationState)
     {
-        TranslationMessage* msg=[dataController objectInListAtIndex:indexPath.row];
-        bool isMin = msg.minimized; //translated not enough because it can be translated but still unminimized for re-editing
+        bool isMin = ((TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row]).minimized; //translated not enough because it can be translated but still unminimized for re-editing
         if (isMin)
             return 50;
         if(isSelected)
         {
-            NSString * text1 = msg.source;
+            NSString * text1 = [dataController objectInListAtIndex:indexPath.row].source;
             float h1 = max([text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, 50);
             float height=h1;
             float suggHeight;
             NSString* sugg;
-            for(NSMutableDictionary* suggestion in msg.suggestions){
+            for(NSMutableDictionary* suggestion in [dataController objectInListAtIndex:indexPath.row].suggestions){
                 sugg=suggestion[@"suggestion"];
                 suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
                 height+=suggHeight;
             }
-            return height*1.2+80+(msg.translationCellHasMinimizedButton?32:0);
+            return height*1.2+80;
         }
         else //not expanded
         {
             float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
-            return 50*n+50+(msg.translationCellHasMinimizedButton?32:0);
+            return 50*n+50;
         }
     }
     else{   //proofread
