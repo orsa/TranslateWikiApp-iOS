@@ -102,12 +102,12 @@
     [inputTable setHidden:isMinimized];
     [_minimizeButton setHidden:isMinimized];
     if(isMinimized){//change to minimized
-        [srcLabel setText:msg.translationByUser];
+        [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.translationByUser waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor lightGrayColor]];
     }
     else//back to unminimized
     {
-        [srcLabel setText:msg.source];
+        [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.source waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor blackColor]];
         [inputCell textViewDidChange:inputCell.inputText];
     }
