@@ -45,11 +45,10 @@
 
 -(void)textViewDidBeginEditing:(UITextView*)textView
 {
-    //[_father scrollTo]; 
+    [_father scrollTo]; 
     if(![sendBtn isUserInteractionEnabled])
     {
         [inputText setText:@""];
-        
     }
     else
     {
@@ -97,16 +96,18 @@
 }
 
 - (IBAction)pushSendBtn:(id)sender {
-    [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(BOOL success, NSError * error){
-        
-        //check errors etc.
-        
-    }];
+    if (!_father.msg.translated || ![_father.msg.translationByUser isEqualToString:[inputText text]]) //send api request only if changed translation.
+        [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(BOOL success, NSError * error){
+            //check errors etc.
+        }];
+    
     [inputText resignFirstResponder];
     _father.msg.translated=TRUE;
     _father.msg.translationByUser=[inputText text];
     [_father setMinimized:[NSNumber numberWithBool:TRUE]];
-    [((UITableView*)_father.superview) reloadData];
+    [((UITableView*)_father.superview) beginUpdates];
+    [((UITableView*)_father.superview) endUpdates];
+    //[((UITableView*)_father.superview) reloadData];
     
     //[_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
 }

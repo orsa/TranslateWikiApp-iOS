@@ -177,6 +177,7 @@
                 [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
             }
             [trMsgCell.inputTable reloadData];
+            
             return trMsgCell;
         }
         else //proofread mode
@@ -216,10 +217,9 @@
         {
             TranslationCell * trMsgCell;
             trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
-            if(trMsgCell.isMinimized){//the selection was for minimizing
+            if(trMsgCell.isMinimized){ //the selection was for minimizing
                 [trMsgCell setMinimized:[NSNumber numberWithBool:FALSE]];
-                [self.msgTableView reloadData];
-                
+                //[self.msgTableView reloadData];
             }
             else{//the selection wasn't for minimizing
             if(selectedIndexPath)
@@ -244,6 +244,8 @@
             }
             
         [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+        [self.msgTableView beginUpdates];
+        [self.msgTableView endUpdates];
         }
         else //proofread state
         {

@@ -87,20 +87,15 @@
     
 }
 
-- (void)setMinimized:(NSNumber*)minNumber{
-    
-    BOOL previousMinimized=isMinimized;
-    
+- (void)setMinimized:(NSNumber*)minNumber
+{    
     isMinimized = [minNumber boolValue];
     
     msg.minimized=isMinimized;
     
-    if(previousMinimized==isMinimized)
-        return;
-    
     [frameImg setHidden:isMinimized];
     [inputTable setHidden:isMinimized];
-    [_minimizeButton setHidden:isMinimized];
+    //[_minimizeButton setHidden:isMinimized];
     if(isMinimized){//change to minimized
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.translationByUser waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor lightGrayColor]];
@@ -110,12 +105,16 @@
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.source waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor blackColor]];
         [inputCell textViewDidChange:inputCell.inputText];
+        [inputCell.inputText  becomeFirstResponder];
     }
 }
 
 - (IBAction)pushMinimized:(id)sender {
     [self setMinimized:[NSNumber numberWithBool:TRUE]];
-    [self.msgTableView reloadData];
+    [self.msgTableView beginUpdates];
+    [self.msgTableView endUpdates];
+    
+    //[self.msgTableView reloadData];
 }
 
 +(float)optimalHeightForLabel:(UILabel*)lable
@@ -218,16 +217,18 @@
         inCell.inputText.text = msg.userInput;
         if (!msg.userInput || [msg.userInput isEqualToString:@""])
         {
+            [inCell.sendBtn setUserInteractionEnabled:NO];
             [inCell.inputText setTextColor:[UIColor grayColor]];
             inCell.inputText.text = @"Your translation";
         }
         else
         {
+            [inCell.sendBtn setUserInteractionEnabled:YES];
             [inCell.inputText setTextColor:[UIColor blackColor]];
             inCell.inputText.text = msg.userInput;
         }
         inCell.father=self;
-        self.inputCell=inCell;
+        //self.inputCell=inCell;  what is that for??? it made me some troubles [Or]
     }
     
     return cell;
@@ -249,7 +250,7 @@
         
         [tableView endUpdates];
         
-        //[inCell pushSendBtn:self];
+        [inCell pushSendBtn:self];  //automatic send the suggestion
     }
 }
 
