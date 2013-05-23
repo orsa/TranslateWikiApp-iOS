@@ -26,7 +26,10 @@
 @property (atomic) BOOL isExpanded;
 @property (atomic) BOOL isMinimized;
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
+@property (strong, nonatomic) IBOutlet UIButton *infoBtn;
+@property (strong, nonatomic) IBOutlet UIView *infoView;
 
+- (IBAction)pushInfo:(id)sender;
 - (void)setExpanded:(NSNumber*)expNumber;
 - (void)setMinimized:(NSNumber*)minNumber;
 - (IBAction)pushMinimized:(id)sender;

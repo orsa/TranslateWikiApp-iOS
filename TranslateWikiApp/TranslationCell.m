@@ -30,6 +30,33 @@
 @synthesize inputTable;
 @synthesize inputCell;
 @synthesize isMinimized;
+@synthesize infoView;
+@synthesize infoBtn;
+
+- (IBAction)pushInfo:(id)sender {
+    if([infoView isHidden])
+    {
+        msg.infoState = YES;
+        [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [infoView setHidden:NO];
+        [UIView transitionWithView:self
+                          duration:0.6
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                        }
+                        completion:^(BOOL comp){ [self bringSubviewToFront:infoBtn];} ];
+    }
+    else{
+        msg.infoState = NO;
+        [infoView setHidden:YES];
+        [UIView transitionWithView:self
+                          duration:0.6
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                        }
+                        completion:nil];
+    }
+}
 
 - (void)setExpanded:(NSNumber*)expNumber
 {

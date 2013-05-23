@@ -23,6 +23,7 @@
 @property(nonatomic, copy)NSMutableArray* suggestions;//each object in the array is NSMutableDictionary with the key "suggestion" and the optional keys "service" and "quality"
 @property(nonatomic)BOOL isAccepted;
 @property(nonatomic)NSInteger acceptCount;
+@property BOOL infoState;
 
 -(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withProject:(NSString*)proj withKey:(NSString*)k withRevision:(NSString*)rev withTitle:(NSString*)mTitle withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac;
 -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids;

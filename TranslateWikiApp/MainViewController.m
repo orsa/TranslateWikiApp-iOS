@@ -169,6 +169,7 @@
             trMsgCell.isExpanded=FALSE;
             trMsgCell.isMinimized = trMsgCell.msg.minimized;
             
+            [trMsgCell.infoView setHidden:!msg.infoState];
             
             [trMsgCell setMinimized:[NSNumber numberWithBool:trMsgCell.isMinimized]];
             
@@ -176,6 +177,8 @@
             {
                 [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
             }
+            
+            
             [trMsgCell.inputTable reloadData];
             
             return trMsgCell;
