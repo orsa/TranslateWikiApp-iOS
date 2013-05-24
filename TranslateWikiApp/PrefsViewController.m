@@ -42,6 +42,7 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Settings"];
+    
     [self.navigationController setNavigationBarHidden:NO];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
@@ -323,15 +324,20 @@
     
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"Logged as: %@",_api.user.userName];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(tableView.frame.origin.x, 0,
-                                                                      tableView.frame.size.width, 85)];
+                                                                      tableView.frame.size.width, 82)];
     UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    logoutButton.frame = CGRectMake(tableView.frame.origin.x + 10, 6, tableView.frame.size.width-20, 34);
-    resetButton.frame = CGRectMake(tableView.frame.origin.x + 10, 44, tableView.frame.size.width-20, 34);
+    logoutButton.frame = CGRectMake(tableView.frame.origin.x + 10, 5, tableView.frame.size.width-20, 33);
+    resetButton.frame = CGRectMake(tableView.frame.origin.x + 10, 42, tableView.frame.size.width-20, 33);
     
     [logoutButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
     [resetButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
