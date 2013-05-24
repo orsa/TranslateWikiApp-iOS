@@ -61,7 +61,7 @@
     float h2 = [MsgCell optimalHeightForLabel:dstLabel];
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h1:28));
+    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h1:25));
     dstLabel.frame = CGRectMake(4, (exp?h1:25), self.frame.size.width - 4, (exp?h2:25));
 }
 

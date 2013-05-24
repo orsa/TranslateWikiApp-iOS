@@ -78,6 +78,7 @@
     setUserDefaultskey(arr, @"AppleLanguages");
     [[NSUserDefaults standardUserDefaults] synchronize];
     msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, 210, 0); //make room for keyboard
+    [msgTableView reloadData];
 }
 
 - (void)awakeFromNib
@@ -200,7 +201,7 @@
         }
         
     }
-    else
+    else //last cell - more button
     {
         UITableViewCell *moreCell = [tableView dequeueReusableCellWithIdentifier:moreCellIdentifier forIndexPath:indexPath];
         if (!moreCell)
