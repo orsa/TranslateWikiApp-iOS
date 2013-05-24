@@ -41,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"Preferences"];
+    [self setTitle:@"Settings"];
     [self.navigationController setNavigationBarHidden:NO];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
@@ -65,8 +65,17 @@
                 arrProj = [NSArray arrayWithArray:newArrProj];
                 setUserDefaultskey(arrProj, ALL_PROJ_key);
                 //load from NSUserDefaults
-                projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
-                selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+                int i = [self indexOfProjCode:getUserDefaultskey(PROJ_key)];
+                if (i != -1)
+                {
+                    projTextField.text =  arrProj[i][@"label"];
+                    selectedProjCode = arrProj[i][@"id"];
+                }
+                else{
+                    //missing project from list
+                    projTextField.text =  @"";
+                    selectedProjCode = @"";
+                }
             }
             else
                 NSLog(@"No project loaded.");
@@ -76,8 +85,17 @@
     else if (arrProj.count>0)
     {
         //load from NSUserDefaults
-        projTextField.text =  arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"label"];
-        selectedProjCode = arrProj[[self indexOfProjCode:getUserDefaultskey(PROJ_key)]][@"id"];
+        int i = [self indexOfProjCode:getUserDefaultskey(PROJ_key)];
+        if (i != -1)
+        {
+            projTextField.text =  arrProj[i][@"label"];
+            selectedProjCode = arrProj[i][@"id"];
+        }
+        else{
+            //missing project from list
+            projTextField.text =  @"";
+            selectedProjCode = @"";
+        }
     }
     //LOG(arrProj); //Debug
     
