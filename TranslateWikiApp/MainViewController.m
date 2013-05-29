@@ -361,10 +361,7 @@
     }]; 
     
     // here we'll take this cell away
-    [self.dataController removeObjectAtIndex:selectedIndexPath.row];
-    selectedIndexPath = nil;
-    [self.msgTableView reloadData];
-    if([self.dataController countOfList]<1) [self addMessagesTuple];
+    [self removeSelectedCell];
 }
 
 - (IBAction)pushReject:(id)sender
@@ -373,8 +370,18 @@
     [self coreDataRejectMessage];
     
     // here we'll take this cell away
+    [self removeSelectedCell];
+}
+
+-(void)removeSelectedCell
+{
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
-    selectedIndexPath = nil;
+    if([self.dataController countOfList]<1)//no more messages
+        selectedIndexPath = nil;
+    else{
+        if(selectedIndexPath.row==[self.dataController countOfList])//we removed the last message
+            selectedIndexPath=[NSIndexPath indexPathForRow:selectedIndexPath.row-1 inSection:selectedIndexPath.section];
+    }
     [self.msgTableView reloadData];
     if([self.dataController countOfList]<1) [self addMessagesTuple];
 }

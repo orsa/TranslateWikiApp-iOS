@@ -126,7 +126,7 @@
 {
     NSMutableDictionary* doc=translationAids[@"documentation"];
     NSString* valueDocumentation = doc[@"value"];
-    if(valueDocumentation == [NSNull null] || [valueDocumentation isEqualToString:@""]){
+    if([valueDocumentation isKindOfClass:[NSNull class]] || [valueDocumentation isEqualToString:@""]){
         _documentation=@"(No documentation)";
         _noDocumentation=YES;
     }
