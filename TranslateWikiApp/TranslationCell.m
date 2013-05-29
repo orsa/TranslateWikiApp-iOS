@@ -32,13 +32,26 @@
 @synthesize isMinimized;
 @synthesize infoView;
 @synthesize infoBtn;
+@synthesize documentation;
 
 - (IBAction)pushInfo:(id)sender {
     if([infoView isHidden])
     {
         msg.infoState = YES;
+
+        //disabling interactions
+        _originalSelectionStyle=[self selectionStyle];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [[self inputTable] setUserInteractionEnabled:NO];
+        [[self inputView] setUserInteractionEnabled:NO];
+        
+        //setting view
+        [documentation performSelectorOnMainThread:@selector(setText:) withObject:msg.documentation waitUntilDone:NO];
+        UIColor* textColor=msg.noDocumentation ? [UIColor lightGrayColor] : [UIColor blackColor];
+        [documentation performSelectorOnMainThread:@selector(setTextColor:) withObject:textColor waitUntilDone:NO];
         [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [infoView setHidden:NO];
+        [documentation setFrame:CGRectMake(documentation.frame.origin.x, documentation.frame.origin.y, documentation.frame.size.width, self.frame.size.height-21-10-12)];//(10,21) are the origin and height of the first label - "Documentation:"
         [UIView transitionWithView:self
                           duration:0.6
                            options:UIViewAnimationOptionTransitionFlipFromLeft
@@ -48,6 +61,13 @@
     }
     else{
         msg.infoState = NO;
+        
+        //enabling interactions
+        [self setSelectionStyle:_originalSelectionStyle];
+        [[self inputTable] setUserInteractionEnabled:YES];
+        [[self inputView] setUserInteractionEnabled:YES];
+        
+        //setting view
         [infoView setHidden:YES];
         [UIView transitionWithView:self
                           duration:0.6
@@ -122,6 +142,7 @@
     
     [frameImg setHidden:isMinimized];
     [inputTable setHidden:isMinimized];
+    [[self infoBtn] setHidden:isMinimized];
     //[_minimizeButton setHidden:isMinimized];
     if(isMinimized){//change to minimized
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.translationByUser waitUntilDone:NO];
@@ -136,13 +157,13 @@
     }
 }
 
-- (IBAction)pushMinimized:(id)sender {
+/*- (IBAction)pushMinimized:(id)sender {
     [self setMinimized:[NSNumber numberWithBool:TRUE]];
     [self.msgTableView beginUpdates];
     [self.msgTableView endUpdates];
     
     //[self.msgTableView reloadData];
-}
+}*/
 
 +(float)optimalHeightForLabel:(UILabel*)lable
 {

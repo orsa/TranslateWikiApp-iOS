@@ -40,6 +40,8 @@
         _isAccepted=accepted;
         _acceptCount=ac;
         _suggestions=[[NSMutableArray alloc] init];
+        _documentation=@"";
+        _noDocumentation=YES;
         _userInput = @"";
         _infoState = NO;
         
@@ -117,6 +119,20 @@
     int iterations=min([uniqueSuggs count], MAX_NUMBER_OF_SUGGESTIONS);
     for(j=0; j<iterations; j=j+1){
         _suggestions[j]=uniqueSuggs[j];
+    }
+}
+
+-(void)addDocumentationFromResponse:(NSMutableDictionary*)translationAids
+{
+    NSMutableDictionary* doc=translationAids[@"documentation"];
+    NSString* valueDocumentation=doc[@"value"];
+    if([valueDocumentation isEqualToString:@""]){
+        _documentation=@"(No documentation)";
+        _noDocumentation=YES;
+    }
+    else{
+        _documentation=valueDocumentation;
+        _noDocumentation=NO;
     }
 }
 

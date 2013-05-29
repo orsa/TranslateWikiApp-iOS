@@ -102,6 +102,7 @@
             {
                 [api TWTranslationAidsForTitle:msg[@"title"] withProject:proj completionHandler:^(NSDictionary* transAids, NSError* error){
                     [message addSuggestionsFromResponse:transAids[@"helpers"]];
+                    [message addDocumentationFromResponse:transAids[@"helpers"]];
                     dispatch_async(dispatch_get_main_queue(), ^(void) {
                         completionBlock();});
                 }];

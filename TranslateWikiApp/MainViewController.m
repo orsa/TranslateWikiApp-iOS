@@ -221,6 +221,9 @@
         {
             TranslationCell * trMsgCell;
             trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
+            if(trMsgCell.msg.infoState){
+                goto end;
+            }
             if(trMsgCell.isMinimized){ //the selection was for minimizing
                 [trMsgCell setMinimized:[NSNumber numberWithBool:FALSE]];
                 //[self.msgTableView reloadData];
@@ -247,7 +250,7 @@
                 selectedIndexPath = nil;
             }
             
-        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+        end: [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
         [self.msgTableView beginUpdates];
         [self.msgTableView endUpdates];
         }
