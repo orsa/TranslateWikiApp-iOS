@@ -31,6 +31,13 @@
 -(void)addSuggestionsFromResponse:(NSMutableDictionary*)translationAids;
 -(void)addDocumentationFromResponse:(NSMutableDictionary*)translationAids;
 
+-(bool)needsExpansionUnderWidth:(CGFloat)width;
+-(CGFloat)getUnexpandedHeightOfSource;
+-(CGFloat)getUnexpandedHeightOfSuggestion;
+-(CGFloat)getExpandedHeightOfSourceUnderWidth:(CGFloat)width;
+-(CGFloat)getExpandedHeightOfSuggestionNumber:(NSInteger)i underWidth:(CGFloat)width;
+-(CGFloat)getCombinedExpandedHeightOfSuggestionUnderWidth:(CGFloat)width;
+
 @end
 
 

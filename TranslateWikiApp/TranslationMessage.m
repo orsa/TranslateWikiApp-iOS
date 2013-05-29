@@ -136,4 +136,40 @@
     }
 }
 
+#pragma mark TranslationCell heights
+-(bool)needsExpansionUnderWidth:(CGFloat)width
+{
+    if([self getUnexpandedHeightOfSource]<[self getExpandedHeightOfSourceUnderWidth:width])
+        return YES;
+    for(int i=0; i<[_suggestions count]; i++){
+        if([self getUnexpandedHeightOfSuggestion]<[self getExpandedHeightOfSuggestionNumber:i underWidth:width])
+            return YES;
+    }
+    return NO;
+}
+
+-(CGFloat)getUnexpandedHeightOfSource{
+    return 50;
+}
+
+-(CGFloat)getUnexpandedHeightOfSuggestion{
+    return 50;
+}
+
+-(CGFloat)getExpandedHeightOfSourceUnderWidth:(CGFloat)width{
+    return max([_source sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, [self getUnexpandedHeightOfSource]);
+}
+
+-(CGFloat)getExpandedHeightOfSuggestionNumber:(NSInteger)i underWidth:(CGFloat)width{
+    return max([_suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, [self getUnexpandedHeightOfSuggestion]);
+}
+
+-(CGFloat)getCombinedExpandedHeightOfSuggestionUnderWidth:(CGFloat)width{
+    float h=0;
+    for(int i=0; i<_suggestions.count; i++){
+        h+=[self getExpandedHeightOfSuggestionNumber:i underWidth:width];
+    }
+    return h;
+}
+
 @end

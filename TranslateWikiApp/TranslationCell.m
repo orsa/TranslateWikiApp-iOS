@@ -87,7 +87,7 @@
     srcLabel.numberOfLines = (exp?0:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
 
-    float sourceH = (exp? max([TranslationCell optimalHeightForLabel:srcLabel]+1, 40): 40);
+    float sourceH = (exp? [msg getExpandedHeightOfSourceUnderWidth:self.frame.size.width]: [msg getUnexpandedHeightOfSuggestion]);
     [srcLabel sizeToFit];
     
     frameImg.transform = CGAffineTransformIdentity;
@@ -109,7 +109,7 @@
         label.numberOfLines=(exp?0:1);
         [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
         
-        cellHeight=(exp ? [self getSizeOfSuggestionNumber:i]:50);
+        cellHeight=(exp ? [msg getExpandedHeightOfSuggestionNumber:i underWidth:self.frame.size.width]:[msg getUnexpandedHeightOfSuggestion]);
         
         cellOrigin+=cellHeight;
         i+=1;
@@ -144,6 +144,11 @@
     [self addGestureRecognizer:gestureR];
     
 }
+/*
++(float)optimalHeightForLabel:(UILabel*)lable
+{
+    return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;
+}*/
 
 - (void)setMinimized:(NSNumber*)minNumber
 {
@@ -175,11 +180,6 @@
     
     //[self.msgTableView reloadData];
 }*/
-
-+(float)optimalHeightForLabel:(UILabel*)lable
-{
-    return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;
-}
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -319,8 +319,8 @@
         return 50;
     if(indexPath.row<msg.suggestions.count){
         if(!_isExpanded)
-            return 50;//unexpanded suggestion cell
-        float ret=[self getSizeOfSuggestionNumber:indexPath.row];
+            return [msg getUnexpandedHeightOfSuggestion];//unexpanded suggestion cell
+        float ret=[msg getExpandedHeightOfSuggestionNumber:indexPath.row underWidth:self.frame.size.width];
         return ret;
     }
     else
@@ -351,16 +351,9 @@
     return customView;
 }
 
-/*-(CGFloat)tableHeight{
-    float height=50;//height of textView
-    for(int i=0; i<msg.suggestions.count; i++){
-        height+=[self getSizeOfSuggestionNumber:i];
-    }
-    return height;
-}*/
-
+/*
 -(CGFloat)getSizeOfSuggestionNumber:(NSInteger)i{
     return max([msg.suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(inputTable.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
-}
+}*/
 
 @end
