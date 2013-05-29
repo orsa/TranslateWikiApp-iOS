@@ -58,7 +58,9 @@
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     LoginViewController *controller = (LoginViewController *)navigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;    
+    controller.managedObjectContext = self.managedObjectContext;
+    
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
     return YES;
 }
@@ -183,6 +185,14 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Debugging
+
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
 }
 
 @end
