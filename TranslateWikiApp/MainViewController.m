@@ -359,7 +359,7 @@
     
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
-    if([self.dataController countOfList]<1) selectedIndexPath = nil;
+    selectedIndexPath = nil;
     [self.msgTableView reloadData];
     if([self.dataController countOfList]<1) [self addMessagesTuple];
 }
@@ -371,7 +371,7 @@
     
     // here we'll take this cell away
     [self.dataController removeObjectAtIndex:selectedIndexPath.row];
-    if([self.dataController countOfList]<1) selectedIndexPath = nil;
+    selectedIndexPath = nil;
     [self.msgTableView reloadData];
     if([self.dataController countOfList]<1) [self addMessagesTuple];
 }
