@@ -32,16 +32,10 @@
 @synthesize isMinimized;
 @synthesize infoView;
 @synthesize infoBtn;
-@synthesize backBtn;
 @synthesize documentation;
 
 - (IBAction)pushInfo:(id)sender {
-    BOOL goingToInfo=!msg.infoState;
-    [infoBtn setHidden:goingToInfo];
-    [backBtn setHidden:!goingToInfo];
-    [infoBtn setUserInteractionEnabled:!goingToInfo];
-    [backBtn setUserInteractionEnabled:goingToInfo];
-    if(!msg.infoState)
+    if([infoView isHidden])
     {
         msg.infoState = YES;
 
@@ -82,10 +76,6 @@
                         }
                         completion:nil];
     }
-}
-
-- (IBAction)pushBack:(id)sender {
-    [self pushInfo:sender];
 }
 
 - (void)setExpanded:(NSNumber*)expNumber

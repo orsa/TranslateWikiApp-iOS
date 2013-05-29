@@ -27,13 +27,11 @@
 @property (atomic) BOOL isMinimized;
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
 @property (strong, nonatomic) IBOutlet UIButton *infoBtn;
-@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UITextView *documentation;
 @property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle;
 
 - (IBAction)pushInfo:(id)sender;
-- (IBAction)pushBack:(id)sender;
 - (void)setExpanded:(NSNumber*)expNumber;
 - (void)setMinimized:(NSNumber*)minNumber;
 /*- (IBAction)pushMinimized:(id)sender;*/
