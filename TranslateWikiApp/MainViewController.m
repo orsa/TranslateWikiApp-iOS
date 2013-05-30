@@ -70,7 +70,7 @@
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
     translationState = !getBoolUserDefaultskey(PRMODE_key);
-    [menuBtn setTitle:(translationState ? @"▾ Translate" : @"▾ Proofread" ) forState:UIControlStateNormal];
+    [menuBtn setTitle:(translationState ? @"Translate ▾" : @"Proofread ▾" ) forState:UIControlStateNormal];
     NSString * st = getUserDefaultskey(LANG_key);
     NSMutableArray * arr = [NSMutableArray arrayWithArray:[NSLocale preferredLanguages]];
     [arr removeObject:st];
@@ -180,6 +180,8 @@
             }
             
             
+            
+            
             [trMsgCell.inputTable reloadData];
             
             return trMsgCell;
@@ -194,7 +196,8 @@
             msgCell.srcLabel.text = [[dataController objectInListAtIndex:indexPath.row] source];
             msgCell.dstLabel.text = [[dataController objectInListAtIndex:indexPath.row] translation];
             msgCell.keyLabel.text = [[dataController objectInListAtIndex:indexPath.row] key];
-            msgCell.acceptCount.text = [NSString  stringWithFormat:@"%d",[[dataController objectInListAtIndex:indexPath.row] acceptCount]];
+            NSInteger ac_cnt = [[dataController objectInListAtIndex:indexPath.row] acceptCount];
+            msgCell.acceptCount.text = (ac_cnt!=0 ? [NSString  stringWithFormat:@"%d", ac_cnt]: @"");
          
             [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
             return msgCell;
@@ -308,7 +311,7 @@
                 suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
                 height+=suggHeight;
             }
-            return height*1.2+80;
+            return height*1.2+65;
         }
         else //not expanded
         {
@@ -323,7 +326,7 @@
             NSString * text2 = [dataController objectInListAtIndex:indexPath.row].translation;
             float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
             float h2 = [text2 sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
-            return (h1+h2+100); //expanded proofread cell height
+            return (h1+h2+75); //expanded proofread cell height
         }else
             return 65;  //unexpanded proofread cell height
     }
@@ -431,12 +434,18 @@
     [self.msgTableView reloadData];
 }
 
+
+- (IBAction)didSwipe:(UISwipeGestureRecognizer *)sender {
+    
+}
+
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender {
     [self closeMenu:sender];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+
     UITouch *aTouch = [touches anyObject];
     if (aTouch.tapCount == 1)
     {

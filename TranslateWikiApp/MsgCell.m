@@ -49,8 +49,8 @@
     [_rejectBtn setHidden:!exp];
     [_infoLabel setHidden:!exp];
     [_acceptCount setHidden:!exp];
-    [_keyinfoLabel setHidden:!exp];
-    [_keyLabel setHidden:!exp];
+    //[_keyinfoLabel setHidden:!exp]; we dont show key for now
+    //[_keyLabel setHidden:!exp];
     
     srcLabel.numberOfLines = (exp?0:1);
     dstLabel.numberOfLines = (exp?0:1);

@@ -96,7 +96,7 @@
     {
         PrefsViewController *ViewController = (PrefsViewController *)[self.navigationController topViewController];
         ViewController.didChange = didChange;
-        ViewController.langTextField.text = dstLang;
+        ViewController.langLabel.text = dstLang;
         
         //update recent languages array
         NSMutableArray * updatedRecentLanguages = [[NSMutableArray alloc] init];

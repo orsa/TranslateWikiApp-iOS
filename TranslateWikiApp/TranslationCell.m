@@ -35,6 +35,8 @@
 @synthesize documentation;
 
 - (IBAction)pushInfo:(id)sender {
+    if([infoBtn isHidden])
+        return;
     if([infoView isHidden])
     {
         msg.infoState = YES;
@@ -132,10 +134,19 @@
                                   0.95*frameImg.frame.size.width,
                                   tableHeight);
     
+    UISwipeGestureRecognizer* gestureR;
+    gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector (pushInfo:)];
+    gestureR.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:gestureR];
+    
+    gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pushInfo:)];
+    gestureR.direction = UISwipeGestureRecognizerDirectionRight; // default
+    [self addGestureRecognizer:gestureR];
+    
 }
 
 - (void)setMinimized:(NSNumber*)minNumber
-{    
+{
     isMinimized = [minNumber boolValue];
     
     msg.minimized=isMinimized;
@@ -332,7 +343,7 @@
     headerLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1];//or
     headerLabel.textColor = [UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1];
     headerLabel.font = [UIFont boldSystemFontOfSize:9];
-    headerLabel.frame = CGRectMake(0,0,customView.frame.size.width,12);
+    headerLabel.frame = CGRectMake(10,0,customView.frame.size.width-10,12);
     headerLabel.text =  (msg.suggestions.count==1 ? @"suggestion" : @"suggestions");
 
     [customView addSubview:headerLabel];

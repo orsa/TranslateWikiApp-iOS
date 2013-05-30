@@ -22,8 +22,8 @@
 //<UIPickerViewDataSource, UIPickerViewDelegate>
 {
     //IBOutlet UIPickerView *pickerView;
-    IBOutlet UITextField *langTextField;
-    IBOutlet UITextField *projTextField;
+    IBOutlet UILabel *langLabel;
+    IBOutlet UILabel *projLabel;
 
     NSArray *arrLang;
     NSArray *arrProj;
@@ -34,8 +34,8 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextField *tupleSizeTextView;
-@property (nonatomic, retain) IBOutlet UITextField *langTextField;
-@property (nonatomic, retain) IBOutlet UITextField *projTextField;
+@property (nonatomic, retain) IBOutlet UILabel *langLabel;
+@property (nonatomic, retain) IBOutlet UILabel *projLabel;
 @property (nonatomic, retain) TWapi *api;
 @property (nonatomic, retain) NSString *selectedProjCode;
 @property BOOL didChange;

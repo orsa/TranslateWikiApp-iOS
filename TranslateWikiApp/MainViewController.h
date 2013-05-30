@@ -40,6 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *menuBtn;
 
 
+- (IBAction)didSwipe:(UISwipeGestureRecognizer *)sender;
+
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender;
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;

@@ -37,6 +37,7 @@
 @synthesize dstProjLabel;
 @synthesize dstProjID;
 @synthesize originalSrc;
+@synthesize api;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -96,7 +97,7 @@
     {
         PrefsViewController *ViewController = (PrefsViewController *)[self.navigationController topViewController];
         ViewController.didChange = YES;
-        ViewController.projTextField.text = dstProjLabel;
+        ViewController.projLabel.text = dstProjLabel;
         ViewController.selectedProjCode =  dstProjID;
         NSDictionary *dst = [[NSDictionary alloc] initWithObjectsAndKeys: dstProjLabel ,@"label", dstProjID, @"id" , nil];
         
@@ -271,7 +272,7 @@
 {
     ShowNetworkActivityIndicator();
     LoadUserDefaults();
-    [_api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
+    [api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
         
         if (error || newArrProj==nil)
         {

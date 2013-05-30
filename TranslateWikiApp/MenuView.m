@@ -128,7 +128,7 @@
                 LoadUserDefaults();
                 setBoolUserDefaultskey(NO, PRMODE_key);
                 [mainVC clearMessages:self];
-                [mainVC.menuBtn setTitle:@"▾ Translate" forState:UIControlStateNormal];
+                [mainVC.menuBtn setTitle:@"Translate ▾" forState:UIControlStateNormal];
                 [mainVC addMessagesTuple];
                 
                 [tableView reloadData];
@@ -142,7 +142,7 @@
                 setBoolUserDefaultskey(YES, PRMODE_key);
                 [mainVC clearTextBoxes];
                 [mainVC clearMessages:self];
-                [mainVC.menuBtn setTitle:@"▾ Proofread" forState:UIControlStateNormal];
+                [mainVC.menuBtn setTitle:@"Proofread ▾" forState:UIControlStateNormal];
                 [mainVC addMessagesTuple];
                 
                 [tableView reloadData];

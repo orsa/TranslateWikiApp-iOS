@@ -30,12 +30,13 @@
     int flag;       //use to distinguish between active pickerviews
 }
 
-@synthesize langTextField;
-@synthesize projTextField;
+@synthesize langLabel;
+@synthesize projLabel;
 @synthesize tupleSizeTextView;
 @synthesize didChange;
 @synthesize selectedProjCode;
 @synthesize maxMsgLengthTextField;
+@synthesize api;
 
 
 - (void)viewDidLoad
@@ -45,7 +46,7 @@
     
     [self.navigationController setNavigationBarHidden:NO];
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
+    //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
     
     arrLang = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
     arrLangCodes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
@@ -55,7 +56,7 @@
     arrProj = getUserDefaultskey(ALL_PROJ_key);
     if (!arrProj)
     {
-        [_api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
+        [api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
         
             if (error || newArrProj==nil)
             {
@@ -69,12 +70,12 @@
                 int i = [self indexOfProjCode:getUserDefaultskey(PROJ_key)];
                 if (i != -1)
                 {
-                    projTextField.text =  arrProj[i][@"label"];
+                    projLabel.text =  arrProj[i][@"label"];
                     selectedProjCode = arrProj[i][@"id"];
                 }
                 else{
                     //missing project from list
-                    projTextField.text =  @"";
+                    projLabel.text =  @"";
                     selectedProjCode = @"";
                 }
             }
@@ -89,12 +90,12 @@
         int i = [self indexOfProjCode:getUserDefaultskey(PROJ_key)];
         if (i != -1)
         {
-            projTextField.text =  arrProj[i][@"label"];
+            projLabel.text =  arrProj[i][@"label"];
             selectedProjCode = arrProj[i][@"id"];
         }
         else{
             //missing project from list
-            projTextField.text =  @"";
+            projLabel.text =  @"";
             selectedProjCode = @"";
         }
     }
@@ -104,7 +105,7 @@
     
     NSInteger index = [arrLangCodes indexOfObject:getUserDefaultskey(LANG_key)];
     if (index!=NSNotFound)
-        langTextField.text = [arrLang objectAtIndex:index];
+        langLabel.text = [arrLang objectAtIndex:index];
     else
         NSLog(@"Unfound language: %@", getUserDefaultskey(LANG_key) );
     
@@ -125,7 +126,7 @@
     {
         ProjectBrowserViewController *ViewController = [segue destinationViewController];
         ViewController.originalSrc = [[NSMutableArray alloc]initWithArray:arrProj];
-        ViewController.api = _api;
+        ViewController.api = api;
     }
 }
 
@@ -140,27 +141,9 @@
 }
 
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-    [tupleSizeTextView resignFirstResponder];
-    [maxMsgLengthTextField resignFirstResponder];
-    if (textField==langTextField) //go to language picker
-    {
-        [self performSegueWithIdentifier:@"langPicker" sender:self];
-        return NO;
-    }
-    else if (textField==projTextField) //go to project broser
-    {
-        [self performSegueWithIdentifier:@"projBrowser" sender:self];
-        return NO;
-    }
-    return YES;
-    
-}
-
 -(NSString*)getNewLang
 {
-    NSInteger index = [arrLang indexOfObject:langTextField.text];
+    NSInteger index = [arrLang indexOfObject:langLabel.text];
     if (index!=NSNotFound) {
         return [arrLangCodes objectAtIndex:index];
     }
@@ -290,7 +273,7 @@
         case 1: //alert result for logout
             if (buttonIndex == 1)  //clicked ok at the alert
             {
-                [_api TWLogoutRequest:^(NSDictionary* response, NSError* error){
+                [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
                     //Handle the error
                     NSLog(@"%@", error);
                 }];
@@ -309,8 +292,8 @@
                 NSString* maxLen = INITIAL_MAX_LENGTH;
                 
                 selectedProjCode=proj;
-                projTextField.text=@"Recent translations";
-                langTextField.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
+                projLabel.text=@"Recent translations";
+                langLabel.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
                 tupleSizeTextView.text=tuple;
                 maxMsgLengthTextField.text = maxLen;
                 
@@ -326,7 +309,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Logged as: %@",_api.user.userName];
+    return [NSString stringWithFormat:@"Logged as: %@",api.user.userName];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section

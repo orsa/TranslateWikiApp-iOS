@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn;
 @property (retain, nonatomic) TWapi * api;
-@property(nonatomic, retain)TranslationMessage * msg;
+@property(nonatomic, retain) TranslationMessage * msg;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (void)setExpanded:(NSNumber*)expNumber;
