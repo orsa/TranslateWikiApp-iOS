@@ -125,8 +125,8 @@
 -(void)addDocumentationFromResponse:(NSMutableDictionary*)translationAids
 {
     NSMutableDictionary* doc=translationAids[@"documentation"];
-    NSString* valueDocumentation=doc[@"value"];
-    if(valueDocumentation==[NSNull null] || [valueDocumentation isEqualToString:@""]){
+    NSString* valueDocumentation = doc[@"value"];
+    if(valueDocumentation == [NSNull null] || [valueDocumentation isEqualToString:@""]){
         _documentation=@"(No documentation)";
         _noDocumentation=YES;
     }

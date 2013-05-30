@@ -142,7 +142,7 @@
     
     [frameImg setHidden:isMinimized];
     [inputTable setHidden:isMinimized];
-    [[self infoBtn] setHidden:isMinimized];
+    [[self infoBtn] setHidden:(isMinimized || msg.noDocumentation)];
     //[_minimizeButton setHidden:isMinimized];
     if(isMinimized){//change to minimized
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.translationByUser waitUntilDone:NO];
