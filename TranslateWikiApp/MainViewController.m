@@ -311,9 +311,9 @@
                 suggHeight=max([sugg sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
                 height+=suggHeight;
             }
-            return height*1.2+65;
+            return height*1.2+60;
         }
-        else //not expanded
+        else //not expanded translation cell
         {
             float n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
             return 50*n+50;
@@ -326,7 +326,7 @@
             NSString * text2 = [dataController objectInListAtIndex:indexPath.row].translation;
             float h1 = [text1 sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
             float h2 = [text2 sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(tableView.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height;
-            return (h1+h2+75); //expanded proofread cell height
+            return (h1+h2+60); //expanded proofread cell height
         }else
             return 65;  //unexpanded proofread cell height
     }
