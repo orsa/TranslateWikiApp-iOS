@@ -256,6 +256,7 @@
         end: [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
         [self.msgTableView beginUpdates];
         [self.msgTableView endUpdates];
+            [self.msgTableView reloadData];
         }
         else //proofread state
         {
@@ -307,8 +308,7 @@
                 goto unexpanded_trCell;
             float sourceHeight=[msg getExpandedHeightOfSourceUnderWidth:tableView.frame.size.width];
             float suggHeight=[msg getCombinedExpandedHeightOfSuggestionUnderWidth:tableView.frame.size.width];
-            float height=sourceHeight+suggHeight;
-            return height*1.2+60;
+            return sourceHeight+(suggHeight+62)*1.2;
         }
         else //not expanded translation cell
         {

@@ -133,7 +133,7 @@
                                   sourceH + frameImg.frame.size.height*0.1 ,
                                   0.95*frameImg.frame.size.width,
                                   tableHeight);
-    
+
     UISwipeGestureRecognizer* gestureR;
     gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector (pushInfo:)];
     gestureR.direction = UISwipeGestureRecognizerDirectionLeft;
