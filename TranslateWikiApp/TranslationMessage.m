@@ -74,7 +74,9 @@
         NSNumber* quality=(NSNumber*)suggElem[@"quality"];
         if([quality doubleValue]<MESSAGE_ACCURACY_TRESHOLD)//if accuracy isn't enough
             continue;
-        
+        if([suggestion length]>MAX_SUGEGSTION_LENGTH)//if suggestion is too long
+            continue;
+            
         TMsuggestionsArray[i]=[[NSMutableDictionary alloc] init];
         TMsuggestionsArray[i][@"suggestion"]=suggestion;
         TMsuggestionsArray[i][@"quality"]=quality;
@@ -161,7 +163,8 @@
 }
 
 -(CGFloat)getExpandedHeightOfSuggestionNumber:(NSInteger)i underWidth:(CGFloat)width{
-    return max([_suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, [self getUnexpandedHeightOfSuggestion]);
+    //return max([_suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, [self getUnexpandedHeightOfSuggestion]);
+    return 50;
 }
 
 -(CGFloat)getCombinedExpandedHeightOfSuggestionUnderWidth:(CGFloat)width{
