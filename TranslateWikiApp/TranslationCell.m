@@ -131,6 +131,7 @@
     [self bringSubviewToFront:infoBtn];
 
 }
+
 - (IBAction)pushInfo:(id)sender {
     if([infoBtn isHidden])
         return;

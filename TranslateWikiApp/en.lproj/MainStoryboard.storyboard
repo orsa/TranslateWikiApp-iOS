@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1330,6 +1330,7 @@
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                                 <constraints>
+                                                    <constraint firstItem="ApJ-Df-HTb" firstAttribute="top" secondItem="x4W-nF-UbV" secondAttribute="bottom" constant="20" type="user" id="1kE-mC-88o"/>
                                                     <constraint firstAttribute="trailing" secondItem="dGs-72-bl2" secondAttribute="trailing" constant="2" type="user" id="5qD-hx-0uZ"/>
                                                     <constraint firstItem="ems-aE-Jkb" firstAttribute="bottom" secondItem="t6B-jG-cUH" secondAttribute="bottom" type="user" id="Ai2-9c-Adi"/>
                                                     <constraint firstItem="ApJ-Df-HTb" firstAttribute="leading" secondItem="t6B-jG-cUH" secondAttribute="leading" constant="13" type="user" id="CaC-Mf-6FT"/>
@@ -1346,7 +1347,7 @@
                                                     <constraint firstItem="5L5-Os-2J1" firstAttribute="top" secondItem="x4W-nF-UbV" secondAttribute="bottom" constant="5" type="user" id="nOh-PA-ySN"/>
                                                     <constraint firstItem="5L5-Os-2J1" firstAttribute="trailing" secondItem="t6B-jG-cUH" secondAttribute="trailing" type="user" id="qS1-Tq-kbm"/>
                                                     <constraint firstAttribute="trailing" secondItem="ApJ-Df-HTb" secondAttribute="trailing" constant="13" type="user" id="uJD-mc-1Xf"/>
-                                                    <constraint firstItem="ApJ-Df-HTb" firstAttribute="top" secondItem="t6B-jG-cUH" secondAttribute="top" constant="76" id="udK-9F-Kmq"/>
+                                                    <constraint firstItem="ApJ-Df-HTb" firstAttribute="top" secondItem="t6B-jG-cUH" secondAttribute="top" priority="1" constant="76" type="user" id="udK-9F-Kmq"/>
                                                     <constraint firstItem="x4W-nF-UbV" firstAttribute="leading" secondItem="t6B-jG-cUH" secondAttribute="leading" constant="2" type="user" id="w3O-KZ-xcj"/>
                                                 </constraints>
                                                 <connections>
