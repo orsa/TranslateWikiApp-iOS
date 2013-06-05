@@ -37,6 +37,7 @@
 -(CGFloat)getExpandedHeightOfSourceUnderWidth:(CGFloat)width;
 -(CGFloat)getExpandedHeightOfSuggestionNumber:(NSInteger)i underWidth:(CGFloat)width;
 -(CGFloat)getCombinedExpandedHeightOfSuggestionUnderWidth:(CGFloat)width;
+-(CGFloat)heightForImageView;
 
 @end
 

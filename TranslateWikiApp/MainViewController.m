@@ -301,19 +301,20 @@
         bool isMin = msg.minimized; //translated not enough because it can be translated but still unminimized for re-editing
         if (isMin)
             return 50;
-        float n;
+        //float n;
         if(isSelected)
         {
             if(![msg needsExpansionUnderWidth:tableView.frame.size.width])
                 goto unexpanded_trCell;
             float sourceHeight=[msg getExpandedHeightOfSourceUnderWidth:tableView.frame.size.width];
             float suggHeight=[msg getCombinedExpandedHeightOfSuggestionUnderWidth:tableView.frame.size.width];
-            return sourceHeight+(suggHeight+62)*1.2;
+            return sourceHeight+(suggHeight+62)*1.2+2+10;
         }
         else //not expanded translation cell
         {
-        unexpanded_trCell: n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
-            return 50*n+50;
+        unexpanded_trCell: //n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
+            //return 50*n+50;
+            return [msg heightForImageView]+50+20;
         }
     }
     else{   //proofread
@@ -446,6 +447,18 @@
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender {
     [self closeMenu:sender];
 }
+
+/*//-(BOOL)shouldAutorotate{
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    if(translationState){
+        NSIndexPath* indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+        TranslationCell* trMsgCell = (TranslationCell*)[msgTableView cellForRowAtIndexPath:indexPath];
+        NSString* source=[NSString stringWithFormat:@"%s", trMsgCell.isExpanded? "expanded" : "not expanded"];
+        LoadAlertView(@"itle", source, @"ok");
+        AlertShow();
+        [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:trMsgCell.isExpanded] waitUntilDone:NO];
+    }
+}*/
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {

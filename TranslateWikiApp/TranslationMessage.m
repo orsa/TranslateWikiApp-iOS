@@ -172,4 +172,22 @@
     return h;
 }
 
+-(CGFloat)heightForImageView{
+    int n=[_suggestions count];
+    switch (n) {
+        case 0:
+            return 84;
+            break;
+        case 1:
+            return 135;
+        case 2:
+            return 197;
+        case 3:
+            return 245;
+        default:
+            break;
+    }
+    return 245;//won't get here
+}
+
 @end
