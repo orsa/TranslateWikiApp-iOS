@@ -26,14 +26,111 @@
 
 @synthesize srcLabel;
 @synthesize frameImg;
-@synthesize msg;
 @synthesize inputTable;
 @synthesize inputCell;
-@synthesize isMinimized;
 @synthesize infoView;
 @synthesize infoBtn;
-@synthesize documentation;
 
+@synthesize suggestionCells;
+@synthesize msg;
+@synthesize documentation;
+@synthesize isExpanded;
+@synthesize isMinimized;
+
+
+
+//*********************************************************************************
+// Builds the necessary UI for a translation cell
+// Input : array obj s.t:
+//      obj[0] is a pointer to the linked message.
+//      obj[1] NSNumber represents whether the cell should be expanded
+// 
+//*********************************************************************************
+- (void)buildWithMsg:(NSArray *)obj
+{
+    msg = obj[0];
+    isExpanded = [obj[1] boolValue];
+    isMinimized = msg.minimized;
+    
+    //setup src label
+    srcLabel.numberOfLines = (isExpanded?0:1);
+    [srcLabel setLineBreakMode:(isExpanded?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
+    
+    float sourceH = (isExpanded? [msg getExpandedHeightOfSourceUnderWidth:self.frame.size.width]: [msg getUnexpandedHeightOfSuggestion]);
+    [srcLabel sizeToFit];
+    
+    srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-4, sourceH);
+    [inputTable sizeToFit];
+    [frameImg sizeToFit];
+    
+    //setting frames of inside cells and calculating table height
+    float cellOrigin=0;//origin of cell, relative to origin of table
+    float cellHeight=0;
+    int i=0;
+    UITableViewCell* cell;
+    UILabel* label;
+    for(id obj in suggestionCells){
+        cell=(UITableViewCell*)obj;
+        label=[cell textLabel];
+        label.numberOfLines=(isExpanded?0:1);
+        [label setLineBreakMode:(isExpanded?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
+        
+        cellHeight=(isExpanded ? [msg getExpandedHeightOfSuggestionNumber:i underWidth:self.frame.size.width]:[msg getUnexpandedHeightOfSuggestion]);
+        
+        cellOrigin+=cellHeight;
+        i+=1;
+    }
+    
+    float tableHeight = cellOrigin + 62; //the "+62" is for the header and the input cell
+    
+    frameImg.frame = CGRectMake(1,
+                                sourceH,
+                                self.frame.size.width - 2,
+                                tableHeight*1.2);
+    
+    
+    inputTable.frame = CGRectMake(frameImg.frame.origin.x + 0.025*frameImg.frame.size.width,
+                                  sourceH + frameImg.frame.size.height*0.1 ,
+                                  0.95*frameImg.frame.size.width,
+                                  tableHeight);
+    
+    //setup gesture recognizers for the "swipe for info" feature
+    UISwipeGestureRecognizer* gestureR;
+    gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector (pushInfo:)];
+    gestureR.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:gestureR];
+    
+    gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pushInfo:)];
+    gestureR.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:gestureR];
+    
+    BOOL hideInfo = !msg.infoState;
+    [infoView setHidden:hideInfo];
+    
+    [[self inputTable] setUserInteractionEnabled:hideInfo];
+    [[self inputView] setUserInteractionEnabled:hideInfo];
+    
+    if(hideInfo)
+    {
+        [self setSelectionStyle:_originalSelectionStyle];
+    }
+    else
+    {
+        //disabling interactions
+        _originalSelectionStyle=[self selectionStyle];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        //setting view
+        [documentation performSelectorOnMainThread:@selector(setText:) withObject:msg.documentation waitUntilDone:NO];
+        UIColor* textColor=msg.noDocumentation ? [UIColor lightGrayColor] : [UIColor blackColor];
+        [documentation performSelectorOnMainThread:@selector(setTextColor:) withObject:textColor waitUntilDone:NO];
+        [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [self bringSubviewToFront:infoView];
+    }
+    
+    [self bringSubviewToFront:infoBtn];
+
+}
 - (IBAction)pushInfo:(id)sender {
     if([infoBtn isHidden])
         return;
@@ -55,7 +152,7 @@
         [infoView setHidden:NO];
         [documentation setFrame:CGRectMake(documentation.frame.origin.x, documentation.frame.origin.y, documentation.frame.size.width, self.frame.size.height-21-10-12)];//(10,21) are the origin and height of the first label - "Documentation:"
         [UIView transitionWithView:self
-                          duration:0.6
+                          duration:0.5
                            options:UIViewAnimationOptionTransitionFlipFromLeft
                         animations:^{
                         }
@@ -72,7 +169,7 @@
         //setting view
         [infoView setHidden:YES];
         [UIView transitionWithView:self
-                          duration:0.6
+                          duration:0.5
                            options:UIViewAnimationOptionTransitionFlipFromLeft
                         animations:^{
                         }
@@ -83,7 +180,7 @@
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];
-    _isExpanded=exp;
+    isExpanded=exp;
     srcLabel.numberOfLines = (exp?0:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
 
@@ -103,7 +200,7 @@
     int i=0;
     UITableViewCell* cell;
     UILabel* label;
-    for(id obj in _suggestionCells){
+    for(id obj in suggestionCells){
         cell=(UITableViewCell*)obj;
         label=[cell textLabel];
         label.numberOfLines=(exp?0:1);
@@ -186,9 +283,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _isExpanded=FALSE;
+        isExpanded=FALSE;
         isMinimized=FALSE;
-        _suggestionCells=[[NSMutableSet alloc] init];
+        suggestionCells=[[NSMutableSet alloc] init];
         
     }
     return self;
@@ -198,9 +295,9 @@
 {
     self = [super init];
     if (self) {
-        _isExpanded=FALSE;
+        isExpanded=FALSE;
         isMinimized=FALSE;
-        _suggestionCells=[[NSMutableSet alloc] init];
+        suggestionCells=[[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -260,7 +357,7 @@
         }
         cell.textLabel.text = msg.suggestions[indexPath.row][@"suggestion"];
         //[_suggestionLabels addObject:cell.textLabel];
-        [_suggestionCells addObject:cell];
+        [suggestionCells addObject:cell];
     }
     else
     {
@@ -317,7 +414,7 @@
     if(!isValid)
         return 50;
     if(indexPath.row<msg.suggestions.count){
-        if(!_isExpanded)
+        if(!isExpanded)
             return [msg getUnexpandedHeightOfSuggestion];//unexpanded suggestion cell
         float ret=[msg getExpandedHeightOfSuggestionNumber:indexPath.row underWidth:self.frame.size.width];
         return ret;

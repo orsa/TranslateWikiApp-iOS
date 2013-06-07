@@ -176,11 +176,10 @@
             
             if (!trMsgCell.isMinimized)
             {
-                [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
+                NSNumber * b = [NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
+                NSArray * obj = [[NSArray alloc] initWithObjects: msg,b, nil];
+                [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
             }
-            
-            
-            
             
             [trMsgCell.inputTable reloadData];
             
@@ -227,36 +226,44 @@
             if(trMsgCell.msg.infoState){
                 goto end;
             }
-            if(trMsgCell.isMinimized){ //the selection was for minimizing
+            if(trMsgCell.isMinimized)
+            {       //the selection was for minimizing
                 [trMsgCell setMinimized:[NSNumber numberWithBool:FALSE]];
                 //[self.msgTableView reloadData];
             }
-            else{//the selection wasn't for minimizing
-            if(selectedIndexPath)
-            {
-                //do deselect precedures
-                trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
-                [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
-            
-                [trMsgCell.msgTableView reloadData];
-                    [trMsgCell.msgTableView.inputView resignFirstResponder];
-            }
-            if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
-            {
-                //selecting a cell
-                selectedIndexPath = [indexPath copy];
-                trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
-                //expand
-                [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
-            }
             else
-                selectedIndexPath = nil;
+            {       //the selection wasn't for minimizing
+                if(selectedIndexPath)
+                {
+                    //do deselect precedures
+                    trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
+                
+                    NSArray * obj = [[NSArray alloc] initWithObjects: trMsgCell.msg,[NSNumber numberWithBool:NO], nil];
+                    [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
+                
+                    //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+            
+                    //[trMsgCell.msgTableView reloadData];
+                    [trMsgCell.msgTableView.inputView resignFirstResponder];
+                }
+                if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
+                {
+                    //selecting a cell
+                    selectedIndexPath = [indexPath copy];
+                    trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
+                    //expand
+                    NSArray * obj = [[NSArray alloc] initWithObjects: trMsgCell.msg,[NSNumber numberWithBool:YES], nil];
+                    [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
+                    //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
+                }
+                else
+                    selectedIndexPath = nil;
             }
             
         end: [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
         [self.msgTableView beginUpdates];
         [self.msgTableView endUpdates];
-            [self.msgTableView reloadData];
+        //[self.msgTableView reloadData];
         }
         else //proofread state
         {

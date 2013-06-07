@@ -12,6 +12,7 @@
 #import "TranslationMessageDataController.h"
 
 @class InputCell;
+
 @interface TranslationCell : UITableViewCell <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UILabel *srcLabel;
@@ -22,7 +23,6 @@
 @property (retain, nonatomic) TranslationMessageDataController * container;
 @property (retain, nonatomic) UITableView* msgTableView;
 @property (retain, nonatomic) InputCell* inputCell;
-/*@property (weak, nonatomic) IBOutlet UIButton *minimizeButton;*/
 @property (atomic) BOOL isExpanded;
 @property (atomic) BOOL isMinimized;
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
@@ -31,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *documentation;
 @property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle;
 
+//- (void)buildWithMsg:(TranslationMessage*)trMsg expanded:(BOOL)exp;
+- (void)buildWithMsg:(NSArray *)obj;
 - (IBAction)pushInfo:(id)sender;
 - (void)setExpanded:(NSNumber*)expNumber;
 - (void)setMinimized:(NSNumber*)minNumber;
@@ -40,3 +42,6 @@
 -(void)clearTextBox;
 
 @end
+
+
+

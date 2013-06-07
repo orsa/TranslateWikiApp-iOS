@@ -256,9 +256,19 @@
 
 -(IBAction)logout:(id)sender
 {
-    LoadAlertViewWithOthers(@"Alert", @"Do you really want to log out?", @"Oh, no", @"Yes");
-    [alert setTag:1];
-    [alert show];
+    //LoadAlertViewWithOthers(@"Alert", @"Do you really want to log out?", @"Oh, no", @"Yes");
+    //[alert setTag:1];
+    //[alert show];
+    
+    /* logout without prompting aproval */
+    [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
+        //Handle the error
+        NSLog(@"%@", error);
+    }];
+    KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
+    [loginKC resetKeychainItem];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(IBAction)restoreDefaults:(id)sender
