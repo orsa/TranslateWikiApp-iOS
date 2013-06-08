@@ -27,6 +27,7 @@
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)goToSignup:(id)sender;
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString;
 
 @end

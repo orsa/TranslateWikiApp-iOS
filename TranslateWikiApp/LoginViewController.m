@@ -136,6 +136,12 @@
      }];
 }
 
+- (IBAction)goToSignup:(id)sender {
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://translatewiki.net/w/i.php?title=Special:UserLogin&returnto=Main+Page&type=signup"]];
+    
+}
+
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString
 {
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
