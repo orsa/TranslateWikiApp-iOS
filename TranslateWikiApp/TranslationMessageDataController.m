@@ -108,7 +108,6 @@
                 }];
                 
             }
-            //[message setSource:@"klavlav hoi bi di bam bam, klavlav hoi bi di bam bam, klavlav hoi bi di bam bam, klavlav hoi bi di bam bam, klavlav hoi bi di bam bam, klavlav hoi bi di bam bam, klavlav hoi bi di bam bam!!!"];
             [self addTranslationMessageWithMessage:message];
         }
     }
