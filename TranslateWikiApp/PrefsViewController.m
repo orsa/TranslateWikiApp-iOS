@@ -48,8 +48,8 @@
     
     //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
     
-    arrLang = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
-    arrLangCodes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
+    arrLang =  @[LANGUAGE_NAMES];
+    arrLangCodes = @[LANGUAGE_CODES];
     LoadUserDefaults();
     //requesting project list via api - level-0 only
     

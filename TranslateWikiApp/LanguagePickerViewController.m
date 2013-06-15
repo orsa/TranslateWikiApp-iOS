@@ -54,9 +54,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title=@"Language Selection";
-    srcArr = [[NSMutableArray alloc] initWithObjects:LANGUAGE_NAMES];
-    NSArray * codes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
-    NSArray * names = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
+    srcArr = [[NSMutableArray alloc] initWithArray:@[LANGUAGE_NAMES]];
+    NSArray * codes = @[LANGUAGE_CODES];
+    NSArray * names = @[LANGUAGE_NAMES];
     isFiltered = NO;
     
     //prepare recent languages
@@ -172,8 +172,8 @@
             break;
             
     }
-    NSArray * codes = [[NSArray alloc] initWithObjects:LANGUAGE_CODES];
-    NSArray * names = [[NSArray alloc] initWithObjects:LANGUAGE_NAMES];
+    NSArray * codes = @[LANGUAGE_CODES];
+    NSArray * names = @[LANGUAGE_NAMES];
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:codes[[names indexOfObject:cell.textLabel.text]]];
     NSString *translated = [locale displayNameForKey:NSLocaleIdentifier value:codes[[names indexOfObject:cell.textLabel.text]]];
     cell.detailTextLabel.text = translated;
@@ -216,7 +216,7 @@
         else{
             [recentLanguages removeObjectAtIndex:indexPath.row];
         }
-        srcArr = [[NSMutableArray alloc] initWithObjects:LANGUAGE_NAMES];
+        srcArr = [[NSMutableArray alloc] initWithArray:@[LANGUAGE_NAMES]];
         [srcArr removeObjectsInArray:recentLanguages];
         if (mySearchBar.text) [self searchBar:mySearchBar textDidChange:mySearchBar.text];
         [tableView reloadData];

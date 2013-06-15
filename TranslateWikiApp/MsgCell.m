@@ -65,6 +65,7 @@
     dstLabel.frame = CGRectMake(4, (exp?h1:25), self.frame.size.width - 4, (exp?h2:25));
 }
 
+
 +(float)optimalHeightForLabel:(UILabel*)lable
 {
     return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;

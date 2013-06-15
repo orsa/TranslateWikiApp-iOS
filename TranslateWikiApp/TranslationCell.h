@@ -34,7 +34,7 @@
 //- (void)buildWithMsg:(TranslationMessage*)trMsg expanded:(BOOL)exp;
 - (void)buildWithMsg:(NSArray *)obj;
 - (IBAction)pushInfo:(id)sender;
-- (void)setExpanded:(NSNumber*)expNumber;
+//- (void)setExpanded:(NSNumber*)expNumber;
 - (void)setMinimized:(NSNumber*)minNumber;
 /*- (IBAction)pushMinimized:(id)sender;*/
 -(void)removeFromList;

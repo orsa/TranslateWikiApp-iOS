@@ -104,7 +104,7 @@
     [inputText resignFirstResponder];
     _father.msg.translated=TRUE;
     _father.msg.translationByUser=[inputText text];
-    [_father setMinimized:[NSNumber numberWithBool:TRUE]];
+    [_father setMinimized:@YES];
     [((UITableView*)_father.superview) beginUpdates];
     [((UITableView*)_father.superview) endUpdates];
     //[((UITableView*)_father.superview) reloadData];

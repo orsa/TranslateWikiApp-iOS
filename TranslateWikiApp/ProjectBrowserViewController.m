@@ -99,7 +99,7 @@
         ViewController.didChange = YES;
         ViewController.projLabel.text = dstProjLabel;
         ViewController.selectedProjCode =  dstProjID;
-        NSDictionary *dst = [[NSDictionary alloc] initWithObjectsAndKeys: dstProjLabel ,@"label", dstProjID, @"id" , nil];
+        NSDictionary *dst = @{@"label":dstProjLabel, @"id":dstProjID};
         
         //update recent projects data
         NSMutableArray * updatedRecentProj = [[NSMutableArray alloc] init];
@@ -169,7 +169,7 @@
 {
     didChange = YES;
     switch (indexPath.section) {
-        case 0:
+        case 0: //selection of one of the recents
             dstProjLabel = (isFiltered?filteredRec[indexPath.row][@"label"]:recentProj[indexPath.row][@"label"]);
             dstProjID = (isFiltered?filteredRec[indexPath.row][@"id"]:recentProj[indexPath.row][@"id"]);
             break;

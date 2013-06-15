@@ -19,7 +19,6 @@
 //  limitations under the License.
 
 #import "MainViewController.h"
-#import "QuartzCore/QuartzCore.h"
 
 @class MenuView;
 
@@ -177,7 +176,7 @@
             if (!trMsgCell.isMinimized)
             {
                 NSNumber * b = [NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
-                NSArray * obj = [[NSArray alloc] initWithObjects: msg,b, nil];
+                NSArray * obj = @[msg,b];
                 [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
             }
             
@@ -228,7 +227,7 @@
             }
             if(trMsgCell.isMinimized)
             {       //the selection was for minimizing
-                [trMsgCell setMinimized:[NSNumber numberWithBool:FALSE]];
+                [trMsgCell setMinimized:@NO];
                 //[self.msgTableView reloadData];
             }
             else
@@ -238,7 +237,7 @@
                     //do deselect precedures
                     trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
                 
-                    NSArray * obj = [[NSArray alloc] initWithObjects: trMsgCell.msg,[NSNumber numberWithBool:NO], nil];
+                    NSArray * obj = @[trMsgCell.msg,@NO];
                     [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
                 
                     //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
@@ -252,7 +251,7 @@
                     selectedIndexPath = [indexPath copy];
                     trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
                     //expand
-                    NSArray * obj = [[NSArray alloc] initWithObjects: trMsgCell.msg,[NSNumber numberWithBool:YES], nil];
+                    NSArray * obj = @[trMsgCell.msg,@YES];
                     [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
                     //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
                 }
@@ -272,13 +271,13 @@
             {
                 //do deselect precedures
                 msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
-                [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+                [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:@NO waitUntilDone:NO];
             }
             if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
             {
                 selectedIndexPath = [indexPath copy];
                 msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:indexPath];
-                [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
+                [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:@YES waitUntilDone:NO];
             }
             else
                 selectedIndexPath = nil;

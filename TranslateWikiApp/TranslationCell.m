@@ -177,7 +177,7 @@
                         completion:nil];
     }
 }
-
+/*
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];
@@ -241,7 +241,7 @@
     gestureR.direction = UISwipeGestureRecognizerDirectionRight; // default
     [self addGestureRecognizer:gestureR];
     
-}
+}*/
 /*
 +(float)optimalHeightForLabel:(UILabel*)lable
 {
