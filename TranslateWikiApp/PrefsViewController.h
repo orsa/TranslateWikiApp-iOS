@@ -19,9 +19,7 @@
 @class TWapi;
 
 @interface PrefsViewController : UITableViewController
-//<UIPickerViewDataSource, UIPickerViewDelegate>
 {
-    //IBOutlet UIPickerView *pickerView;
     IBOutlet UILabel *langLabel;
     IBOutlet UILabel *projLabel;
 

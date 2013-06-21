@@ -39,6 +39,14 @@
 @synthesize api;
 
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
