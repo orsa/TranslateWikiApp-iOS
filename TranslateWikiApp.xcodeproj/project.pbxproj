@@ -57,6 +57,7 @@
 		64F8910017106842008DCCA6 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FF17106842008DCCA6 /* InputCell.m */; };
 		64F891021710AD2B008DCCA6 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F891011710AD2B008DCCA6 /* frame.png */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
+		F1A535F217747FEB0076E094 /* prefsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A535F117747FEB0076E094 /* prefsCustomCell.m */; };
 		F1CA97A2174BCBBC0035C85A /* Minimize.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA97A1174BCBBC0035C85A /* Minimize.png */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,8 @@
 		64F891011710AD2B008DCCA6 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
+		F1A535F017747FEB0076E094 /* prefsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefsCustomCell.h; sourceTree = "<group>"; };
+		F1A535F117747FEB0076E094 /* prefsCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = prefsCustomCell.m; sourceTree = "<group>"; };
 		F1CA97A1174BCBBC0035C85A /* Minimize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Minimize.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +211,8 @@
 				64F890FF17106842008DCCA6 /* InputCell.m */,
 				640727F51732E5D400F2E1BF /* SuggestionCell.h */,
 				640727F61732E5D400F2E1BF /* SuggestionCell.m */,
+				F1A535F017747FEB0076E094 /* prefsCustomCell.h */,
+				F1A535F117747FEB0076E094 /* prefsCustomCell.m */,
 				64462DD5172AD802002B3556 /* MenuView.h */,
 				64462DD6172AD802002B3556 /* MenuView.m */,
 				6469FB9016FADE580006E765 /* View Controllers */,
@@ -402,6 +407,7 @@
 				64F8910017106842008DCCA6 /* InputCell.m in Sources */,
 				64462DD7172AD802002B3556 /* MenuView.m in Sources */,
 				640727F71732E5D400F2E1BF /* SuggestionCell.m in Sources */,
+				F1A535F217747FEB0076E094 /* prefsCustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
