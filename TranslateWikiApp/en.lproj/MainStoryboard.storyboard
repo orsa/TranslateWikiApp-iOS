@@ -148,12 +148,12 @@
         <scene sceneID="CF3-jV-8kg">
             <objects>
                 <tableViewController title="Settings" id="4bw-jd-BhM" customClass="PrefsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="36" sectionHeaderHeight="6" sectionFooterHeight="82" id="UBJ-QA-Lgb">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="36" sectionHeaderHeight="6" sectionFooterHeight="6" id="UBJ-QA-Lgb">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="    Note: Changes take effect automatically." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f1R-7F-WKO">
-                            <rect key="frame" x="0.0" y="470" width="320" height="15"/>
+                            <rect key="frame" x="0.0" y="318" width="320" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -289,7 +289,7 @@
                             <tableViewSection id="V1b-hH-FCb">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Pyd-Al-m0X" style="IBUITableViewCellStyleDefault" id="8r2-fT-tmf">
-                                        <rect key="frame" x="0.0" y="279" width="320" height="37"/>
+                                        <rect key="frame" x="0.0" y="203" width="320" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="35"/>
@@ -306,7 +306,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ygk-Vb-Fcj" style="IBUITableViewCellStyleDefault" id="FZ1-qR-hmI">
-                                        <rect key="frame" x="0.0" y="316" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="240" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -323,7 +323,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="CPA-oA-7HP" style="IBUITableViewCellStyleDefault" id="Htv-v8-OzQ" customClass="prefsCustomCell">
-                                        <rect key="frame" x="0.0" y="352" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="276" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -1642,10 +1642,8 @@
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
-                <relationship kind="action" name="LogoutButton:"/>
                 <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="action" name="clearMessages:"/>
-                <relationship kind="action" name="closeMenu:"/>
                 <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="openMenu:"/>
                 <relationship kind="action" name="pushAccept:"/>
@@ -1730,6 +1728,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="WmD-CX-B5O"/>
-        <segue reference="aH2-Ov-dkJ"/>
+        <segue reference="9ZW-sZ-UPV"/>
     </inferredMetricsTieBreakers>
 </document>
