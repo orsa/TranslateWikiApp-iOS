@@ -748,7 +748,7 @@
                                                                         <subviews>
                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your translation" translatesAutoresizingMaskIntoConstraints="NO" id="6dq-dQ-833">
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="244" id="f3F-jF-wLu"/>
+                                                                                    <constraint firstAttribute="width" constant="289" id="mCZ-p0-xJr"/>
                                                                                 </constraints>
                                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -787,11 +787,11 @@
                                                                     </view>
                                                                     <constraints>
                                                                         <constraint firstItem="6dq-dQ-833" firstAttribute="top" secondItem="EKj-if-SXs" secondAttribute="top" type="user" id="1y4-vc-GwA"/>
+                                                                        <constraint firstItem="6dq-dQ-833" firstAttribute="leading" secondItem="EKj-if-SXs" secondAttribute="leading" type="user" id="2e6-kX-GFT"/>
                                                                         <constraint firstItem="TuS-Ww-QqS" firstAttribute="top" secondItem="EKj-if-SXs" secondAttribute="top" type="default" id="55X-kh-Pef"/>
                                                                         <constraint firstAttribute="trailing" secondItem="TuS-Ww-QqS" secondAttribute="trailing" constant="-46" type="user" id="LYi-q3-n5p"/>
                                                                         <constraint firstItem="TuS-Ww-QqS" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="default" id="UTa-HK-xyu"/>
                                                                         <constraint firstItem="6dq-dQ-833" firstAttribute="bottom" secondItem="EKj-if-SXs" secondAttribute="bottom" type="default" id="WLQ-e2-UGO"/>
-                                                                        <constraint firstItem="6dq-dQ-833" firstAttribute="leading" secondItem="EKj-if-SXs" secondAttribute="leading" type="default" id="X2q-TN-soJ"/>
                                                                         <constraint firstItem="6dq-dQ-833" firstAttribute="top" secondItem="EKj-if-SXs" secondAttribute="top" type="user" id="wl6-BV-FLa"/>
                                                                     </constraints>
                                                                     <connections>
@@ -929,9 +929,6 @@
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your translation" translatesAutoresizingMaskIntoConstraints="NO" id="H63-VH-1i5">
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="width" constant="244" id="D2T-T2-thR"/>
-                                                                                </constraints>
                                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -969,10 +966,11 @@
                                                                     </view>
                                                                     <constraints>
                                                                         <constraint firstItem="Kk1-Vv-m8c" firstAttribute="top" secondItem="xWL-hF-An3" secondAttribute="top" type="default" id="GKi-Cc-dUy"/>
-                                                                        <constraint firstItem="H63-VH-1i5" firstAttribute="leading" secondItem="xWL-hF-An3" secondAttribute="leading" type="default" id="L9O-eA-5hf"/>
                                                                         <constraint firstItem="Kk1-Vv-m8c" firstAttribute="bottom" secondItem="xWL-hF-An3" secondAttribute="bottom" type="default" id="Obd-se-Rhu"/>
+                                                                        <constraint firstItem="H63-VH-1i5" firstAttribute="leading" secondItem="xWL-hF-An3" secondAttribute="leading" type="default" id="Sha-5n-hqt"/>
                                                                         <constraint firstAttribute="trailing" secondItem="Kk1-Vv-m8c" secondAttribute="trailing" constant="-46" type="user" id="W9B-iX-cEf"/>
                                                                         <constraint firstItem="H63-VH-1i5" firstAttribute="top" secondItem="xWL-hF-An3" secondAttribute="top" type="user" id="XkS-5j-4zM"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="H63-VH-1i5" secondAttribute="trailing" constant="5" type="user" id="beg-Lu-Tg4"/>
                                                                         <constraint firstItem="H63-VH-1i5" firstAttribute="bottom" secondItem="xWL-hF-An3" secondAttribute="bottom" type="default" id="lX6-RV-L4Z"/>
                                                                         <constraint firstItem="H63-VH-1i5" firstAttribute="top" secondItem="xWL-hF-An3" secondAttribute="top" type="user" id="uhd-aR-IEC"/>
                                                                     </constraints>
@@ -1109,9 +1107,6 @@
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your translation" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Kc-Rkc">
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="width" constant="244" id="U51-F2-yd6"/>
-                                                                                </constraints>
                                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -1151,6 +1146,7 @@
                                                                         <constraint firstItem="laY-Kc-Rkc" firstAttribute="top" secondItem="hmj-cN-SFX" secondAttribute="top" type="user" id="BBp-1o-Qrj"/>
                                                                         <constraint firstItem="ZYt-Dk-iFm" firstAttribute="bottom" secondItem="hmj-cN-SFX" secondAttribute="bottom" type="default" id="OkN-dd-Y8d"/>
                                                                         <constraint firstItem="laY-Kc-Rkc" firstAttribute="bottom" secondItem="hmj-cN-SFX" secondAttribute="bottom" type="default" id="TlB-kL-Zhu"/>
+                                                                        <constraint firstItem="laY-Kc-Rkc" firstAttribute="trailing" secondItem="hmj-cN-SFX" secondAttribute="trailing" type="default" id="XdC-3e-dw4"/>
                                                                         <constraint firstItem="laY-Kc-Rkc" firstAttribute="top" secondItem="hmj-cN-SFX" secondAttribute="top" type="user" id="Y13-B3-jga"/>
                                                                         <constraint firstItem="ZYt-Dk-iFm" firstAttribute="top" secondItem="hmj-cN-SFX" secondAttribute="top" type="default" id="hxK-9w-riC"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ZYt-Dk-iFm" secondAttribute="trailing" constant="-46" type="user" id="oOL-TR-2NY"/>
@@ -1289,9 +1285,6 @@
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your translation" translatesAutoresizingMaskIntoConstraints="NO" id="9bo-BH-QRy">
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="width" constant="244" id="9Wz-uv-Alu"/>
-                                                                                </constraints>
                                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -1331,6 +1324,7 @@
                                                                         <constraint firstItem="9bo-BH-QRy" firstAttribute="bottom" secondItem="mKQ-no-iBP" secondAttribute="bottom" type="default" id="948-YV-VNY"/>
                                                                         <constraint firstItem="08B-Mq-5Kr" firstAttribute="top" secondItem="mKQ-no-iBP" secondAttribute="top" type="default" id="Byj-Z2-bAK"/>
                                                                         <constraint firstItem="08B-Mq-5Kr" firstAttribute="bottom" secondItem="mKQ-no-iBP" secondAttribute="bottom" type="default" id="HYn-EW-paS"/>
+                                                                        <constraint firstItem="9bo-BH-QRy" firstAttribute="trailing" secondItem="mKQ-no-iBP" secondAttribute="trailing" type="default" id="dpq-x5-FXj"/>
                                                                         <constraint firstItem="9bo-BH-QRy" firstAttribute="top" secondItem="mKQ-no-iBP" secondAttribute="top" type="user" id="gbU-tp-2zK"/>
                                                                         <constraint firstItem="9bo-BH-QRy" firstAttribute="top" secondItem="mKQ-no-iBP" secondAttribute="top" type="user" id="nqa-29-a1Z"/>
                                                                         <constraint firstItem="9bo-BH-QRy" firstAttribute="leading" secondItem="mKQ-no-iBP" secondAttribute="leading" type="default" id="p8x-3W-dO3"/>
@@ -1648,8 +1642,10 @@
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
+                <relationship kind="action" name="LogoutButton:"/>
                 <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="action" name="clearMessages:"/>
+                <relationship kind="action" name="closeMenu:"/>
                 <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="openMenu:"/>
                 <relationship kind="action" name="pushAccept:"/>
