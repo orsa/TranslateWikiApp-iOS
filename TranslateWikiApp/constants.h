@@ -17,7 +17,7 @@
 //***********************
 //measures
 //***********************
-#define INITIAL_TUPLE_SIZE @"10"  //esier to save as a string
+#define INITIAL_TUPLE_SIZE (isPad() ? @"20" : @"10")  //esier to save as a string
 #define INITIAL_MAX_LENGTH @"100" 
 #define MAX_RECENT_PROJ 3
 #define MAX_RECENT_LANG 3
@@ -88,6 +88,8 @@
 #define LoadDefaultAlertView()      LoadAlertView(@"Alert", @"", @"Ok")
 #define AlertSetMessage(Message)    alert.message=Message
 #define AlertShow()                 [alert show]
+
+#define isPad() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 
 //***********************
