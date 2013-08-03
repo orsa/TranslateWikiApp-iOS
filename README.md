@@ -4,7 +4,9 @@ TranslateWikiApp-iOS
 iOS app for proofreading and editing translations at translatewiki.net.
 
 Dependency: https://github.com/orsa/objc-twapi
-
+***
+Available at the App Store: https://itunes.apple.com/us/app/translatewiki.net/id661133065?ls=1&mt=8
+***
 Copyright 2013 Or Sagi, Tomer Tuchner
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,5 +26,5 @@ See also a short presentation:
 https://docs.google.com/presentation/d/1-rqB67p4OoufDXH8d54lBWqPbVprWjxOuRSQE9zUU2g/edit?usp=sharing
 
 
-If you have an iOS device, you can join for testings!  Click: http://tflig.ht/16mIAm5
+If you have an iOS device, you can join for testings! Click: http://tflig.ht/16mIAm5
 ---
