@@ -34,7 +34,7 @@
     LoadUserDefaults();
     if (getUserDefaultskey(LANG_key)==nil){
         setUserDefaultskey(PREFERRED_LANG(0), LANG_key);
-        //[l addObject:PREFERRED_LANG(0)];
+        
     }
     if (getUserDefaultskey(PROJ_key)==nil){
         setUserDefaultskey(@"!recent", PROJ_key);

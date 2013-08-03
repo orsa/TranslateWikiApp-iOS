@@ -138,7 +138,7 @@
 
 - (IBAction)goToSignup:(id)sender {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://translatewiki.net/w/i.php?title=Special:UserLogin&returnto=Main+Page&type=signup"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://translatewiki.net/w/i.php?title=Special:UserLogin&type=signup"]];
     
 }
 
