@@ -727,7 +727,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="iPad_frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-Wc-L1t">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-Wc-L1t">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="84" id="gIN-oO-JKX"/>
                                                             </constraints>
@@ -892,7 +892,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="iPad_frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kr3-O1-pkI">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kr3-O1-pkI">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="135" id="erP-py-JnX"/>
                                                             </constraints>
@@ -1070,7 +1070,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="243"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="iPad_frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZO-RV-0fW">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZO-RV-0fW">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="197" id="dm2-EU-q10"/>
                                                             </constraints>
@@ -1248,7 +1248,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="iPad_frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-Os-2J1">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-Os-2J1">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="245" type="user" id="q6f-kA-Iyg"/>
                                                             </constraints>
@@ -1600,7 +1600,9 @@
     <resources>
         <image name="accept2.png" width="600" height="600"/>
         <image name="down_arrow.png" width="400" height="300"/>
-        <image name="iPad_frame.png" width="1504" height="1032"/>
+        <image name="frame-1.png" width="755" height="321"/>
+        <image name="frame-2.png" width="749" height="458"/>
+        <image name="frame-3.png" width="753" height="600"/>
         <image name="imgres.jpeg" width="192" height="256"/>
         <image name="local.png" width="158" height="138"/>
         <image name="mag_grey.png" width="31" height="29"/>
