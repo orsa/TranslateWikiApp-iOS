@@ -65,7 +65,7 @@
 //code snippets
 //***********************
 #define myAppDelegate       [[UIApplication sharedApplication] delegate]
-#define PREFERRED_LANG(X)   [[NSLocale preferredLanguages] objectAtIndex:X]
+#define PREFERRED_LANG   [NSLocale preferredLanguages]
 
 #define ShowNetworkActivityIndicator()  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
 #define HideNetworkActivityIndicator()  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO

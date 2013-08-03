@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -137,11 +137,12 @@
                         <outlet property="passwordText" destination="h4W-QF-JsK" id="3bC-7J-fXh"/>
                         <outlet property="usernameText" destination="YpO-QU-EVb" id="IZf-dC-z9r"/>
                         <segue destination="4Xz-Nx-oCb" kind="push" identifier="FromLoginToMessages" id="Pvs-N6-HLp"/>
+                        <segue destination="NAx-R5-pyw" kind="push" identifier="FromLoginToLang" id="aH2-Ov-dkJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3227" y="-4082"/>
+            <point key="canvasLocation" x="-3279" y="-4762"/>
         </scene>
         <!--Prefs View Controller - Settings-->
         <scene sceneID="CF3-jV-8kg">
@@ -484,11 +485,12 @@
                     <connections>
                         <outlet property="LangTable" destination="C5J-Ki-FOK" id="SKn-gF-UWM"/>
                         <outlet property="mySearchBar" destination="9bE-Wq-7ui" id="8Ti-A1-Aiv"/>
+                        <segue destination="4Xz-Nx-oCb" kind="push" identifier="StartAfterLang" id="WmD-CX-B5O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOE-Pd-cQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1829" y="-4082"/>
+            <point key="canvasLocation" x="-1745" y="-4770"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="A6b-kC-047">
@@ -503,7 +505,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0i-Ec-oTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3684" y="-4082"/>
+            <point key="canvasLocation" x="-3748" y="-4762"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="da1-UO-jmw">
@@ -1512,7 +1514,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2803" y="-4082"/>
+            <point key="canvasLocation" x="-2739" y="-4082"/>
         </scene>
         <!--Project Browser View Controller - Project Browser-->
         <scene sceneID="jvl-QB-Yab">
@@ -1597,7 +1599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3s-7s-xPC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1829" y="-3506"/>
+            <point key="canvasLocation" x="-1745" y="-4082"/>
         </scene>
     </scenes>
     <resources>
@@ -1679,9 +1681,14 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
+        </class>
         <class className="PrefsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="restoreDefaults:"/>
                 <relationship kind="outlet" name="langLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="projLabel" candidateClass="UILabel"/>
@@ -1725,4 +1732,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="WmD-CX-B5O"/>
+        <segue reference="aH2-Ov-dkJ"/>
+    </inferredMetricsTieBreakers>
 </document>
