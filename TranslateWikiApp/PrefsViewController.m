@@ -304,7 +304,7 @@
         case 2: //alert result for restore
             if (buttonIndex == 1)  //clicked ok at the alert
             {
-                NSString* lang=PREFERRED_LANG(0);
+                NSString* lang=PREFERRED_LANG[0];
                 NSString* proj=@"!recent";
                 NSString* tuple=INITIAL_TUPLE_SIZE;
                 NSString* maxLen = INITIAL_MAX_LENGTH;
@@ -327,35 +327,23 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Logged as: %@",api.user.userName];
+    if (section==0)
+        return [NSString stringWithFormat:@"Logged as: %@",api.user.userName];
+    return NULL;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView* customFooterView=[[UIView alloc] initWithFrame:CGRectMake(tableView.frame.origin.x, 0,
-                                                                      tableView.frame.size.width, 82)];
-    UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    logoutButton.frame = CGRectMake(tableView.frame.origin.x + 10, 5, tableView.frame.size.width-20, 33);
-    resetButton.frame = CGRectMake(tableView.frame.origin.x + 10, 42, tableView.frame.size.width-20, 33);
-    
-    [logoutButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
-    [resetButton setBackgroundColor:[UIColor colorWithRed:0.826782 green:0.840739 blue:1 alpha:1]];
-    
-    [logoutButton setTitleColor:[UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1] forState:UIControlStateNormal];
-    [resetButton setTitleColor:[UIColor colorWithRed:0.333333 green:0.333333 blue:0.333333 alpha:1] forState:UIControlStateNormal];
-    
-    [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-    [resetButton setTitle:@"Restore Defaults" forState:UIControlStateNormal];
-    
-    [logoutButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
-    [resetButton addTarget:self action:@selector(restoreDefaults:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [customFooterView addSubview:logoutButton];
-    [customFooterView addSubview:resetButton];
-    
-    return customFooterView;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section==1){
+        if (indexPath.row == 0){
+            [self logout:nil];
+        }
+        else if (indexPath.row == 1){
+            [self restoreDefaults:nil];
+        }
+        else if (indexPath.row == 2){
+            //TODO
+        }
+    }
 }
-
 @end

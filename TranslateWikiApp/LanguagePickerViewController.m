@@ -68,7 +68,7 @@
     //prepare local preferred languages
     localLanguages = [[NSMutableArray alloc] init];
     NSInteger index;
-    for(NSString * l in [NSLocale preferredLanguages]){ //decode languages
+    for(NSString * l in PREFERRED_LANG){ //decode languages
         if (localLanguages.count<MAX_LOCAL_LANG)
         {
             index = [codes indexOfObject:l];

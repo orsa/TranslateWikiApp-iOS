@@ -70,12 +70,12 @@
     LoadUserDefaults();
     translationState = !getBoolUserDefaultskey(PRMODE_key);
     [menuBtn setTitle:(translationState ? @"Translate ▾" : @"Proofread ▾" ) forState:UIControlStateNormal];
-    NSString * st = getUserDefaultskey(LANG_key);
-    NSMutableArray * arr = [NSMutableArray arrayWithArray:[NSLocale preferredLanguages]];
-    [arr removeObject:st];
-    [arr insertObject:st atIndex:0];
-    setUserDefaultskey(arr, @"AppleLanguages");
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    //NSString * st = getUserDefaultskey(LANG_key);
+    //NSMutableArray * arr = [NSMutableArray arrayWithArray:PREFERRED_LANG];
+    //[arr removeObject:st];
+    //[arr insertObject:st atIndex:0];
+    //setUserDefaultskey(arr, @"AppleLanguages");
+    //[[NSUserDefaults standardUserDefaults] synchronize];
     msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, 210, 0); //make room for keyboard
     [msgTableView reloadData];
 }

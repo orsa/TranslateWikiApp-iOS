@@ -33,7 +33,7 @@
     NSMutableArray *l = [[NSMutableArray alloc] init];
     LoadUserDefaults();
     if (getUserDefaultskey(LANG_key)==nil){
-        setUserDefaultskey(PREFERRED_LANG(0), LANG_key);
+        setUserDefaultskey(PREFERRED_LANG[0], LANG_key);
         
     }
     if (getUserDefaultskey(PROJ_key)==nil){
