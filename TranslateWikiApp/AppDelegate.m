@@ -29,12 +29,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    LoginViewController *controller = (LoginViewController *)navigationController.topViewController;
+    controller.managedObjectContext = self.managedObjectContext;
+    controller.langNeedsManualSelection = NO;
+    
     // Override point for customization after application launch.
     NSMutableArray *l = [[NSMutableArray alloc] init];
     LoadUserDefaults();
     if (getUserDefaultskey(LANG_key)==nil){
+        if([PREFERRED_LANG[0] isEqualToString:@"en"]){
+            controller.langNeedsManualSelection = YES;
+        }
         setUserDefaultskey(PREFERRED_LANG[0], LANG_key);
-        
     }
     if (getUserDefaultskey(PROJ_key)==nil){
         setUserDefaultskey(@"!recent", PROJ_key);
@@ -56,9 +63,7 @@
         setUserDefaultskey(p, RECENT_PROJ_key);
     }
     
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    LoginViewController *controller = (LoginViewController *)navigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;    
+       
     
     return YES;
 }

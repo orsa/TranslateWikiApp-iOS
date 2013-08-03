@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "constants.h"
 #import "PrefsViewController.h"
+#import "MainViewController.h"
 
 @interface LanguagePickerViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
@@ -27,5 +28,8 @@
 @property (weak, nonatomic) NSString * dstLang;
 @property BOOL isFiltered;
 @property BOOL didChange;
+@property BOOL enteredFromLogin;
+@property (retain, nonatomic) TWapi *api;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

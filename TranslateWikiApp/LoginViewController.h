@@ -26,6 +26,7 @@
 @property (retain, nonatomic) TWUser *cur_user;
 @property (retain, nonatomic) TWapi *api;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property BOOL langNeedsManualSelection;
 
 - (IBAction)goToSignup:(id)sender;
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString;

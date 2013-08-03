@@ -33,7 +33,7 @@
 
 @implementation LoginViewController
 @synthesize managedObjectContext;
-
+@synthesize langNeedsManualSelection;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -126,7 +126,13 @@
          else if([resultString isEqualToString:@"Success"])
          {
              [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
-             [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
+             if (langNeedsManualSelection)
+             {
+                 [self performSegueWithIdentifier:@"FromLoginToLang" sender:self];
+                 langNeedsManualSelection=NO;
+                 
+             }else
+                 [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
          }
          else if(alertMessages[resultString]!=nil){
              AlertSetMessage(alertMessages[resultString]);
@@ -152,15 +158,22 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    LoadUserDefaults();
+    setUserDefaultskey(_userName,RECENT_USER_key);
     if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
     {
-        LoadUserDefaults();
-        setUserDefaultskey(_userName,RECENT_USER_key);
         MainViewController *vc = [segue destinationViewController];
         vc.translationState=!getBoolUserDefaultskey(PRMODE_key);
         [vc setApi:_api];
         [vc setManagedObjectContext:self.managedObjectContext];
         [vc addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
+    }
+    else if ([[segue identifier] isEqualToString:@"FromLoginToLang"])
+    {
+        LanguagePickerViewController *vc = [segue destinationViewController];
+        vc.enteredFromLogin = YES;
+        vc.api = _api;
+        vc.managedObjectContext =self.managedObjectContext;
     }
 }
 

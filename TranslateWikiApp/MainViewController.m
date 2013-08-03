@@ -47,10 +47,6 @@
         PrefsViewController *detailViewController = [segue destinationViewController];
         detailViewController.api = _api;
     }
-    if([[segue identifier] isEqualToString:@"gotoLogin"]) {
-        LoginViewController *destViewController = [segue destinationViewController];
-        destViewController.managedObjectContext = self.managedObjectContext;
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,10 +112,6 @@
     _transCells=[[NSMutableSet alloc] init];
     [menuView setHidden:YES];
     [menuView setFrame:CGRectMake(0, 31, 90, 0)];
-    if (!_api.user.isLoggedin)
-    {
-        [self performSegueWithIdentifier:@"gotoLogin" sender:self];
-    }
     
 }
 

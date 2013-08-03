@@ -38,7 +38,7 @@
 @synthesize isFiltered;
 @synthesize didChange;
 @synthesize dstLang;
-
+@synthesize enteredFromLogin;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,6 +81,12 @@
         else
             break;
     }
+    
+    if (enteredFromLogin)
+    {
+        LoadAlertView(@"Choose Language", @"Please choose your translation language.", @"Ok");
+        AlertShow();
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,12 +98,15 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if (didChange && ![[self.navigationController viewControllers] containsObject:self])
+    if (didChange )//&& ![[self.navigationController viewControllers] containsObject:self])
     {
-        PrefsViewController *ViewController = (PrefsViewController *)[self.navigationController topViewController];
-        ViewController.didChange = didChange;
-        ViewController.langLabel.text = dstLang;
         
+        if (!enteredFromLogin){
+            PrefsViewController *ViewController = (PrefsViewController *)[self.navigationController topViewController];
+            ViewController.didChange = didChange;
+            ViewController.langLabel.text = dstLang;
+        }
+
         //update recent languages array
         NSMutableArray * updatedRecentLanguages = [[NSMutableArray alloc] init];
         [updatedRecentLanguages addObject:dstLang];  //insert selected language to be first in the queue
@@ -196,7 +205,12 @@
         default:
             dstLang = (isFiltered ? filteredArr[indexPath.row] : srcArr[indexPath.row]);
     }
-    [self.navigationController popViewControllerAnimated:YES];
+        if (enteredFromLogin)
+        {
+            [self performSegueWithIdentifier:@"StartAfterLang" sender:self];
+        }
+        else
+            [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -273,6 +287,32 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [mySearchBar resignFirstResponder];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([[segue identifier] isEqualToString:@"StartAfterLang"])
+    {
+        NSArray * arrLang = @[LANGUAGE_NAMES];
+        NSArray * arrLangCodes = @[LANGUAGE_CODES];
+        NSInteger index = [arrLang indexOfObject:dstLang];
+        LoadUserDefaults();
+        if (index!=NSNotFound) {
+        
+            
+            setUserDefaultskey([arrLangCodes objectAtIndex:index], LANG_key);
+        }
+        else{
+            NSLog(@"no language found");
+        }
+        
+        MainViewController *vc = segue.destinationViewController;
+        vc.translationState = !getBoolUserDefaultskey(PRMODE_key);
+        [vc setApi:_api];
+        [vc setManagedObjectContext:self.managedObjectContext];
+        [vc addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
+    }
 }
 
 @end
