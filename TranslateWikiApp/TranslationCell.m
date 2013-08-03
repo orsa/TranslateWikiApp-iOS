@@ -122,7 +122,7 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //setting view
-        [self performSelectorOnMainThread:@selector(displayHTML:) withObject:msg.documentation waitUntilDone:NO];
+        [self displayHTML:msg.documentation];
         [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [[docWebView scrollView] setBounces:NO];
         [self bringSubviewToFront:infoView];
