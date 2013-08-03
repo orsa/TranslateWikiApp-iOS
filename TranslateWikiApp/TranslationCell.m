@@ -137,26 +137,6 @@
     [docWebView loadHTMLString:html baseURL:nil];
 }
 
--(void)flipViewWithDisplayDoc:(NSNumber*)displayDoc{
-    bool doc=[displayDoc boolValue];
-    if(doc){
-        [UIView transitionWithView:self
-                          duration:0.5
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
-                        animations:^{
-                        }
-                        completion:^(BOOL comp){ [self bringSubviewToFront:infoBtn];} ];
-    }
-    else{
-        [UIView transitionWithView:self
-                          duration:0.5
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
-                        animations:^{
-                        }
-                        completion:nil];
-    }
-}
-
 - (IBAction)pushInfo:(id)sender {
     if([infoBtn isHidden])
         return;
@@ -176,7 +156,12 @@
         [infoView setHidden:NO];
         [docWebView setFrame:CGRectMake(docWebView.frame.origin.x, docWebView.frame.origin.y, docWebView.frame.size.width, self.frame.size.height-21-10-12)];//(10,21) are the origin and height of the first label - "Documentation:"
         [[docWebView scrollView] setBounces:NO];
-        [self performSelectorOnMainThread:@selector(flipViewWithDisplayDoc:) withObject:[NSNumber numberWithBool:YES] waitUntilDone:NO];
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                        }
+                        completion:^(BOOL comp){ [self bringSubviewToFront:infoBtn];} ];
     }
     else{
         msg.infoState = NO;
@@ -188,7 +173,12 @@
         
         //setting view
         [infoView setHidden:YES];
-        [self performSelectorOnMainThread:@selector(flipViewWithDisplayDoc:) withObject:[NSNumber numberWithBool:NO] waitUntilDone:NO];
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                        }
+                        completion:nil];
     }
 }
 
