@@ -97,8 +97,21 @@
 
 - (IBAction)pushSendBtn:(id)sender {
     if (!_father.msg.translated || ![_father.msg.translationByUser isEqualToString:[inputText text]]) //send api request only if changed translation.
-        [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(BOOL success, NSError * error){
+        [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(NSError * error, NSDictionary* responseData){
             //check errors etc.
+            if(error){
+                LoadDefaultAlertView();
+                AlertSetMessage(connectivityProblem);
+                AlertShow();
+            }
+            else if(responseData[@"error"]){
+                LoadDefaultAlertView();
+                AlertSetMessage(responseData[@"error"][@"info"]);
+                AlertShow();
+            }
+            else if(responseData[@"warnings"]){
+                //handle warnings
+            }
         }];
     
     [inputText resignFirstResponder];

@@ -120,7 +120,7 @@
          _ResultLabel.text = resultString;
          LoadDefaultAlertView();
          if(error){//request error
-             AlertSetMessage(@"Couldn't complete request. Please check your connectivity.");
+             AlertSetMessage(connectivityProblem);
              AlertShow();
          }
          else if([resultString isEqualToString:@"Success"])

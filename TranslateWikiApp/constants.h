@@ -59,7 +59,13 @@
 
 #define alertMessages @{@"NoName": @"You left the user name field empty", @"Illegal":@"You provided an illegal user name", @"NotExists":@"The user name you provided doesn't exist", @"EmptyPass": @"You left the password field empty", @"WrongPass": @"The password you provided is incorrect", @"WrongPluginPass": @"Authentication plugin rejected the password", @"CreateBlocked": @"The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation", @"Throttled": @"You've logged in too many times in a short time. Please wait 5 minutes.", @"Blocked": @"Can't login. User is blocked"}
 
+//***********************
+//various static strings
+//***********************
+
 #define startOfCollapsible @"<div class=\"mw-identical-title mw-collapsible mw-collapsed\">"
+
+#define connectivityProblem @"Couldn't complete request. Please check your connectivity."
 
 //***********************
 //code snippets

@@ -342,17 +342,30 @@
 - (IBAction)pushAccept:(id)sender
 {
     //accept this translation via API
-    [_api TWTranslationReviewRequest:[dataController objectInListAtIndex:selectedIndexPath.row].revision completionHandler:^(BOOL success, NSError * error){
+    [_api TWTranslationReviewRequest:[dataController objectInListAtIndex:selectedIndexPath.row].revision completionHandler:^(NSError * error, NSDictionary* responseData){
         
        /* if (success)
         {
             [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
             [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
         }*/
-        if(!success || error){
-            LoadAlertView(@"Alert", @"Couldn't accept this message.", @"Ok");
+        if(responseData[@"error"]){
+            LoadDefaultAlertView();
+            AlertSetMessage(responseData[@"error"][@"info"]);
             AlertShow();
-            NSLog(@"%@", error);
+        }
+        else if(responseData[@"warnings"]){
+            if(responseData[@"warnings"][@"tokens"] && responseData[@"warnings"][@"tokens"][@"*"]){
+                LoadDefaultAlertView();
+                AlertSetMessage(responseData[@"warnings"][@"tokens"][@"*"]);
+                AlertShow();
+            }
+            //handle warnings
+        }
+        else if(error){
+            LoadDefaultAlertView();
+            AlertSetMessage(connectivityProblem);
+            AlertShow();
         }
     }]; 
     
