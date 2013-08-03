@@ -127,7 +127,7 @@
 -(void)addDocumentationFromResponse:(NSMutableDictionary*)translationAids
 {
     NSMutableDictionary* doc=translationAids[@"documentation"];
-    NSString* valueDocumentation = doc[@"value"];
+    NSString* valueDocumentation = [self cutCollapsibleFromHtml:doc[@"html"]];//@"value" for templated text
     if([valueDocumentation isKindOfClass:[NSNull class]] || [valueDocumentation isEqualToString:@""]){
         _documentation=@"(No documentation)";
         _noDocumentation=YES;
@@ -135,6 +135,15 @@
     else{
         _documentation=valueDocumentation;
         _noDocumentation=NO;
+    }
+}
+
+-(NSString*)cutCollapsibleFromHtml:(NSString*)html{
+    NSRange range=[html rangeOfString:startOfCollapsible];
+    if(range.location==NSNotFound)
+        return html;
+    else{
+        return [html substringToIndex:range.location];
     }
 }
 

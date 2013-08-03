@@ -33,7 +33,8 @@
 
 @synthesize suggestionCells;
 @synthesize msg;
-@synthesize documentation;
+//@synthesize documentation;
+@synthesize docWebView;
 @synthesize isExpanded;
 @synthesize isMinimized;
 
@@ -121,15 +122,39 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //setting view
-        [documentation performSelectorOnMainThread:@selector(setText:) withObject:msg.documentation waitUntilDone:NO];
-        UIColor* textColor=msg.noDocumentation ? [UIColor lightGrayColor] : [UIColor blackColor];
-        [documentation performSelectorOnMainThread:@selector(setTextColor:) withObject:textColor waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(displayHTML:) withObject:msg.documentation waitUntilDone:NO];
         [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [[docWebView scrollView] setBounces:NO];
         [self bringSubviewToFront:infoView];
     }
     
     [self bringSubviewToFront:infoBtn];
 
+}
+
+-(void)displayHTML:(NSString*)html
+{
+    [docWebView loadHTMLString:html baseURL:nil];
+}
+
+-(void)flipViewWithDisplayDoc:(NSNumber*)displayDoc{
+    bool doc=[displayDoc boolValue];
+    if(doc){
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                        }
+                        completion:^(BOOL comp){ [self bringSubviewToFront:infoBtn];} ];
+    }
+    else{
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                        }
+                        completion:nil];
+    }
 }
 
 - (IBAction)pushInfo:(id)sender {
@@ -146,18 +171,12 @@
         [[self inputView] setUserInteractionEnabled:NO];
         
         //setting view
-        [documentation performSelectorOnMainThread:@selector(setText:) withObject:msg.documentation waitUntilDone:NO];
-        UIColor* textColor=msg.noDocumentation ? [UIColor lightGrayColor] : [UIColor blackColor];
-        [documentation performSelectorOnMainThread:@selector(setTextColor:) withObject:textColor waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(displayHTML:) withObject:msg.documentation waitUntilDone:NO];
         [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [infoView setHidden:NO];
-        [documentation setFrame:CGRectMake(documentation.frame.origin.x, documentation.frame.origin.y, documentation.frame.size.width, self.frame.size.height-21-10-12)];//(10,21) are the origin and height of the first label - "Documentation:"
-        [UIView transitionWithView:self
-                          duration:0.5
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
-                        animations:^{
-                        }
-                        completion:^(BOOL comp){ [self bringSubviewToFront:infoBtn];} ];
+        [docWebView setFrame:CGRectMake(docWebView.frame.origin.x, docWebView.frame.origin.y, docWebView.frame.size.width, self.frame.size.height-21-10-12)];//(10,21) are the origin and height of the first label - "Documentation:"
+        [[docWebView scrollView] setBounces:NO];
+        [self performSelectorOnMainThread:@selector(flipViewWithDisplayDoc:) withObject:[NSNumber numberWithBool:YES] waitUntilDone:NO];
     }
     else{
         msg.infoState = NO;
@@ -169,14 +188,10 @@
         
         //setting view
         [infoView setHidden:YES];
-        [UIView transitionWithView:self
-                          duration:0.5
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
-                        animations:^{
-                        }
-                        completion:nil];
+        [self performSelectorOnMainThread:@selector(flipViewWithDisplayDoc:) withObject:[NSNumber numberWithBool:NO] waitUntilDone:NO];
     }
 }
+
 /*
 - (void)setExpanded:(NSNumber*)expNumber
 {
@@ -287,7 +302,7 @@
         isExpanded=FALSE;
         isMinimized=FALSE;
         suggestionCells=[[NSMutableSet alloc] init];
-        
+        [[docWebView scrollView] setBounces:NO];
     }
     return self;
 }
@@ -299,6 +314,7 @@
         isExpanded=FALSE;
         isMinimized=FALSE;
         suggestionCells=[[NSMutableSet alloc] init];
+        [[docWebView scrollView] setBounces:NO];
     }
     return self;
 }

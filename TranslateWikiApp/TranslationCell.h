@@ -28,7 +28,8 @@
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
 @property (strong, nonatomic) IBOutlet UIButton *infoBtn;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
-@property (weak, nonatomic) IBOutlet UITextView *documentation;
+//@property (weak, nonatomic) IBOutlet UITextView *documentation;
+@property (weak, nonatomic) IBOutlet UIWebView *docWebView;
 @property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle;
 
 //- (void)buildWithMsg:(TranslationMessage*)trMsg expanded:(BOOL)exp;
