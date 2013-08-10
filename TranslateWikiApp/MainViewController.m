@@ -211,9 +211,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
-        if (translationState)
+        TranslationMessage* msg = [dataController objectInListAtIndex:indexPath.row];
+        if(!msg.prState) //if (translationState)
         {
             TranslationCell * trMsgCell;
             trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:indexPath];
@@ -227,7 +229,7 @@
             }
             else
             {       //the selection wasn't for minimizing
-                if(selectedIndexPath)
+                if(selectedIndexPath && ![dataController objectInListAtIndex:selectedIndexPath.row].prState)
                 {
                     //do deselect precedures
                     trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
@@ -270,7 +272,7 @@
         else //proofread state
         {
             MsgCell * msgCell;
-            if(selectedIndexPath)
+            if(selectedIndexPath && [dataController objectInListAtIndex:selectedIndexPath.row].prState)
             {
                 //do deselect precedures
                 msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
@@ -489,8 +491,14 @@
     int row = selectedIndexPath.row;
     TranslationMessage * m =[dataController objectInListAtIndex:row] ;
     [m setPrState:NO];
-    
     [self.msgTableView reloadData];
+    
+    [_api TWTranslationAidsForTitle:m.title withProject:m.project completionHandler:^(NSDictionary* transAids, NSError* error){
+        [m addSuggestionsFromResponse:transAids[@"helpers"]];
+        [m addDocumentationFromResponse:transAids[@"helpers"]];
+        [self.msgTableView reloadData];
+
+    }];
 }
 
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender {
