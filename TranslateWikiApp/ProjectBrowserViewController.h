@@ -16,6 +16,7 @@
 {
     
 }
++ (NSMutableArray *) filterProjects:(NSArray*)proj FromArray:(NSArray*)original;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *projTable;

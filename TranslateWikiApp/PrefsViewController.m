@@ -72,19 +72,31 @@
             }
             else if (newArrProj.count>0)
             {
-                arrProj = [NSArray arrayWithArray:newArrProj];
+                NSMutableArray * updatedProj = [ProjectBrowserViewController filterProjects:@[@"!recent",@"!additions"] FromArray:newArrProj];
+                [updatedProj addObject:@{@"id":@"!recent",@"label":@"Recent contributions"}];
+                arrProj = [NSArray arrayWithArray:updatedProj];
                 setUserDefaultskey(arrProj, ALL_PROJ_key);
+                
                 //load from NSUserDefaults
-                int i = [self indexOfProjCode:getUserDefaultskey(PROJ_key)];
-                if (i != -1)
+                NSString * userDefaultProj = getUserDefaultskey(PROJ_key);
+                if ([userDefaultProj isEqualToString:@"!recent"])
                 {
-                    projLabel.text =  arrProj[i][@"label"];
-                    selectedProjCode = arrProj[i][@"id"];
+                    projLabel.text =  @"Recent contributions";
+                    selectedProjCode = @"!recent";
                 }
-                else{
-                    //missing project from list
-                    projLabel.text =  @"";
-                    selectedProjCode = @"";
+                else
+                {
+                    int i = [self indexOfProjCode:userDefaultProj];
+                    if (i != -1)
+                    {
+                        projLabel.text =  arrProj[i][@"label"];
+                        selectedProjCode = arrProj[i][@"id"];
+                    }
+                    else{
+                        //missing project from list
+                        projLabel.text =  @"";
+                        selectedProjCode = @"";
+                    }
                 }
             }
             else
@@ -95,16 +107,25 @@
     else if (arrProj.count>0)
     {
         //load from NSUserDefaults
-        int i = [self indexOfProjCode:getUserDefaultskey(PROJ_key)];
-        if (i != -1)
+        NSString * userDefaultProj = getUserDefaultskey(PROJ_key);
+        if ([userDefaultProj isEqualToString:@"recent"])
         {
-            projLabel.text =  arrProj[i][@"label"];
-            selectedProjCode = arrProj[i][@"id"];
+            projLabel.text =  userDefaultProj;
+            selectedProjCode = @"!recent";
         }
-        else{
-            //missing project from list
-            projLabel.text =  @"";
-            selectedProjCode = @"";
+        else
+        {
+            int i = [self indexOfProjCode:userDefaultProj];
+            if (i != -1)
+            {
+                projLabel.text =  arrProj[i][@"label"];
+                selectedProjCode = arrProj[i][@"id"];
+            }
+            else{
+                //missing project from list
+                projLabel.text =  @"";
+                selectedProjCode = @"";
+            }
         }
     }
     //LOG(arrProj); //Debug
@@ -305,12 +326,12 @@
             if (buttonIndex == 1)  //clicked ok at the alert
             {
                 NSString* lang=PREFERRED_LANG[0];
-                NSString* proj=@"!recent";
+                NSString* proj=@"recent";
                 NSString* tuple=INITIAL_TUPLE_SIZE;
                 NSString* maxLen = INITIAL_MAX_LENGTH;
                 
                 selectedProjCode=proj;
-                projLabel.text=@"Recent translations";
+                projLabel.text=@"Recent Contributions";
                 langLabel.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
                 tupleSizeTextView.text=tuple;
                 maxMsgLengthTextField.text = maxLen;

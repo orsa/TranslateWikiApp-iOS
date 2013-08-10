@@ -280,9 +280,10 @@
         }
         else if (newArrProj.count>0)
         {
-            originalSrc = [NSArray arrayWithArray:newArrProj];
+            NSMutableArray * updatedProj = [ProjectBrowserViewController filterProjects:@[@"!recent",@"!additions"] FromArray:newArrProj];
+            [updatedProj addObject:@{@"id":@"!recent",@"label":@"Recent contributions"}];
+            originalSrc = [NSArray arrayWithArray:updatedProj];
             setUserDefaultskey(originalSrc, ALL_PROJ_key);
-            //load from NSUserDefaults
         }
         else
             NSLog(@"No project loaded.");
@@ -293,5 +294,20 @@
     }];
     
 }
+
++ (NSMutableArray *) filterProjects:(NSArray*)proj FromArray:(NSArray*)original{
+    
+    NSMutableArray *discardedItems = [NSMutableArray array];
+    NSDictionary *item;
+    
+    for (item in original) {
+        if ([proj containsObject:item[@"id"]])
+            [discardedItems addObject:item];
+    }
+    NSMutableArray * filtered = [NSMutableArray arrayWithArray:original];
+    [filtered removeObjectsInArray:discardedItems];
+    return filtered;
+}
+
 
 @end
