@@ -164,6 +164,7 @@
             trMsgCell.isMinimized = trMsgCell.msg.minimized;
             
             [trMsgCell.infoView setHidden:!msg.infoState];
+            [trMsgCell displayHTML:msg.documentation];
             
             [trMsgCell setMinimized:[NSNumber numberWithBool:trMsgCell.isMinimized]];
             
@@ -237,6 +238,9 @@
                 
                         //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
             
+                        [self removeActiveKeyboard];
+                        [self.msgTableView reloadData];
+                        
                         //[trMsgCell.msgTableView reloadData];
                         [trMsgCell.msgTableView.inputView resignFirstResponder];
                     }
@@ -250,6 +254,9 @@
                     NSArray * obj = @[trMsgCell.msg,@YES];
                     [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
                     //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
+                    
+                    [self removeActiveKeyboard];
+                    [self.msgTableView reloadData];
                 }
                 else
                     selectedIndexPath = nil;
@@ -290,6 +297,24 @@
         [self addMessagesTuple];
     }
 }
+
+-(bool)removeActiveKeyboard
+{
+    return [self recursiveRemoveActiveKeyboard:self.view];
+}
+
+-(bool)recursiveRemoveActiveKeyboard:(UIView*)highView
+{
+    for (UIView *view in [highView subviews]) {
+        if ([view isFirstResponder]) {
+            [view resignFirstResponder];
+        }
+        if([self recursiveRemoveActiveKeyboard:view])
+            return true;
+    }
+    return false;
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     BOOL isSelected=selectedIndexPath && indexPath.row == selectedIndexPath.row;
