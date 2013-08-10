@@ -228,14 +228,16 @@
                 {
                     //do deselect precedures
                     trMsgCell = (TranslationCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
+                    if (trMsgCell)
+                    {
+                        NSArray * obj = @[trMsgCell.msg,@NO];
+                        [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
                 
-                    NSArray * obj = @[trMsgCell.msg,@NO];
-                    [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
-                
-                    //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
+                        //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
             
-                    //[trMsgCell.msgTableView reloadData];
-                    [trMsgCell.msgTableView.inputView resignFirstResponder];
+                        //[trMsgCell.msgTableView reloadData];
+                        [trMsgCell.msgTableView.inputView resignFirstResponder];
+                    }
                 }
                 if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
                 {
