@@ -33,6 +33,9 @@
         self.acceptBtn.hidden = TRUE;
         self.rejectBtn.hidden = TRUE;
         self.editBtn.hidden = TRUE;
+        self.AcceptContainer.hidden = TRUE;
+        self.RejectContainer.hidden = TRUE;
+        self.EditContainer.hidden = TRUE;
     }
     return self;
 }
@@ -53,6 +56,9 @@
     [_acceptCount setHidden:!exp];
     //[_keyinfoLabel setHidden:!exp]; we dont show key for now
     //[_keyLabel setHidden:!exp];
+    [_AcceptContainer setHidden:!exp];
+    [_RejectContainer setHidden:!exp];
+    [_EditContainer setHidden:!exp];
     
     srcLabel.numberOfLines = (exp?0:1);
     dstLabel.numberOfLines = (exp?0:1);
