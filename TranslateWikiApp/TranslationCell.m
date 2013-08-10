@@ -122,7 +122,6 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //setting view
-        [self displayHTML:msg.documentation];
         [infoView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [[docWebView scrollView] setBounces:NO];
         [self bringSubviewToFront:infoView];
@@ -406,7 +405,7 @@
         
         [tableView beginUpdates];
         
-        [inCell.inputText becomeFirstResponder];
+        [inCell.inputText becomeFirstResponder];//because pushSendBtn will resign it
         inCell.inputText.text = msg.suggestions[indexPath.row][@"suggestion"];
         [inCell textViewDidChange:inCell.inputText];
         

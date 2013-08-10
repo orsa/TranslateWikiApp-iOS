@@ -34,6 +34,7 @@
 
 //- (void)buildWithMsg:(TranslationMessage*)trMsg expanded:(BOOL)exp;
 - (void)buildWithMsg:(NSArray *)obj;
+-(void)displayHTML:(NSString*)html;
 - (IBAction)pushInfo:(id)sender;
 //- (void)setExpanded:(NSNumber*)expNumber;
 - (void)setMinimized:(NSNumber*)minNumber;
