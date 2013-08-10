@@ -60,7 +60,7 @@
     float sourceH = (isExpanded? [msg getExpandedHeightOfSourceUnderWidth:self.frame.size.width]: [msg getUnexpandedHeightOfSuggestion]);
     [srcLabel sizeToFit];
     
-    srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-4, sourceH);
+    srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-20, sourceH);
     [inputTable sizeToFit];
     [frameImg sizeToFit];
     
