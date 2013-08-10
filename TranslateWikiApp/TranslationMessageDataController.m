@@ -97,7 +97,16 @@
         if(!isRejected && [msg[@"definition"] length]<=maxMsgLen)
         {
             numberOfMessagesRemaining=numberOfMessagesRemaining-1;
-            TranslationMessage* message=[[TranslationMessage alloc] initWithDefinition:msg[@"definition"] withTranslation:msg[@"translation"] withLanguage:lang withProject:proj withKey:msg[@"key"] withRevision:msg[@"properties"][@"revision"] withTitle:msg[@"title"] withAccepted:NO WithAceeptCount:[msg[@"properties"][@"reviewers"] count]];
+            TranslationMessage* message = [TranslationMessage alloc];
+              message = [[TranslationMessage alloc] initWithDefinition:msg[@"definition"]
+                            withTranslation:msg[@"translation"]
+                               withLanguage:lang
+                                withProject:proj
+                                    withKey:msg[@"key"]
+                               withRevision:msg[@"properties"][@"revision"]
+                                  withTitle:msg[@"title"]
+                            WithAceeptCount:[msg[@"properties"][@"reviewers"] count]
+                                    InState:isProof];
             if(!isProof)
             {
                 [api TWTranslationAidsForTitle:msg[@"title"] withProject:proj completionHandler:^(NSDictionary* transAids, NSError* error){

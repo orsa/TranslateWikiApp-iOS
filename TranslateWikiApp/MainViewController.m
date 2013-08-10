@@ -138,11 +138,13 @@
     static NSString *CellIdentifier = @"myCell";
     static NSString *moreCellIdentifier = @"moreCell";
 
-    if(indexPath.row<[dataController countOfList] && [dataController countOfList]>0)
+    int i = indexPath.row;
+    if(i<[dataController countOfList] && [dataController countOfList]>0)
     {
-        if (translationState)
+        TranslationMessage* msg = [dataController objectInListAtIndex:i];
+        if (!msg.prState)//if (translationState)
         {
-            TranslationMessage* msg = [dataController objectInListAtIndex:indexPath.row];
+            
             NSString *transCellIdentifier = [NSString stringWithFormat:@"translationCell-%i",msg.suggestions.count];
             TranslationCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier];
             
@@ -167,7 +169,7 @@
             
             if (!trMsgCell.isMinimized)
             {
-                NSNumber * b = [NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)];
+                NSNumber * b = [NSNumber numberWithBool:(selectedIndexPath && i==selectedIndexPath.row)];
                 NSArray * obj = @[msg,b];
                 [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
             }
@@ -183,13 +185,13 @@
             {
                 msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            msgCell.srcLabel.text = [[dataController objectInListAtIndex:indexPath.row] source];
-            msgCell.dstLabel.text = [[dataController objectInListAtIndex:indexPath.row] translation];
-            msgCell.keyLabel.text = [[dataController objectInListAtIndex:indexPath.row] key];
-            NSInteger ac_cnt = [[dataController objectInListAtIndex:indexPath.row] acceptCount];
+            msgCell.srcLabel.text = [msg source];
+            msgCell.dstLabel.text = [msg translation];
+            msgCell.keyLabel.text = [msg key];
+            NSInteger ac_cnt = [[dataController objectInListAtIndex:i] acceptCount];
             msgCell.acceptCount.text = (ac_cnt!=0 ? [NSString  stringWithFormat:@"%d", ac_cnt]: @"");
          
-            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && indexPath.row==selectedIndexPath.row)] waitUntilDone:NO];
+            [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:(selectedIndexPath && i==selectedIndexPath.row)] waitUntilDone:NO];
             return msgCell;
         }
         
@@ -295,9 +297,10 @@
     //check if the index actually exists
     if(!isValid)
         return 50;
-    if (translationState)
+    TranslationMessage* msg=(TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row];
+    if (translationState || !msg.prState)
     {
-        TranslationMessage* msg=(TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row];
+        
         bool isMin = msg.minimized; //translated not enough because it can be translated but still unminimized for re-editing
         if (isMin)
             return 50;
@@ -377,7 +380,7 @@
 
 - (IBAction)pushReject:(id)sender
 {
-    [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
+    //[[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
     [self coreDataRejectMessage];
     
     // here we'll take this cell away
@@ -458,7 +461,10 @@
 }
 
 - (IBAction)pushEdit:(id)sender {
-    [[dataController objectInListAtIndex:selectedIndexPath.row] setTranslated:NO];
+    int row = selectedIndexPath.row;
+    TranslationMessage * m =[dataController objectInListAtIndex:row] ;
+    [m setPrState:NO];
+    
     [self.msgTableView reloadData];
 }
 

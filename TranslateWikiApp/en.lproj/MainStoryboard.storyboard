@@ -624,14 +624,14 @@
                                                                 <action selector="pushReject:" destination="4Xz-Nx-oCb" eventType="touchUpInside" id="pW3-g8-L0H"/>
                                                             </connections>
                                                         </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="editButton" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4Y-II-F95">
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="editButton" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="U4Y-II-F95">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="29" id="pIm-sY-1Fo"/>
-                                                                <constraint firstAttribute="height" constant="29" id="wUi-2I-Jtm"/>
+                                                                <constraint firstAttribute="width" constant="30" id="aYM-LE-cYu"/>
+                                                                <constraint firstAttribute="height" constant="30" id="d3c-m7-Y9v"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal" image="edit.png">
-                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                            <state key="normal" title="Edit" backgroundImage="edit.png">
+                                                                <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <state key="highlighted">
@@ -709,24 +709,24 @@
                                                 </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="xSB-lg-p5g" firstAttribute="baseline" secondItem="rUy-Pv-Czn" secondAttribute="baseline" type="default" id="2Bw-H0-K6A"/>
-                                                    <constraint firstAttribute="bottom" secondItem="lca-XY-m0j" secondAttribute="bottom" constant="5" id="8Cw-0i-Np8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="rUy-Pv-Czn" secondAttribute="bottom" constant="39" id="30I-MX-BDX"/>
+                                                    <constraint firstItem="CPc-QY-3IP" firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" type="default" id="ACh-fT-eh2"/>
                                                     <constraint firstItem="xSB-lg-p5g" firstAttribute="top" secondItem="rUy-Pv-Czn" secondAttribute="top" type="default" id="AiY-mp-H9k"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lca-XY-m0j" secondAttribute="bottom" constant="5" id="F16-GD-tIT"/>
                                                     <constraint firstItem="tPJ-61-P5i" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="default" id="GjV-zZ-Y2R"/>
                                                     <constraint firstAttribute="trailing" secondItem="8b7-aM-qVd" secondAttribute="trailing" constant="1" type="user" id="Php-NS-oth"/>
-                                                    <constraint firstAttribute="bottom" secondItem="U4Y-II-F95" secondAttribute="bottom" constant="7" id="R4e-1D-Ush"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="user" id="STk-EJ-w8Q"/>
-                                                    <constraint firstAttribute="trailing" secondItem="U4Y-II-F95" secondAttribute="trailing" constant="42" id="XWO-lR-5yt"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="user" id="ZxC-sG-yB3"/>
-                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="bottom" secondItem="CPc-QY-3IP" secondAttribute="bottom" type="default" id="aFk-my-g68"/>
                                                     <constraint firstItem="tPJ-61-P5i" firstAttribute="top" secondItem="CPc-QY-3IP" secondAttribute="top" type="default" id="b4V-a6-M5U"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="cv0-S1-x7d"/>
-                                                    <constraint firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" constant="1" id="h3o-qL-gtC"/>
-                                                    <constraint firstItem="xSB-lg-p5g" firstAttribute="centerX" secondItem="8b7-aM-qVd" secondAttribute="centerX" type="default" id="htA-Xx-qVF"/>
+                                                    <constraint firstItem="U4Y-II-F95" firstAttribute="centerX" secondItem="9lI-cF-Vrx" secondAttribute="centerX" type="default" id="do6-m3-Ee3"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="user" id="khd-aZ-mpS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" constant="1" id="mGL-re-w1a"/>
                                                     <constraint firstItem="rUy-Pv-Czn" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="default" id="mhI-M1-zw7"/>
                                                     <constraint firstItem="8b7-aM-qVd" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="mxX-1A-3O9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="U4Y-II-F95" secondAttribute="bottom" constant="2" id="pYX-ZL-f3b"/>
                                                     <constraint firstItem="lca-XY-m0j" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="39" id="u2d-YK-uKQ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="rUy-Pv-Czn" secondAttribute="bottom" constant="38" id="wkq-4a-usC"/>
+                                                    <constraint firstItem="xSB-lg-p5g" firstAttribute="centerX" secondItem="8b7-aM-qVd" secondAttribute="centerX" type="default" id="wO2-o0-Sxj"/>
                                                     <constraint firstItem="8b7-aM-qVd" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="21" id="y7g-RH-Of4"/>
                                                     <constraint firstItem="CPc-QY-3IP" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="default" id="ycr-eq-gVd"/>
                                                 </constraints>
@@ -1621,7 +1621,7 @@
     <resources>
         <image name="accept2.png" width="600" height="600"/>
         <image name="down_arrow.png" width="400" height="300"/>
-        <image name="edit.png" width="64" height="64"/>
+        <image name="edit.png" width="64" height="92"/>
         <image name="frame-1.png" width="755" height="321"/>
         <image name="frame-2.png" width="749" height="458"/>
         <image name="frame-3.png" width="753" height="600"/>
@@ -1631,6 +1631,120 @@
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
+    <classes>
+        <class className="InputCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushSendBtn:"/>
+                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="LanguagePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goToSignup:"/>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="clearMessages:"/>
+                <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="action" name="openMenu:"/>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushEdit:"/>
+                <relationship kind="action" name="pushPrefs:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MenuView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
+        </class>
+        <class className="MsgCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="editBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="restoreDefaults:"/>
+                <relationship kind="outlet" name="langLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="projLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProjectBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshProjects:"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
+                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="SuggestionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
+        </class>
+        <class className="TranslationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushInfo:"/>
+                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="prefsCustomCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/prefsCustomCell.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

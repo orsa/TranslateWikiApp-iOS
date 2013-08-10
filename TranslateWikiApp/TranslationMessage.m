@@ -22,8 +22,9 @@
 #import "constants.h"
 
 @implementation TranslationMessage
+@synthesize prState;
 
--(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withProject:(NSString*)proj withKey:(NSString*)k withRevision:(NSString*)rev withTitle:(NSString*)mTitle withAccepted:(BOOL)accepted WithAceeptCount:(NSInteger) ac
+-(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withProject:(NSString*)proj withKey:(NSString*)k withRevision:(NSString*)rev withTitle:(NSString*)mTitle  WithAceeptCount:(NSInteger)ac InState:(BOOL)newPrState
 {
     self = [super init];
     if (self) {
@@ -37,13 +38,15 @@
         _key=k;
         _revision=rev;
         _title=mTitle;
-        _isAccepted=accepted;
+       // _isAccepted=accepted;
         _acceptCount=ac;
         _suggestions=[[NSMutableArray alloc] init];
         _documentation=@"";
         _noDocumentation=YES;
         _userInput = @"";
         _infoState = NO;
+        prState = newPrState;
+        
         
         
         return self;
