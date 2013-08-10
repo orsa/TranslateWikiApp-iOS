@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *keyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn;
+@property (strong, nonatomic) IBOutlet UIButton *editBtn;
 @property (retain, nonatomic) TWapi * api;
 @property(nonatomic, retain) TranslationMessage * msg;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

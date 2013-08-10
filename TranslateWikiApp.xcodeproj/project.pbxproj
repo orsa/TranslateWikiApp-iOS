@@ -24,6 +24,7 @@
 		6434669717AD819A006B70B7 /* frame-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6434669317AD819A006B70B7 /* frame-3.png */; };
 		6438A09B171D8FA000BACAA0 /* mag_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 6438A09A171D8FA000BACAA0 /* mag_grey.png */; };
 		6438A09D171D91E600BACAA0 /* CleaningIcon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6438A09C171D91E600BACAA0 /* CleaningIcon_small.png */; };
+		643F492F17B631E10005CD98 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 643F492E17B631E00005CD98 /* edit.png */; };
 		64462DD7172AD802002B3556 /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64462DD6172AD802002B3556 /* MenuView.m */; };
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
@@ -91,6 +92,7 @@
 		6434669317AD819A006B70B7 /* frame-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-3.png"; sourceTree = "<group>"; };
 		6438A09A171D8FA000BACAA0 /* mag_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mag_grey.png; sourceTree = "<group>"; };
 		6438A09C171D91E600BACAA0 /* CleaningIcon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CleaningIcon_small.png; sourceTree = "<group>"; };
+		643F492E17B631E00005CD98 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		64462DD5172AD802002B3556 /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
 		64462DD6172AD802002B3556 /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
 		644D676B1695E74D00B7C7F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -307,6 +309,7 @@
 				6491441216FE1BDE00FEEACB /* Default.png */,
 				6491441016FE16E900FEEACB /* icon_HD.png */,
 				6491440E16FE166900FEEACB /* icon.png */,
+				643F492E17B631E00005CD98 /* edit.png */,
 				64026A6916971E27002A65CC /* imgres.jpeg */,
 			);
 			name = graphics;
@@ -394,6 +397,7 @@
 				6434669517AD819A006B70B7 /* frame-1.png in Resources */,
 				6434669617AD819A006B70B7 /* frame-2.png in Resources */,
 				6434669717AD819A006B70B7 /* frame-3.png in Resources */,
+				643F492F17B631E10005CD98 /* edit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

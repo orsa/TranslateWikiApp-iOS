@@ -42,6 +42,7 @@
 
 - (IBAction)didSwipe:(UISwipeGestureRecognizer *)sender;
 
+- (IBAction)pushEdit:(id)sender;
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender;
 - (IBAction)pushAccept:(id)sender;
 - (IBAction)pushReject:(id)sender;

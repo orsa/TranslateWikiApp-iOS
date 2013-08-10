@@ -32,6 +32,7 @@
         // Initialization code
         self.acceptBtn.hidden = TRUE;
         self.rejectBtn.hidden = TRUE;
+        self.editBtn.hidden = TRUE;
     }
     return self;
 }
@@ -47,6 +48,7 @@
     BOOL exp=[expNumber boolValue];
     [_acceptBtn setHidden:!exp];
     [_rejectBtn setHidden:!exp];
+    [_editBtn setHidden:!exp];
     [_infoLabel setHidden:!exp];
     [_acceptCount setHidden:!exp];
     //[_keyinfoLabel setHidden:!exp]; we dont show key for now

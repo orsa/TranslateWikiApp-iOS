@@ -457,6 +457,11 @@
     
 }
 
+- (IBAction)pushEdit:(id)sender {
+    [[dataController objectInListAtIndex:selectedIndexPath.row] setTranslated:NO];
+    [self.msgTableView reloadData];
+}
+
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender {
     [self closeMenu:sender];
 }
