@@ -30,14 +30,14 @@
 @synthesize inputCell;
 @synthesize infoView;
 @synthesize infoBtn;
-
+@synthesize deleteBtn;
 @synthesize suggestionCells;
 @synthesize msg;
 //@synthesize documentation;
 @synthesize docWebView;
 @synthesize isExpanded;
 @synthesize isMinimized;
-
+@synthesize translationState;
 
 
 //*********************************************************************************
@@ -128,7 +128,9 @@
     }
     
     [self bringSubviewToFront:infoBtn];
-
+    
+    UIImage *buttonImage = [UIImage imageNamed:(translationState? @"delete.png" : @"cancel_edit.png")];
+    [deleteBtn setImage:buttonImage forState:UIControlStateNormal];
 }
 
 -(void)displayHTML:(NSString*)html
@@ -181,76 +183,18 @@
     }
 }
 
-/*
-- (void)setExpanded:(NSNumber*)expNumber
-{
-    BOOL exp=[expNumber boolValue];
-    isExpanded=exp;
-    srcLabel.numberOfLines = (exp?0:1);
-    [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
 
-    float sourceH = (exp? [msg getExpandedHeightOfSourceUnderWidth:self.frame.size.width]: [msg getUnexpandedHeightOfSuggestion]);
-    [srcLabel sizeToFit];
-    
-    frameImg.transform = CGAffineTransformIdentity;
-    inputTable.transform = CGAffineTransformIdentity;
-    
-    srcLabel.frame = CGRectMake(2, 0, self.frame.size.width-4, sourceH);
-    [inputTable sizeToFit];
-    [frameImg sizeToFit];
-    
-    //setting frames of inside cells and calculating table height
-    float cellOrigin=0;//origin of cell, relative to origin of table
-    float cellHeight=0;
-    int i=0;
-    UITableViewCell* cell;
-    UILabel* label;
-    for(id obj in suggestionCells){
-        cell=(UITableViewCell*)obj;
-        label=[cell textLabel];
-        label.numberOfLines=(exp?0:1);
-        [label setLineBreakMode:(exp?NSLineBreakByCharWrapping:NSLineBreakByTruncatingTail)];
-        
-        cellHeight=(exp ? [msg getExpandedHeightOfSuggestionNumber:i underWidth:self.frame.size.width]:[msg getUnexpandedHeightOfSuggestion]);
-        
-        cellOrigin+=cellHeight;
-        i+=1;
+
+- (IBAction)pushDelete:(id)sender {
+    if (translationState)
+    {
+        [self removeFromList];
+    }else{ // we just cancelling an edit
+        [msg setPrState:YES];
+        [_msgTableView reloadData];
     }
     
-    float tableHeight = cellOrigin + 62; //the "+62" is for the header and the input cell
-    
-    //setting the origin & height
-    
-    //[UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [frameImg setFrame:CGRectMake(1,sourceH,self.frame.size.width - 2,tableHeight+15)]; } completion:nil];
-    
-    //[UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [inputTable setFrame:CGRectMake(frameImg.frame.origin.x+ 0.025* frameImg.frame.size.width,sourceH+14,0.95* frameImg.frame.size.width,tableHeight)]; } completion:nil];
-    
-    frameImg.frame = CGRectMake(1,
-                                sourceH,
-                                self.frame.size.width - 2,
-                                tableHeight*1.2);
-    
-    
-    inputTable.frame = CGRectMake(frameImg.frame.origin.x + 0.025*frameImg.frame.size.width,
-                                  sourceH + frameImg.frame.size.height*0.1 ,
-                                  0.95*frameImg.frame.size.width,
-                                  tableHeight);
-
-    UISwipeGestureRecognizer* gestureR;
-    gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector (pushInfo:)];
-    gestureR.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self addGestureRecognizer:gestureR];
-    
-    gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pushInfo:)];
-    gestureR.direction = UISwipeGestureRecognizerDirectionRight; // default
-    [self addGestureRecognizer:gestureR];
-    
-}*/
-/*
-+(float)optimalHeightForLabel:(UILabel*)lable
-{
-    return [lable.text sizeWithFont:lable.font constrainedToSize:CGSizeMake(lable.frame.size.width, UINTMAX_MAX) lineBreakMode:lable.lineBreakMode].height;
-}*/
+}
 
 - (void)setMinimized:(NSNumber*)minNumber
 {
@@ -261,7 +205,7 @@
     [frameImg setHidden:isMinimized];
     [inputTable setHidden:isMinimized];
     [[self infoBtn] setHidden:(isMinimized || msg.noDocumentation)];
-    //[_minimizeButton setHidden:isMinimized];
+    [[self deleteBtn] setHidden:isMinimized];
     if(isMinimized){//change to minimized
         [srcLabel performSelectorOnMainThread:@selector(setText:) withObject:msg.translationByUser waitUntilDone:NO];
         [srcLabel setTextColor:[UIColor lightGrayColor]];

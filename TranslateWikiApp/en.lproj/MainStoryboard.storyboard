@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -794,6 +794,23 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDL-2Y-Hj3">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="5WF-w4-nq2"/>
+                                                                <constraint firstAttribute="width" constant="25" id="qOo-k0-pg7"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <state key="normal" title="delete" image="delete.png">
+                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="pushDelete:" destination="fit-FC-dAo" eventType="touchUpInside" id="jUS-NR-lHw"/>
+                                                            </connections>
+                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-Wc-L1t">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="84" id="gIN-oO-JKX"/>
@@ -921,12 +938,14 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="zeX-qo-xMJ" secondAttribute="trailing" constant="13" type="user" id="6mJ-DY-80X"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" type="user" id="7ND-Ce-neK"/>
+                                                    <constraint firstItem="RDL-2Y-Hj3" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="29" id="7i7-gN-QAN"/>
                                                     <constraint firstAttribute="centerX" secondItem="q7W-Qp-u81" secondAttribute="centerX" type="user" id="8Np-KI-sGd"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" priority="1" constant="49" type="user" id="AHV-Do-RiK"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="trailing" secondItem="fit-FC-dAo" secondAttribute="trailing" type="user" id="AyX-Ly-myo"/>
                                                     <constraint firstAttribute="centerY" secondItem="q7W-Qp-u81" secondAttribute="centerY" type="user" id="C0A-8M-caz"/>
                                                     <constraint firstItem="q7W-Qp-u81" firstAttribute="bottom" secondItem="fit-FC-dAo" secondAttribute="bottom" type="user" id="E9u-qZ-yPW"/>
                                                     <constraint firstItem="E0d-DF-toK" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" constant="2" type="user" id="HrD-Qv-Cyu"/>
+                                                    <constraint firstItem="RDL-2Y-Hj3" firstAttribute="trailing" secondItem="fit-FC-dAo" secondAttribute="trailing" type="default" id="KKH-g0-IYV"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fit-FC-dAo" secondAttribute="top" constant="49" type="user" id="McS-C2-zNT"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" type="user" id="Pe9-5N-mN8"/>
                                                     <constraint firstAttribute="trailing" secondItem="v2B-8S-Fmc" secondAttribute="trailing" constant="2" type="user" id="RQ9-2g-99B"/>
@@ -935,15 +954,16 @@
                                                     <constraint firstItem="zeX-qo-xMJ" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" priority="1" constant="62" type="user" id="aZN-Gd-GtL"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="top" secondItem="E0d-DF-toK" secondAttribute="bottom" constant="5" type="user" id="bFs-TT-A9h"/>
                                                     <constraint firstItem="q7W-Qp-u81" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" type="user" id="bMk-2V-zjr"/>
+                                                    <constraint firstItem="v2B-8S-Fmc" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="2" id="dtg-9J-0cd"/>
                                                     <constraint firstItem="q7W-Qp-u81" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" type="user" id="hU1-gM-YZ7"/>
                                                     <constraint firstItem="zeX-qo-xMJ" firstAttribute="leading" secondItem="fit-FC-dAo" secondAttribute="leading" constant="13" type="user" id="ikA-e1-d2r"/>
                                                     <constraint firstItem="Sxp-Wc-L1t" firstAttribute="trailing" secondItem="fit-FC-dAo" secondAttribute="trailing" type="user" id="j3q-g2-tYk"/>
                                                     <constraint firstItem="zeX-qo-xMJ" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="68" id="kmk-9t-Ztf"/>
                                                     <constraint firstItem="q7W-Qp-u81" firstAttribute="trailing" secondItem="fit-FC-dAo" secondAttribute="trailing" type="user" id="rfW-fS-gKO"/>
                                                     <constraint firstAttribute="trailing" secondItem="E0d-DF-toK" secondAttribute="trailing" constant="18" type="user" id="sj1-WP-Ux9"/>
-                                                    <constraint firstItem="v2B-8S-Fmc" firstAttribute="top" secondItem="fit-FC-dAo" secondAttribute="top" constant="2" id="xvG-cU-gfb"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="deleteBtn" destination="RDL-2Y-Hj3" id="KNY-9L-zYW"/>
                                                     <outlet property="docWebView" destination="STf-tX-6CA" id="G1K-Gb-mrQ"/>
                                                     <outlet property="frameImg" destination="Sxp-Wc-L1t" id="PrF-3F-CJu"/>
                                                     <outlet property="infoBtn" destination="v2B-8S-Fmc" id="sPK-jd-Fcd"/>
@@ -959,6 +979,23 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecs-dP-LN1">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="GUS-6n-Dad"/>
+                                                                <constraint firstAttribute="width" constant="25" id="Xhr-CS-H5X"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <state key="normal" title="delete" image="delete.png">
+                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="pushDelete:" destination="rhV-sr-Rzw" eventType="touchUpInside" id="zFY-ct-Dyp"/>
+                                                            </connections>
+                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kr3-O1-pkI">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="135" id="erP-py-JnX"/>
@@ -1108,6 +1145,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="xET-cM-DmY" secondAttribute="trailing" constant="13" type="user" id="IGN-4X-B8m"/>
                                                     <constraint firstItem="Cru-Yo-lYQ" firstAttribute="leading" secondItem="rhV-sr-Rzw" secondAttribute="leading" constant="2" type="user" id="LHM-kJ-PA6"/>
                                                     <constraint firstItem="xET-cM-DmY" firstAttribute="top" secondItem="rhV-sr-Rzw" secondAttribute="top" priority="721" constant="70" type="user" id="Ny4-Sr-xGI"/>
+                                                    <constraint firstItem="ecs-dP-LN1" firstAttribute="top" secondItem="rhV-sr-Rzw" secondAttribute="top" constant="29" id="NzC-oE-rx2"/>
                                                     <constraint firstItem="Kr3-O1-pkI" firstAttribute="trailing" secondItem="rhV-sr-Rzw" secondAttribute="trailing" type="user" id="Sbm-O7-QFw"/>
                                                     <constraint firstAttribute="trailing" secondItem="Cru-Yo-lYQ" secondAttribute="trailing" constant="18" type="user" id="TXD-Fe-et6"/>
                                                     <constraint firstItem="2MR-qg-NSC" firstAttribute="bottom" secondItem="rhV-sr-Rzw" secondAttribute="bottom" type="user" id="V8S-fK-HSV"/>
@@ -1117,11 +1155,13 @@
                                                     <constraint firstItem="Kr3-O1-pkI" firstAttribute="trailing" secondItem="rhV-sr-Rzw" secondAttribute="trailing" type="user" id="icn-x8-DJI"/>
                                                     <constraint firstItem="2MR-qg-NSC" firstAttribute="trailing" secondItem="rhV-sr-Rzw" secondAttribute="trailing" type="user" id="leZ-U1-UwD"/>
                                                     <constraint firstItem="xET-cM-DmY" firstAttribute="leading" secondItem="rhV-sr-Rzw" secondAttribute="leading" constant="13" type="user" id="nCh-PT-jvA"/>
+                                                    <constraint firstItem="ecs-dP-LN1" firstAttribute="trailing" secondItem="rhV-sr-Rzw" secondAttribute="trailing" type="default" id="o1g-OS-R61"/>
                                                     <constraint firstAttribute="centerX" secondItem="2MR-qg-NSC" secondAttribute="centerX" type="user" id="oJT-lD-PJn"/>
                                                     <constraint firstItem="Cru-Yo-lYQ" firstAttribute="top" secondItem="rhV-sr-Rzw" secondAttribute="top" type="user" id="rVg-CC-XSU"/>
                                                     <constraint firstItem="Kr3-O1-pkI" firstAttribute="leading" secondItem="rhV-sr-Rzw" secondAttribute="leading" type="user" id="yfE-ld-Mhk"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="deleteBtn" destination="ecs-dP-LN1" id="H8E-dd-GIV"/>
                                                     <outlet property="docWebView" destination="qiy-Ak-JeJ" id="I6q-ib-hhy"/>
                                                     <outlet property="frameImg" destination="Kr3-O1-pkI" id="lMU-l7-6Bk"/>
                                                     <outlet property="infoBtn" destination="Sn0-Bm-003" id="ls5-UH-dYW"/>
@@ -1137,6 +1177,23 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="243"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gk4-PY-LK4">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="HXl-N6-Xkz"/>
+                                                                <constraint firstAttribute="width" constant="25" id="c9z-x9-gwC"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <state key="normal" title="delete" image="delete.png">
+                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="pushDelete:" destination="kLk-HI-Ya9" eventType="touchUpInside" id="YOg-T4-y1b"/>
+                                                            </connections>
+                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZO-RV-0fW">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="197" id="dm2-EU-q10"/>
@@ -1280,8 +1337,10 @@
                                                     <constraint firstItem="BZO-RV-0fW" firstAttribute="trailing" secondItem="kLk-HI-Ya9" secondAttribute="trailing" type="user" id="6gs-kf-ALW"/>
                                                     <constraint firstItem="NBU-fb-fgI" firstAttribute="top" secondItem="kLk-HI-Ya9" secondAttribute="top" type="user" id="7gd-gw-lxh"/>
                                                     <constraint firstAttribute="trailing" secondItem="NBU-fb-fgI" secondAttribute="trailing" constant="18" type="user" id="ARV-eP-Fbd"/>
+                                                    <constraint firstItem="Gk4-PY-LK4" firstAttribute="trailing" secondItem="kLk-HI-Ya9" secondAttribute="trailing" type="default" id="Bph-iA-3Ev"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xdY-EV-19a" secondAttribute="trailing" constant="13" type="user" id="I6S-W8-Qsc"/>
                                                     <constraint firstAttribute="centerX" secondItem="trH-2g-kjS" secondAttribute="centerX" type="user" id="Ing-pE-mgA"/>
+                                                    <constraint firstItem="Gk4-PY-LK4" firstAttribute="top" secondItem="kLk-HI-Ya9" secondAttribute="top" constant="29" id="Klq-ns-0c5"/>
                                                     <constraint firstItem="xdY-EV-19a" firstAttribute="centerY" secondItem="BZO-RV-0fW" secondAttribute="centerY" type="default" id="QVp-lg-BBs"/>
                                                     <constraint firstItem="BZO-RV-0fW" firstAttribute="leading" secondItem="kLk-HI-Ya9" secondAttribute="leading" type="user" id="Uew-Y5-X1f"/>
                                                     <constraint firstAttribute="trailing" secondItem="2T8-9z-aLs" secondAttribute="trailing" constant="2" type="user" id="Vmc-C6-dX0"/>
@@ -1300,6 +1359,7 @@
                                                     <constraint firstItem="BZO-RV-0fW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kLk-HI-Ya9" secondAttribute="top" constant="41" type="user" id="xJ5-pr-OJJ"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="deleteBtn" destination="Gk4-PY-LK4" id="6R5-bO-7ag"/>
                                                     <outlet property="docWebView" destination="eh6-Pb-gh4" id="WVw-PR-MMe"/>
                                                     <outlet property="frameImg" destination="BZO-RV-0fW" id="p3A-iJ-m6k"/>
                                                     <outlet property="infoBtn" destination="2T8-9z-aLs" id="zoQ-I2-0vs"/>
@@ -1315,6 +1375,23 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZA-aR-4WF">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="OqS-zE-MZu"/>
+                                                                <constraint firstAttribute="height" constant="25" id="XNJ-IU-E8U"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <state key="normal" title="delete" image="delete.png">
+                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="pushDelete:" destination="t6B-jG-cUH" eventType="touchUpInside" id="Cnt-Vi-pM5"/>
+                                                            </connections>
+                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-Os-2J1">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="245" type="user" id="q6f-kA-Iyg"/>
@@ -1457,11 +1534,13 @@
                                                     <constraint firstAttribute="centerY" secondItem="ems-aE-Jkb" secondAttribute="centerY" type="user" id="3ph-vI-cAo"/>
                                                     <constraint firstAttribute="trailing" secondItem="dGs-72-bl2" secondAttribute="trailing" constant="2" type="user" id="5qD-hx-0uZ"/>
                                                     <constraint firstItem="ems-aE-Jkb" firstAttribute="bottom" secondItem="t6B-jG-cUH" secondAttribute="bottom" type="user" id="Ai2-9c-Adi"/>
+                                                    <constraint firstItem="DZA-aR-4WF" firstAttribute="top" secondItem="t6B-jG-cUH" secondAttribute="top" constant="29" id="B1x-mO-eTH"/>
                                                     <constraint firstItem="ApJ-Df-HTb" firstAttribute="leading" secondItem="t6B-jG-cUH" secondAttribute="leading" constant="13" type="user" id="CaC-Mf-6FT"/>
                                                     <constraint firstItem="x4W-nF-UbV" firstAttribute="top" secondItem="t6B-jG-cUH" secondAttribute="top" type="user" id="FKH-UH-Qkm"/>
                                                     <constraint firstAttribute="centerX" secondItem="ems-aE-Jkb" secondAttribute="centerX" type="user" id="JK8-mJ-dER"/>
                                                     <constraint firstItem="5L5-Os-2J1" firstAttribute="leading" secondItem="t6B-jG-cUH" secondAttribute="leading" type="user" id="KyK-qN-u60"/>
                                                     <constraint firstItem="5L5-Os-2J1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t6B-jG-cUH" secondAttribute="top" constant="42" type="user" id="MNN-bR-u0k"/>
+                                                    <constraint firstItem="DZA-aR-4WF" firstAttribute="trailing" secondItem="t6B-jG-cUH" secondAttribute="trailing" type="default" id="Oyz-62-Uuo"/>
                                                     <constraint firstItem="dGs-72-bl2" firstAttribute="top" secondItem="t6B-jG-cUH" secondAttribute="top" constant="2" id="UNX-Qz-tvX"/>
                                                     <constraint firstItem="ems-aE-Jkb" firstAttribute="top" secondItem="t6B-jG-cUH" secondAttribute="top" type="user" id="Xy0-ET-zOr"/>
                                                     <constraint firstAttribute="trailing" secondItem="x4W-nF-UbV" secondAttribute="trailing" constant="18" type="user" id="dRX-Wa-2yR"/>
@@ -1476,6 +1555,7 @@
                                                     <constraint firstItem="x4W-nF-UbV" firstAttribute="leading" secondItem="t6B-jG-cUH" secondAttribute="leading" constant="2" type="user" id="w3O-KZ-xcj"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="deleteBtn" destination="DZA-aR-4WF" id="Tu5-da-Hap"/>
                                                     <outlet property="docWebView" destination="i3I-ut-qDU" id="sUN-A9-7et"/>
                                                     <outlet property="frameImg" destination="5L5-Os-2J1" id="Jdf-QB-lMZ"/>
                                                     <outlet property="infoBtn" destination="dGs-72-bl2" id="sT2-bO-dva"/>
@@ -1667,6 +1747,7 @@
     <resources>
         <image name="Circle.png" width="1000" height="1000"/>
         <image name="accept2.png" width="600" height="600"/>
+        <image name="delete.png" width="48" height="48"/>
         <image name="down_arrow.png" width="400" height="300"/>
         <image name="edit.png" width="64" height="92"/>
         <image name="frame-1.png" width="755" height="321"/>
@@ -1678,123 +1759,6 @@
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
-    <classes>
-        <class className="InputCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
-            <relationships>
-                <relationship kind="action" name="pushSendBtn:"/>
-                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="LanguagePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goToSignup:"/>
-                <relationship kind="action" name="submitLogin:"/>
-                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="clearMessages:"/>
-                <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="openMenu:"/>
-                <relationship kind="action" name="pushAccept:"/>
-                <relationship kind="action" name="pushEdit:"/>
-                <relationship kind="action" name="pushPrefs:"/>
-                <relationship kind="action" name="pushReject:"/>
-                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
-                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MenuView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
-        </class>
-        <class className="MsgCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="AcceptContainer" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="EditContainer" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="RejectContainer" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="editBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PrefsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-                <relationship kind="action" name="restoreDefaults:"/>
-                <relationship kind="outlet" name="langLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="projLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProjectBrowserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshProjects:"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
-                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="SuggestionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
-        </class>
-        <class className="TranslationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
-            <relationships>
-                <relationship kind="action" name="pushInfo:"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="prefsCustomCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/prefsCustomCell.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

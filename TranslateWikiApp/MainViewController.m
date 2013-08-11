@@ -162,6 +162,7 @@
             trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
             trMsgCell.isExpanded=FALSE;
             trMsgCell.isMinimized = trMsgCell.msg.minimized;
+            trMsgCell.translationState = translationState;
             
             [trMsgCell.infoView setHidden:!msg.infoState];
             [trMsgCell displayHTML:msg.documentation];

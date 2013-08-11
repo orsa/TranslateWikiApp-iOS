@@ -25,18 +25,21 @@
 @property (retain, nonatomic) InputCell* inputCell;
 @property (atomic) BOOL isExpanded;
 @property (atomic) BOOL isMinimized;
+@property BOOL translationState;
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
 @property (strong, nonatomic) IBOutlet UIButton *infoBtn;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
 //@property (weak, nonatomic) IBOutlet UITextView *documentation;
 @property (weak, nonatomic) IBOutlet UIWebView *docWebView;
 @property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle;
+@property (strong, nonatomic) IBOutlet UIButton *deleteBtn;
 
 //- (void)buildWithMsg:(TranslationMessage*)trMsg expanded:(BOOL)exp;
 - (void)buildWithMsg:(NSArray *)obj;
 -(void)displayHTML:(NSString*)html;
 - (IBAction)pushInfo:(id)sender;
 //- (void)setExpanded:(NSNumber*)expNumber;
+- (IBAction)pushDelete:(id)sender;
 - (void)setMinimized:(NSNumber*)minNumber;
 /*- (IBAction)pushMinimized:(id)sender;*/
 -(void)removeFromList;
