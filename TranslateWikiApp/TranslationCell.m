@@ -205,14 +205,6 @@
     }
 }
 
-/*- (IBAction)pushMinimized:(id)sender {
-    [self setMinimized:[NSNumber numberWithBool:TRUE]];
-    [self.msgTableView beginUpdates];
-    [self.msgTableView endUpdates];
-    
-    //[self.msgTableView reloadData];
-}*/
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -382,10 +374,5 @@
 
     return customView;
 }
-
-/*
--(CGFloat)getSizeOfSuggestionNumber:(NSInteger)i{
-    return max([msg.suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(inputTable.frame.size.width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, 50);
-}*/
 
 @end

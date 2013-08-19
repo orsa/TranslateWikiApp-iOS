@@ -2,14 +2,24 @@
 //  constants.h
 //  TranslateWikiApp
 //
-//  Created by Or Sagi on 30/3/13.
-//  Copyright (c) 2013 translatewiki.net. All rights reserved.
+//  Copyright 2013 Or Sagi, Tomer Tuchner
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 //***********************************************************
 // This file is inteded to hold some cross-application useful
-// constants and macros.
+// constants and macros - making life easier while coding out there...
 //***********************************************************
-//
 
 #ifndef TranslateWikiApp_constants_h
 #define TranslateWikiApp_constants_h
@@ -45,20 +55,19 @@
 //pseudo-static data
 //***********************
 
-//used for creation of array contains ALL languages which have a known ISO 639-1 Code
+// used for creation of array contains ALL languages which have a known ISO 639-1 Code
 #define LANGUAGE_NAMES @"Afar", @"Abkhazian", @"Avestan", @"Afrikaans", @"Akan", @"Amharic", @"Aragonese", @"Arabic", @"Assamese", @"Avaric", @"Aymara", @"Azerbaijani", @"Bashkir", @"Belarusian", @"Bulgarian", @"Bihari languages", @"Bislama", @"Bambara", @"Bengali", @"Tibetan", @"Breton", @"Bosnian", @"Catalan; Valencian", @"Chechen", @"Chamorro", @"Corsican", @"Cree", @"Czech", @"Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic", @"Chuvash", @"Welsh", @"Danish", @"German", @"Divehi; Dhivehi; Maldivian", @"Dzongkha", @"Ewe", @"Greek, Modern (1453-)", @"English", @"Esperanto", @"Spanish; Castilian", @"Estonian", @"Basque", @"Persian", @"Fulah", @"Finnish", @"Fijian", @"Faroese", @"French", @"Western Frisian", @"Irish", @"Gaelic; Scottish Gaelic", @"Galician", @"Guarani", @"Gujarati", @"Manx", @"Hausa", @"Hebrew", @"Hindi", @"Hiri Motu", @"Croatian", @"Haitian; Haitian Creole", @"Hungarian", @"Armenian", @"Herero", @"Interlingua (International Auxiliary Language Association)", @"Indonesian", @"Interlingue; Occidental", @"Igbo", @"Sichuan Yi; Nuosu", @"Inupiaq", @"Ido", @"Icelandic", @"Italian", @"Inuktitut", @"Japanese", @"Javanese", @"Georgian", @"Kongo", @"Kikuyu; Gikuyu", @"Kuanyama; Kwanyama", @"Kazakh", @"Kalaallisut; Greenlandic", @"Central Khmer", @"Kannada", @"Korean", @"Kanuri", @"Kashmiri", @"Kurdish", @"Komi", @"Cornish", @"Kirghiz; Kyrgyz", @"Latin", @"Luxembourgish; Letzeburgesch", @"Ganda", @"Limburgan; Limburger; Limburgish", @"Lingala", @"Lao", @"Lithuanian", @"Luba-Katanga", @"Latvian", @"Malagasy", @"Marshallese", @"Maori", @"Macedonian", @"Malayalam", @"Mongolian", @"Marathi", @"Malay", @"Maltese", @"Burmese", @"Nauru", @"Bokmål, Norwegian; Norwegian Bokmål", @"Ndebele, North; North Ndebele", @"Nepali", @"Ndonga", @"Dutch; Flemish", @"Norwegian Nynorsk; Nynorsk, Norwegian", @"Norwegian", @"Ndebele, South; South Ndebele", @"Navajo; Navaho", @"Chichewa; Chewa; Nyanja", @"Occitan (post 1500)", @"Ojibwa", @"Oromo", @"Oriya", @"Ossetian; Ossetic", @"Panjabi; Punjabi", @"Pali", @"Polish", @"Pushto; Pashto", @"Portuguese", @"Quechua", @"Romansh", @"Rundi", @"Romanian; Moldavian; Moldovan", @"Russian", @"Kinyarwanda", @"Sanskrit", @"Sardinian", @"Sindhi", @"Northern Sami", @"Sango", @"Sinhala; Sinhalese", @"Slovak", @"Slovenian", @"Samoan", @"Shona", @"Somali", @"Albanian", @"Serbian", @"Swati", @"Sotho, Southern", @"Sundanese", @"Swedish", @"Swahili", @"Tamil", @"Telugu", @"Tajik", @"Thai", @"Tigrinya", @"Turkmen", @"Tagalog", @"Tswana", @"Tonga (Tonga Islands)", @"Turkish", @"Tsonga", @"Tatar", @"Twi", @"Tahitian", @"Uighur; Uyghur", @"Ukrainian", @"Urdu", @"Uzbek", @"Venda", @"Vietnamese", @"Volapük", @"Walloon", @"Wolof", @"Xhosa", @"Yiddish", @"Yoruba", @"Zhuang; Chuang", @"Chinese", @"Zulu"
 
 
 #define LANGUAGE_CODES @"aa", @"ab", @"ae", @"af", @"ak", @"am", @"an", @"ar", @"as", @"av", @"ay", @"az", @"ba", @"be", @"bg", @"bh", @"bi", @"bm", @"bn", @"bo", @"br", @"bs", @"ca", @"ce", @"ch", @"co", @"cr", @"cs", @"cu", @"cv", @"cy", @"da", @"de", @"dv", @"dz", @"ee", @"el", @"en", @"eo", @"es", @"et", @"eu", @"fa", @"ff", @"fi", @"fj", @"fo", @"fr", @"fy", @"ga", @"gd", @"gl", @"gn", @"gu", @"gv", @"ha", @"he", @"hi", @"ho", @"hr", @"ht", @"hu", @"hy", @"hz", @"ia", @"id", @"ie", @"ig", @"ii", @"ik", @"io", @"is", @"it", @"iu", @"ja", @"jv", @"ka", @"kg", @"ki", @"kj", @"kk", @"kl", @"km", @"kn", @"ko", @"kr", @"ks", @"ku", @"kv", @"kw", @"ky", @"la", @"lb", @"lg", @"li", @"ln", @"lo", @"lt", @"lu", @"lv", @"mg", @"mh", @"mi", @"mk", @"ml", @"mn", @"mr", @"ms", @"mt", @"my", @"na", @"nb", @"nd", @"ne", @"ng", @"nl", @"nn", @"no", @"nr", @"nv", @"ny", @"oc", @"oj", @"om", @"or", @"os", @"pa", @"pi", @"pl", @"ps", @"pt", @"qu", @"rm", @"rn", @"ro", @"ru", @"rw", @"sa", @"sc", @"sd", @"se", @"sg", @"si", @"sk", @"sl", @"sm", @"sn", @"so", @"sq", @"sr", @"ss", @"st", @"su", @"sv", @"sw", @"ta", @"te", @"tg", @"th", @"ti", @"tk", @"tl", @"tn", @"to", @"tr", @"ts", @"tt", @"tw", @"ty", @"ug", @"uk", @"ur", @"uz", @"ve", @"vi", @"vo", @"wa", @"wo", @"xh", @"yi", @"yo", @"za", @"zh", @"zu" //184 items
 
+// Used for maintaining the languages that seem to be properly supported on iOS. This is what we actualy use.
 #define SUPPORTED_LANGUAGE_NAMES @"Afar", @"Abkhazian", @"Avestan", @"Afrikaans", @"Akan", @"Aragonese", @"Arabic", @"Assamese", @"Avaric", @"Aymara", @"Azerbaijani", @"Bashkir", @"Belarusian", @"Bulgarian", @"Bihari languages", @"Bislama", @"Bambara", @"Bengali", @"Tibetan", @"Breton", @"Bosnian", @"Catalan; Valencian", @"Chechen", @"Chamorro", @"Corsican", @"Cree", @"Czech", @"Church Slavonic", @"Chuvash", @"Welsh", @"Danish", @"German", @"Divehi; Dhivehi; Maldivian", @"Dzongkha", @"Ewe", @"Greek, Modern (1453-)", @"English", @"Esperanto", @"Spanish; Castilian", @"Estonian", @"Basque", @"Persian", @"Fulah", @"Finnish", @"Fijian", @"Faroese", @"French", @"Western Frisian", @"Irish", @"Gaelic; Scottish Gaelic", @"Galician", @"Guarani", @"Gujarati", @"Manx", @"Hausa", @"Hebrew", @"Hindi", @"Hiri Motu", @"Croatian", @"Haitian; Haitian Creole", @"Hungarian", @"Armenian", @"Herero", @"Interlingua", @"Indonesian", @"Interlingue; Occidental", @"Igbo", @"Sichuan Yi; Nuosu", @"Inupiaq", @"Ido", @"Icelandic", @"Italian", @"Inuktitut", @"Japanese", @"Javanese", @"Georgian", @"Kongo", @"Kikuyu; Gikuyu", @"Kuanyama; Kwanyama", @"Kazakh", @"Kalaallisut; Greenlandic", @"Kannada", @"Korean", @"Kanuri", @"Kashmiri", @"Kurdish", @"Komi", @"Cornish", @"Kirghiz; Kyrgyz", @"Latin", @"Luxembourgish", @"Ganda", @"Limburgan; Limburger; Limburgish", @"Lingala", @"Lao", @"Lithuanian", @"Luba-Katanga", @"Latvian", @"Malagasy", @"Marshallese", @"Maori", @"Macedonian", @"Malayalam", @"Mongolian", @"Marathi", @"Malay", @"Maltese", @"Nauru", @"Bokmål, Norwegian; Norwegian Bokmål", @"Ndebele, North; North Ndebele", @"Nepali", @"Ndonga", @"Dutch; Flemish", @"Norwegian Nynorsk; Nynorsk, Norwegian", @"Norwegian", @"Ndebele, South; South Ndebele", @"Navajo; Navaho", @"Chichewa; Chewa; Nyanja", @"Occitan (post 1500)", @"Ojibwa", @"Oromo", @"Oriya", @"Ossetian; Ossetic", @"Panjabi; Punjabi", @"Pali", @"Polish", @"Pushto; Pashto", @"Portuguese", @"Quechua", @"Romansh", @"Rundi", @"Romanian; Moldavian; Moldovan", @"Russian", @"Kinyarwanda", @"Sanskrit", @"Sardinian", @"Sindhi", @"Northern Sami", @"Sango", @"Sinhala; Sinhalese", @"Slovak", @"Slovenian", @"Samoan", @"Shona", @"Somali", @"Albanian", @"Serbian", @"Swati", @"Sotho, Southern", @"Sundanese", @"Swedish", @"Swahili", @"Tamil", @"Telugu", @"Tajik", @"Thai", @"Turkmen", @"Tagalog", @"Tswana", @"Tonga (Tonga Islands)", @"Turkish", @"Tsonga", @"Tatar", @"Twi", @"Tahitian", @"Uighur; Uyghur", @"Ukrainian", @"Urdu", @"Uzbek", @"Venda", @"Vietnamese", @"Volapük", @"Walloon", @"Wolof", @"Xhosa", @"Yiddish", @"Yoruba", @"Zhuang; Chuang", @"Chinese", @"Zulu"
-
 
 #define SUPPORTED_LANGUAGE_CODES @"aa", @"ab", @"ae", @"af", @"ak",@"an", @"ar", @"as", @"av", @"ay", @"az", @"ba", @"be", @"bg", @"bh", @"bi", @"bm", @"bn", @"bo", @"br", @"bs", @"ca", @"ce", @"ch", @"co", @"cr", @"cs", @"cu", @"cv", @"cy", @"da", @"de", @"dv", @"dz", @"ee", @"el", @"en", @"eo", @"es", @"et", @"eu", @"fa", @"ff", @"fi", @"fj", @"fo", @"fr", @"fy", @"ga", @"gd", @"gl", @"gn", @"gu", @"gv", @"ha", @"he", @"hi", @"ho", @"hr", @"ht", @"hu", @"hy", @"hz", @"ia", @"id", @"ie", @"ig", @"ii", @"ik", @"io", @"is", @"it", @"iu", @"ja", @"jv", @"ka", @"kg", @"ki", @"kj", @"kk", @"kl", @"kn", @"ko", @"kr", @"ks", @"ku", @"kv", @"kw", @"ky", @"la", @"lb", @"lg", @"li", @"ln", @"lo", @"lt", @"lu", @"lv", @"mg", @"mh", @"mi", @"mk", @"ml", @"mn", @"mr", @"ms", @"mt", @"na", @"nb", @"nd", @"ne", @"ng", @"nl", @"nn", @"no", @"nr", @"nv", @"ny", @"oc", @"oj", @"om", @"or", @"os", @"pa", @"pi", @"pl", @"ps", @"pt", @"qu", @"rm", @"rn", @"ro", @"ru", @"rw", @"sa", @"sc", @"sd", @"se", @"sg", @"si", @"sk", @"sl", @"sm", @"sn", @"so", @"sq", @"sr", @"ss", @"st", @"su", @"sv", @"sw", @"ta", @"te", @"tg", @"th", @"tk", @"tl", @"tn", @"to", @"tr", @"ts", @"tt", @"tw", @"ty", @"ug", @"uk", @"ur", @"uz", @"ve", @"vi", @"vo", @"wa", @"wo", @"xh", @"yi", @"yo", @"za", @"zh", @"zu" //180 items
 
-
+// used for minimization or debug - few of the pretty common languages
 #define COMMON_LANGUAGE_NAMES  @"Arabic", @"Armenian", @"Belarusian", @"Bosnian", @"Chamorro", @"Chinese", @"Croatian", @"Czech", @"Danish", @"English", @"Estonian", @"Finnish", @"French", @"Georgian", @"German", @"Greek, Modern", @"Hebrew", @"Hindi", @"Hungarian", @"Italian", @"Japanese", @"Korean", @"Kurdish", @"Lao", @"Latin", @"Lithuanian", @"Macedonian", @"Nepali", @"Norwegian", @"Persian", @"Slovak", @"Thai", @"Tibetan", @"Urdu", @"Yiddish"
-
 
 #define COMMONLANGUAGE_CODES @"ar", @"hy", @"be", @"bs", @"ch", @"zh", @"hr", @"cs", @"da", @"en", @"et", @"fi", @"fr", @"ka", @"de", @"el", @"he", @"hi", @"hu", @"it", @"ja", @"ko", @"ku", @"lo", @"la", @"lt", @"mk", @"ne", @"no", @"fa", @"sk", @"th", @"bo", @"ur", @"yi" //35 items
 
@@ -76,6 +85,7 @@
 //***********************
 //code snippets
 //***********************
+
 #define myAppDelegate       [[UIApplication sharedApplication] delegate]
 #define PREFERRED_LANG   [NSLocale preferredLanguages]
 

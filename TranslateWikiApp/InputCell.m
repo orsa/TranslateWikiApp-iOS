@@ -120,7 +120,7 @@
     [((UITableView*)_father.superview) endUpdates];
     //[((UITableView*)_father.superview) reloadData];
     
-    //[_father removeFromList]; //we probably won't simply remove it, maybe make it smaller.
+    //[_father removeFromList]; //we won't simply remove it, but make it smaller.
 }
 
 

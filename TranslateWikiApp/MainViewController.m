@@ -23,9 +23,7 @@
 @class MenuView;
 
 @interface MainViewController ()
-{
 
-}
 @property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
 
 @end
@@ -433,7 +431,6 @@
         }];
     }
     else{ //already opened
-        //[menuView setFrame:CGRectMake(0, 31, 180, 105)];
         [self closeMenu:sender];
     }
 }
@@ -479,9 +476,6 @@
 }
 
 
-- (IBAction)didSwipe:(UISwipeGestureRecognizer *)sender {
-    
-}
 
 - (IBAction)pushEdit:(id)sender {
     int row = selectedIndexPath.row;
@@ -500,18 +494,6 @@
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender {
     [self closeMenu:sender];
 }
-
-/*//-(BOOL)shouldAutorotate{
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    if(translationState){
-        NSIndexPath* indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-        TranslationCell* trMsgCell = (TranslationCell*)[msgTableView cellForRowAtIndexPath:indexPath];
-        NSString* source=[NSString stringWithFormat:@"%s", trMsgCell.isExpanded? "expanded" : "not expanded"];
-        LoadAlertView(@"itle", source, @"ok");
-        AlertShow();
-        [trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:trMsgCell.isExpanded] waitUntilDone:NO];
-    }
-}*/
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {

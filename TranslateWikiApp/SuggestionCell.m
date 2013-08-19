@@ -5,6 +5,10 @@
 //  Created by Or Sagi on 2/5/13.
 //  Copyright (c) 2013 translatewiki.net. All rights reserved.
 //
+//*********************************************************************************
+// SuggestionCell is a customized UITableViewCell which has a property of
+// knowing whether it should be displayed in "expanded mode or not.
+//*********************************************************************************
 
 #import "SuggestionCell.h"
 

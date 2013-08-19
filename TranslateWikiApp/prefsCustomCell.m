@@ -5,6 +5,10 @@
 //  Created by Tomer Tuchner on 6/21/13.
 //  Copyright (c) 2013 translatewiki.net. All rights reserved.
 //
+//*********************************************************************************
+// prefsCustomCell is a customized UITableViewCell which has a property of
+// constraints correction for the residing objects.
+//*********************************************************************************
 
 #import "prefsCustomCell.h"
 
