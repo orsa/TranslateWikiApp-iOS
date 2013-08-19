@@ -351,7 +351,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="r5i-n1-LeE"/>
+                    <navigationItem key="navigationItem" title="Settings" id="r5i-n1-LeE"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="langLabel" destination="cOL-4E-z7Q" id="c1u-kc-tpT"/>
@@ -365,10 +365,10 @@
             </objects>
             <point key="canvasLocation" x="-2284" y="-4082"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Table View Controller - About-->
         <scene sceneID="SUk-V1-4hb">
             <objects>
-                <tableViewController id="ie2-7Y-7PF" sceneMemberID="viewController">
+                <tableViewController title="About" id="ie2-7Y-7PF" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="8" sectionFooterHeight="8" id="Q0v-bO-Q9l">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -376,15 +376,19 @@
                         <sections>
                             <tableViewSection headerTitle="tanslatewiki.net App" id="g4S-N7-Zva">
                                 <cells>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ugj-lc-lgP" rowHeight="110" style="IBUITableViewCellStyleDefault" id="k2O-Bj-Xaq">
-                                        <rect key="frame" x="0.0" y="46" width="320" height="112"/>
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ugj-lc-lgP" rowHeight="180" style="IBUITableViewCellStyleDefault" id="k2O-Bj-Xaq">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="182"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="109"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ugj-lc-lgP">
-                                                    <string key="text">translatewiki.net app for iOS developed by Tomer Tuchner and Or Sagi, as part of BSc final project in Tel-Aviv University's Engineering Faculty. The project mentored by Amir E. Aharoni. It is completely open-sourced (see license information below).</string>
+                                                    <string key="text">translatewiki.net app for iOS developed by Tomer Tuchner and Or Sagi, as part of BSc final project in Tel-Aviv University's Engineering Faculty. 
+The project mentored by Amir E. Aharoni. 
+Design: Pau Giner. 
+Thanks to Yuvaraj Pandian for the technical help. 
+This is completely open-sourced (see license information below).</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13.5"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -398,7 +402,7 @@
                             <tableViewSection headerTitle="Contact, Updates &amp; Support Info" id="wqj-ZI-khC">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="XVw-OW-Ang" detailTextLabel="N9Q-Nk-v5P" style="IBUITableViewCellStyleSubtitle" id="HWs-h5-Kta">
-                                        <rect key="frame" x="0.0" y="202" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="272" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -424,7 +428,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="BRV-HW-Miu" detailTextLabel="Um6-SE-3nY" style="IBUITableViewCellStyleSubtitle" id="ImA-lM-Z8g">
-                                        <rect key="frame" x="0.0" y="247" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="317" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -456,7 +460,7 @@
                             <tableViewSection headerTitle="License Info" footerTitle="Copyright 2013 Or Sagi, Tomer Tuchner." id="AhO-ep-oq4">
                                 <cells>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="1AB-qY-ScM" rowHeight="210" style="IBUITableViewCellStyleDefault" id="iyX-pl-Pfv">
-                                        <rect key="frame" x="0.0" y="336" width="320" height="212"/>
+                                        <rect key="frame" x="0.0" y="406" width="320" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="209"/>
@@ -489,7 +493,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                             <outlet property="delegate" destination="ie2-7Y-7PF" id="tMP-oK-1A8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Tax-tQ-WhJ"/>
+                    <navigationItem key="navigationItem" title="About" id="Tax-tQ-WhJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9i-ME-cbZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -612,9 +616,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                             <constraint firstItem="C5J-Ki-FOK" firstAttribute="trailing" secondItem="GuA-4l-YDj" secondAttribute="trailing" type="user" id="XeY-sR-htt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sCB-GM-27A">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Language Selection" id="sCB-GM-27A"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="LangTable" destination="C5J-Ki-FOK" id="SKn-gF-UWM"/>
@@ -1866,7 +1868,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                             <constraint firstItem="ith-33-G7f" firstAttribute="leading" secondItem="fDC-Is-wtA" secondAttribute="leading" type="default" id="m4g-6f-xnt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CdV-Qg-hcW"/>
+                    <navigationItem key="navigationItem" title="Project Browser" id="CdV-Qg-hcW"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mySearchBar" destination="ith-33-G7f" id="43u-Kt-mVS"/>
@@ -1893,128 +1895,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
-    <classes>
-        <class className="InputCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
-            <relationships>
-                <relationship kind="action" name="pushSendBtn:"/>
-                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="LanguagePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goToSignup:"/>
-                <relationship kind="action" name="submitLogin:"/>
-                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="clearMessages:"/>
-                <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="openMenu:"/>
-                <relationship kind="action" name="pushAccept:"/>
-                <relationship kind="action" name="pushEdit:"/>
-                <relationship kind="action" name="pushPrefs:"/>
-                <relationship kind="action" name="pushReject:"/>
-                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
-                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MenuView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
-        </class>
-        <class className="MsgCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MsgCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="AcceptContainer" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="EditContainer" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="RejectContainer" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="acceptBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="acceptCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dstLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="editBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="keyinfoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rejectBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NSMutableArray" superclassName="NSArray">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
-        </class>
-        <class className="PrefsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-                <relationship kind="action" name="restoreDefaults:"/>
-                <relationship kind="outlet" name="langLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="projLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProjectBrowserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshProjects:"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
-                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="SuggestionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
-        </class>
-        <class className="TranslationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
-            <relationships>
-                <relationship kind="action" name="pushDelete:"/>
-                <relationship kind="action" name="pushInfo:"/>
-                <relationship kind="outlet" name="deleteBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="prefsCustomCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/prefsCustomCell.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

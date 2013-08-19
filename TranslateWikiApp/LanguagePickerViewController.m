@@ -53,7 +53,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title=@"Language Selection";
     srcArr = [[NSMutableArray alloc] initWithArray:@[SUPPORTED_LANGUAGE_NAMES]];
     NSArray * codes = @[SUPPORTED_LANGUAGE_CODES];
     NSArray * names = @[SUPPORTED_LANGUAGE_NAMES];

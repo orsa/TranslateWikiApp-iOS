@@ -76,7 +76,6 @@
     NSArray *barButtons = [NSArray arrayWithObjects: reloadButton, nil];
     self.navigationItem.rightBarButtonItems = barButtons;
     
-    self.title = @"Project Browser";
     isFiltered = NO;
     didChange = NO;
     

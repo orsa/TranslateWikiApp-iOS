@@ -50,7 +50,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"Settings"];
     
     [self.navigationController setNavigationBarHidden:NO];
     
