@@ -321,7 +321,7 @@
     BOOL isValid=indexPath.row<dataController.countOfList && dataController.countOfList>0;
     //check if the index actually exists
     if(!isValid)
-        return 50;
+        return 40;
     TranslationMessage* msg=(TranslationMessage*)dataController.masterTranslationMessageList[indexPath.row];
     if (translationState || !msg.prState)
     {
@@ -329,7 +329,6 @@
         bool isMin = msg.minimized; //translated not enough because it can be translated but still unminimized for re-editing
         if (isMin)
             return 50;
-        //float n;
         if(isSelected)
         {
             if(![msg needsExpansionUnderWidth:tableView.frame.size.width])
@@ -340,8 +339,7 @@
         }
         else //not expanded translation cell
         {
-        unexpanded_trCell: //n = 2 + [dataController objectInListAtIndex:indexPath.row].suggestions.count;
-            //return 50*n+50;
+        unexpanded_trCell: 
             return [msg heightForImageView]+50+20;
         }
     }

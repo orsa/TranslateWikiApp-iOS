@@ -435,14 +435,14 @@ This is completely open-sourced (see license information below).</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Code Repository" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BRV-HW-Miu">
-                                                    <rect key="frame" x="10" y="3" width="129" height="21"/>
+                                                    <rect key="frame" x="10" y="4" width="121" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="https://github.com/orsa/TranslateWikiApp-iOS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Um6-SE-3nY">
-                                                    <rect key="frame" x="10" y="24" width="263" height="16"/>
+                                                    <rect key="frame" x="10" y="23" width="263" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES" link="YES"/>
@@ -1652,16 +1652,16 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <outlet property="srcLabel" destination="x4W-nF-UbV" id="zQG-85-kre"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="42" id="G33-rm-iT3">
-                                                <rect key="frame" x="0.0" y="1048" width="320" height="42"/>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="moreCell" rowHeight="40" id="G33-rm-iT3">
+                                                <rect key="frame" x="0.0" y="1048" width="320" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXA-Gq-MNQ">
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="UVf-mw-bew"/>
+                                                                <constraint firstAttribute="height" constant="20" type="user" id="dY9-vl-Wv2"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1669,8 +1669,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="flK-4I-Mkg">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="7Xw-4y-6rU"/>
-                                                                <constraint firstAttribute="height" constant="23" id="8S5-u8-Xk6"/>
+                                                                <constraint firstAttribute="width" constant="32" id="fDr-xX-bq3"/>
+                                                                <constraint firstAttribute="height" constant="20" id="i8c-Uq-NGk"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -1680,10 +1680,11 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                                 <constraints>
-                                                    <constraint firstItem="flK-4I-Mkg" firstAttribute="top" secondItem="G33-rm-iT3" secondAttribute="top" constant="2" id="DZa-BU-Pqf"/>
+                                                    <constraint firstItem="RXA-Gq-MNQ" firstAttribute="top" secondItem="G33-rm-iT3" secondAttribute="top" constant="18" type="user" id="3hU-yw-H8N"/>
                                                     <constraint firstItem="RXA-Gq-MNQ" firstAttribute="leading" secondItem="G33-rm-iT3" secondAttribute="leading" type="default" id="INR-ee-R1C"/>
-                                                    <constraint firstItem="RXA-Gq-MNQ" firstAttribute="top" secondItem="G33-rm-iT3" secondAttribute="top" constant="20" type="default" id="lbz-lE-qyR"/>
-                                                    <constraint firstItem="RXA-Gq-MNQ" firstAttribute="centerX" secondItem="flK-4I-Mkg" secondAttribute="centerX" type="default" id="pQe-Wu-g8w"/>
+                                                    <constraint firstItem="flK-4I-Mkg" firstAttribute="centerX" secondItem="RXA-Gq-MNQ" secondAttribute="centerX" type="default" id="KA4-hh-rNf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="RXA-Gq-MNQ" secondAttribute="bottom" constant="2" type="user" id="Xew-Lf-CQU"/>
+                                                    <constraint firstItem="flK-4I-Mkg" firstAttribute="top" secondItem="G33-rm-iT3" secondAttribute="top" constant="1" id="aoV-Au-6oM"/>
                                                     <constraint firstItem="RXA-Gq-MNQ" firstAttribute="trailing" secondItem="G33-rm-iT3" secondAttribute="trailing" type="default" id="w1Z-CH-hlz"/>
                                                 </constraints>
                                             </tableViewCell>
@@ -1835,7 +1836,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
     <resources>
         <image name="accept2.png" width="600" height="600"/>
         <image name="delete.png" width="48" height="48"/>
-        <image name="down_arrow.png" width="400" height="300"/>
+        <image name="down_arrow.png" width="337" height="193"/>
         <image name="edit.png" width="64" height="92"/>
         <image name="frame-1.png" width="755" height="321"/>
         <image name="frame-2.png" width="749" height="458"/>
@@ -1847,111 +1848,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
-    <classes>
-        <class className="InputCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
-            <relationships>
-                <relationship kind="action" name="pushSendBtn:"/>
-                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="LanguagePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goToSignup:"/>
-                <relationship kind="action" name="submitLogin:"/>
-                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="clearMessages:"/>
-                <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="openMenu:"/>
-                <relationship kind="action" name="pushAccept:"/>
-                <relationship kind="action" name="pushEdit:"/>
-                <relationship kind="action" name="pushPrefs:"/>
-                <relationship kind="action" name="pushReject:"/>
-                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
-                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MenuView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NSMutableArray" superclassName="NSArray">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
-        </class>
-        <class className="PrefsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-                <relationship kind="action" name="restoreDefaults:"/>
-                <relationship kind="outlet" name="langLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="projLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProjectBrowserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshProjects:"/>
-                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
-                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
-                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
-            </relationships>
-        </class>
-        <class className="SuggestionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
-        </class>
-        <class className="TranslationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
-            <relationships>
-                <relationship kind="action" name="pushDelete:"/>
-                <relationship kind="action" name="pushInfo:"/>
-                <relationship kind="outlet" name="deleteBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="prefsCustomCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/prefsCustomCell.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
