@@ -21,9 +21,7 @@
 #import "InputCell.h"
 
 @implementation InputCell
-@synthesize inputText;
-@synthesize sendBtn;
-@synthesize BtnView;
+@synthesize inputText, sendBtn, BtnView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

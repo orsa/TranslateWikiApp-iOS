@@ -26,18 +26,7 @@
 
 @implementation ProjectBrowserViewController
 
-@synthesize mySearchBar;
-@synthesize projTable;
-@synthesize filteredArr;
-@synthesize filteredRec;
-@synthesize srcArr;
-@synthesize recentProj;
-@synthesize isFiltered;
-@synthesize didChange;
-@synthesize dstProjLabel;
-@synthesize dstProjID;
-@synthesize originalSrc;
-@synthesize api;
+@synthesize mySearchBar, projTable, filteredArr, filteredRec, srcArr, recentProj, isFiltered, didChange, dstProjLabel, dstProjID, originalSrc, api;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

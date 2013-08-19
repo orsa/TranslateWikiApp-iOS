@@ -29,7 +29,7 @@
 		64462DD7172AD802002B3556 /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64462DD6172AD802002B3556 /* MenuView.m */; };
 		644D676C1695E74D00B7C7F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644D676B1695E74D00B7C7F5 /* Security.framework */; };
 		644D676F1696462400B7C7F5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */; };
-		6462A2E61705BF6E00E1DCD6 /* MsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6462A2E51705BF6E00E1DCD6 /* MsgCell.m */; };
+		6462A2E61705BF6E00E1DCD6 /* ProofreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6462A2E51705BF6E00E1DCD6 /* ProofreadCell.m */; };
 		6462A2ED1705C06800E1DCD6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462A2EB1705C06800E1DCD6 /* MainStoryboard.storyboard */; };
 		6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6469FB9216FADED80006E765 /* PrefsViewController.m */; };
 		6477FEF91744ED2100AD5781 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6477FEF81744ED2100AD5781 /* Default.png */; };
@@ -51,6 +51,7 @@
 		649BA2DB169B822B003561BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649BA2DA169B822B003561BA /* MainViewController.m */; };
 		64EED0151746823A00F54166 /* icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 64EED0141746823A00F54166 /* icon_ipad.png */; };
 		64EED0171746824600F54166 /* icon_HD_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 64EED0161746824600F54166 /* icon_HD_ipad.png */; };
+		64F4046217C2240F00AB15E7 /* pr_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F4046117C2240F00AB15E7 /* pr_frame.png */; };
 		64F5E4C416AE9B7200442603 /* TranslationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C316AE9B7200442603 /* TranslationMessage.m */; };
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
 		64F890F6170F2900008DCCA6 /* logout_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F890F3170F2900008DCCA6 /* logout_icon.png */; };
@@ -96,8 +97,8 @@
 		644D676B1695E74D00B7C7F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		644D676D1696462400B7C7F5 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		644D676E1696462400B7C7F5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		6462A2E41705BF6E00E1DCD6 /* MsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgCell.h; sourceTree = "<group>"; };
-		6462A2E51705BF6E00E1DCD6 /* MsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgCell.m; sourceTree = "<group>"; };
+		6462A2E41705BF6E00E1DCD6 /* ProofreadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProofreadCell.h; sourceTree = "<group>"; };
+		6462A2E51705BF6E00E1DCD6 /* ProofreadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProofreadCell.m; sourceTree = "<group>"; };
 		6462A2EC1705C06800E1DCD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		6469FB9116FADED80006E765 /* PrefsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsViewController.h; sourceTree = "<group>"; };
 		6469FB9216FADED80006E765 /* PrefsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsViewController.m; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		649BA2DD169B8B32003561BA /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		64EED0141746823A00F54166 /* icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_ipad.png; path = ../icon_ipad.png; sourceTree = "<group>"; };
 		64EED0161746824600F54166 /* icon_HD_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_HD_ipad.png; path = ../icon_HD_ipad.png; sourceTree = "<group>"; };
+		64F4046117C2240F00AB15E7 /* pr_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pr_frame.png; sourceTree = "<group>"; };
 		64F5E4C216AE9B7200442603 /* TranslationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessage.h; sourceTree = "<group>"; };
 		64F5E4C316AE9B7200442603 /* TranslationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationMessage.m; sourceTree = "<group>"; };
 		64F5E4C616AE9EA800442603 /* TranslationMessageDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMessageDataController.h; sourceTree = "<group>"; };
@@ -207,8 +209,8 @@
 				64824A0C1729646400A9BD0F /* External Libraries */,
 				640BF249173CF3A1002F856A /* TWObjects */,
 				6478F0D11706E6A000F2F26E /* constants.h */,
-				6462A2E41705BF6E00E1DCD6 /* MsgCell.h */,
-				6462A2E51705BF6E00E1DCD6 /* MsgCell.m */,
+				6462A2E41705BF6E00E1DCD6 /* ProofreadCell.h */,
+				6462A2E51705BF6E00E1DCD6 /* ProofreadCell.m */,
 				64F890FB1710396D008DCCA6 /* TranslationCell.h */,
 				64F890FC1710396D008DCCA6 /* TranslationCell.m */,
 				64F890FE17106842008DCCA6 /* InputCell.h */,
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				F1F7394117B6767C00AB6AFA /* Circle.png */,
+				64F4046117C2240F00AB15E7 /* pr_frame.png */,
 				643F493217B6E4B60005CD98 /* cancel_edit.png */,
 				643F493017B6E00D0005CD98 /* delete.png */,
 				6477FEFC1744ED4200AD5781 /* Default-568h@2x.png */,
@@ -386,6 +389,7 @@
 				F1F7394217B6767C00AB6AFA /* Circle.png in Resources */,
 				643F493117B6E00F0005CD98 /* delete.png in Resources */,
 				643F493317B6E4B70005CD98 /* cancel_edit.png in Resources */,
+				64F4046217C2240F00AB15E7 /* pr_frame.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +412,7 @@
 				6469FB9316FADED80006E765 /* PrefsViewController.m in Sources */,
 				6491440A16FCB7A000FEEACB /* TranslateWikiApp.xcdatamodeld in Sources */,
 				F19B1704170372BD009934AC /* RejectedMessage.m in Sources */,
-				6462A2E61705BF6E00E1DCD6 /* MsgCell.m in Sources */,
+				6462A2E61705BF6E00E1DCD6 /* ProofreadCell.m in Sources */,
 				6478F0E217074B9900F2F26E /* LanguagePickerViewController.m in Sources */,
 				6478F0E5170761C400F2F26E /* ProjectBrowserViewController.m in Sources */,
 				64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */,

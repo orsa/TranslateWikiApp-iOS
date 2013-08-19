@@ -18,12 +18,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import "MsgCell.h"
+#import "ProofreadCell.h"
 
-@implementation MsgCell
-@synthesize managedObjectContext;
-@synthesize srcLabel;
-@synthesize dstLabel;
+@implementation ProofreadCell
+@synthesize managedObjectContext, srcLabel, dstLabel, acceptBtn, rejectBtn,editBtn, EditContainer, acceptCount;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,8 +32,6 @@
         self.acceptBtn.hidden = TRUE;
         self.rejectBtn.hidden = TRUE;
         self.editBtn.hidden = TRUE;
-        self.AcceptContainer.hidden = TRUE;
-        self.RejectContainer.hidden = TRUE;
         self.EditContainer.hidden = TRUE;
     }
     return self;
@@ -49,24 +46,46 @@
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];
-    [_acceptBtn setHidden:!exp];
-    [_rejectBtn setHidden:!exp];
-    [_editBtn setHidden:!exp];
-    [_infoLabel setHidden:!exp];
-    [_acceptCount setHidden:!exp];
+
+    editBtn.frame = CGRectMake (
+                EditContainer.frame.origin.x+EditContainer.frame.size.width*0.55-editBtn.frame.size.width/2,
+                editBtn.frame.origin.y,
+                editBtn.frame.size.width,
+                editBtn.frame.size.height);
+    
+    acceptBtn.frame = CGRectMake (
+                EditContainer.frame.origin.x+EditContainer.frame.size.width*0.25-acceptBtn.frame.size.width/2,
+                acceptBtn.frame.origin.y,
+                acceptBtn.frame.size.width,
+                acceptBtn.frame.size.height);
+    
+    rejectBtn.frame = CGRectMake (
+                EditContainer.frame.origin.x+EditContainer.frame.size.width*0.8-rejectBtn.frame.size.width/2,
+                rejectBtn.frame.origin.y,
+                rejectBtn.frame.size.width,
+                rejectBtn.frame.size.height);
+    
+    acceptCount.frame = CGRectMake (
+                    acceptBtn.frame.origin.x+acceptBtn.frame.size.width-acceptCount.frame.size.width,
+                    acceptCount.frame.origin.y,
+                    acceptCount.frame.size.width,
+                    acceptCount.frame.size.height);
+
+    [acceptBtn setHidden:!exp];
+    [rejectBtn setHidden:!exp];
+    [editBtn setHidden:!exp];
+    [acceptCount setHidden:!exp];
     //[_keyinfoLabel setHidden:!exp]; we dont show key for now
     //[_keyLabel setHidden:!exp];
-    [_AcceptContainer setHidden:!exp];
-    [_RejectContainer setHidden:!exp];
-    [_EditContainer setHidden:!exp];
+    [EditContainer setHidden:!exp];
     
     srcLabel.numberOfLines = (exp?0:1);
     dstLabel.numberOfLines = (exp?0:1);
     [srcLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     [dstLabel setLineBreakMode:(exp?NSLineBreakByWordWrapping:NSLineBreakByTruncatingTail)];
     
-    float h1 = [MsgCell optimalHeightForLabel:srcLabel];
-    float h2 = [MsgCell optimalHeightForLabel:dstLabel];
+    float h1 = [ProofreadCell optimalHeightForLabel:srcLabel];
+    float h2 = [ProofreadCell optimalHeightForLabel:dstLabel];
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
     srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h1:25));

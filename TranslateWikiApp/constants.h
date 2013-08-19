@@ -17,6 +17,7 @@
 //***********************
 //measures
 //***********************
+#define KEYBOARD_ROOM (isPad() ? 260 : 215 ) 
 #define INITIAL_TUPLE_SIZE (isPad() ? @"20" : @"10")  //esier to save as a string
 #define INITIAL_MAX_LENGTH @"100" 
 #define MAX_RECENT_PROJ 3

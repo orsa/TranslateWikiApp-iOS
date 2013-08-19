@@ -12,18 +12,14 @@
 #import "TranslationMessage.h"
 #import "RejectedMessage.h"
 
-@interface MsgCell : UITableViewCell
+@interface ProofreadCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dstLabel;
 @property (weak, nonatomic) IBOutlet UILabel *acceptCount;
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *keyinfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *keyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn;
 @property (strong, nonatomic) IBOutlet UIButton *editBtn;
-@property (weak, nonatomic) IBOutlet UIButton *AcceptContainer;
-@property (weak, nonatomic) IBOutlet UIButton *RejectContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *EditContainer;
 @property (retain, nonatomic) TWapi * api;
 @property(nonatomic, retain) TranslationMessage * msg;

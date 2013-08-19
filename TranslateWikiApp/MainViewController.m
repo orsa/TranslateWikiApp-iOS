@@ -31,14 +31,7 @@
 @end
 
 @implementation MainViewController
-@synthesize selectedIndexPath;
-@synthesize managedObjectContext;
-@synthesize translationState;
-@synthesize dataController;
-@synthesize msgTableView;
-@synthesize menuView;
-@synthesize menuTable;
-@synthesize menuBtn;
+@synthesize selectedIndexPath, managedObjectContext, translationState, dataController ,msgTableView, menuView, menuTable, menuBtn;
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -72,7 +65,7 @@
     //[arr insertObject:st atIndex:0];
     //setUserDefaultskey(arr, @"AppleLanguages");
     //[[NSUserDefaults standardUserDefaults] synchronize];
-    msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, 210, 0); //make room for keyboard
+    msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, KEYBOARD_ROOM, 0); //make room for keyboard
     [msgTableView reloadData];
 }
 
@@ -119,6 +112,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [msgTableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -182,10 +179,10 @@
         }
         else //proofread mode
         {
-            MsgCell * msgCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+            ProofreadCell * msgCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
             if (!msgCell)
             {
-                msgCell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                msgCell = [[ProofreadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             msgCell.srcLabel.text = [msg source];
             msgCell.dstLabel.text = [msg translation];
@@ -272,17 +269,17 @@
         }
         else //proofread state
         {
-            MsgCell * msgCell;
+            ProofreadCell * msgCell;
             if(selectedIndexPath && [dataController objectInListAtIndex:selectedIndexPath.row].prState)
             {
                 //do deselect precedures
-                msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
+                msgCell = (ProofreadCell*)[tableView cellForRowAtIndexPath:selectedIndexPath];
                 [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:@NO waitUntilDone:NO];
             }
             if (!selectedIndexPath || selectedIndexPath.row != indexPath.row)
             {
                 selectedIndexPath = [indexPath copy];
-                msgCell = (MsgCell*)[tableView cellForRowAtIndexPath:indexPath];
+                msgCell = (ProofreadCell*)[tableView cellForRowAtIndexPath:indexPath];
                 [msgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:@YES waitUntilDone:NO];
             }
             else

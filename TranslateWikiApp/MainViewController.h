@@ -14,7 +14,7 @@
 #import "PrefsViewController.h"
 #import "LoginViewController.h"
 #import "TWUser.h"
-#import "MsgCell.h"
+#import "ProofreadCell.h"
 #import "TranslationCell.h"
 #import "InputCell.h"
 #import "MenuView.h"

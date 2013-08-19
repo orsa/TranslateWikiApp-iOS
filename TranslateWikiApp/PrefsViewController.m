@@ -30,13 +30,7 @@
     int flag;       //use to distinguish between active pickerviews
 }
 
-@synthesize langLabel;
-@synthesize projLabel;
-@synthesize tupleSizeTextView;
-@synthesize didChange;
-@synthesize selectedProjCode;
-@synthesize maxMsgLengthTextField;
-@synthesize api;
+@synthesize langLabel, projLabel, tupleSizeTextView, didChange, selectedProjCode, maxMsgLengthTextField, api;
 
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{

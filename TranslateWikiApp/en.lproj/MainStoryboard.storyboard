@@ -472,11 +472,11 @@ This is completely open-sourced (see license information below).</string>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES" link="YES" staticText="YES"/>
                                                     </accessibility>
-                                                    <mutableString key="text">Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
+                                                    <string key="text">Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</mutableString>
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -737,16 +737,15 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yi5-1B-wzn">
                                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="1" reuseIdentifier="myCell" editingAccessoryType="disclosureIndicator" rowHeight="150" id="NCu-bR-SHE" customClass="MsgCell">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="1" reuseIdentifier="myCell" editingAccessoryType="disclosureIndicator" rowHeight="150" id="NCu-bR-SHE" customClass="ProofreadCell">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="150"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="xWC-HA-t9X">
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="pr_frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="xWC-HA-t9X">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="40" type="user" id="uXS-Oe-1pB"/>
                                                                 <constraint firstAttribute="height" constant="40" type="user" id="ybe-C2-ZG0"/>
                                                             </constraints>
                                                         </imageView>
@@ -767,36 +766,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                                 <action selector="pushEdit:" destination="4Xz-Nx-oCb" eventType="touchUpInside" id="y44-Z5-4y3"/>
                                                             </connections>
                                                         </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nyr-Ps-d5E">
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
-                                                            </accessibility>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal">
-                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <state key="highlighted">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                        </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nd-en-pO3">
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
-                                                            </accessibility>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="36" id="VUA-Ro-Md1"/>
-                                                                <constraint firstAttribute="width" constant="145" type="user" id="cH7-nP-YKx"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal">
-                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <state key="highlighted">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                        </button>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="rejectButton" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPc-QY-3IP">
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" type="user" id="6bv-hA-CY6"/>
@@ -816,7 +785,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="acceptButton" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-61-P5i">
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" type="user" id="QzF-75-GVJ"/>
-                                                                <constraint firstAttribute="height" constant="42" id="d5s-fi-cCT"/>
+                                                                <constraint firstAttribute="height" constant="42" type="user" id="yFa-19-eQQ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <state key="normal" image="accept2.png">
@@ -832,8 +801,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                         </button>
                                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lca-XY-m0j">
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="2al-KV-AZf"/>
                                                                 <constraint firstAttribute="width" constant="10" id="QbK-61-4rr"/>
+                                                                <constraint firstAttribute="height" constant="21" id="bJR-s8-Zlv"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -855,17 +824,9 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Key:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUy-Pv-Czn">
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="37" id="CLA-ia-eZu"/>
-                                                                <constraint firstAttribute="height" constant="21" id="CkY-Xv-jWa"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
                                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSB-lg-p5g">
                                                             <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="CaW-Lq-I8R"/>
                                                                 <constraint firstAttribute="width" constant="249" id="V6y-9a-RBX"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -879,46 +840,37 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                                 <constraints>
-                                                    <constraint firstItem="U4Y-II-F95" firstAttribute="baseline" secondItem="lca-XY-m0j" secondAttribute="baseline" type="default" id="27K-et-inF"/>
-                                                    <constraint firstItem="xSB-lg-p5g" firstAttribute="baseline" secondItem="rUy-Pv-Czn" secondAttribute="baseline" type="default" id="2Bw-H0-K6A"/>
-                                                    <constraint firstItem="rUy-Pv-Czn" firstAttribute="top" secondItem="xSB-lg-p5g" secondAttribute="top" type="default" id="2qh-eO-Pmh"/>
-                                                    <constraint firstItem="4nd-en-pO3" firstAttribute="centerY" secondItem="U4Y-II-F95" secondAttribute="centerY" type="user" id="3HQ-Db-L76"/>
-                                                    <constraint firstItem="U4Y-II-F95" firstAttribute="leading" secondItem="4nd-en-pO3" secondAttribute="trailing" type="user" id="3aC-4G-io5"/>
-                                                    <constraint firstItem="CPc-QY-3IP" firstAttribute="centerY" secondItem="Nyr-Ps-d5E" secondAttribute="centerY" type="user" id="8Bt-94-xxB"/>
-                                                    <constraint firstItem="4nd-en-pO3" firstAttribute="top" secondItem="Nyr-Ps-d5E" secondAttribute="top" type="default" id="BbP-hf-bKM"/>
-                                                    <constraint firstItem="4nd-en-pO3" firstAttribute="centerX" secondItem="tPJ-61-P5i" secondAttribute="centerX" type="user" id="EmK-Lw-YMh"/>
-                                                    <constraint firstItem="Nyr-Ps-d5E" firstAttribute="leading" secondItem="U4Y-II-F95" secondAttribute="trailing" type="user" id="GiZ-0Q-B5c"/>
-                                                    <constraint firstItem="CPc-QY-3IP" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="103" type="user" id="HST-JJ-pkS"/>
-                                                    <constraint firstItem="Nyr-Ps-d5E" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="default" id="IK7-K4-1hO"/>
-                                                    <constraint firstItem="xSB-lg-p5g" firstAttribute="centerX" secondItem="xWC-HA-t9X" secondAttribute="centerX" type="default" id="JTH-jR-xgg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="xSB-lg-p5g" secondAttribute="bottom" constant="39" id="3kf-hr-JzS"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CPc-QY-3IP" secondAttribute="trailing" constant="46" id="4C9-fs-ykl"/>
+                                                    <constraint firstAttribute="bottom" secondItem="U4Y-II-F95" secondAttribute="bottom" constant="6" id="ObA-ou-lC6"/>
                                                     <constraint firstAttribute="trailing" secondItem="8b7-aM-qVd" secondAttribute="trailing" constant="1" type="user" id="Php-NS-oth"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="user" id="S7K-1p-qCL"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="user" id="STk-EJ-w8Q"/>
-                                                    <constraint firstItem="U4Y-II-F95" firstAttribute="centerY" secondItem="Nyr-Ps-d5E" secondAttribute="centerY" type="user" id="U7R-Jl-uCL"/>
-                                                    <constraint firstItem="U4Y-II-F95" firstAttribute="centerY" secondItem="xWC-HA-t9X" secondAttribute="centerY" type="user" id="WFJ-W8-79p"/>
-                                                    <constraint firstItem="lca-XY-m0j" firstAttribute="leading" secondItem="tPJ-61-P5i" secondAttribute="trailing" constant="-11" type="user" id="Zuc-JM-cjS"/>
-                                                    <constraint firstItem="4nd-en-pO3" firstAttribute="centerY" secondItem="tPJ-61-P5i" secondAttribute="centerY" type="user" id="bdg-Ty-WC1"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="trailing" secondItem="lca-XY-m0j" secondAttribute="trailing" type="user" id="Uzc-6f-OsX"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="centerY" secondItem="xWC-HA-t9X" secondAttribute="centerY" type="user" id="VhD-PN-pYv"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xWC-HA-t9X" secondAttribute="bottom" constant="2" type="user" id="VpU-MZ-XGX"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="59" id="aiv-H1-eVl"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="cv0-S1-x7d"/>
                                                     <constraint firstAttribute="bottom" secondItem="xWC-HA-t9X" secondAttribute="bottom" constant="2" type="user" id="eC1-ry-MWb"/>
-                                                    <constraint firstAttribute="centerX" secondItem="U4Y-II-F95" secondAttribute="centerX" type="user" id="fUV-Ui-EKo"/>
-                                                    <constraint firstAttribute="bottom" secondItem="rUy-Pv-Czn" secondAttribute="bottom" constant="39" id="i76-PN-PcE"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="top" secondItem="CPc-QY-3IP" secondAttribute="top" type="default" id="gwj-DV-Pll"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="user" id="khd-aZ-mpS"/>
-                                                    <constraint firstItem="rUy-Pv-Czn" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="default" id="mhI-M1-zw7"/>
                                                     <constraint firstItem="8b7-aM-qVd" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="mxX-1A-3O9"/>
-                                                    <constraint firstItem="CPc-QY-3IP" firstAttribute="centerX" secondItem="Nyr-Ps-d5E" secondAttribute="centerX" type="user" id="sk0-TR-1hg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="U4Y-II-F95" secondAttribute="trailing" constant="128" id="qbc-h9-vxH"/>
+                                                    <constraint firstAttribute="centerX" secondItem="xWC-HA-t9X" secondAttribute="centerX" type="user" id="qrX-fy-k4i"/>
+                                                    <constraint firstItem="xWC-HA-t9X" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="default" id="w1k-Te-hZL"/>
                                                     <constraint firstItem="xSB-lg-p5g" firstAttribute="centerX" secondItem="8b7-aM-qVd" secondAttribute="centerX" type="default" id="wO2-o0-Sxj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tPJ-61-P5i" secondAttribute="bottom" constant="1" type="user" id="wYy-Dm-cy4"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="bottom" secondItem="lca-XY-m0j" secondAttribute="bottom" type="user" id="xZF-1v-hF5"/>
                                                     <constraint firstItem="8b7-aM-qVd" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" constant="21" id="y7g-RH-Of4"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="bottom" secondItem="CPc-QY-3IP" secondAttribute="bottom" type="user" id="ySl-41-zLy"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="AcceptContainer" destination="4nd-en-pO3" id="Tkk-0C-MxC"/>
                                                     <outlet property="EditContainer" destination="xWC-HA-t9X" id="3Fn-y6-boD"/>
-                                                    <outlet property="RejectContainer" destination="Nyr-Ps-d5E" id="Uge-aJ-e6z"/>
                                                     <outlet property="acceptBtn" destination="tPJ-61-P5i" id="YU8-ig-we9"/>
                                                     <outlet property="acceptCount" destination="lca-XY-m0j" id="crw-8Q-7Zq"/>
                                                     <outlet property="dstLabel" destination="8b7-aM-qVd" id="QDe-Xn-JSj"/>
                                                     <outlet property="editBtn" destination="U4Y-II-F95" id="k2k-Cq-1nF"/>
                                                     <outlet property="keyLabel" destination="xSB-lg-p5g" id="ryd-5Q-QQ8"/>
-                                                    <outlet property="keyinfoLabel" destination="rUy-Pv-Czn" id="seh-T8-tYz"/>
                                                     <outlet property="rejectBtn" destination="CPc-QY-3IP" id="ILc-r5-qJ2"/>
                                                     <outlet property="srcLabel" destination="9lI-cF-Vrx" id="f4V-XJ-WwF"/>
                                                 </connections>
@@ -1792,7 +1744,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2739" y="-4082"/>
+            <point key="canvasLocation" x="-2748" y="-4082"/>
         </scene>
         <!--Project Browser View Controller - Project Browser-->
         <scene sceneID="jvl-QB-Yab">
@@ -1881,7 +1833,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
         </scene>
     </scenes>
     <resources>
-        <image name="Circle.png" width="1000" height="1000"/>
         <image name="accept2.png" width="600" height="600"/>
         <image name="delete.png" width="48" height="48"/>
         <image name="down_arrow.png" width="400" height="300"/>
@@ -1892,9 +1843,115 @@ Unless required by applicable law or agreed to in writing, software distributed 
         <image name="imgres.jpeg" width="192" height="256"/>
         <image name="local.png" width="158" height="138"/>
         <image name="mag_grey.png" width="31" height="29"/>
+        <image name="pr_frame.png" width="640" height="87"/>
         <image name="recent.png" width="155" height="134"/>
         <image name="reject2.png" width="600" height="600"/>
     </resources>
+    <classes>
+        <class className="InputCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InputCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushSendBtn:"/>
+                <relationship kind="outlet" name="BtnView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="LanguagePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LanguagePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="LangTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredLoc" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="localLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="recentLanguages" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goToSignup:"/>
+                <relationship kind="action" name="submitLogin:"/>
+                <relationship kind="outlet" name="ResultLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bgTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="clearMessages:"/>
+                <relationship kind="action" name="didSwipe:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="action" name="openMenu:"/>
+                <relationship kind="action" name="pushAccept:"/>
+                <relationship kind="action" name="pushEdit:"/>
+                <relationship kind="action" name="pushPrefs:"/>
+                <relationship kind="action" name="pushReject:"/>
+                <relationship kind="outlet" name="GreetingMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="menuBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="menuView" candidateClass="MenuView"/>
+                <relationship kind="outlet" name="msgTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MenuView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
+        </class>
+        <class className="PrefsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="restoreDefaults:"/>
+                <relationship kind="outlet" name="langLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="maxMsgLengthTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="projLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tupleSizeTextView" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProjectBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshProjects:"/>
+                <relationship kind="outlet" name="filteredArr" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="filteredRec" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="mySearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="originalSrc" candidateClass="NSArray"/>
+                <relationship kind="outlet" name="projTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="recentProj" candidateClass="NSMutableArray"/>
+                <relationship kind="outlet" name="srcArr" candidateClass="NSMutableArray"/>
+            </relationships>
+        </class>
+        <class className="SuggestionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SuggestionCell.h"/>
+        </class>
+        <class className="TranslationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslationCell.h"/>
+            <relationships>
+                <relationship kind="action" name="pushDelete:"/>
+                <relationship kind="action" name="pushInfo:"/>
+                <relationship kind="outlet" name="deleteBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="frameImg" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="inputTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="srcLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="prefsCustomCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/prefsCustomCell.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -23,21 +23,7 @@
 
 @implementation TranslationCell
 
-
-@synthesize srcLabel;
-@synthesize frameImg;
-@synthesize inputTable;
-@synthesize inputCell;
-@synthesize infoView;
-@synthesize infoBtn;
-@synthesize deleteBtn;
-@synthesize suggestionCells;
-@synthesize msg;
-//@synthesize documentation;
-@synthesize docWebView;
-@synthesize isExpanded;
-@synthesize isMinimized;
-@synthesize translationState;
+@synthesize srcLabel, frameImg, inputTable, inputCell, infoView, infoBtn, deleteBtn, suggestionCells, msg,  docWebView, isExpanded, isMinimized, translationState;
 
 
 //*********************************************************************************

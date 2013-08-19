@@ -32,8 +32,7 @@
 @class AppDelegate;
 
 @implementation LoginViewController
-@synthesize managedObjectContext;
-@synthesize langNeedsManualSelection;
+@synthesize managedObjectContext, langNeedsManualSelection;
 
 - (void)viewWillAppear:(BOOL)animated
 {

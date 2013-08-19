@@ -24,21 +24,9 @@
 
 @end
 
-@implementation LanguagePickerViewController{
+@implementation LanguagePickerViewController
 
-}
-@synthesize mySearchBar;
-@synthesize LangTable;
-@synthesize filteredArr;
-@synthesize filteredRec;
-@synthesize filteredLoc;
-@synthesize srcArr;
-@synthesize recentLanguages;
-@synthesize localLanguages;
-@synthesize isFiltered;
-@synthesize didChange;
-@synthesize dstLang;
-@synthesize enteredFromLogin;
+@synthesize mySearchBar, LangTable, filteredArr, filteredRec, filteredLoc, srcArr, recentLanguages, localLanguages, isFiltered, didChange, dstLang, enteredFromLogin;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
