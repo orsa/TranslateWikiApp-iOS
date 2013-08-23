@@ -319,9 +319,13 @@
             if (buttonIndex == 1)  //clicked ok at the alert
             {
                 NSString* lang=PREFERRED_LANG[0];
-                NSString* proj=@"recent";
+                NSString* proj=@"!recent";
                 NSString* tuple=INITIAL_TUPLE_SIZE;
                 NSString* maxLen = INITIAL_MAX_LENGTH;
+                
+                LoadUserDefaults();
+                setUserDefaultskey(nil, RECENT_PROJ_key);
+                setUserDefaultskey(nil, RECENT_LANG_key);
                 
                 selectedProjCode=proj;
                 projLabel.text=@"Recent Contributions";
