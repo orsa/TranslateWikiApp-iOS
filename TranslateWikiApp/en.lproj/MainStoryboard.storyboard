@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5bI-Sm-1W0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -258,7 +258,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Oan-2v-jwe" customClass="prefsCustomCell">
-                                        <rect key="frame" x="0.0" y="155" width="320" height="37"/>
+                                        <rect key="frame" x="0.0" y="155" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -334,7 +334,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="6aZ-hm-Epm" style="IBUITableViewCellStyleDefault" id="yg7-Ps-u0L">
-                                        <rect key="frame" x="0.0" y="276" width="320" height="37"/>
+                                        <rect key="frame" x="0.0" y="276" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -394,10 +394,10 @@
                                             <rect key="frame" x="10" y="1" width="300" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="277" translatesAutoresizingMaskIntoConstraints="NO" id="Ugj-lc-lgP">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ugj-lc-lgP">
                                                     <string key="text">translatewiki.net app for iOS developed by Tomer Tuchner and Or Sagi, as part of B.Sc. final project in Tel-Aviv University's Engineering Faculty. 
 The project mentored by Amir E. Aharoni. 
-Design: Pau Giner. 
+Design: Dr. Pau Giner. 
 Thanks to Yuvaraj Pandian for the technical help. 
 This app is completely open-sourced (see license information below).</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13.5"/>
@@ -665,8 +665,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2Uz-Bc-Mz0">
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.40000000000000002" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="9Vh-sB-hgQ"/>
-                                    <constraint firstAttribute="height" constant="50" id="b9W-kE-qTs"/>
+                                    <constraint firstAttribute="height" constant="45" type="user" id="4HP-uw-cRl"/>
+                                    <constraint firstAttribute="width" constant="100" type="user" id="9Vh-sB-hgQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                 <state key="normal" title="Proofread  ▾">
@@ -680,7 +680,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="0NY-zg-2yL">
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.40000000000000002" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="221" type="user" id="ITM-bi-gAP"/>
+                                    <constraint firstAttribute="height" constant="45" type="user" id="gvD-Vw-acD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1751,30 +1751,29 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                 </subviews>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="yi5-1B-wzn" secondAttribute="bottom" constant="-20" type="user" id="1Gc-NH-geR"/>
                                     <constraint firstItem="yi5-1B-wzn" firstAttribute="leading" secondItem="uZm-LU-8Oe" secondAttribute="leading" type="user" id="4Nx-60-YZO"/>
                                     <constraint firstItem="yi5-1B-wzn" firstAttribute="top" secondItem="uZm-LU-8Oe" secondAttribute="top" type="user" id="kVF-7E-6tL"/>
                                     <constraint firstItem="yi5-1B-wzn" firstAttribute="trailing" secondItem="uZm-LU-8Oe" secondAttribute="trailing" type="user" id="mT9-tg-hiX"/>
+                                    <constraint firstAttribute="bottom" secondItem="yi5-1B-wzn" secondAttribute="bottom" constant="-18" type="user" id="zJy-7K-bK5"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uZm-LU-8Oe" secondAttribute="bottom" constant="-2" type="user" id="0rY-HK-tlb"/>
-                            <constraint firstItem="0NY-zg-2yL" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="user" id="B3K-zK-PZX"/>
-                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="default" id="Gkh-6g-neA"/>
-                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="bottom" secondItem="0NY-zg-2yL" secondAttribute="bottom" type="default" id="Hs5-e1-bmV"/>
-                            <constraint firstItem="UPn-Wk-jVx" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" constant="50" type="user" id="IYg-Z3-7Kz"/>
-                            <constraint firstItem="0NY-zg-2yL" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="user" id="Oki-Gx-dzJ"/>
-                            <constraint firstItem="0NY-zg-2yL" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" constant="99" type="user" id="ULZ-gQ-OBl"/>
-                            <constraint firstItem="0NY-zg-2yL" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="VC0-09-wa1"/>
+                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="user" id="Gkh-6g-neA"/>
+                            <constraint firstItem="uZm-LU-8Oe" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" constant="45" type="user" id="Haz-R4-HP8"/>
+                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="bottom" secondItem="0NY-zg-2yL" secondAttribute="bottom" type="user" id="Hqp-IA-L0E"/>
+                            <constraint firstItem="0NY-zg-2yL" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="user" id="VC0-09-wa1"/>
+                            <constraint firstItem="0NY-zg-2yL" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="user" id="VV8-aZ-KtE"/>
                             <constraint firstItem="uZm-LU-8Oe" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="default" id="Wy6-3o-lye"/>
+                            <constraint firstItem="0NY-zg-2yL" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" constant="100" type="user" id="add-Ow-MCs"/>
+                            <constraint firstItem="UPn-Wk-jVx" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" constant="46" id="cmQ-EL-rla"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uZm-LU-8Oe" secondAttribute="bottom" constant="1" type="user" id="cxg-0j-zIQ"/>
                             <constraint firstItem="uZm-LU-8Oe" firstAttribute="trailing" secondItem="sNR-hv-aqx" secondAttribute="trailing" type="default" id="dgP-sm-z5G"/>
-                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="default" id="gr9-Oz-k14"/>
-                            <constraint firstItem="uZm-LU-8Oe" firstAttribute="top" secondItem="UPn-Wk-jVx" secondAttribute="top" type="user" id="h4i-HC-8xf"/>
+                            <constraint firstItem="2Uz-Bc-Mz0" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" type="user" id="gr9-Oz-k14"/>
                             <constraint firstItem="UPn-Wk-jVx" firstAttribute="leading" secondItem="sNR-hv-aqx" secondAttribute="leading" type="user" id="hVS-58-IXP"/>
-                            <constraint firstItem="uZm-LU-8Oe" firstAttribute="top" secondItem="sNR-hv-aqx" secondAttribute="top" constant="50" type="user" id="l2v-lf-k0a"/>
+                            <constraint firstAttribute="bottom" secondItem="uZm-LU-8Oe" secondAttribute="bottom" constant="1" type="user" id="i7S-Cc-MOQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sTv-xi-ohq"/>
@@ -1796,7 +1795,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2776" y="-4674"/>
+            <point key="canvasLocation" x="-2789" y="-4674"/>
         </scene>
         <!--Project Browser View Controller - Project Browser-->
         <scene sceneID="jvl-QB-Yab">
