@@ -49,19 +49,19 @@
     BOOL exp=[expNumber boolValue];
     
     acceptBtn.frame = CGRectMake (
-                editContainer.frame.origin.x+editContainer.frame.size.width*0.25-acceptBtn.frame.size.width/2,
+                editContainer.frame.origin.x+editContainer.frame.size.width*0.25 - acceptBtn.frame.size.width*0.5,
                 acceptBtn.frame.origin.y,
                 acceptBtn.frame.size.width,
                 acceptBtn.frame.size.height);
     
     rejectBtn.frame = CGRectMake (
-                editContainer.frame.origin.x+editContainer.frame.size.width*0.75-rejectBtn.frame.size.width/2,
+                editContainer.frame.origin.x+editContainer.frame.size.width*0.75 - rejectBtn.frame.size.width*0.5,
                 rejectBtn.frame.origin.y,
                 rejectBtn.frame.size.width,
                 rejectBtn.frame.size.height);
     
     acceptCount.frame = CGRectMake (
-                    acceptBtn.frame.origin.x+acceptBtn.frame.size.width-acceptCount.frame.size.width,
+                    acceptBtn.frame.origin.x+acceptBtn.frame.size.width*0.6,
                     acceptCount.frame.origin.y,
                     acceptCount.frame.size.width,
                     acceptCount.frame.size.height);
@@ -75,7 +75,7 @@
     [editContainer setHidden:!exp];
     //[cellFrame setHidden:!exp];
     
-    [self setBackgroundColor: (exp ? [UIColor whiteColor] : [UIColor clearColor])];//[UIColor colorWithRed:0xFB green:0xFB blue:0xFB alpha:1])];
+    [self setBackgroundColor: (exp ? [UIColor whiteColor] : [UIColor clearColor])];
     
     srcLabel.numberOfLines = (exp?0:1);
     dstLabel.numberOfLines = (exp?0:1);

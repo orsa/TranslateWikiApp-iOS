@@ -258,7 +258,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Oan-2v-jwe" customClass="prefsCustomCell">
-                                        <rect key="frame" x="0.0" y="155" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="155" width="320" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -334,7 +334,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="6aZ-hm-Epm" style="IBUITableViewCellStyleDefault" id="yg7-Ps-u0L">
-                                        <rect key="frame" x="0.0" y="276" width="320" height="36"/>
+                                        <rect key="frame" x="0.0" y="276" width="320" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -394,7 +394,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ugj-lc-lgP">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="277" translatesAutoresizingMaskIntoConstraints="NO" id="Ugj-lc-lgP">
                                                     <string key="text">translatewiki.net app for iOS developed by Tomer Tuchner and Or Sagi, as part of B.Sc. final project in Tel-Aviv University's Engineering Faculty. 
 The project mentored by Amir E. Aharoni. 
 Design: Pau Giner. 
@@ -745,17 +745,18 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="pr_action_frame_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="xWC-HA-t9X">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pr_action_frame_new.png" translatesAutoresizingMaskIntoConstraints="NO" id="xWC-HA-t9X">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" type="user" id="ybe-C2-ZG0"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="rejectButton" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPc-QY-3IP">
+                                                        <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="rejectButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPc-QY-3IP">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" type="user" id="6bv-hA-CY6"/>
                                                                 <constraint firstAttribute="height" constant="40" id="Ak0-Wv-AUC"/>
+                                                                <constraint firstAttribute="width" constant="150" id="Tvr-6v-w7i"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
                                                             <state key="normal" image="reject_new.png">
                                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -767,12 +768,13 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                                 <action selector="pushReject:" destination="4Xz-Nx-oCb" eventType="touchUpInside" id="pW3-g8-L0H"/>
                                                             </connections>
                                                         </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" restorationIdentifier="acceptButton" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-61-P5i">
+                                                        <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="acceptButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-61-P5i">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="40" id="4de-ez-0v0"/>
                                                                 <constraint firstAttribute="height" constant="35" id="sq3-at-DM5"/>
+                                                                <constraint firstAttribute="width" constant="150" id="va1-Hl-iKk"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <inset key="contentEdgeInsets" minX="50" minY="1" maxX="50" maxY="0.0"/>
                                                             <state key="normal" image="accept_new.png">
                                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -786,10 +788,9 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                         </button>
                                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lca-XY-m0j">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="10" id="QbK-61-4rr"/>
                                                                 <constraint firstAttribute="height" constant="21" id="bJR-s8-Zlv"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16.5"/>
                                                             <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
@@ -852,7 +853,9 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <constraint firstItem="RvT-XE-cvu" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="user" id="7TZ-cd-2nh"/>
                                                     <constraint firstItem="RvT-XE-cvu" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="user" id="ADf-Q9-hKc"/>
                                                     <constraint firstItem="xWC-HA-t9X" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="default" id="C6e-Ed-WXE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CPc-QY-3IP" secondAttribute="trailing" constant="6" id="CX1-TZ-ZMW"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9lI-cF-Vrx" secondAttribute="trailing" constant="20" type="user" id="Ct9-1f-UkF"/>
+                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="5" id="EF6-2G-jvZ"/>
                                                     <constraint firstAttribute="bottom" secondItem="lca-XY-m0j" secondAttribute="bottom" constant="3" id="H37-Ek-c17"/>
                                                     <constraint firstAttribute="trailing" secondItem="U4Y-II-F95" secondAttribute="trailing" constant="1" type="user" id="LEm-Jd-3lL"/>
                                                     <constraint firstItem="CPc-QY-3IP" firstAttribute="bottom" secondItem="NCu-bR-SHE" secondAttribute="bottom" type="default" id="LHC-4H-sua"/>
@@ -861,7 +864,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <constraint firstItem="RvT-XE-cvu" firstAttribute="trailing" secondItem="NCu-bR-SHE" secondAttribute="trailing" type="user" id="V5a-5X-4fc"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xWC-HA-t9X" secondAttribute="bottom" constant="2" type="user" id="VpU-MZ-XGX"/>
                                                     <constraint firstItem="U4Y-II-F95" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="default" id="ZUi-Aw-7n6"/>
-                                                    <constraint firstItem="tPJ-61-P5i" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" constant="59" id="aiv-H1-eVl"/>
                                                     <constraint firstItem="RvT-XE-cvu" firstAttribute="top" secondItem="NCu-bR-SHE" secondAttribute="top" type="user" id="cfS-sX-tF7"/>
                                                     <constraint firstItem="9lI-cF-Vrx" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="cv0-S1-x7d"/>
                                                     <constraint firstAttribute="bottom" secondItem="xWC-HA-t9X" secondAttribute="bottom" constant="2" type="user" id="eC1-ry-MWb"/>
@@ -870,7 +872,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                     <constraint firstItem="8b7-aM-qVd" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="mxX-1A-3O9"/>
                                                     <constraint firstItem="U4Y-II-F95" firstAttribute="trailing" secondItem="8b7-aM-qVd" secondAttribute="trailing" type="user" id="qRQ-16-QEl"/>
                                                     <constraint firstItem="RvT-XE-cvu" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="user" id="qxq-Qz-cbE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="CPc-QY-3IP" secondAttribute="trailing" constant="59" id="tf2-mN-Krl"/>
                                                     <constraint firstItem="CPc-QY-3IP" firstAttribute="top" secondItem="tPJ-61-P5i" secondAttribute="top" type="default" id="tgt-x6-IVb"/>
                                                     <constraint firstItem="xWC-HA-t9X" firstAttribute="leading" secondItem="NCu-bR-SHE" secondAttribute="leading" type="default" id="w1k-Te-hZL"/>
                                                     <constraint firstItem="xSB-lg-p5g" firstAttribute="centerX" secondItem="8b7-aM-qVd" secondAttribute="centerX" type="default" id="wO2-o0-Sxj"/>
