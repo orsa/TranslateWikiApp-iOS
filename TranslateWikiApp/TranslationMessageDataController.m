@@ -150,7 +150,7 @@
 -(void)addMessagesTupleUsingApi:(TWapi*) api andObjectContext:(NSManagedObjectContext*)managedObjectContext andIsProofread:(BOOL)isProof completionHandler:(void (^)())completionBlock
 {
     LoadUserDefaults();
-    NSString * tupSizeText = getUserDefaultskey(TUPSIZE_key);//[defaults objectForKey:@"defaultTupleSize"];
+    NSString * tupSizeText = getUserDefaultskey(TUPSIZE_key);
     NSInteger numberOfMessagesRemaining = [tupSizeText integerValue];
     NSString * maxMsgLenText = getUserDefaultskey(MAX_MSG_LEN_key);
     NSInteger maxMsgLen = [maxMsgLenText integerValue];

@@ -14,12 +14,13 @@
 @interface InputCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UITextView *inputText;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
-@property(nonatomic, retain)TranslationMessage * msg;
+@property (weak, nonatomic) IBOutlet UIView *BtnView;
+@property (retain, nonatomic) TranslationMessage * msg;
 @property (retain, nonatomic) TWapi * api;
 @property (retain, nonatomic) TranslationCell * father;
-@property (weak, nonatomic) IBOutlet UIView *BtnView;
 
-- (void)textViewDidChange:(UITextView *)textView;
-- (IBAction)pushSendBtn:(id)sender;
+
+- (IBAction) pushSendBtn:(id)sender;
+- (void) textViewDidChange:(UITextView *)textView;
 
 @end

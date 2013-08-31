@@ -20,7 +20,6 @@
 
 #import "LoginViewController.h"
 
-
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
@@ -63,16 +62,8 @@
         //send login request to api
         [_api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
-            if(error==nil && [resultString isEqualToString:@"Success"])
-           {
-               didLogin=YES;
-               isDone=YES;
-           }
-           else
-           {
-               didLogin=NO;
-               isDone=YES;
-           }
+            didLogin=(error==nil && [resultString isEqualToString:@"Success"]);
+            isDone=YES;
         }];
         while(!isDone){
             [NSThread sleepForTimeInterval:0.1];
@@ -96,7 +87,6 @@
     {
         [_usernameText becomeFirstResponder]; //set focus on username text field 
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,41 +100,39 @@
     ShowNetworkActivityIndicator();
     _userName = _usernameText.text;
     _password = _passwordText.text;
-    NSString *nameString = _userName;
+    NSString *nameString  = _userName;
     NSString *passwString = _password;
     _api.user.userName = nameString;
 
-    //[_api TWLoginRequestWithPassword:passwString]; //login via API
-     [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
-         _ResultLabel.text = resultString;
-         LoadDefaultAlertView();
-         if(error){//request error
-             AlertSetMessage(connectivityProblem);
-             AlertShow();
-         }
-         else if([resultString isEqualToString:@"Success"])
-         {
-             [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
-             if (langNeedsManualSelection)
-             {
-                 [self performSegueWithIdentifier:@"FromLoginToLang" sender:self];
-                 langNeedsManualSelection=NO;
+    // login via API
+    [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
+        _ResultLabel.text = resultString;
+        LoadDefaultAlertView();
+        if(error){//request error
+            AlertSetMessage(connectivityProblem);
+            AlertShow();
+        }
+        else if([resultString isEqualToString:@"Success"])
+        {
+            [LoginViewController storeCredKCUser:nameString Password:passwString];//store credentials in keychain
+            if (langNeedsManualSelection)
+            {
+                [self performSegueWithIdentifier:@"FromLoginToLang" sender:self];
+                langNeedsManualSelection=NO;
                  
-             }else
-                 [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
-         }
-         else if(alertMessages[resultString]!=nil){
-             AlertSetMessage(alertMessages[resultString]);
-             AlertShow();
-         }
-         HideNetworkActivityIndicator();
+            }else
+                [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self]; //logged in - move to next screen
+        }
+        else if(alertMessages[resultString]!=nil){
+            AlertSetMessage(alertMessages[resultString]);
+            AlertShow();
+        }
+        HideNetworkActivityIndicator();
      }];
 }
 
-- (IBAction)goToSignup:(id)sender {
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://translatewiki.net/w/i.php?title=Special:UserLogin&type=signup"]];
-    
+- (IBAction)goToSignup:(id)sender {    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_FOR_SIGNUP]];
 }
 
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString
@@ -187,6 +175,5 @@
     }
     return YES;
 }
-
 
 @end

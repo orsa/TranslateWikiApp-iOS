@@ -115,14 +115,14 @@
 
 // perfom animated close of menu
 - (void) close {
-    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CLOSED_MAIN_MENU_FRAME]; } completion:^(BOOL comp){
+    [UIView animateWithDuration:ANIMATION_DUR delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CLOSED_MAIN_MENU_FRAME]; } completion:^(BOOL comp){
         if (comp) [self setHidden:YES];
     }];
 }
 
 // perfom animated open of menu
 - (void) openInView:(UIView*)v {
-    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:OPENED_MAIN_MENU_FRAME]; } completion:^(BOOL comp){
+    [UIView animateWithDuration:ANIMATION_DUR delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:OPENED_MAIN_MENU_FRAME]; } completion:^(BOOL comp){
         if (comp)[v bringSubviewToFront:self];
     }];
 }

@@ -50,10 +50,7 @@
     }
     else
     {
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [BtnView setFrame:CGRectMake(self.frame.size.width-50, 0, 50, BtnView.frame.size.height)];
-            [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-50, BtnView.frame.size.height)];
-        } completion:nil];
+        [self revealSendBtnOn:YES];
     }
     
     [inputText setTextColor:[UIColor blackColor]];
@@ -65,32 +62,29 @@
     {
         [_father clearTextBox];
     }
-    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, 50, BtnView.frame.size.height)];
-        [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-5, BtnView.frame.size.height)];
-    } completion:nil];
+    [self revealSendBtnOn:NO];
 }
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    if(![[inputText text] isEqualToString:@""])
-    {
-        [sendBtn setUserInteractionEnabled:YES];
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [BtnView setFrame:CGRectMake(self.frame.size.width-50, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
-            [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-50, BtnView.frame.size.height)];
-            } completion:nil];
-    }
-    else
-    {
-        [sendBtn setUserInteractionEnabled:NO];
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [BtnView setFrame:CGRectMake(self.frame.size.width-5, 0, BtnView.frame.size.width, BtnView.frame.size.height)];
-            [inputText setFrame:CGRectMake(0, 0, self.frame.size.width-5, BtnView.frame.size.height)];
-        } completion:nil];
-
-    }
+    bool show = ![[inputText text] isEqualToString:@""];
+    [sendBtn setUserInteractionEnabled:show];
+    [self revealSendBtnOn:show];
     _msg.userInput = textView.text;
+}
+
+// animated reveal or unveil send button
+- (void) revealSendBtnOn:(bool) show{
+    [UIView animateWithDuration:ANIMATION_DUR delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [BtnView   setFrame:CGRectMake( self.frame.size.width - (show?50:5)
+                                      , 0
+                                      , BtnView.frame.size.width
+                                      , BtnView.frame.size.height )];
+        [inputText setFrame:CGRectMake( 0
+                                      , 0
+                                      , self.frame.size.width - (show?50:5)
+                                      , BtnView.frame.size.height )];
+    } completion:nil];
 }
 
 - (IBAction)pushSendBtn:(id)sender {

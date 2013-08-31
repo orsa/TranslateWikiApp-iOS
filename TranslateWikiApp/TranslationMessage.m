@@ -32,24 +32,24 @@
 {
     self = [super init];
     if (self) {
-        _source=def;
-        _translation=trans;
+        _source         = def;
+        _translation    = trans;
         _translationByUser=@"";
-        _translated=FALSE;
-        _minimized=FALSE;
-        _language=lang;
-        _project=proj;
-        _key=k;
-        _revision=rev;
-        _title=mTitle;
-       // _isAccepted=accepted;
-        _acceptCount=ac;
-        _suggestions=[[NSMutableArray alloc] init];
-        _documentation=@"";
-        _noDocumentation=YES;
-        _userInput = @"";
-        _infoState = NO;
-        prState = newPrState;  
+        _translated     = FALSE;
+        _minimized      = FALSE;
+        _language       = lang;
+        _project        = proj;
+        _key            = k;
+        _revision       = rev;
+        _title          = mTitle;
+       // _isAccepted   = accepted;
+        _acceptCount    = ac;
+        _suggestions    = [[NSMutableArray alloc] init];
+        _documentation  = @"";
+        _noDocumentation= YES;
+        _userInput      = @"";
+        _infoState      = NO;
+        prState         = newPrState;
         return self;
     }
     return nil;
@@ -133,7 +133,7 @@
     NSMutableDictionary* doc=translationAids[@"documentation"];
     NSString* valueDocumentation = [self cutCollapsibleFromHtml:doc[@"html"]];//@"value" for templated text
     if([valueDocumentation isKindOfClass:[NSNull class]] || [valueDocumentation isEqualToString:@""]){
-        _documentation=@"(No documentation)";
+        _documentation=@"";
         _noDocumentation=YES;
     }
     else{
@@ -169,13 +169,9 @@
     return NO;
 }
 
--(CGFloat)getUnexpandedHeightOfSource{
-    return 50;
-}
+-(CGFloat)getUnexpandedHeightOfSource{ return 50; }
 
--(CGFloat)getUnexpandedHeightOfSuggestion{
-    return 50;
-}
+-(CGFloat)getUnexpandedHeightOfSuggestion{ return 50; }
 
 -(CGFloat)getExpandedHeightOfSourceUnderWidth:(CGFloat)width{
     return max([_source sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, [self getUnexpandedHeightOfSource]);
@@ -194,22 +190,16 @@
     return h;
 }
 
+// determine frame's height by number of suggestions
 -(CGFloat)heightForImageView{
     int n=[_suggestions count];
-    switch (n) {
-        case 0:
-            return 84;
-            break;
-        case 1:
-            return 135;
-        case 2:
-            return 197;
-        case 3:
-            return 245;
-        default:
-            break;
+    switch (n) {            
+        case 0: return 84;
+        case 1: return 135;
+        case 2: return 197;
+        case 3: return 245;
     }
-    return 245;//won't get here
+    return 245;//won't get here normally
 }
 
 @end

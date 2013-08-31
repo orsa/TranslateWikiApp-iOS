@@ -37,7 +37,7 @@
 
 -(void)setChecked:(BOOL)checked
 {
-    UIImageView *checkmark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"check-mark-512.png"]];
+    UIImageView *checkmark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkmark.png"]];
     checkmark.frame=CGRectMake(0, 0, self.frame.size.height/2, self.frame.size.height/2);
     if(checked)
        self.accessoryView = checkmark;
