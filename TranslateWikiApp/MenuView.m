@@ -110,6 +110,7 @@
                 [mainVC clearMessages:self];
                 [mainVC.menuBtn setTitle:@"Proofread  ▾" forState:UIControlStateNormal];
                 [mainVC addMessagesTuple];
+                mainVC.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
                 
                 [tableView reloadData];
             }
