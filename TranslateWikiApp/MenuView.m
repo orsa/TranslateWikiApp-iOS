@@ -43,15 +43,9 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 1; }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { return 3; }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -81,43 +75,42 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
+    [self close];
     switch (indexPath.row) {
         case 0: //click on "translte"
             if (!mainVC.translationState)
             {
-                mainVC.translationState=YES;
-                LoadUserDefaults();
-                setBoolUserDefaultskey(NO, PRMODE_key);
-                [mainVC clearMessages:self];
-                [mainVC.menuBtn setTitle:@"Translate  ▾" forState:UIControlStateNormal];
-                [mainVC addMessagesTuple];
-                
+                [self changeState];
                 [tableView reloadData];
             }
             break;
         case 1: //click on "proofread"
             if (mainVC.translationState)
             {
-                mainVC.translationState=NO;
-                LoadUserDefaults();
-                setBoolUserDefaultskey(YES, PRMODE_key);
-                [mainVC clearTextBoxes];
-                [mainVC clearMessages:self];
-                [mainVC.menuBtn setTitle:@"Proofread  ▾" forState:UIControlStateNormal];
-                [mainVC addMessagesTuple];
+                [self changeState];
                 mainVC.selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-                
                 [tableView reloadData];
             }
             
             break;
-        case 2:
+        case 2: // click on "settings"
             [mainVC pushPrefs:self];
             break;
         
         default:
             break;
     }
+}
+
+
+- (void) changeState {    
+    mainVC.translationState = !mainVC.translationState;
+    LoadUserDefaults();
+    setBoolUserDefaultskey(!mainVC.translationState, PRMODE_key);
+    [mainVC clearTextBoxes];
+    [mainVC clearMessages:self];
+    [mainVC.menuBtn setTitle:stateInMenu(mainVC.translationState) forState:UIControlStateNormal];
+    [mainVC addMessagesTuple];
 }
 
 // perfom animated close of menu

@@ -1961,6 +1961,9 @@ Unless required by applicable law or agreed to in writing, software distributed 
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="NSMutableArray" superclassName="NSArray">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
+        </class>
         <class className="PrefsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PrefsViewController.h"/>
             <relationships>

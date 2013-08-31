@@ -42,6 +42,10 @@
 #define CLOSED_MAIN_MENU_FRAME      CGRectMake(0, 46, 90, 0)
 #define OPENED_MAIN_MENU_FRAME      CGRectMake(0, 46, 180, 105)
 
+//***********************
+// UI Strings
+//***********************
+#define stateInMenu(translationState)   translationState ? @"Translate  ▾" : @"Proofread  ▾"
 
 //***********************
 //keys for NSUserDefaults

@@ -57,7 +57,7 @@
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
     translationState = !getBoolUserDefaultskey(PRMODE_key);
-    [menuBtn setTitle:(translationState ? @"Translate  ▾" : @"Proofread  ▾" ) forState:UIControlStateNormal];
+    [menuBtn setTitle:stateInMenu(translationState) forState:UIControlStateNormal];
     //NSString * st = getUserDefaultskey(LANG_key);
     //NSMutableArray * arr = [NSMutableArray arrayWithArray:PREFERRED_LANG];
     //[arr removeObject:st];
