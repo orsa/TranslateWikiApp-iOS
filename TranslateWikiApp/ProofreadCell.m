@@ -73,9 +73,9 @@
     //[_keyinfoLabel setHidden:!exp]; we dont show key for now
     //[_keyLabel setHidden:!exp];
     [editContainer setHidden:!exp];
-    [cellFrame setHighlighted:!exp];
+    //[cellFrame setHidden:!exp];
     
-    [self setBackgroundColor: (exp ? [UIColor whiteColor] : [UIColor colorWithRed:0xFB green:0xFB blue:0xFB alpha:1])];
+    [self setBackgroundColor: (exp ? [UIColor whiteColor] : [UIColor clearColor])];//[UIColor colorWithRed:0xFB green:0xFB blue:0xFB alpha:1])];
     
     srcLabel.numberOfLines = (exp?0:1);
     dstLabel.numberOfLines = (exp?0:1);
@@ -86,7 +86,7 @@
     float h2 = [ProofreadCell optimalHeightForLabel:dstLabel];
     [srcLabel sizeToFit];
     [dstLabel sizeToFit];
-    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 4, (exp?h1:25));
+    srcLabel.frame = CGRectMake(4, 0, self.frame.size.width - 20, (exp?h1:25));
     dstLabel.frame = CGRectMake(4, (exp?h1:25), self.frame.size.width - 4, (exp?h2:25));
 }
 
