@@ -74,8 +74,7 @@
     if (!dataController)
     {
         dataController = [[TranslationMessageDataController alloc] init];
-        if(selectedIndexPath && dataController.countOfList>0)
-            selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+        selectedIndexPath=[NSIndexPath indexPathForRow:0 inSection:0];
     }
 }
 
