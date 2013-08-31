@@ -913,7 +913,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                                 <action selector="pushDelete:" destination="fit-FC-dAo" eventType="touchUpInside" id="jUS-NR-lHw"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-Wc-L1t">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="new_frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-Wc-L1t">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="84" id="gIN-oO-JKX"/>
                                                             </constraints>
@@ -1103,7 +1103,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                                 <action selector="pushDelete:" destination="rhV-sr-Rzw" eventType="touchUpInside" id="zFY-ct-Dyp"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kr3-O1-pkI">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="new_frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kr3-O1-pkI">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="135" id="erP-py-JnX"/>
                                                             </constraints>
@@ -1306,7 +1306,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                                 <action selector="pushDelete:" destination="kLk-HI-Ya9" eventType="touchUpInside" id="YOg-T4-y1b"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZO-RV-0fW">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="new_frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZO-RV-0fW">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="197" id="dm2-EU-q10"/>
                                                             </constraints>
@@ -1509,7 +1509,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                                                                 <action selector="pushDelete:" destination="t6B-jG-cUH" eventType="touchUpInside" id="Cnt-Vi-pM5"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="frame-3.png" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-Os-2J1">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="new_frame-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-Os-2J1">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="245" type="user" id="q6f-kA-Iyg"/>
                                                             </constraints>
@@ -1870,12 +1870,10 @@ Unless required by applicable law or agreed to in writing, software distributed 
         <image name="accept_new.png" width="66" height="60"/>
         <image name="down_arrow.png" width="337" height="193"/>
         <image name="edit_new.png" width="53" height="50"/>
-        <image name="frame-1.png" width="755" height="321"/>
-        <image name="frame-2.png" width="749" height="458"/>
-        <image name="frame-3.png" width="753" height="600"/>
         <image name="imgres.jpeg" width="192" height="256"/>
         <image name="info_new.png" width="48" height="47"/>
         <image name="local.png" width="158" height="138"/>
+        <image name="new_frame-2.png" width="767" height="293"/>
         <image name="pr_action_frame_new.png" width="640" height="87"/>
         <image name="pr_frame_new.png" width="640" height="480"/>
         <image name="recent.png" width="155" height="134"/>
