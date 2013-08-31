@@ -142,10 +142,16 @@
     }
 }
 
+//cutting all collapsible elements from the html documentation
 -(NSString*)cutCollapsibleFromHtml:(NSString*)html{
-    NSRange range=[html rangeOfString:startOfCollapsible];
-    if(range.location==NSNotFound)
-        return html;
+    NSRange range=[html rangeOfString:startOfCollapsible1];
+    if(range.location==NSNotFound){
+        range=[html rangeOfString:startOfCollapsible2];
+        if(range.location==NSNotFound)
+            return html;
+        else
+            return [html substringToIndex:range.location];
+    }
     else{
         return [html substringToIndex:range.location];
     }

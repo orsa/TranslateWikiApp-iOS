@@ -78,7 +78,8 @@
 //various static strings
 //***********************
 
-#define startOfCollapsible @"<div class=\"mw-identical-title mw-collapsible"
+#define startOfCollapsible1 @"<div class=\"mw-identical-title mw-collapsible"
+#define startOfCollapsible2 @"<div class=\"mw-related-title mw-collapsible"
 #define connectivityProblem @"Couldn't complete request. Please check your connectivity."
 
 //***********************

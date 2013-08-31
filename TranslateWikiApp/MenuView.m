@@ -24,6 +24,7 @@
 //*********************************************************************************
 
 #import "MenuView.h"
+#import "MenuCell.h"
 
 @interface MenuView ()
 
@@ -55,21 +56,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"menuCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MenuCell *cell = (MenuCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Translate";
-            if (mainVC.translationState)
-                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-            else
-                [cell setAccessoryType:UITableViewCellAccessoryNone];
+            [cell setChecked:mainVC.translationState];
             break;
         case 1:
             cell.textLabel.text = @"Proofread";
-            if (mainVC.translationState)
-                [cell setAccessoryType:UITableViewCellAccessoryNone];
-            else
-                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            [cell setChecked:!mainVC.translationState];
             break;
         case 2:
             cell.textLabel.text = @"Settings";

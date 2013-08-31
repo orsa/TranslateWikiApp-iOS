@@ -57,6 +57,9 @@
 		64F5E4C816AE9EA800442603 /* TranslationMessageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F5E4C716AE9EA800442603 /* TranslationMessageDataController.m */; };
 		64F890FD1710396E008DCCA6 /* TranslationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FC1710396D008DCCA6 /* TranslationCell.m */; };
 		64F8910017106842008DCCA6 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F890FF17106842008DCCA6 /* InputCell.m */; };
+		F18119D117D24FD7002B2490 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18119D017D24FD7002B2490 /* MenuCell.m */; };
+		F18119D317D251E4002B2490 /* check-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = F18119D217D251E4002B2490 /* check-mark.png */; };
+		F18119D517D25A6A002B2490 /* check-mark-512.png in Resources */ = {isa = PBXBuildFile; fileRef = F18119D417D25A6A002B2490 /* check-mark-512.png */; };
 		F19B1704170372BD009934AC /* RejectedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B1703170372BD009934AC /* RejectedMessage.m */; };
 		F1A535F217747FEB0076E094 /* prefsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A535F117747FEB0076E094 /* prefsCustomCell.m */; };
 /* End PBXBuildFile section */
@@ -134,6 +137,10 @@
 		64F890FC1710396D008DCCA6 /* TranslationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationCell.m; sourceTree = "<group>"; };
 		64F890FE17106842008DCCA6 /* InputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCell.h; sourceTree = "<group>"; };
 		64F890FF17106842008DCCA6 /* InputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCell.m; sourceTree = "<group>"; };
+		F18119CF17D24FD7002B2490 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
+		F18119D017D24FD7002B2490 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
+		F18119D217D251E4002B2490 /* check-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-mark.png"; sourceTree = "<group>"; };
+		F18119D417D25A6A002B2490 /* check-mark-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-mark-512.png"; sourceTree = "<group>"; };
 		F19B1702170372BD009934AC /* RejectedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedMessage.h; sourceTree = "<group>"; };
 		F19B1703170372BD009934AC /* RejectedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedMessage.m; sourceTree = "<group>"; };
 		F1A535F017747FEB0076E094 /* prefsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefsCustomCell.h; sourceTree = "<group>"; };
@@ -216,6 +223,8 @@
 				F1A535F117747FEB0076E094 /* prefsCustomCell.m */,
 				64462DD5172AD802002B3556 /* MenuView.h */,
 				64462DD6172AD802002B3556 /* MenuView.m */,
+				F18119CF17D24FD7002B2490 /* MenuCell.h */,
+				F18119D017D24FD7002B2490 /* MenuCell.m */,
 				6469FB9016FADE580006E765 /* View Controllers */,
 				641002131691B218000202A9 /* AppDelegate.h */,
 				641002141691B218000202A9 /* AppDelegate.m */,
@@ -278,6 +287,8 @@
 				641788E617D20347008D0D2E /* new_frame-3.png */,
 				641788DF17D1E6BD008D0D2E /* pr_action_frame_new.png */,
 				641788DB17D1E473008D0D2E /* pr_frame_new.png */,
+				F18119D217D251E4002B2490 /* check-mark.png */,
+				F18119D417D25A6A002B2490 /* check-mark-512.png */,
 				641788D317D1D3E8008D0D2E /* reject_new.png */,
 				641788D417D1D3E8008D0D2E /* accept_new.png */,
 				641788D517D1D3E8008D0D2E /* edit_new.png */,
@@ -379,6 +390,8 @@
 				641788E417D1FD2F008D0D2E /* new_frame-2.png in Resources */,
 				641788E717D20347008D0D2E /* new_frame-1.png in Resources */,
 				641788E817D20347008D0D2E /* new_frame-3.png in Resources */,
+				F18119D317D251E4002B2490 /* check-mark.png in Resources */,
+				F18119D517D25A6A002B2490 /* check-mark-512.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +423,7 @@
 				640727F71732E5D400F2E1BF /* SuggestionCell.m in Sources */,
 				F1A535F217747FEB0076E094 /* prefsCustomCell.m in Sources */,
 				64A473FC17C662CB00859443 /* AboutViewController.m in Sources */,
+				F18119D117D24FD7002B2490 /* MenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
