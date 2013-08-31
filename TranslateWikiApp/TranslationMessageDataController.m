@@ -154,7 +154,7 @@
     NSInteger numberOfMessagesRemaining = [tupSizeText integerValue];
     NSString * maxMsgLenText = getUserDefaultskey(MAX_MSG_LEN_key);
     NSInteger maxMsgLen = [maxMsgLenText integerValue];
-    NSInteger iterationsToGo = MAX_MESSAGE_COLLECTION_REQUESTS_ON_ADD_MESSAGE_TUPLE;
+    NSInteger iterationsToGo = MAX_REQUESTS_ON_ADD_MESSAGE_TUPLE;
     NSString* lang=getUserDefaultskey(LANG_key);
     NSString* proj=getUserDefaultskey(PROJ_key);
     //NSInteger queryLimit=numberOfMessagesRemaining;

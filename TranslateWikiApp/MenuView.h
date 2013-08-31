@@ -18,5 +18,6 @@
 }
 
 @property (retain, nonatomic) MainViewController *mainVC;
-
+- (void) close;
+- (void) openInView:(UIView*)v;
 @end

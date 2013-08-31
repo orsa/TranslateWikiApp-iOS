@@ -49,7 +49,7 @@
     //HideNetworkActivityIndicator();
     menuView.mainVC=self;
     [menuView setHidden:YES];
-    [menuView setFrame:CGRectMake(0, 46, 90, 0)];
+    [menuView setFrame:CLOSED_MAIN_MENU_FRAME];
     [menuTable reloadData];
     [self.view bringSubviewToFront:menuView];
     //[menuView reloadInputViews];
@@ -102,7 +102,7 @@
     [super viewDidLoad];
     _transCells=[[NSMutableSet alloc] init];
     [menuView setHidden:YES];
-    [menuView setFrame:CGRectMake(0, 46, 90, 0)];
+    [menuView setFrame:CLOSED_MAIN_MENU_FRAME];
     
 }
 
@@ -424,21 +424,13 @@
 - (IBAction)openMenu:(id)sender {
     [self.view bringSubviewToFront:menuView];
     if (menuView.hidden){ //closed
-        [menuView setFrame:CGRectMake(0, 46, 90, 0)];
+        [menuView setFrame:CLOSED_MAIN_MENU_FRAME];
         [menuView setHidden:NO];
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 46, 180, 105)]; } completion:^(BOOL comp){
-            if (comp)[self.view bringSubviewToFront:menuView];
-        }];
+        [menuView openInView:self.view];
     }
     else{ //already opened
-        [self closeMenu:sender];
+        [menuView close];
     }
-}
-
-- (IBAction)closeMenu:(id)sender {
-        [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 46, 90, 0)]; } completion:^(BOOL comp){
-            if (comp) [menuView setHidden:YES];
-        }];
 }
 
 - (IBAction)pushPrefs:(id)sender {
@@ -491,7 +483,7 @@
 }
 
 - (IBAction)bgTap:(UITapGestureRecognizer *)sender {
-    [self closeMenu:sender];
+    [menuView close];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -504,7 +496,7 @@
         if (!CGRectContainsPoint(menuView.frame, p))
         {
             // dismiss the popup
-            [self closeMenu:nil];
+            [menuView close];
         }
     }
 }

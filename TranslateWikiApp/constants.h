@@ -27,16 +27,21 @@
 //***********************
 //measures
 //***********************
-#define KEYBOARD_ROOM (isPad() ? 260 : 215 ) 
-#define INITIAL_TUPLE_SIZE (isPad() ? @"20" : @"10")  //esier to save as a string
-#define INITIAL_MAX_LENGTH @"100" 
-#define MAX_RECENT_PROJ 3
-#define MAX_RECENT_LANG 3
-#define MAX_LOCAL_LANG 3
-#define MAX_NUMBER_OF_SUGGESTIONS 3
-#define MESSAGE_ACCURACY_TRESHOLD 0.80
-#define MAX_MESSAGE_COLLECTION_REQUESTS_ON_ADD_MESSAGE_TUPLE 3
-#define MAX_SUGEGSTION_LENGTH 100
+#define MAX_RECENT_PROJ             3
+#define MAX_RECENT_LANG             3
+#define MAX_LOCAL_LANG              3
+#define MAX_NUMBER_OF_SUGGESTIONS   3
+#define MESSAGE_ACCURACY_TRESHOLD   0.80
+#define MAX_SUGEGSTION_LENGTH       100
+#define MAX_REQUESTS_ON_ADD_MESSAGE_TUPLE 3
+#define KEYBOARD_ROOM               (isPad() ? 260 : 215 )     // tells the height of keyboard of current device
+#define INITIAL_TUPLE_SIZE          (isPad() ? @"20" : @"10")  // esier to save as a string
+#define INITIAL_MAX_LENGTH          @"100"
+
+// ** UI sizes **
+#define CLOSED_MAIN_MENU_FRAME      CGRectMake(0, 46, 90, 0)
+#define OPENED_MAIN_MENU_FRAME      CGRectMake(0, 46, 180, 105)
+
 
 //***********************
 //keys for NSUserDefaults
@@ -86,7 +91,7 @@
 //code snippets
 //***********************
 
-#define myAppDelegate       [[UIApplication sharedApplication] delegate]
+#define myAppDelegate    [[UIApplication sharedApplication] delegate]
 #define PREFERRED_LANG   [NSLocale preferredLanguages]
 
 #define ShowNetworkActivityIndicator()  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES

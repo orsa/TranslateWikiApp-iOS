@@ -118,8 +118,19 @@
         default:
             break;
     }
-    [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 46, 90, 0)]; } completion:^(BOOL comp){
+}
+
+// perfom animated close of menu
+- (void) close {
+    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CLOSED_MAIN_MENU_FRAME]; } completion:^(BOOL comp){
         if (comp) [self setHidden:YES];
+    }];
+}
+
+// perfom animated open of menu
+- (void) openInView:(UIView*)v {
+    [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:OPENED_MAIN_MENU_FRAME]; } completion:^(BOOL comp){
+        if (comp)[v bringSubviewToFront:self];
     }];
 }
 
