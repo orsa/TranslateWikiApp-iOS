@@ -94,7 +94,7 @@
                 LoadUserDefaults();
                 setBoolUserDefaultskey(NO, PRMODE_key);
                 [mainVC clearMessages:self];
-                [mainVC.menuBtn setTitle:@"Translate ▾" forState:UIControlStateNormal];
+                [mainVC.menuBtn setTitle:@"Translate  ▾" forState:UIControlStateNormal];
                 [mainVC addMessagesTuple];
                 
                 [tableView reloadData];
@@ -108,7 +108,7 @@
                 setBoolUserDefaultskey(YES, PRMODE_key);
                 [mainVC clearTextBoxes];
                 [mainVC clearMessages:self];
-                [mainVC.menuBtn setTitle:@"Proofread ▾" forState:UIControlStateNormal];
+                [mainVC.menuBtn setTitle:@"Proofread  ▾" forState:UIControlStateNormal];
                 [mainVC addMessagesTuple];
                 
                 [tableView reloadData];
@@ -122,7 +122,7 @@
         default:
             break;
     }
-    [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
+    [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [self setFrame:CGRectMake(0, 51, 90, 0)]; } completion:^(BOOL comp){
         if (comp) [self setHidden:YES];
     }];
 }

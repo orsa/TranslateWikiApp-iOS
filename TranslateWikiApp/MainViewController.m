@@ -48,7 +48,7 @@
     //HideNetworkActivityIndicator();
     menuView.mainVC=self;
     [menuView setHidden:YES];
-    [menuView setFrame:CGRectMake(0, 31, 90, 0)];
+    [menuView setFrame:CGRectMake(0, 51, 90, 0)];
     [menuTable reloadData];
     [self.view bringSubviewToFront:menuView];
     //[menuView reloadInputViews];
@@ -56,7 +56,7 @@
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
     translationState = !getBoolUserDefaultskey(PRMODE_key);
-    [menuBtn setTitle:(translationState ? @"Translate ▾" : @"Proofread ▾" ) forState:UIControlStateNormal];
+    [menuBtn setTitle:(translationState ? @"Translate  ▾" : @"Proofread  ▾" ) forState:UIControlStateNormal];
     //NSString * st = getUserDefaultskey(LANG_key);
     //NSMutableArray * arr = [NSMutableArray arrayWithArray:PREFERRED_LANG];
     //[arr removeObject:st];
@@ -102,7 +102,7 @@
     [super viewDidLoad];
     _transCells=[[NSMutableSet alloc] init];
     [menuView setHidden:YES];
-    [menuView setFrame:CGRectMake(0, 31, 90, 0)];
+    [menuView setFrame:CGRectMake(0, 51, 90, 0)];
     
 }
 
@@ -424,9 +424,9 @@
 - (IBAction)openMenu:(id)sender {
     [self.view bringSubviewToFront:menuView];
     if (menuView.hidden){ //closed
-        [menuView setFrame:CGRectMake(0, 31, 90, 0)];
+        [menuView setFrame:CGRectMake(0, 51, 90, 0)];
         [menuView setHidden:NO];
-        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 180, 105)]; } completion:^(BOOL comp){
+        [UIView animateWithDuration:0.24f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 51, 180, 105)]; } completion:^(BOOL comp){
             if (comp)[self.view bringSubviewToFront:menuView];
         }];
     }
@@ -436,7 +436,7 @@
 }
 
 - (IBAction)closeMenu:(id)sender {
-        [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 31, 90, 0)]; } completion:^(BOOL comp){
+        [UIView animateWithDuration:0.23f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{ [menuView setFrame:CGRectMake(0, 51, 90, 0)]; } completion:^(BOOL comp){
             if (comp) [menuView setHidden:YES];
         }];
 }
@@ -474,7 +474,6 @@
     [dataController removeAllObjects];
     [self.msgTableView reloadData];
 }
-
 
 
 - (IBAction)pushEdit:(id)sender {

@@ -21,7 +21,7 @@
 #import "ProofreadCell.h"
 
 @implementation ProofreadCell
-@synthesize managedObjectContext, srcLabel, dstLabel, acceptBtn, rejectBtn,editBtn, EditContainer, acceptCount;
+@synthesize managedObjectContext, srcLabel, dstLabel, acceptBtn, rejectBtn,editBtn, editContainer,cellFrame, acceptCount;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -32,7 +32,8 @@
         self.acceptBtn.hidden = TRUE;
         self.rejectBtn.hidden = TRUE;
         self.editBtn.hidden = TRUE;
-        self.EditContainer.hidden = TRUE;
+        self.editContainer.hidden = TRUE;
+        self.cellFrame.hidden = TRUE;
     }
     return self;
 }
@@ -46,21 +47,15 @@
 - (void)setExpanded:(NSNumber*)expNumber
 {
     BOOL exp=[expNumber boolValue];
-
-    editBtn.frame = CGRectMake (
-                EditContainer.frame.origin.x+EditContainer.frame.size.width*0.55-editBtn.frame.size.width/2,
-                editBtn.frame.origin.y,
-                editBtn.frame.size.width,
-                editBtn.frame.size.height);
     
     acceptBtn.frame = CGRectMake (
-                EditContainer.frame.origin.x+EditContainer.frame.size.width*0.25-acceptBtn.frame.size.width/2,
+                editContainer.frame.origin.x+editContainer.frame.size.width*0.25-acceptBtn.frame.size.width/2,
                 acceptBtn.frame.origin.y,
                 acceptBtn.frame.size.width,
                 acceptBtn.frame.size.height);
     
     rejectBtn.frame = CGRectMake (
-                EditContainer.frame.origin.x+EditContainer.frame.size.width*0.8-rejectBtn.frame.size.width/2,
+                editContainer.frame.origin.x+editContainer.frame.size.width*0.75-rejectBtn.frame.size.width/2,
                 rejectBtn.frame.origin.y,
                 rejectBtn.frame.size.width,
                 rejectBtn.frame.size.height);
@@ -77,7 +72,10 @@
     [acceptCount setHidden:!exp];
     //[_keyinfoLabel setHidden:!exp]; we dont show key for now
     //[_keyLabel setHidden:!exp];
-    [EditContainer setHidden:!exp];
+    [editContainer setHidden:!exp];
+    [cellFrame setHighlighted:!exp];
+    
+    [self setBackgroundColor: (exp ? [UIColor whiteColor] : [UIColor colorWithRed:0xFB green:0xFB blue:0xFB alpha:1])];
     
     srcLabel.numberOfLines = (exp?0:1);
     dstLabel.numberOfLines = (exp?0:1);

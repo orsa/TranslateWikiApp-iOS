@@ -20,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn;
 @property (strong, nonatomic) IBOutlet UIButton *editBtn;
-@property (weak, nonatomic) IBOutlet UIImageView *EditContainer;
+@property (weak, nonatomic) IBOutlet UIImageView *editContainer;
+@property (strong, nonatomic) IBOutlet UIImageView *cellFrame;
 @property (retain, nonatomic) TWapi * api;
 @property(nonatomic, retain) TranslationMessage * msg;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

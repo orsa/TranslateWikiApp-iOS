@@ -115,7 +115,7 @@
     
     [self bringSubviewToFront:infoBtn];
     
-    UIImage *buttonImage = [UIImage imageNamed:(translationState? @"delete.png" : @"cancel_edit.png")];
+    UIImage *buttonImage = [UIImage imageNamed:(translationState? @"trash_new.png" : @"cancel_edit.png")];
     [deleteBtn setImage:buttonImage forState:UIControlStateNormal];
 }
 
@@ -278,7 +278,7 @@
     UITableViewCell * cell;
     if (indexPath.row < [tableView numberOfRowsInSection:0]-1)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:suggestCellIdentifier forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:suggestCellIdentifier];
         if (!cell)
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:suggestCellIdentifier];
@@ -352,6 +352,7 @@
 }
 
 //this method defines the header of the input table
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView* customView;
@@ -374,5 +375,5 @@
 
     return customView;
 }
-
+*/
 @end
