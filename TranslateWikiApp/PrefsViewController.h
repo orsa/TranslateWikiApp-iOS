@@ -31,6 +31,7 @@
 }
 
 @property (nonatomic, retain) TWapi *api;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSString *selectedProjCode;
 @property BOOL didChange;
 @property (weak, nonatomic) IBOutlet UITextField *tupleSizeTextView;

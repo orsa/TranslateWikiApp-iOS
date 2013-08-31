@@ -30,7 +30,7 @@
     int flag;       //use to distinguish between active pickerviews
 }
 
-@synthesize langLabel, projLabel, tupleSizeTextView, didChange, selectedProjCode, maxMsgLengthTextField, api;
+@synthesize langLabel, projLabel, tupleSizeTextView, didChange, selectedProjCode, maxMsgLengthTextField, api, managedObjectContext;
 
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
@@ -332,6 +332,22 @@
                 langLabel.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
                 tupleSizeTextView.text=tuple;
                 maxMsgLengthTextField.text = maxLen;
+                
+                //deleting core data
+                NSFetchRequest * allEntities = [[NSFetchRequest alloc] init];
+                [allEntities setEntity:[NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext]];
+                [allEntities setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+                
+                NSError * error = nil;
+                NSArray * rejs = [managedObjectContext executeFetchRequest:allEntities error:&error];
+                //error handling goes here
+                for (NSManagedObject * rej in rejs) {
+                    [managedObjectContext deleteObject:rej];
+                }
+                NSError *saveError = nil;
+                [managedObjectContext save:&saveError];
+                //more error handling here
+                //finish deleting core data
                 
                 didChange=YES;
                 
