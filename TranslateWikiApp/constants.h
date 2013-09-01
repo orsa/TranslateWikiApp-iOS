@@ -51,9 +51,11 @@
 
 #define  STRING_OK      @"Ok"
 #define  STRING_CANCEL  @"Cancel"
+#define  STRING_ALERT   @"Alert"
 
-#define BODY_STRING_PROMPT_LANGUAGE @"Please choose your translation language."
+#define BODY_STRING_PROMPT_LANGUAGE  @"Please choose your translation language."
 #define TITLE_STRING_PROMPT_LANGUAGE @"Choose Language"
+#define STRING_PROMPT_RESTORE        @"Do you really mean that?"
 
 //***********************
 //keys for NSUserDefaults
@@ -123,7 +125,7 @@
 #define setBoolUserDefaultskey(X,Y) [defaults setBool:X forKey:Y]
 #define LoadAlertView(Title, Message, CancelButtonTitle)             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:nil]
 #define LoadAlertViewWithOthers(Title, Message, CancelButtonTitle, OtherButtonTitles)             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:OtherButtonTitles,nil]
-#define LoadDefaultAlertView()      LoadAlertView(@"Alert", @"", @"Ok")
+#define LoadDefaultAlertView()      LoadAlertView(STRING_ALERT, @"", STRING_OK)
 #define AlertSetMessage(Message)    alert.message=Message
 #define AlertShow()                 [alert show]
 

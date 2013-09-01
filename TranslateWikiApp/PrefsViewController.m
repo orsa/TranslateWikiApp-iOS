@@ -274,10 +274,6 @@ int flag;       //use to distinguish between active pickerviews
 
 -(IBAction)logout:(id)sender
 {
-    //LoadAlertViewWithOthers(@"Alert", @"Do you really want to log out?", @"Oh, no", @"Yes");
-    //[alert setTag:1];
-    //[alert show];
-    
     /* logout without prompting aproval */
     [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
         //Handle the error
@@ -291,7 +287,7 @@ int flag;       //use to distinguish between active pickerviews
 
 -(IBAction)restoreDefaults:(id)sender
 {   //show alert
-    LoadAlertViewWithOthers(@"Alert", @"Do you really mean that?", @"Cancel", @"Ok");
+    LoadAlertViewWithOthers(STRING_ALERT, STRING_PROMPT_RESTORE, STRING_CANCEL, STRING_OK);
     [alert setTag:2];
     [alert show];
 }
