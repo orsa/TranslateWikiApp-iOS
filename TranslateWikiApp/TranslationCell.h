@@ -2,8 +2,19 @@
 //  TranslationCell.h
 //  TranslateWikiApp
 //
-//  Created by Or Sagi on 6/4/13.
 //  Copyright 2013 Or Sagi, Tomer Tuchner
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 #import <UIKit/UIKit.h>
@@ -21,17 +32,17 @@
 @property (retain, nonatomic) TranslationMessage * msg;         // the message object containg all the information about the message
 @property (retain, nonatomic) TWapi* api;                       // api object for api requests
 @property (retain, nonatomic) TranslationMessageDataController * container; // the data container in which the message is included 
-@property (retain, nonatomic) UITableView* msgTableView; // the general table view in which the cell is included
-@property (retain, nonatomic) InputCell* inputCell;      // the cell that contains the text view
-@property (atomic) BOOL isExpanded;         // is the cell expanded (selected or not)
-@property (atomic) BOOL isMinimized;        // is the cell minimized
-@property (atomic) BOOL translationState;   // are we on translation session
+@property (retain, nonatomic) UITableView* msgTableView;        // the general table view in which the cell is included
+@property (retain, nonatomic) InputCell* inputCell;             // the cell that contains the text view
+@property (atomic) BOOL isExpanded;                             // is the cell expanded (selected or not)
+@property (atomic) BOOL isMinimized;                            // is the cell minimized
+@property (atomic) BOOL translationState;                       // are we on translation session
 @property (retain, nonatomic)NSMutableSet* suggestionCells;     // container for the cells of the suggestions
 @property (strong, nonatomic) IBOutlet UIButton *infoBtn;       // button for documentation info
 @property (strong, nonatomic) IBOutlet UIView *infoView;        // the documentation info view
 @property (weak, nonatomic) IBOutlet UIWebView *docWebView;     // the web view in which the documentation is displayed
 @property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle; // the original selection style, for restoring it after disabling interactions
-@property (strong, nonatomic) IBOutlet UIButton *deleteBtn; // trash button
+@property (strong, nonatomic) IBOutlet UIButton *deleteBtn;     // trash button
 
 - (IBAction)pushInfo:(id)sender;            // tap info button
 - (IBAction)pushDelete:(id)sender;          // tap trash button
