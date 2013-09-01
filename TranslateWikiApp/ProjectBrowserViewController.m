@@ -85,14 +85,14 @@
         
         //update recent projects data
         NSMutableArray * updatedRecentProj = [[NSMutableArray alloc] init];
-        [updatedRecentProj addObject:dst];  //insert selected project to be first in the queue
+        [updatedRecentProj addObject:dst];  // insert selected project to be first in the queue
         for(int i=0; i<recentProj.count && i<MAX_RECENT_PROJ-1; i++)
         {
-            if (![dstProjLabel isEqualToString:recentProj[i][@"label"]]) //avoid duplicates
+            if (![dstProjLabel isEqualToString:recentProj[i][@"label"]]) // avoid duplicates
                 [updatedRecentProj addObject:recentProj[i]];
         }
         LoadUserDefaults();
-        setUserDefaultskey(updatedRecentProj, RECENT_PROJ_key); //store updated recent projects data
+        setUserDefaultskey(updatedRecentProj, RECENT_PROJ_key); // store updated recent projects data
     }
 }
 
@@ -100,7 +100,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2; //one section for recents, one for all the others
+    return 2; // one section for recents, one for all the others
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -141,7 +141,6 @@
             else
                 cell.textLabel.text = srcArr[indexPath.row][@"label"];
     }
-    
     return cell;
 }
 
@@ -214,14 +213,8 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
-    if(searchText.length==0)
-    {
-        isFiltered = NO;
-    }
-    else
-    {
-        isFiltered = YES;
-    }
+    isFiltered = (searchText.length!=0); // whether to use filtering
+
     filteredRec = [[NSMutableArray alloc] init];
     filteredArr = [[NSMutableArray alloc] init];
     
