@@ -15,6 +15,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
 
 #import "MainViewController.h"
 
@@ -35,25 +36,17 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-    //self.GreetingMessage.text = [NSString stringWithFormat:@" Hello, %@!",_api.user.userName];
-    //HideNetworkActivityIndicator();
     menuView.mainVC=self;
     [menuView setHidden:YES];
     [menuView setFrame:CLOSED_MAIN_MENU_FRAME];
     [menuTable reloadData];
     [self.view bringSubviewToFront:menuView];
-    //[menuView reloadInputViews];
     
     //makes the keyboard show the current language symbols
     LoadUserDefaults();
     translationState = !getBoolUserDefaultskey(PRMODE_key);
     [menuBtn setTitle:stateInMenu(translationState) forState:UIControlStateNormal];
-    //NSString * st = getUserDefaultskey(LANG_key);
-    //NSMutableArray * arr = [NSMutableArray arrayWithArray:PREFERRED_LANG];
-    //[arr removeObject:st];
-    //[arr insertObject:st atIndex:0];
-    //setUserDefaultskey(arr, @"AppleLanguages");
-    //[[NSUserDefaults standardUserDefaults] synchronize];
+    
     msgTableView.contentInset =  UIEdgeInsetsMake(0, 0, KEYBOARD_ROOM, 0); //make room for keyboard
     [msgTableView reloadData];
 }
@@ -211,7 +204,6 @@
             if(trMsgCell.isMinimized)
             {       //the selection was for minimizing
                 [trMsgCell setMinimized:@NO];
-                //[self.msgTableView reloadData];
             }
             else
             {       //the selection wasn't for minimizing
@@ -223,13 +215,10 @@
                     {
                         NSArray * obj = @[trMsgCell.msg,@NO];
                         [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
-                
-                        //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:FALSE] waitUntilDone:NO];
             
                         [self removeActiveKeyboard];
                         [self.msgTableView reloadData];
                         
-                        //[trMsgCell.msgTableView reloadData];
                         [trMsgCell.msgTableView.inputView resignFirstResponder];
                     }
                 }
@@ -241,7 +230,6 @@
                     //expand
                     NSArray * obj = @[trMsgCell.msg,@YES];
                     [trMsgCell performSelectorOnMainThread:@selector(buildWithMsg:) withObject:obj waitUntilDone:NO];
-                    //[trMsgCell performSelectorOnMainThread:@selector(setExpanded:) withObject:[NSNumber numberWithBool:TRUE] waitUntilDone:NO];
                     
                     [self removeActiveKeyboard];
                     [self.msgTableView reloadData];
@@ -360,11 +348,6 @@
     //accept this translation via API
     [_api TWTranslationReviewRequest:[dataController objectInListAtIndex:selectedIndexPath.row].revision completionHandler:^(NSError * error, NSDictionary* responseData){
         
-       /* if (success)
-        {
-            [[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:YES];
-            [[dataController objectInListAtIndex:selectedIndexPath.row] setAcceptCount:([[dataController objectInListAtIndex:selectedIndexPath.row] acceptCount]+1)];
-        }*/
         if(responseData[@"error"]){
             LoadDefaultAlertView();
             AlertSetMessage(responseData[@"error"][@"info"]);
@@ -391,7 +374,6 @@
 
 - (IBAction)pushReject:(id)sender
 {
-    //[[dataController objectInListAtIndex:selectedIndexPath.row] setIsAccepted:NO];
     [self coreDataRejectMessage];
     
     // here we'll take this cell away
@@ -444,6 +426,11 @@
     [_api TWLogoutRequest:^(NSDictionary* response, NSError* error){
         //Handle the error
         NSLog(@"%@", error);
+        if(error){
+            LoadDefaultAlertView();
+            AlertSetMessage(connectivityProblem);
+            AlertShow();
+        }
     }];
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     [loginKC resetKeychainItem];
@@ -468,7 +455,11 @@
         [m addSuggestionsFromResponse:transAids[@"helpers"]];
         [m addDocumentationFromResponse:transAids[@"helpers"]];
         [self.msgTableView reloadData];
-
+        if(error){
+            LoadDefaultAlertView();
+            AlertSetMessage(connectivityProblem);
+            AlertShow();
+        }
     }];
 }
 
