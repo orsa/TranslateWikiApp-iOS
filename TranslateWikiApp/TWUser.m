@@ -19,7 +19,7 @@
 //  limitations under the License.
 //
 //*********************************************************************************
-// TWUser
+// TWUser - contains information about the logged in user
 //*********************************************************************************
 
 #import "TWUser.h"

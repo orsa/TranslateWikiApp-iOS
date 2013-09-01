@@ -18,9 +18,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//*********************************************************************************
-// TranslationMessageDataController
-//*********************************************************************************
+//*******************************************************************************************
+// TranslationMessageDataController - container for the messages objects displayed on screen
+//*******************************************************************************************
 
 #import "TranslationMessageDataController.h"
 #import "TranslationMessage.h"

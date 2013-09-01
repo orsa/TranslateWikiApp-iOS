@@ -19,7 +19,7 @@
 //  limitations under the License.
 //
 //*********************************************************************************
-// TranslationMessage
+// TranslationMessage - contains all information about a message
 //*********************************************************************************
 
 #import "TranslationMessage.h"
