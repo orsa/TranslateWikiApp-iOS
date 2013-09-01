@@ -11,12 +11,7 @@
 #import "TWapi.h"
 #import "PrefsViewController.h"
 
-@interface ProjectBrowserViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
-{
-    
-}
-+ (NSMutableArray *) filterProjects:(NSArray*)proj FromArray:(NSArray*)original;
+@interface ProjectBrowserViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *projTable;
@@ -32,5 +27,7 @@
 @property BOOL didChange;
 
 -(IBAction)refreshProjects:(id)sender;
+
++ (NSMutableArray *) filterProjects:(NSArray*)proj FromArray:(NSArray*)original;
 
 @end

@@ -24,13 +24,9 @@
 //*********************************************************************************
 
 #import "MenuView.h"
-#import "MenuCell.h"
-
-@interface MenuView ()
-
-@end
 
 @implementation MenuView
+
 @synthesize mainVC;
 
 - (id)initWithFrame:(CGRect)frame

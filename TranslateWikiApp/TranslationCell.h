@@ -18,21 +18,20 @@
 @property (strong, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UITableView *inputTable;
 @property (weak, nonatomic) IBOutlet UIImageView *frameImg;
-@property(nonatomic, retain)TranslationMessage * msg;
+@property (nonatomic, retain) TranslationMessage * msg;
 @property (retain, nonatomic) TWapi* api;
 @property (retain, nonatomic) TranslationMessageDataController * container;
 @property (retain, nonatomic) UITableView* msgTableView;
 @property (retain, nonatomic) InputCell* inputCell;
 @property (atomic) BOOL isExpanded;
 @property (atomic) BOOL isMinimized;
-@property BOOL translationState;
+@property (atomic) BOOL translationState;
 @property (retain, nonatomic)NSMutableSet* suggestionCells;
 @property (strong, nonatomic) IBOutlet UIButton *infoBtn;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UIWebView *docWebView;
 @property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle;
 @property (strong, nonatomic) IBOutlet UIButton *deleteBtn;
-
 
 - (IBAction)pushInfo:(id)sender;
 - (IBAction)pushDelete:(id)sender;

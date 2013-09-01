@@ -20,10 +20,6 @@
 
 #import "LanguagePickerViewController.h"
 
-@interface LanguagePickerViewController ()
-
-@end
-
 @implementation LanguagePickerViewController
 
 @synthesize mySearchBar, LangTable, filteredArr, filteredRec, filteredLoc, srcArr, recentLanguages, localLanguages, isFiltered, didChange, dstLang, enteredFromLogin;

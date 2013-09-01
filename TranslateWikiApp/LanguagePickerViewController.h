@@ -11,11 +11,7 @@
 #import "PrefsViewController.h"
 #import "MainViewController.h"
 
-@interface LanguagePickerViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
-{
-    
-}
+@interface LanguagePickerViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *LangTable;

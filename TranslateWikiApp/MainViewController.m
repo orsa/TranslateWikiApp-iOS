@@ -20,17 +20,9 @@
 
 #import "MainViewController.h"
 
-@class MenuView;
-
-@interface MainViewController ()
-
-@property (weak, nonatomic) IBOutlet UILabel *GreetingMessage;
-
-@end
-
 @implementation MainViewController
-@synthesize selectedIndexPath, managedObjectContext, translationState, dataController ,msgTableView, menuView, menuTable, menuBtn;
 
+@synthesize selectedIndexPath, managedObjectContext, translationState, dataController ,msgTableView, menuView, menuTable, menuBtn;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -500,4 +492,5 @@
         }
     }
 }
+
 @end

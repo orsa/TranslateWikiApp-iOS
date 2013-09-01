@@ -13,8 +13,8 @@
 #import "LoginViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel         *managedObjectModel;
+    NSManagedObjectContext       *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
 

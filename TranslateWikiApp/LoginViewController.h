@@ -17,18 +17,21 @@
 
 @class MainViewController;
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate>{
-    NSManagedObjectContext *managedObjectContext;
-}
+@interface LoginViewController : UIViewController<UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (weak, nonatomic) IBOutlet UITextField *usernameText;
+@property (weak, nonatomic) IBOutlet UILabel *ResultLabel;
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *password;
 @property (retain, nonatomic) TWUser *cur_user;
 @property (retain, nonatomic) TWapi *api;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property BOOL langNeedsManualSelection;
 
+- (IBAction)submitLogin:(id)sender;
 - (IBAction)goToSignup:(id)sender;
+
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString;
 
 @end

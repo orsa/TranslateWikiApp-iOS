@@ -20,10 +20,6 @@
 
 #import "ProjectBrowserViewController.h"
 
-@interface ProjectBrowserViewController ()
-
-@end
-
 @implementation ProjectBrowserViewController
 
 @synthesize mySearchBar, projTable, filteredArr, filteredRec, srcArr, recentProj, isFiltered, didChange, dstProjLabel, dstProjID, originalSrc, api;
@@ -296,6 +292,5 @@
     [filtered removeObjectsInArray:discardedItems];
     return filtered;
 }
-
 
 @end

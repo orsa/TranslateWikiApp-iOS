@@ -12,8 +12,8 @@
 
 @property(nonatomic, copy)NSString* userName;
 @property(nonatomic, copy)NSString* userId;
-@property BOOL isLoggedin;
 @property(nonatomic, copy)NSHTTPCookie* authCookie;
+@property BOOL isLoggedin;
 
 -(id) init;
 

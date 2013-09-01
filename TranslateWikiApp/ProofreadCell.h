@@ -13,6 +13,7 @@
 #import "RejectedMessage.h"
 
 @interface ProofreadCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *srcLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dstLabel;
 @property (weak, nonatomic) IBOutlet UILabel *acceptCount;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (void)setExpanded:(NSNumber*)expNumber;
+
 +(float)optimalHeightForLabel:(UILabel*)lable;
 
 @end

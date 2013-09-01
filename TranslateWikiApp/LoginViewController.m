@@ -20,17 +20,8 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *passwordText;
-@property (weak, nonatomic) IBOutlet UITextField *usernameText;
-@property (weak, nonatomic) IBOutlet UILabel *ResultLabel;
-- (IBAction)submitLogin:(id)sender;
-
-@end
-
-@class AppDelegate;
-
 @implementation LoginViewController
+
 @synthesize managedObjectContext, langNeedsManualSelection;
 
 - (void)viewWillAppear:(BOOL)animated

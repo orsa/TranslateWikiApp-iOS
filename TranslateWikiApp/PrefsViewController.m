@@ -20,17 +20,13 @@
 
 #import "PrefsViewController.h"
 
-@interface PrefsViewController ()
-
-@end
-
 @implementation PrefsViewController
-{
-    BOOL didChange; //use to mark that preferenses were updated
-    int flag;       //use to distinguish between active pickerviews
-}
 
-@synthesize langLabel, projLabel, tupleSizeTextView, didChange, selectedProjCode, maxMsgLengthTextField, api, managedObjectContext;
+BOOL didChange; //use to mark that preferenses were updated
+int flag;       //use to distinguish between active pickerviews
+
+
+@synthesize langLabel, projLabel, tupleSizeTextView, didChange, selectedProjCode, maxMsgLengthTextField, api, managedObjectContext, arrLang, arrProj, arrLangCodes;
 
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
@@ -349,8 +345,7 @@
                 //more error handling here
                 //finish deleting core data
                 
-                didChange=YES;
-                
+                didChange=YES;                
             }
             break;
         default:

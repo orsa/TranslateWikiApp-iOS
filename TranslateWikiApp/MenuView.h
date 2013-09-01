@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 #import "PrefsViewController.h"
+#import "MenuCell.h"
 #import "constants.h"
 
 @class MainViewController;
 @class PrefsViewController;
-@interface MenuView : UIView <UITableViewDelegate, UITableViewDataSource>{
-    
-}
+@interface MenuView : UIView <UITableViewDelegate, UITableViewDataSource>
 
 @property (retain, nonatomic) MainViewController *mainVC;
+
 - (void) close;
 - (void) openInView:(UIView*)v;
+
 @end
