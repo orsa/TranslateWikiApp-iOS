@@ -21,7 +21,7 @@
 #import "InputCell.h"
 
 @implementation InputCell
-@synthesize api, msg, inputText, sendBtn, BtnView;
+@synthesize api, msg, inputText, sendBtn, BtnView, father;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -43,7 +43,7 @@
 
 -(void)textViewDidBeginEditing:(UITextView*)textView
 {
-    [_father scrollTo]; 
+    [father scrollTo];
     if(![sendBtn isUserInteractionEnabled])
     {
         [inputText setText:@""];
@@ -60,7 +60,7 @@
 {
     if([[inputText text] isEqualToString:@""])
     {
-        [_father clearTextBox];
+        [father clearTextBox];
     }
     [self revealSendBtnOn:NO];
 }
@@ -88,7 +88,7 @@
 }
 
 - (IBAction)pushSendBtn:(id)sender {
-    if (!_father.msg.translated || ![_father.msg.translationByUser isEqualToString:[inputText text]]) //send api request only if changed translation.
+    if (!father.msg.translated || ![father.msg.translationByUser isEqualToString:[inputText text]]) //send api request only if changed translation.
         [api TWEditRequestWithTitle:[msg title] andText:[inputText text] completionHandler:^(NSError * error, NSDictionary* responseData){
             //check errors etc.
             if(error){
@@ -107,14 +107,11 @@
         }];
     
     [inputText resignFirstResponder];
-    _father.msg.translated=TRUE;
-    _father.msg.translationByUser=[inputText text];
-    [_father setMinimized:@YES];
-    [((UITableView*)_father.superview) beginUpdates];
-    [((UITableView*)_father.superview) endUpdates];
-    //[((UITableView*)_father.superview) reloadData];
-    
-    //[_father removeFromList]; //we won't simply remove it, but make it smaller.
+    father.msg.translated=TRUE;
+    father.msg.translationByUser=[inputText text];
+    [father setMinimized:@YES];
+    [((UITableView*)father.superview) beginUpdates];
+    [((UITableView*)father.superview) endUpdates];
 }
 
 

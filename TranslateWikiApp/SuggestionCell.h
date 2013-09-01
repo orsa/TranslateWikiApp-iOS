@@ -10,6 +10,6 @@
 
 @interface SuggestionCell : UITableViewCell
 
-@property BOOL expanded;
+@property BOOL expanded; // is the cell expanded
 
 @end
