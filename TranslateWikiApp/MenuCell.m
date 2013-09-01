@@ -17,7 +17,8 @@
 //  limitations under the License.
 //
 //*********************************************************************************
-// MenuCell is the customized cell for the Menu View. It is required for the change of the default checkmark accesory.
+// MenuCell is the customized cell for the Menu View. It is required for the change
+// of the default checkmark accesory.
 //*********************************************************************************
 
 #import "MenuCell.h"

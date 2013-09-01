@@ -21,6 +21,6 @@
 
 @interface MenuCell : UITableViewCell
 
--(void)setChecked:(BOOL)checked;
+-(void)setChecked:(BOOL)checked; // set the state of the menu cell - with or without a checkmark
 
 @end
