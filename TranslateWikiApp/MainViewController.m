@@ -2,8 +2,6 @@
 //  MainViewController.m
 //  TranslateWikiApp
 //
-//  Created by Or Sagi on 8/1/13.
-//
 //  Copyright 2013 Or Sagi, Tomer Tuchner
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");

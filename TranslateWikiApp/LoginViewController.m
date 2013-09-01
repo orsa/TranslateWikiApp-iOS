@@ -2,8 +2,6 @@
 //  LoginViewController.m
 //  TranslateWikiApp
 //
-//  Created by Or Sagi on 31/12/12.
-//
 //  Copyright 2013 Or Sagi, Tomer Tuchner
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,25 +30,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// do any additional setup after loading the view, typically from a nib.
     [self.navigationController setNavigationBarHidden:YES];
     
     cur_user = [[TWUser alloc] init];
     api = [[TWapi alloc] initForUser:cur_user];
     
-    //lookup credentials in keychain
+    // lookup credentials in keychain
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     NSString *nameString  =  [loginKC objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *passwString = [loginKC objectForKey:(__bridge id)kSecValueData];
     LoadUserDefaults();
-    if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""]) //we have s.t in keychain
-    { //found credentials
+    if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""]) // we have s.t in keychain
+    { // found credentials
         
         api.user.userName  =  nameString;
         
         __block BOOL isDone=NO;
         __block BOOL didLogin=NO;
-        //send login request to api
+        // send login request to api
         [api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
             didLogin=(error==nil && [resultString isEqualToString:@"Success"]);
@@ -60,30 +58,24 @@
             [NSThread sleepForTimeInterval:0.1];
         }
         if(didLogin){
-            //then we can skip the login screen
+            // then we can skip the login screen
             userName = nameString;
             [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
         }
-        else{//login fail, need to re-login and update credentials
+        else{// login fail, need to re-login and update credentials
             [loginKC resetKeychainItem];
             [usernameText becomeFirstResponder];
         }
     }
-    else if(getUserDefaultskey(RECENT_USER_key)!=nil)//known user but not password
+    else if(getUserDefaultskey(RECENT_USER_key)!=nil) // known user but not password
     {
         usernameText.text = getUserDefaultskey(RECENT_USER_key);
         [passwordText becomeFirstResponder];
     }
-    else //unknown recent user
+    else // unknown recent user
     {
-        [usernameText becomeFirstResponder]; //set focus on username text field 
+        [usernameText becomeFirstResponder]; // set focus on username text field 
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)submitLogin:(id)sender
@@ -99,7 +91,7 @@
     [api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
         ResultLabel.text = resultString;
         LoadDefaultAlertView();
-        if(error){//request error
+        if(error){ // request error
             AlertSetMessage(connectivityProblem);
             AlertShow();
         }

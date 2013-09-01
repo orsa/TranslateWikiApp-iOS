@@ -201,6 +201,7 @@
 			children = (
 				64824A0C1729646400A9BD0F /* External Libraries */,
 				640BF249173CF3A1002F856A /* TWObjects */,
+				6469FB9016FADE580006E765 /* View Controllers */,
 				6478F0D11706E6A000F2F26E /* constants.h */,
 				6462A2E41705BF6E00E1DCD6 /* ProofreadCell.h */,
 				6462A2E51705BF6E00E1DCD6 /* ProofreadCell.m */,
@@ -216,7 +217,6 @@
 				64462DD6172AD802002B3556 /* MenuView.m */,
 				F18119CF17D24FD7002B2490 /* MenuCell.h */,
 				F18119D017D24FD7002B2490 /* MenuCell.m */,
-				6469FB9016FADE580006E765 /* View Controllers */,
 				641002131691B218000202A9 /* AppDelegate.h */,
 				641002141691B218000202A9 /* AppDelegate.m */,
 				6462A2EB1705C06800E1DCD6 /* MainStoryboard.storyboard */,

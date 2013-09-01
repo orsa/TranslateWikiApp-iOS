@@ -2,8 +2,6 @@
 //  PrefsViewController.m
 //  TranslateWikiApp
 //
-//  Created by Or Sagi on 20/3/13.
-//
 //  Copyright 2013 Or Sagi, Tomer Tuchner
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,19 +38,18 @@ int flag;       //use to distinguish between active pickerviews
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO]; // show navigation bar
     
     //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap:)]];
     
-    arrLang =  @[SUPPORTED_LANGUAGE_NAMES];
-    arrLangCodes = @[SUPPORTED_LANGUAGE_CODES];
+    arrLang =  @[SUPPORTED_LANGUAGE_NAMES];         // init array of lang titles
+    arrLangCodes = @[SUPPORTED_LANGUAGE_CODES];     // init array of lang values
     LoadUserDefaults();
-    //requesting project list via api - level-0 only
+    
     
     arrProj = getUserDefaultskey(ALL_PROJ_key);
-    if (!arrProj)
-    {
+    if (!arrProj)   // if no saved data for projects
+    {               // requesting project list via api - level-0 only
         [api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
         
             if (error || newArrProj==nil)
