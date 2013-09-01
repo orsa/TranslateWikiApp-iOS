@@ -22,7 +22,7 @@
 
 @implementation LoginViewController
 
-@synthesize managedObjectContext, langNeedsManualSelection;
+@synthesize cur_user, api, managedObjectContext, langNeedsManualSelection, userName, usernameText, password, passwordText, ResultLabel;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -35,8 +35,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self.navigationController setNavigationBarHidden:YES];
     
-    _cur_user = [[TWUser alloc] init];
-    _api = [[TWapi alloc] initForUser:_cur_user];
+    cur_user = [[TWUser alloc] init];
+    api = [[TWapi alloc] initForUser:cur_user];
     
     //lookup credentials in keychain
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
@@ -46,37 +46,37 @@
     if(![nameString isEqualToString:@""] && ![passwString isEqualToString:@""]) //we have s.t in keychain
     { //found credentials
         
-        _api.user.userName  =  nameString;
+        api.user.userName  =  nameString;
         
         __block BOOL isDone=NO;
         __block BOOL didLogin=NO;
         //send login request to api
-        [_api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
+        [api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
             didLogin=(error==nil && [resultString isEqualToString:@"Success"]);
             isDone=YES;
         }];
-        while(!isDone){
+        while(!isDone){ // blocking the main thread while waiting for response
             [NSThread sleepForTimeInterval:0.1];
         }
         if(didLogin){
             //then we can skip the login screen
-            _userName = nameString;
+            userName = nameString;
             [self performSegueWithIdentifier:@"FromLoginToMessages" sender:self];
         }
         else{//login fail, need to re-login and update credentials
             [loginKC resetKeychainItem];
-            [_usernameText becomeFirstResponder];
+            [usernameText becomeFirstResponder];
         }
     }
     else if(getUserDefaultskey(RECENT_USER_key)!=nil)//known user but not password
     {
-        _usernameText.text = getUserDefaultskey(RECENT_USER_key);
-        [_passwordText becomeFirstResponder];
+        usernameText.text = getUserDefaultskey(RECENT_USER_key);
+        [passwordText becomeFirstResponder];
     }
     else //unknown recent user
     {
-        [_usernameText becomeFirstResponder]; //set focus on username text field 
+        [usernameText becomeFirstResponder]; //set focus on username text field 
     }
 }
 
@@ -89,15 +89,15 @@
 - (IBAction)submitLogin:(id)sender
 {
     ShowNetworkActivityIndicator();
-    _userName = _usernameText.text;
-    _password = _passwordText.text;
-    NSString *nameString  = _userName;
-    NSString *passwString = _password;
-    _api.user.userName = nameString;
+    userName = usernameText.text;
+    password = passwordText.text;
+    NSString *nameString  = userName;
+    NSString *passwString = password;
+    api.user.userName = nameString;
 
     // login via API
-    [_api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
-        _ResultLabel.text = resultString;
+    [api TWLoginRequestWithPassword:passwString completionHandler:^(NSString * resultString, NSError * error){
+        ResultLabel.text = resultString;
         LoadDefaultAlertView();
         if(error){//request error
             AlertSetMessage(connectivityProblem);
@@ -137,12 +137,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     LoadUserDefaults();
-    setUserDefaultskey(_userName,RECENT_USER_key);
+    setUserDefaultskey(userName,RECENT_USER_key);
     if ([[segue identifier] isEqualToString:@"FromLoginToMessages"])
     {
         MainViewController *vc = [segue destinationViewController];
         vc.translationState=!getBoolUserDefaultskey(PRMODE_key);
-        [vc setApi:_api];
+        [vc setApi:api];
         [vc setManagedObjectContext:self.managedObjectContext];
         [vc addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
     }
@@ -150,18 +150,18 @@
     {
         LanguagePickerViewController *vc = [segue destinationViewController];
         vc.enteredFromLogin = YES;
-        vc.api = _api;
+        vc.api = api;
         vc.managedObjectContext =self.managedObjectContext;
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 
-    if(textField == _usernameText){
-        [_passwordText becomeFirstResponder];
+    if(textField == usernameText){
+        [passwordText becomeFirstResponder];
     }
-    else if(textField == _passwordText){
-        [_passwordText resignFirstResponder];
+    else if(textField == passwordText){
+        [passwordText resignFirstResponder];
         [self submitLogin:self];
     }
     return YES;

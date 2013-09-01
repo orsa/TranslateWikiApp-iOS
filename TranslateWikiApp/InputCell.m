@@ -21,7 +21,7 @@
 #import "InputCell.h"
 
 @implementation InputCell
-@synthesize inputText, sendBtn, BtnView;
+@synthesize api, msg, inputText, sendBtn, BtnView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -70,7 +70,7 @@
     bool show = ![[inputText text] isEqualToString:@""];
     [sendBtn setUserInteractionEnabled:show];
     [self revealSendBtnOn:show];
-    _msg.userInput = textView.text;
+    msg.userInput = textView.text;
 }
 
 // animated reveal or unveil send button
@@ -89,7 +89,7 @@
 
 - (IBAction)pushSendBtn:(id)sender {
     if (!_father.msg.translated || ![_father.msg.translationByUser isEqualToString:[inputText text]]) //send api request only if changed translation.
-        [_api TWEditRequestWithTitle:[_msg title] andText:[inputText text] completionHandler:^(NSError * error, NSDictionary* responseData){
+        [api TWEditRequestWithTitle:[msg title] andText:[inputText text] completionHandler:^(NSError * error, NSDictionary* responseData){
             //check errors etc.
             if(error){
                 LoadDefaultAlertView();
