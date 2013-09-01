@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *srcLabel; // label of message source
 @property (weak, nonatomic) IBOutlet UILabel *dstLabel; // label of message destination (translation)
 @property (weak, nonatomic) IBOutlet UILabel *acceptCount; // label of accept count
-//@property (weak, nonatomic) IBOutlet UILabel *keyLabel; // label of the key - not currently used
+@property (weak, nonatomic) IBOutlet UILabel *keyLabel; // label of the key - not currently used
 @property (weak, nonatomic) IBOutlet UIButton *acceptBtn; // button for accept action
 @property (weak, nonatomic) IBOutlet UIButton *rejectBtn; // button for reject action
 @property (strong, nonatomic) IBOutlet UIButton *editBtn; // button for edit action (pen)
