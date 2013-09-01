@@ -256,6 +256,11 @@
     LoadUserDefaults();
     [api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
         
+        if(error){
+            LoadDefaultAlertView();
+            AlertSetMessage(connectivityProblem);
+            AlertShow();
+        }
         if (error || newArrProj==nil)
         {
             NSLog(@"Error occured while loading projects.");

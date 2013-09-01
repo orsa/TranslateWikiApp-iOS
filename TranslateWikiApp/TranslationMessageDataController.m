@@ -82,8 +82,11 @@
 //***********************************************************
 -(void) handleResponse:(NSDictionary*)response Error:(NSError*)error Api:(TWapi *)api ManagedObject:(NSManagedObjectContext*)managedObjectContext Language:(NSString *)lang Project:(NSString *)proj Proofread:(BOOL)isProof MaxMessageLength:(NSInteger)maxMsgLen MessRemain:(NSInteger)numberOfMessagesRemaining IterationsLeft:(NSInteger)iterationsToGo completionHandler:(void (^)())completionBlock
 {
-    if (error) {
+    if (error){
         NSLog(@"%@", error);
+        LoadDefaultAlertView();
+        AlertSetMessage(connectivityProblem);
+        AlertShow();
         return;
     }
     
@@ -111,8 +114,15 @@
             if(!isProof)
             {
                 [api TWTranslationAidsForTitle:msg[@"title"] withProject:proj completionHandler:^(NSDictionary* transAids, NSError* error){
-                    [message addSuggestionsFromResponse:transAids[@"helpers"]];
-                    [message addDocumentationFromResponse:transAids[@"helpers"]];
+                    if(error){
+                        LoadDefaultAlertView();
+                        AlertSetMessage(connectivityProblem);
+                        AlertShow();
+                    }
+                    else{
+                        [message addSuggestionsFromResponse:transAids[@"helpers"]];
+                        [message addDocumentationFromResponse:transAids[@"helpers"]];
+                    }
                     dispatch_async(dispatch_get_main_queue(), ^(void) {
                         completionBlock();});
                 }];
