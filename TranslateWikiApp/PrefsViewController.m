@@ -77,6 +77,11 @@ int flag;       //use to distinguish between active pickerviews
     {               // requesting project list via api - level-0 only
         [api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
         
+            if(error){
+                LoadDefaultAlertView();
+                AlertSetMessage(connectivityProblem);
+                AlertShow();
+            }
             if (error || newArrProj==nil)
             {
                 NSLog(@"Error occured while loading projects.");
@@ -216,6 +221,11 @@ int flag;       //use to distinguish between active pickerviews
     [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
         //Handle the error
         NSLog(@"%@", error);
+        if(error){
+            LoadDefaultAlertView();
+            AlertSetMessage(connectivityProblem);
+            AlertShow();
+        }
     }];
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     [loginKC resetKeychainItem];
@@ -238,6 +248,11 @@ int flag;       //use to distinguish between active pickerviews
                 [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
                     //Handle the error
                     NSLog(@"%@", error);
+                    if(error){
+                        LoadDefaultAlertView();
+                        AlertSetMessage(connectivityProblem);
+                        AlertShow();
+                    }
                 }];
                 KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
                 [loginKC resetKeychainItem];
