@@ -67,7 +67,7 @@
     
     if (enteredFromLogin)
     {
-        LoadAlertView(@"Choose Language", @"Please choose your translation language.", @"Ok");
+        LoadAlertView(TITLE_STRING_PROMPT_LANGUAGE, BODY_STRING_PROMPT_LANGUAGE, STRING_OK);
         AlertShow();
     }
 }

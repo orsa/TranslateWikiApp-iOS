@@ -49,6 +49,12 @@
 #define stateInMenu(translationState)   translationState ? @"Translate  ▾" : @"Proofread  ▾"
 #define URL_FOR_SIGNUP  @"https://translatewiki.net/w/i.php?title=Special:UserLogin&type=signup"
 
+#define  STRING_OK      @"Ok"
+#define  STRING_CANCEL  @"Cancel"
+
+#define BODY_STRING_PROMPT_LANGUAGE @"Please choose your translation language."
+#define TITLE_STRING_PROMPT_LANGUAGE @"Choose Language"
+
 //***********************
 //keys for NSUserDefaults
 //***********************

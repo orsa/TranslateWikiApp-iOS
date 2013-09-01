@@ -15,17 +15,17 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *LangTable;
-@property (strong, nonatomic) IBOutlet NSMutableArray *filteredArr;
-@property (strong, nonatomic) IBOutlet NSMutableArray *filteredRec;
-@property (strong, nonatomic) IBOutlet NSMutableArray *filteredLoc;
-@property (strong, nonatomic) IBOutlet NSMutableArray *srcArr;
-@property (strong, nonatomic) IBOutlet NSMutableArray *recentLanguages;
-@property (strong, nonatomic) IBOutlet NSMutableArray *localLanguages;
+@property (strong, nonatomic) NSMutableArray *filteredArr;
+@property (strong, nonatomic) NSMutableArray *filteredRec;
+@property (strong, nonatomic) NSMutableArray *filteredLoc;
+@property (strong, nonatomic) NSMutableArray *srcArr;
+@property (strong, nonatomic) NSMutableArray *recentLanguages;
+@property (strong, nonatomic) NSMutableArray *localLanguages;
 @property (weak, nonatomic) NSString * dstLang;
 @property BOOL isFiltered;
 @property BOOL didChange;
 @property BOOL enteredFromLogin;
 @property (retain, nonatomic) TWapi *api;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
