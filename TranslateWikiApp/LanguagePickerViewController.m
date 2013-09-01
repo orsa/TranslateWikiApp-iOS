@@ -103,31 +103,17 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 3;  // 1)recent languages  2)local languages  3)all the rest
-}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 3; } // 1)recent languages  2)local languages  3)all the rest
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
-            if (isFiltered)
-                return filteredRec.count;
-            else return recentLanguages.count;
-            break;
-        case 1:
-            if (isFiltered)
-                return filteredLoc.count;
-            else
-                return localLanguages.count;
-            break;
+        case 0: // recent lang section
+            return (isFiltered ? filteredRec.count: recentLanguages.count);
+        case 1: // local lang section
+            return (isFiltered ? filteredLoc.count: localLanguages.count);
         default:
-            if (isFiltered)
-                return [filteredArr count];
-            else
-                return [srcArr count];
-            break;
+            return (isFiltered ? filteredArr.count: srcArr.count);
     }
 }
 

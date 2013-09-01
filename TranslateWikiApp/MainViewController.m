@@ -77,7 +77,6 @@
         [weakself.msgTableView reloadData];
         
     }] ;
-    
 }
 
 - (void)viewDidLoad
@@ -86,13 +85,6 @@
     _transCells=[[NSMutableSet alloc] init];
     [menuView setHidden:YES];
     [menuView setFrame:CLOSED_MAIN_MENU_FRAME];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
@@ -101,10 +93,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 1; }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -132,15 +121,15 @@
             }
             [_transCells addObject:trMsgCell];
             
-            trMsgCell.msg=msg;
-            trMsgCell.api=_api;
-            trMsgCell.container=dataController;
-            trMsgCell.msgTableView=self.msgTableView;
-            trMsgCell.srcLabel.text = [trMsgCell.msg source];
-            trMsgCell.suggestionCells=[[NSMutableSet alloc] init];
-            trMsgCell.isExpanded=FALSE;
-            trMsgCell.isMinimized = trMsgCell.msg.minimized;
-            trMsgCell.translationState = translationState;
+            trMsgCell.msg            = msg;
+            trMsgCell.api            = _api;
+            trMsgCell.container      = dataController;
+            trMsgCell.msgTableView   = self.msgTableView;
+            trMsgCell.srcLabel.text  = [trMsgCell.msg source];
+            trMsgCell.suggestionCells= [[NSMutableSet alloc] init];
+            trMsgCell.isExpanded     = FALSE;
+            trMsgCell.isMinimized    = trMsgCell.msg.minimized;
+            trMsgCell.translationState=translationState;
             
             [trMsgCell.infoView setHidden:!msg.infoState];
             [trMsgCell displayHTML:msg.documentation];
@@ -190,7 +179,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if(indexPath.row < [tableView numberOfRowsInSection:indexPath.section]-1)
     {
         TranslationMessage* msg = [dataController objectInListAtIndex:indexPath.row];
@@ -290,7 +278,6 @@
     }
     return false;
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     BOOL isSelected=selectedIndexPath && indexPath.row == selectedIndexPath.row;

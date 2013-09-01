@@ -98,25 +98,15 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2; // one section for recents, one for all the others
-}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 2; } // one section for recents, one for all the others
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
-            if (isFiltered)
-                return [filteredRec count];
-            else
-                return [recentProj count];
-            break;
+        case 0:  // section of recent projects
+            return (isFiltered ? [filteredRec count]: [recentProj count]);
         default:
-            if (isFiltered)
-                return [filteredArr count];
-            else
-                return [srcArr count];
+            return (isFiltered ? [filteredArr count]: [srcArr count]);
     }
 }
 
@@ -162,9 +152,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 30;
-}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{ return 30; }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
    return (indexPath.section == 0); //we allow "editing mode" only for the recent projects section
@@ -189,7 +177,7 @@
         {
             [recentProj removeObjectAtIndex:indexPath.row];
         }
-       srcArr = [[NSMutableArray alloc] initWithArray:originalSrc]; 
+        srcArr = [[NSMutableArray alloc] initWithArray:originalSrc]; 
         //filter the duplicate
         NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
         NSUInteger index = 0;
