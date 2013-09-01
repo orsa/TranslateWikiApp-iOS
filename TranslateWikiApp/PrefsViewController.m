@@ -35,6 +35,31 @@ int flag;       //use to distinguish between active pickerviews
     [self.tableView reloadData];
 }
 
+- (void)LoadFromUserDefaults:(NSUserDefaults *)defaults
+{
+    //load from NSUserDefaults
+    NSString * userDefaultProj = getUserDefaultskey(PROJ_key);
+    if ([userDefaultProj isEqualToString:VAL_STRING_RE_CONTRIBUTIONS])
+    {
+        projLabel.text   = TITLE_STRING_RE_CONTRIBUTIONS;
+        selectedProjCode = VAL_STRING_RE_CONTRIBUTIONS;
+    }
+    else
+    {
+        int i = [self indexOfProjCode:userDefaultProj];
+        if (i != -1)
+        {
+            projLabel.text =  arrProj[i][@"label"];
+            selectedProjCode = arrProj[i][@"id"];
+        }
+        else{
+            //missing project from list
+            projLabel.text   = @"";
+            selectedProjCode = @"";
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,61 +83,20 @@ int flag;       //use to distinguish between active pickerviews
             }
             else if (newArrProj.count>0)
             {
-                NSMutableArray * updatedProj = [ProjectBrowserViewController filterProjects:@[@"!recent",@"!additions"] FromArray:newArrProj];
-                [updatedProj addObject:@{@"id":@"!recent",@"label":@"Recent contributions"}];
+                NSMutableArray * updatedProj = [ProjectBrowserViewController filterProjects:@[STRING_RE_TRANSLATIONS,STRING_RE_ADDITIONS] FromArray:newArrProj];
+                [updatedProj addObject:@{@"id":VAL_STRING_RE_CONTRIBUTIONS,@"label":TITLE_STRING_RE_CONTRIBUTIONS}];
                 arrProj = [NSArray arrayWithArray:updatedProj];
                 setUserDefaultskey(arrProj, ALL_PROJ_key);
                 
-                //load from NSUserDefaults
-                NSString * userDefaultProj = getUserDefaultskey(PROJ_key);
-                if ([userDefaultProj isEqualToString:@"!recent"])
-                {
-                    projLabel.text =  @"Recent contributions";
-                    selectedProjCode = @"!recent";
-                }
-                else
-                {
-                    int i = [self indexOfProjCode:userDefaultProj];
-                    if (i != -1)
-                    {
-                        projLabel.text =  arrProj[i][@"label"];
-                        selectedProjCode = arrProj[i][@"id"];
-                    }
-                    else{
-                        //missing project from list
-                        projLabel.text =  @"";
-                        selectedProjCode = @"";
-                    }
-                }
+                [self LoadFromUserDefaults:defaults];
             }
             else
                 NSLog(@"No project loaded.");
-            
         }];
     }
     else if (arrProj.count>0)
     {
-        //load from NSUserDefaults
-        NSString * userDefaultProj = getUserDefaultskey(PROJ_key);
-        if ([userDefaultProj isEqualToString:@"recent"])
-        {
-            projLabel.text =  userDefaultProj;
-            selectedProjCode = @"!recent";
-        }
-        else
-        {
-            int i = [self indexOfProjCode:userDefaultProj];
-            if (i != -1)
-            {
-                projLabel.text =  arrProj[i][@"label"];
-                selectedProjCode = arrProj[i][@"id"];
-            }
-            else{
-                //missing project from list
-                projLabel.text =  @"";
-                selectedProjCode = @"";
-            }
-        }
+        [self LoadFromUserDefaults:defaults];
     }
     //LOG(arrProj); //Debug
     
@@ -145,16 +129,10 @@ int flag;       //use to distinguish between active pickerviews
     }
 }
 
-
 -(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
     [tupleSizeTextView resignFirstResponder];
     [maxMsgLengthTextField resignFirstResponder];
 }
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    return YES;
-}
-
 
 -(NSString*)getNewLang
 {
@@ -168,17 +146,16 @@ int flag;       //use to distinguish between active pickerviews
     return nil;
 }
 
--(NSString*)getNewProj
-{
+-(NSString*)getNewProj {
         return selectedProjCode;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated // handles aplying changes on exit
 {
     [super viewWillDisappear:animated];
     
-    [tupleSizeTextView resignFirstResponder];
-    [maxMsgLengthTextField resignFirstResponder];
+    [tupleSizeTextView resignFirstResponder];      // releases keyboard
+    [maxMsgLengthTextField resignFirstResponder];  // ditto
     
     [self.view endEditing:YES];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
@@ -191,7 +168,7 @@ int flag;       //use to distinguish between active pickerviews
         if (![tupleSizeTextView.text isEqualToString:@""])
             setUserDefaultskey(maxMsgLengthTextField.text, MAX_MSG_LEN_key);
         MainViewController *ViewController = (MainViewController *)[self.navigationController topViewController];
-        if (ViewController.class == [MainViewController class])
+        if (ViewController.class == [MainViewController class]) // in case we exit to main view, as opposed to about view
         {
             [ViewController.dataController removeAllObjects];
             [ViewController.msgTableView reloadData];
@@ -203,11 +180,6 @@ int flag;       //use to distinguish between active pickerviews
                 ViewController.selectedIndexPath=nil;
         }
     }
-}
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1; //always one column
 }
 
 -(int)indexOfProjCode:(NSString*)pcode{
@@ -236,38 +208,7 @@ int flag;       //use to distinguish between active pickerviews
     return -1;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if (textField == tupleSizeTextView)
-    {
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        NSString *expression = @"^(([5-9])|([1-4][0-9]?)|(50?))?$"; //regexp which restrics input to a range of 0 to 50
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
-                                                                            options:NSRegularExpressionCaseInsensitive
-                                                                            error:nil];
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
-        if (numberOfMatches == 0)
-            return NO;
-       
-         if (![textField.text isEqualToString:@""])
-               didChange=YES;
-    }
-    else if (textField==maxMsgLengthTextField)
-    {
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        NSString *expression = @"^([1-9]?|[1-9][0-9]{0,5}+)$"; // numbers only regexp
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:nil];
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
-        if (numberOfMatches == 0)
-            return NO;
-        
-        if (![textField.text isEqualToString:@""])
-            didChange=YES;
-    }
-    return YES;
-}
+
 
 -(IBAction)logout:(id)sender
 {
@@ -346,6 +287,37 @@ int flag;       //use to distinguish between active pickerviews
     }
     
 }
+
+#pragma mark - Text field
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *expression;
+    if (textField == tupleSizeTextView)
+    {
+        expression = @"^(([5-9])|([1-4][0-9]?)|(50?))?$"; //regexp which restrics input to a range of 0 to 50
+    }
+    else if (textField==maxMsgLengthTextField)
+    {
+        expression = @"^([1-9]?|[1-9][0-9]{0,5}+)$"; // numbers only regexp
+    }
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+    if (numberOfMatches == 0)
+        return NO;
+    
+    if (![textField.text isEqualToString:@""])
+        didChange=YES;
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{ return YES; }
+
+#pragma mark - Table view
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

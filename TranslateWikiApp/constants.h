@@ -107,6 +107,11 @@
 #define startOfCollapsible2 @"<div class=\"mw-related-title mw-collapsible"
 #define connectivityProblem @"Couldn't complete request. Please check your connectivity."
 
+#define TITLE_STRING_RE_CONTRIBUTIONS @"Recent contributions"
+#define VAL_STRING_RE_CONTRIBUTIONS @"!recent"
+#define STRING_RE_TRANSLATIONS @"!recent"
+#define STRING_RE_ADDITIONS @"!additions"
+
 //***********************
 //code snippets
 //***********************
