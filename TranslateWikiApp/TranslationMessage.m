@@ -26,29 +26,28 @@
 #import "constants.h"
 
 @implementation TranslationMessage
-@synthesize prState;
+@synthesize source, translation, translationByUser, translated, minimized, language, project, key, revision, title, acceptCount, suggestions, documentation, noDocumentation, userInput, infoState, prState;
 
 -(id) initWithDefinition:(NSString*) def withTranslation:(NSString*)trans withLanguage:(NSString*)lang withProject:(NSString*)proj withKey:(NSString*)k withRevision:(NSString*)rev withTitle:(NSString*)mTitle  WithAceeptCount:(NSInteger)ac InState:(BOOL)newPrState
 {
     self = [super init];
     if (self) {
-        _source         = def;
-        _translation    = trans;
-        _translationByUser=@"";
-        _translated     = FALSE;
-        _minimized      = FALSE;
-        _language       = lang;
-        _project        = proj;
-        _key            = k;
-        _revision       = rev;
-        _title          = mTitle;
-       // _isAccepted   = accepted;
-        _acceptCount    = ac;
-        _suggestions    = [[NSMutableArray alloc] init];
-        _documentation  = @"";
-        _noDocumentation= YES;
-        _userInput      = @"";
-        _infoState      = NO;
+        source         = def;
+        translation    = trans;
+        translationByUser=@"";
+        translated     = FALSE;
+        minimized      = FALSE;
+        language       = lang;
+        project        = proj;
+        key            = k;
+        revision       = rev;
+        title          = mTitle;
+        acceptCount    = ac;
+        suggestions    = [[NSMutableArray alloc] init];
+        documentation  = @"";
+        noDocumentation= YES;
+        userInput      = @"";
+        infoState      = NO;
         prState         = newPrState;
         return self;
     }
@@ -124,7 +123,7 @@
     //putting the final result inside _suggestions, up to the maxmimum capacity
     int iterations=min([uniqueSuggs count], MAX_NUMBER_OF_SUGGESTIONS);
     for(j=0; j<iterations; j=j+1){
-        _suggestions[j]=uniqueSuggs[j];
+        suggestions[j]=uniqueSuggs[j];
     }
 }
 
@@ -133,12 +132,12 @@
     NSMutableDictionary* doc=translationAids[@"documentation"];
     NSString* valueDocumentation = [self cutCollapsibleFromHtml:doc[@"html"]];//@"value" for templated text
     if([valueDocumentation isKindOfClass:[NSNull class]] || [valueDocumentation isEqualToString:@""]){
-        _documentation=@"";
-        _noDocumentation=YES;
+        documentation=@"";
+        noDocumentation=YES;
     }
     else{
-        _documentation=valueDocumentation;
-        _noDocumentation=NO;
+        documentation=valueDocumentation;
+        noDocumentation=NO;
     }
 }
 
@@ -162,7 +161,7 @@
 {
     if([self getUnexpandedHeightOfSource]<[self getExpandedHeightOfSourceUnderWidth:width])
         return YES;
-    for(int i=0; i<[_suggestions count]; i++){
+    for(int i=0; i<[suggestions count]; i++){
         if([self getUnexpandedHeightOfSuggestion]<[self getExpandedHeightOfSuggestionNumber:i underWidth:width])
             return YES;
     }
@@ -174,17 +173,16 @@
 -(CGFloat)getUnexpandedHeightOfSuggestion{ return 50; }
 
 -(CGFloat)getExpandedHeightOfSourceUnderWidth:(CGFloat)width{
-    return max([_source sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, [self getUnexpandedHeightOfSource]);
+    return max([source sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height, [self getUnexpandedHeightOfSource]);
 }
 
 -(CGFloat)getExpandedHeightOfSuggestionNumber:(NSInteger)i underWidth:(CGFloat)width{
-    //return max([_suggestions[i][@"suggestion"] sizeWithFont:[UIFont boldSystemFontOfSize:12] constrainedToSize:CGSizeMake(width, UINTMAX_MAX) lineBreakMode:NSLineBreakByWordWrapping].height+12, [self getUnexpandedHeightOfSuggestion]);
     return 50;
 }
 
 -(CGFloat)getCombinedExpandedHeightOfSuggestionUnderWidth:(CGFloat)width{
     float h=0;
-    for(int i=0; i<_suggestions.count; i++){
+    for(int i=0; i<suggestions.count; i++){
         h+=[self getExpandedHeightOfSuggestionNumber:i underWidth:width];
     }
     return h;
@@ -192,7 +190,7 @@
 
 // determine frame's height by number of suggestions
 -(CGFloat)heightForImageView{
-    int n=[_suggestions count];
+    int n=[suggestions count];
     switch (n) {            
         case 0: return 84;
         case 1: return 135;

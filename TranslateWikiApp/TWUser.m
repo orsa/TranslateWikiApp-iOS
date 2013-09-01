@@ -26,12 +26,15 @@
 
 @implementation TWUser
 
+@synthesize userName, userId, isLoggedin;
+
 -(id) init{
     self = [super init];
     if (self) {
-        _userName=@"";
-        _isLoggedin=NO;
-        if (!_userId) _userId=@"";
+        userName=@"";
+        isLoggedin=NO;
+        if (!userId)
+            userId=@"";
         return self;
     }
     return nil;

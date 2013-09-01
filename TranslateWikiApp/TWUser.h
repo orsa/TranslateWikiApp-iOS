@@ -10,10 +10,9 @@
 
 @interface TWUser : NSObject
 
-@property(nonatomic, copy)NSString* userName;
-@property(nonatomic, copy)NSString* userId;
-@property(nonatomic, copy)NSHTTPCookie* authCookie;
-@property BOOL isLoggedin;
+@property(nonatomic, copy)NSString* userName; // the user name
+@property(nonatomic, copy)NSString* userId; // the user id
+@property BOOL isLoggedin; // did the authentication succeed, and the user is logged in
 
 -(id) init;
 

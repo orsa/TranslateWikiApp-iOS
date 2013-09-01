@@ -89,7 +89,6 @@
         return;
     }
     
-    //NSLog(@"%@", response); //DEBUG
     translationState = !isProof;
     NSMutableArray *newData = [[NSMutableArray alloc] initWithArray:response[@"query"][@"messagecollection"]];
     //we expect an array, otherwise will be runtime exception
@@ -132,7 +131,6 @@
         [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof  MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining IterationsLeft:iterationsToGo-1 completionHandler:completionBlock];
     else{//we finished
         if([self isEmpty]){//if no messages were found, output an alert
-            //need to get correct project name and language name
             LoadDefaultAlertView();
             NSString* alertMessage=[NSString stringWithFormat:@"No messages were found for project \"%@\" and language %@, in %@ mode", proj, lang, isProof ? @"proofread" : @"translation"];
             AlertSetMessage(alertMessage);
@@ -157,14 +155,8 @@
     NSInteger iterationsToGo = MAX_REQUESTS_ON_ADD_MESSAGE_TUPLE;
     NSString* lang=getUserDefaultskey(LANG_key);
     NSString* proj=getUserDefaultskey(PROJ_key);
-    //NSInteger queryLimit=numberOfMessagesRemaining;
-    //NSMutableDictionary *result;
-    [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining IterationsLeft:iterationsToGo completionHandler:completionBlock];
 
-        //LOG(result); //DEBUG
-    
-             //  if(stopLoop)
-    //        break;
+    [self doRequestsWithApi:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining IterationsLeft:iterationsToGo completionHandler:completionBlock];
 }
 
 //***********************************************************
