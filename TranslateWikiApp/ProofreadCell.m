@@ -19,7 +19,8 @@
 //  limitations under the License.
 
 //*********************************************************************************
-// ProofreadCell - 
+// ProofreadCell - manages a displayed cell in a proofread session for a
+// specific message
 //*********************************************************************************
 
 #import "ProofreadCell.h"
