@@ -260,7 +260,7 @@
         }
         else if (newArrProj.count>0)
         {
-            NSMutableArray * updatedProj = [ProjectBrowserViewController filterProjects:@[@"!recent",@"!additions"] FromArray:newArrProj];
+            NSMutableArray * updatedProj = [ProjectBrowserViewController filterProjects:@[STRING_RE_TRANSLATIONS,STRING_RE_ADDITIONS] FromArray:newArrProj];
             [updatedProj addObject:@{@"id":@"!recent",@"label":@"Recent contributions"}];
             originalSrc = [NSArray arrayWithArray:updatedProj];
             setUserDefaultskey(originalSrc, ALL_PROJ_key);
@@ -275,6 +275,7 @@
     
 }
 
+// merge arrays without duplications
 + (NSMutableArray *) filterProjects:(NSArray*)proj FromArray:(NSArray*)original{
     
     NSMutableArray *discardedItems = [NSMutableArray array];

@@ -224,15 +224,8 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    
-    if(searchText.length==0)
-    {
-        isFiltered = NO;
-    }
-    else
-    {
-        isFiltered = YES;
-    }
+    isFiltered = (searchText.length!=0); // whether to use filtering
+
     filteredRec = [[NSMutableArray alloc] init];
     filteredLoc = [[NSMutableArray alloc] init];
     filteredArr = [[NSMutableArray alloc] init];
@@ -279,9 +272,7 @@
         NSArray * arrLangCodes = @[SUPPORTED_LANGUAGE_CODES];
         NSInteger index = [arrLang indexOfObject:dstLang];
         LoadUserDefaults();
-        if (index!=NSNotFound) {
-        
-            
+        if (index!=NSNotFound) {        
             setUserDefaultskey([arrLangCodes objectAtIndex:index], LANG_key);
         }
         else{
