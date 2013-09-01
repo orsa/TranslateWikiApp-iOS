@@ -16,7 +16,7 @@
 @class PrefsViewController;
 @interface MenuView : UIView <UITableViewDelegate, UITableViewDataSource>
 
-@property (retain, nonatomic) MainViewController *mainVC;
+@property (retain, nonatomic) MainViewController *mainVC; // pointer to the father in the heirarchy - the main view controller
 
 - (void) close;
 - (void) openInView:(UIView*)v;
