@@ -17,6 +17,11 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
+//*********************************************************************************
+// InputCell - manages the cell that contains the text view plus the send button
+// in a translate cell
+//*********************************************************************************
 
 #import "InputCell.h"
 
