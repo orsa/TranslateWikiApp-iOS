@@ -176,7 +176,7 @@
             }
             msgCell.srcLabel.text = [msg source];
             msgCell.dstLabel.text = [msg translation];
-            msgCell.keyLabel.text = [msg key];
+            //msgCell.keyLabel.text = [msg key];
             NSInteger ac_cnt = [[dataController objectInListAtIndex:i] acceptCount];
             msgCell.acceptCount.text = (ac_cnt!=0 ? [NSString  stringWithFormat:@"%d", ac_cnt]: @"");
          

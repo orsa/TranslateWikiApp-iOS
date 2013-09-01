@@ -23,7 +23,7 @@
 
 @implementation TranslationCell
 
-@synthesize srcLabel, frameImg, inputTable, inputCell, infoView, infoBtn, deleteBtn, suggestionCells, msg,  docWebView, isExpanded, isMinimized, translationState;
+@synthesize srcLabel, frameImg, inputTable, inputCell, infoView, infoBtn, deleteBtn, suggestionCells, msg,  docWebView, isExpanded, isMinimized, translationState, originalSelectionStyle, msgTableView, container;
 
 
 //*********************************************************************************
@@ -99,12 +99,12 @@
     
     if(hideInfo)
     {
-        [self setSelectionStyle:_originalSelectionStyle];
+        [self setSelectionStyle:originalSelectionStyle];
     }
     else
     {
         //disabling interactions
-        _originalSelectionStyle=[self selectionStyle];
+        originalSelectionStyle=[self selectionStyle];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //setting view
@@ -132,7 +132,7 @@
         msg.infoState = YES;
 
         //disabling interactions
-        _originalSelectionStyle=[self selectionStyle];
+        originalSelectionStyle=[self selectionStyle];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         [[self inputTable] setUserInteractionEnabled:NO];
         [[self inputView] setUserInteractionEnabled:NO];
@@ -154,7 +154,7 @@
         msg.infoState = NO;
         
         //enabling interactions
-        [self setSelectionStyle:_originalSelectionStyle];
+        [self setSelectionStyle:originalSelectionStyle];
         [[self inputTable] setUserInteractionEnabled:YES];
         [[self inputView] setUserInteractionEnabled:YES];
         
@@ -175,7 +175,7 @@
         [self removeFromList];
     }else{ // we just cancelling an edit
         [msg setPrState:YES];
-        [_msgTableView reloadData];
+        [msgTableView reloadData];
     }
     
 }
@@ -235,18 +235,18 @@
 
 -(void)removeFromList
 {
-    int index = [_container indexOfObject:msg];
+    int index = [container indexOfObject:msg];
     [self removeFromSuperview];
     UITableView* table = (UITableView*)self.superview;
     [table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    [_container removeObjectAtIndex:index];
+    [container removeObjectAtIndex:index];
     [self clearTextBox];
-    [_msgTableView reloadData];
+    [msgTableView reloadData];
 }
 
 -(void)scrollTo
 {
-    int index = [_container indexOfObject:msg];
+    int index = [container indexOfObject:msg];
     UITableView* table = (UITableView*)self.superview;
     [table scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }

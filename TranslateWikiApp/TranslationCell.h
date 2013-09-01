@@ -15,32 +15,32 @@
 
 @interface TranslationCell : UITableViewCell <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) IBOutlet UILabel *srcLabel;
-@property (weak, nonatomic) IBOutlet UITableView *inputTable;
-@property (weak, nonatomic) IBOutlet UIImageView *frameImg;
-@property (nonatomic, retain) TranslationMessage * msg;
-@property (retain, nonatomic) TWapi* api;
-@property (retain, nonatomic) TranslationMessageDataController * container;
-@property (retain, nonatomic) UITableView* msgTableView;
-@property (retain, nonatomic) InputCell* inputCell;
-@property (atomic) BOOL isExpanded;
-@property (atomic) BOOL isMinimized;
-@property (atomic) BOOL translationState;
-@property (retain, nonatomic)NSMutableSet* suggestionCells;
-@property (strong, nonatomic) IBOutlet UIButton *infoBtn;
-@property (strong, nonatomic) IBOutlet UIView *infoView;
-@property (weak, nonatomic) IBOutlet UIWebView *docWebView;
-@property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle;
-@property (strong, nonatomic) IBOutlet UIButton *deleteBtn;
+@property (strong, nonatomic) IBOutlet UILabel *srcLabel; // label of message source
+@property (weak, nonatomic) IBOutlet UITableView *inputTable; // the table holding suggestions and text view
+@property (weak, nonatomic) IBOutlet UIImageView *frameImg; // the image that contains the suggestions and text view
+@property (nonatomic, retain) TranslationMessage * msg; // the message object containg all the information about the message
+@property (retain, nonatomic) TWapi* api; // api object for api requests
+@property (retain, nonatomic) TranslationMessageDataController * container; // the data container in which the message is included 
+@property (retain, nonatomic) UITableView* msgTableView; // the general table view in which the cell is included
+@property (retain, nonatomic) InputCell* inputCell; // the cell that contains the text view
+@property (atomic) BOOL isExpanded; // is the cell expanded (selected or not)
+@property (atomic) BOOL isMinimized; // is the cell minimized
+@property (atomic) BOOL translationState; // are we on translation session
+@property (retain, nonatomic)NSMutableSet* suggestionCells; // container for the cells of the suggestions
+@property (strong, nonatomic) IBOutlet UIButton *infoBtn; // button for documentation info
+@property (strong, nonatomic) IBOutlet UIView *infoView; // the documentation info view
+@property (weak, nonatomic) IBOutlet UIWebView *docWebView; // the web view in which the documentation is displayed
+@property (nonatomic) UITableViewCellSelectionStyle originalSelectionStyle; // the original selection style, for restoring it after disabling interactions
+@property (strong, nonatomic) IBOutlet UIButton *deleteBtn; // trash button
 
-- (IBAction)pushInfo:(id)sender;
-- (IBAction)pushDelete:(id)sender;
-- (void)buildWithMsg:(NSArray *)obj;
-- (void)displayHTML:(NSString*)html;
-- (void)setMinimized:(NSNumber*)minNumber;
-- (void)removeFromList;
-- (void)scrollTo;
-- (void)clearTextBox;
+- (IBAction)pushInfo:(id)sender; // tap info button
+- (IBAction)pushDelete:(id)sender; // tap trash button
+- (void)buildWithMsg:(NSArray *)obj; // build the cell
+- (void)displayHTML:(NSString*)html; // display the html documentation in web view
+- (void)setMinimized:(NSNumber*)minNumber; // set the cell minimized, getting bool as a number
+- (void)removeFromList; // remove the cell from table
+- (void)scrollTo; // scroll the screen to this cell's start
+- (void)clearTextBox; // clear the text view, and get "Your translation" back there
 
 @end
 

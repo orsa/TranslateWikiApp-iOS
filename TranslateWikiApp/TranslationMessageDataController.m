@@ -26,23 +26,23 @@
 #import "TranslationMessage.h"
 
 @implementation TranslationMessageDataController
-@synthesize translationState;
+@synthesize translationState, masterTranslationMessageList, offset;
 
 - (void)initializeDefaultDataList {
     NSMutableArray *MessageList = [[NSMutableArray alloc] init];
-    self.masterTranslationMessageList = MessageList;
+    masterTranslationMessageList = MessageList;
 }
 
 - (void)setMasterTranslationMessageList:(NSMutableArray *)newList {
-    if (_masterTranslationMessageList != newList) {
-        _masterTranslationMessageList = [newList mutableCopy];
+    if (masterTranslationMessageList != newList) {
+        masterTranslationMessageList = [newList mutableCopy];
     }
 }
 
 - (id)init {
     if (self = [super init]) {
         [self initializeDefaultDataList];
-        _offset=0;
+        offset=0;
 
         return self;
     }
@@ -50,19 +50,19 @@
 }
 
 - (NSInteger)countOfList{
-    return [self.masterTranslationMessageList count];
+    return [masterTranslationMessageList count];
 }
 
 - (TranslationMessage *)objectInListAtIndex:(NSUInteger)theIndex {
-    return [self.masterTranslationMessageList objectAtIndex:theIndex];
+    return [masterTranslationMessageList objectAtIndex:theIndex];
 }
 
 - (NSInteger)indexOfObject:(TranslationMessage*)msg{
-    return [self.masterTranslationMessageList indexOfObject:msg];
+    return [masterTranslationMessageList indexOfObject:msg];
 }
 
 - (void)addTranslationMessageWithMessage:(TranslationMessage *)message{
-    [self.masterTranslationMessageList addObject:message];
+    [masterTranslationMessageList addObject:message];
 }
 
 - (BOOL)isEmpty{
@@ -70,12 +70,12 @@
 }
 
 - (void)removeAllObjects{
-    [self.masterTranslationMessageList removeAllObjects];
-    _offset=0;
+    [masterTranslationMessageList removeAllObjects];
+    offset=0;
 }
 
 - (void)removeObjectAtIndex:(NSInteger)index{
-    [self.masterTranslationMessageList removeObjectAtIndex:index];
+    [masterTranslationMessageList removeObjectAtIndex:index];
 }
 
 
@@ -123,7 +123,7 @@
             [self addTranslationMessageWithMessage:message];
         }
     }
-    _offset=_offset+newData.count;
+    offset=offset+newData.count;
     
     BOOL continueLoop=!receivedMessagesLessThanAskedFor && numberOfMessagesRemaining>0 && iterationsToGo>0;
     
@@ -168,13 +168,13 @@
          proj = isProof ? @"!recent" : @"!additions"; // in pr mode "!recent" is regarded as "!additions"
     if(isProof) //case of proofread mode;
     {
-        [api TWTranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset completionHandler:^(NSDictionary *response, NSError *error)
+        [api TWTranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:offset completionHandler:^(NSDictionary *response, NSError *error)
          {
              [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining IterationsLeft:iterationsToGo completionHandler:completionBlock];
          }];
     }
     else{  //case of full translation mode
-        [api TWUntranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:_offset completionHandler:^(NSDictionary *response, NSError *error)
+        [api TWUntranslatedMessagesListRequestForLanguage:lang Project:proj Limitfor:numberOfMessagesRemaining OffsetToStart:offset completionHandler:^(NSDictionary *response, NSError *error)
          {
              [self handleResponse:response Error:error Api:api ManagedObject:managedObjectContext Language:lang Project:proj Proofread:isProof MaxMessageLength:maxMsgLen MessRemain:numberOfMessagesRemaining IterationsLeft:iterationsToGo completionHandler:completionBlock];
          }];

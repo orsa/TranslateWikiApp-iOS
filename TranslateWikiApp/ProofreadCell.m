@@ -29,11 +29,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.acceptBtn.hidden = TRUE;
-        self.rejectBtn.hidden = TRUE;
-        self.editBtn.hidden = TRUE;
-        self.editContainer.hidden = TRUE;
-        self.cellFrame.hidden = TRUE;
+        acceptBtn.hidden = TRUE;
+        rejectBtn.hidden = TRUE;
+        editBtn.hidden = TRUE;
+        editContainer.hidden = TRUE;
+        cellFrame.hidden = TRUE;
     }
     return self;
 }
@@ -70,10 +70,8 @@
     [rejectBtn setHidden:!exp];
     [editBtn setHidden:!exp];
     [acceptCount setHidden:!exp];
-    //[_keyinfoLabel setHidden:!exp]; we dont show key for now
-    //[_keyLabel setHidden:!exp];
+    //[_keyLabel setHidden:!exp]; //we don't show key for now
     [editContainer setHidden:!exp];
-    //[cellFrame setHidden:!exp];
     
     [self setBackgroundColor: (exp ? [UIColor whiteColor] : [UIColor clearColor])];
     
