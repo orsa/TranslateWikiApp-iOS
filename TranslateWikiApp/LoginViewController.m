@@ -51,11 +51,6 @@
         // send login request to api
         [api TWLoginRequestWithPassword:passwString isMainThreadBlocked:YES completionHandler:^(NSString * resultString, NSError * error)
         {
-            if(error){
-                LoadDefaultAlertView();
-                AlertSetMessage(connectivityProblem);
-                AlertShow();
-            }
             didLogin=(error==nil && [resultString isEqualToString:@"Success"]);
             isDone=YES;
         }];
