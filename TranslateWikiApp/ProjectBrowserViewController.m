@@ -31,6 +31,7 @@
     return self;
 }
 
+// prepare the project list to show recent first
 - (void)prepareList
 {
     srcArr = [[NSMutableArray alloc] initWithArray:originalSrc];
@@ -61,15 +62,7 @@
     
     isFiltered = NO;
     didChange = NO;
-    
     [self prepareList];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -116,20 +109,17 @@
     UITableViewCell *cell;
     switch (indexPath.section) {
         case 0:
-            identifier=@"rec";
+            identifier=@"rec"; // identifier for recently used projects
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            if (isFiltered)
-                cell.textLabel.text = filteredRec[indexPath.row][@"label"];
-            else
-                cell.textLabel.text = recentProj[indexPath.row][@"label"];
+            cell.textLabel.text =
+            isFiltered ? filteredRec[indexPath.row][@"label"] : recentProj[indexPath.row][@"label"];
             break;
         default:
-            identifier=@"b";
-            cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath]; 
-            if (isFiltered)
-                cell.textLabel.text = filteredArr[indexPath.row][@"label"];
-            else
-                cell.textLabel.text = srcArr[indexPath.row][@"label"];
+            identifier=@"b"; // identifier for other projects
+            cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            cell.textLabel.text =
+            isFiltered ? filteredArr[indexPath.row][@"label"] : srcArr[indexPath.row][@"label"];
+            break;
     }
     return cell;
 }
@@ -260,7 +250,6 @@
         HideNetworkActivityIndicator();
         [projTable reloadData];
     }];
-    
 }
 
 // merge arrays without duplications

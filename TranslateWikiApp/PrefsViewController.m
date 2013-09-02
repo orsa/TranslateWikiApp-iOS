@@ -28,7 +28,7 @@ int flag;       //use to distinguish between active pickerviews
 
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [self.tableView reloadData];
+    [self.tableView reloadData]; // makes the GUI look pretty on rotation
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -49,11 +49,10 @@ int flag;       //use to distinguish between active pickerviews
         int i = [self indexOfProjCode:userDefaultProj];
         if (i != -1)
         {
-            projLabel.text =  arrProj[i][@"label"];
+            projLabel.text   = arrProj[i][@"label"];
             selectedProjCode = arrProj[i][@"id"];
         }
-        else{
-            //missing project from list
+        else{ // missing project from list
             projLabel.text   = @"";
             selectedProjCode = @"";
         }
@@ -69,10 +68,10 @@ int flag;       //use to distinguish between active pickerviews
     
     arrLang =  @[SUPPORTED_LANGUAGE_NAMES];         // init array of lang titles
     arrLangCodes = @[SUPPORTED_LANGUAGE_CODES];     // init array of lang values
-    LoadUserDefaults();
     
+    LoadUserDefaults();    
+    arrProj = getUserDefaultskey(ALL_PROJ_key); // load projects from memory
     
-    arrProj = getUserDefaultskey(ALL_PROJ_key);
     if (!arrProj)   // if no saved data for projects
     {               // requesting project list via api - level-0 only
         [api TWProjectListMaxDepth:0 completionHandler:^(NSArray *newArrProj, NSError *error) {
@@ -109,19 +108,13 @@ int flag;       //use to distinguish between active pickerviews
     
     NSInteger index = [arrLangCodes indexOfObject:getUserDefaultskey(LANG_key)];
     if (index!=NSNotFound)
-        langLabel.text = [arrLang objectAtIndex:index];
+        langLabel.text = arrLang[index];
     else
         NSLog(@"Unfound language: %@", getUserDefaultskey(LANG_key) );
     
     //load from NSUserDefaults
-    tupleSizeTextView.text = getUserDefaultskey(TUPSIZE_key);
+    tupleSizeTextView.text     = getUserDefaultskey(TUPSIZE_key);
     maxMsgLengthTextField.text = getUserDefaultskey(MAX_MSG_LEN_key);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -134,16 +127,10 @@ int flag;       //use to distinguish between active pickerviews
     }
 }
 
--(void)backgroundTap:(UITapGestureRecognizer *)tapGR{
-    [tupleSizeTextView resignFirstResponder];
-    [maxMsgLengthTextField resignFirstResponder];
-}
-
--(NSString*)getNewLang
-{
+- (NSString*)getNewLang {
     NSInteger index = [arrLang indexOfObject:langLabel.text];
     if (index!=NSNotFound) {
-        return [arrLangCodes objectAtIndex:index];
+        return arrLangCodes[index];
     }
     else{
         NSLog(@"no language found");
@@ -151,18 +138,14 @@ int flag;       //use to distinguish between active pickerviews
     return nil;
 }
 
--(NSString*)getNewProj {
-        return selectedProjCode;
-}
+- (NSString*)getNewProj { return selectedProjCode; }
 
 - (void)viewWillDisappear:(BOOL)animated // handles aplying changes on exit
 {
     [super viewWillDisappear:animated];
+
+    [self.view endEditing:YES]; // release keyboard
     
-    [tupleSizeTextView resignFirstResponder];      // releases keyboard
-    [maxMsgLengthTextField resignFirstResponder];  // ditto
-    
-    [self.view endEditing:YES];
     if (didChange && ![[self.navigationController viewControllers] containsObject:self])
     { //set new preferences
         LoadUserDefaults();
@@ -187,35 +170,27 @@ int flag;       //use to distinguish between active pickerviews
     }
 }
 
--(int)indexOfProjCode:(NSString*)pcode{
+- (int) indexOfProjVal:(NSString*)val inTag:(NSString*)tag{
     int i=0;
     for(NSDictionary * aproj in arrProj)
     {
-        NSString * st = aproj[@"id"];
-        if (st && [pcode isEqualToString:st]) {
+        NSString * st = aproj[tag];
+        if (st && [val isEqualToString:st]) {
             return i;
         }
         else i++;
     }
     return -1;
+}
+-(int)indexOfProjCode:(NSString*)pcode{
+    return [self indexOfProjVal:pcode inTag:@"id"];
 }
 
 -(int)indexOfProjlabel:(NSString*)plabel{
-    int i=0;
-    for(NSDictionary * aproj in arrProj)
-    {
-        NSString * st = aproj[@"label"];
-        if (st && [plabel isEqualToString:st]) {
-            return i;
-        }
-        else i++;
-    }
-    return -1;
+    return [self indexOfProjVal:plabel inTag:@"label"];
 }
 
-
-
--(IBAction)logout:(id)sender
+-(void)logout
 {
     /* logout without prompting aproval */
     [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
@@ -227,80 +202,63 @@ int flag;       //use to distinguish between active pickerviews
             AlertShow();
         }
     }];
+    // reset credentials in keychain
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
     [loginKC resetKeychainItem];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES]; // go back to start view (login)
 }
 
--(IBAction)restoreDefaults:(id)sender
-{   //show alert
-    LoadAlertViewWithOthers(STRING_ALERT, STRING_PROMPT_RESTORE, STRING_CANCEL, STRING_OK);
-    [alert setTag:2];
-    [alert show];
+-(void)restoreDefaults
+{
+    NSString* lang=PREFERRED_LANG[0];
+    NSString* proj=@"!recent";
+    NSString* tuple=INITIAL_TUPLE_SIZE;
+    NSString* maxLen = INITIAL_MAX_LENGTH;
+    
+    LoadUserDefaults();
+    setUserDefaultskey(nil, RECENT_PROJ_key);
+    setUserDefaultskey(nil, RECENT_LANG_key);
+    
+    selectedProjCode=proj;
+    projLabel.text=@"Recent Contributions";
+    langLabel.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
+    tupleSizeTextView.text=tuple;
+    maxMsgLengthTextField.text = maxLen;
+    
+    //deleting core data
+    NSFetchRequest * allEntities = [[NSFetchRequest alloc] init];
+    [allEntities setEntity:[NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext]];
+    [allEntities setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * rejs = [managedObjectContext executeFetchRequest:allEntities error:&error];
+    //error handling goes here
+    for (NSManagedObject * rej in rejs) {
+        [managedObjectContext deleteObject:rej];
+    }
+    NSError *saveError = nil;
+    [managedObjectContext save:&saveError];
+    //more error handling here
+    //finish deleting core data
+    
+    didChange=YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (alertView.tag) {
         case 1: //alert result for logout
             if (buttonIndex == 1)  //clicked ok at the alert
-            {
-                [api TWLogoutRequest:^(NSDictionary* response, NSError* error){
-                    //Handle the error
-                    NSLog(@"%@", error);
-                    if(error){
-                        LoadDefaultAlertView();
-                        AlertSetMessage(connectivityProblem);
-                        AlertShow();
-                    }
-                }];
-                KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
-                [loginKC resetKeychainItem];
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
+                [self logout];
             break;
         case 2: //alert result for restore
             if (buttonIndex == 1)  //clicked ok at the alert
             {
-                NSString* lang=PREFERRED_LANG[0];
-                NSString* proj=@"!recent";
-                NSString* tuple=INITIAL_TUPLE_SIZE;
-                NSString* maxLen = INITIAL_MAX_LENGTH;
-                
-                LoadUserDefaults();
-                setUserDefaultskey(nil, RECENT_PROJ_key);
-                setUserDefaultskey(nil, RECENT_LANG_key);
-                
-                selectedProjCode=proj;
-                projLabel.text=@"Recent Contributions";
-                langLabel.text=[arrLang objectAtIndex:[arrLangCodes indexOfObject:lang]];
-                tupleSizeTextView.text=tuple;
-                maxMsgLengthTextField.text = maxLen;
-                
-                //deleting core data
-                NSFetchRequest * allEntities = [[NSFetchRequest alloc] init];
-                [allEntities setEntity:[NSEntityDescription entityForName:@"RejectedMessage" inManagedObjectContext:managedObjectContext]];
-                [allEntities setIncludesPropertyValues:NO]; //only fetch the managedObjectID
-                
-                NSError * error = nil;
-                NSArray * rejs = [managedObjectContext executeFetchRequest:allEntities error:&error];
-                //error handling goes here
-                for (NSManagedObject * rej in rejs) {
-                    [managedObjectContext deleteObject:rej];
-                }
-                NSError *saveError = nil;
-                [managedObjectContext save:&saveError];
-                //more error handling here
-                //finish deleting core data
-                
-                didChange=YES;                
+                [self restoreDefaults];
             }
             break;
-        default:
-            break;
+        default: break;
     }
-    
 }
 
 #pragma mark - Text field
@@ -338,21 +296,30 @@ int flag;       //use to distinguish between active pickerviews
 {
     if (section==0)
         return [NSString stringWithFormat:@"Logged as: %@",api.user.userName];
-    return NULL;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section==1){
-        if (indexPath.row == 0){
-            [self logout:nil];
+        UIAlertView *alert;
+        switch (indexPath.row) {
+            case 0:
+                [self logout]; // we don't show alert because we want logout operation be quick
+                break;
+            case 1:
+                //show alert
+                alert = LoadAlertViewWithOthers(STRING_ALERT, STRING_PROMPT_RESTORE, STRING_CANCEL, STRING_OK);
+                [alert setTag:2];
+                [alert show];
+                break;
+            case 2:
+                // goes to "about" page
+                break;
+            default: break;
         }
-        else if (indexPath.row == 1){
-            [self restoreDefaults:nil];
-        }
-        else if (indexPath.row == 2){
-            //TODO
-        }
-    }
+    }    
+    [self.view endEditing:YES]; // release keyboard
 }
+
 @end

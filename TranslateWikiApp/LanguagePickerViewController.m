@@ -70,12 +70,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -125,26 +119,19 @@
         case 0:
             identifier=@"rec";
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            if (isFiltered)
-                cell.textLabel.text = filteredRec[indexPath.row];
-            else
-                cell.textLabel.text = recentLanguages[indexPath.row];
+            cell.textLabel.text =
+            isFiltered ? filteredRec[indexPath.row] : recentLanguages[indexPath.row];
             break;
         case 1:
             identifier=@"loc";
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            if (isFiltered)
-                cell.textLabel.text = filteredLoc[indexPath.row];
-            else
-                cell.textLabel.text = localLanguages[indexPath.row];
+            cell.textLabel.text =
+            isFiltered ? filteredLoc[indexPath.row] : localLanguages[indexPath.row];
             break;
         default:
             identifier=@"a";
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            if (isFiltered)
-                cell.textLabel.text = filteredArr[indexPath.row];
-            else
-                cell.textLabel.text = srcArr[indexPath.row];
+            cell.textLabel.text = isFiltered ? filteredArr[indexPath.row] : srcArr[indexPath.row];
             break;
             
     }

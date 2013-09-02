@@ -61,6 +61,7 @@
     }
 }
 
+// calls datacontroller object to perform messages fetch
 -(void)addMessagesTuple
 {
     __weak typeof(self) weakself = self; //avoid retain cycle
@@ -83,12 +84,12 @@
 {
     [super viewDidLoad];
     _transCells=[[NSMutableSet alloc] init];
-    [menuView setHidden:YES];
+    [menuView setHidden:YES]; // menu is always closed at the beginning
     [menuView setFrame:CLOSED_MAIN_MENU_FRAME];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [msgTableView reloadData];
+    [msgTableView reloadData]; // will make the GUI pretty again on rotation
 }
 
 #pragma mark - Table view data source
@@ -109,9 +110,8 @@
     if(i<[dataController countOfList] && [dataController countOfList]>0)
     {
         TranslationMessage* msg = [dataController objectInListAtIndex:i];
-        if (!msg.prState)//if (translationState)
+        if (!msg.prState) //if (translationState)
         {
-            
             NSString *transCellIdentifier = [NSString stringWithFormat:@"translationCell-%i",msg.suggestions.count];
             TranslationCell * trMsgCell = [tableView dequeueReusableCellWithIdentifier:transCellIdentifier];
             
@@ -119,8 +119,8 @@
             {
                 trMsgCell = [[TranslationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:transCellIdentifier];
             }
-            [_transCells addObject:trMsgCell];
             
+            [_transCells addObject:trMsgCell];
             trMsgCell.msg            = msg;
             trMsgCell.api            = _api;
             trMsgCell.container      = dataController;

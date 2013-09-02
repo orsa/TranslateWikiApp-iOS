@@ -128,8 +128,8 @@
 #define setUserDefaultskey(X,Y)     [defaults setObject:X forKey:Y]
 #define getBoolUserDefaultskey(X)   [defaults boolForKey:X]
 #define setBoolUserDefaultskey(X,Y) [defaults setBool:X forKey:Y]
-#define LoadAlertView(Title, Message, CancelButtonTitle)             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:nil]
-#define LoadAlertViewWithOthers(Title, Message, CancelButtonTitle, OtherButtonTitles)             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:OtherButtonTitles,nil]
+#define LoadAlertView(Title, Message, CancelButtonTitle)                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:nil]
+#define LoadAlertViewWithOthers(Title,Message,CancelButtonTitle,OtherButtonTitles) [[UIAlertView alloc] initWithTitle:Title message:Message delegate:self cancelButtonTitle:CancelButtonTitle otherButtonTitles:OtherButtonTitles,nil]
 #define LoadDefaultAlertView()      LoadAlertView(STRING_ALERT, @"", STRING_OK)
 #define AlertSetMessage(Message)    alert.message=Message
 #define AlertShow()                 [alert show]

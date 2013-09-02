@@ -24,7 +24,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES]; // hide navigation bar
 }
 
 - (void)viewDidLoad
@@ -114,10 +114,11 @@
      }];
 }
 
-- (IBAction)goToSignup:(id)sender {    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_FOR_SIGNUP]];
-}
+- (IBAction)goToSignup:(id)sender {
+    // launch web browser
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_FOR_SIGNUP]];}
 
+// store credentials in keychain
 + (void) storeCredKCUser:(NSString *)nameString Password:(NSString*)passwString
 {
     KeychainItemWrapper * loginKC = [[KeychainItemWrapper alloc] initWithIdentifier:@"translatewikiapplogin" accessGroup:nil];
@@ -138,7 +139,7 @@
         [vc setManagedObjectContext:self.managedObjectContext];
         [vc addMessagesTuple]; //push TUPLE_SIZE-tuple of translation messages from server
     }
-    else if ([[segue identifier] isEqualToString:@"FromLoginToLang"])
+    else if ([[segue identifier] isEqualToString:@"FromLoginToLang"]) // it happens on fisrt-time-load
     {
         LanguagePickerViewController *vc = [segue destinationViewController];
         vc.enteredFromLogin = YES;
@@ -149,12 +150,12 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 
-    if(textField == usernameText){
-        [passwordText becomeFirstResponder];
+    if(textField == usernameText){           // when focusing on username field
+        [passwordText becomeFirstResponder]; // return button will lead to focus password field
     }
-    else if(textField == passwordText){
-        [passwordText resignFirstResponder];
-        [self submitLogin:self];
+    else if(textField == passwordText){      // when focusing on password field
+        [passwordText resignFirstResponder]; 
+        [self submitLogin:self];             // return button will lead to dispatch login
     }
     return YES;
 }
